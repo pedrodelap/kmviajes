@@ -11,7 +11,11 @@ $(".tablas").on("click", ".btnEditarPropuesta", function() {
 
     $.ajax({
 
+<<<<<<< HEAD
         url: "ajax/propuestas.ajax.php",
+=======
+        url: "ajax/ajax.propuestas.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,

@@ -89,7 +89,11 @@ $("#lightbox").on("drop", function(e) {
             datos.append("imagen", imagen);
 
             $.ajax({
+<<<<<<< HEAD
                 url: "ajax/galeria.ajax.php",
+=======
+                url: "ajax/ajax.galeria.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                 method: "POST",
                 data: datos,
                 cache: false,
@@ -162,7 +166,11 @@ $(".eliminarFoto").click(function() {
 
     $.ajax({
 
+<<<<<<< HEAD
         url: "ajax/galeria.ajax.php",
+=======
+        url: "ajax/ajax.galeria.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: borrarItem,
         cache: false,
@@ -224,7 +232,11 @@ $("#guardarGaleria").click(function() {
 
         $.ajax({
 
+<<<<<<< HEAD
             url: "ajax/galeria.ajax.php",
+=======
+            url: "ajax/ajax.galeria.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
             method: "POST",
             data: actualizarOrden,
             cache: false,

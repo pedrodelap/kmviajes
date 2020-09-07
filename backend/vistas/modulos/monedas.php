@@ -11,7 +11,11 @@
                 </div>
             </div>
             <div class="page-title-actions">
+<<<<<<< HEAD
                 <button type="button" class="btn-shadow btn btn-info" data-toggle="modal" data-target="#modalNuevoMoneda">
+=======
+                <button type="button" class="btn-shadow btn btn-primary" data-toggle="modal" data-target="#modalNuevoMoneda">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="pe-7s-add-user pe-7s-w-20"></i>
                     </span>
@@ -21,7 +25,11 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="row">
+=======
+    <div class="row animated fadeIn">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
@@ -31,7 +39,11 @@
                                         MONEDAS
                         ======================================-->
 
+<<<<<<< HEAD
                         <table class="table table-striped table-bordered tablas">
+=======
+                        <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             <thead>
                             
@@ -71,6 +83,7 @@
 
                                             <td>'.$value["venta"].'</td>
 
+<<<<<<< HEAD
                                             <td>
 
                                             <div class="btn-group">
@@ -86,6 +99,18 @@
                                             echo '</div>  
 
                                             </td>
+=======
+                                            <td>                                                
+                                                <span><button class="btn btn-secondary fa fa-edit btnEditarMoneda" idMoneda="'.$value["id_moneda"].'" data-toggle="modal" data-target="#modalEditarMoneda"></button></span>&nbsp;';
+                                                                
+                                                if($_SESSION["perfil"] == "Administrador"){
+
+                                                    echo '<span><button class="btn btn-danger fa fa-times btnEliminarMoneda" idMoneda="'.$value["id_moneda"].'"></button></span>';
+                                                
+                                                }
+
+                                       echo '</td>
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                                         </tr>';
                                 
@@ -118,10 +143,16 @@ MODAL AGREGAR MONEDA
 
                 <!--=====================================
                 CABEZA DEL MODAL
+<<<<<<< HEAD
                 style="background:#495057; color:white"
                 ======================================-->
 
                 <div class="modal-header" style="background:#495057; color:white">
+=======
+                ======================================-->
+
+                <div class="modal-header">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Agregar moneda</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -206,10 +237,16 @@ MODAL EDITAR MONEDA
 
                 <!--=====================================
                 CABEZA DEL MODAL
+<<<<<<< HEAD
                 style="background:#495057; color:white"
                 ======================================-->
 
                 <div class="modal-header" style="background:#495057; color:white">
+=======
+                ======================================-->
+
+                <div class="modal-header">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Editar moneda</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

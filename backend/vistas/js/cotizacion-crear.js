@@ -250,7 +250,11 @@ $("#cotizacionNuevoCliente").select2({
     placeholder: "Busca cliente aquí...",
     theme: "bootstrap4",
     ajax: {
+<<<<<<< HEAD
         url: 'ajax/clientes.ajax.php',
+=======
+        url: 'ajax/ajax.clientes.php',
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         dataType: 'json',
         delay: 250,
         data: function(params) {
@@ -285,7 +289,11 @@ $("#cotizacionNuevoAerolinea").select2({
     placeholder: "Busca aerolinea aquí...",
     theme: "bootstrap4",
     ajax: {
+<<<<<<< HEAD
         url: 'ajax/aerolineas.ajax.php',
+=======
+        url: 'ajax/ajax.aerolineas.php',
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         dataType: 'json',
         delay: 250,
         data: function(params) {
@@ -319,7 +327,11 @@ $(".cotizacionNuevoAeropuerto").select2({
     placeholder: "Busca Aropuerto",
     theme: "bootstrap4",
     ajax: {
+<<<<<<< HEAD
         url: 'ajax/aeropuertos.ajax.php',
+=======
+        url: 'ajax/ajax.aeropuertos.php',
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         dataType: 'json',
         delay: 250,
         data: function(params) {
@@ -462,7 +474,11 @@ function adicionarCotizacion() {
 
         $.ajax({
 
+<<<<<<< HEAD
             url: "ajax/cotizaciones.ajax.php",
+=======
+            url: "ajax/ajax.cotizaciones.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
             method: "POST",
             data: datosCotizacion,
             cache: false,
@@ -536,7 +552,11 @@ function adicionarPropuesta() {
 
     $.ajax({
 
+<<<<<<< HEAD
         url: "ajax/propuestas.ajax.php",
+=======
+        url: "ajax/ajax.propuestas.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datosPropuesta,
         cache: false,
@@ -590,7 +610,11 @@ function adicionarItinerario() {
 
     $.ajax({
         type: "POST",
+<<<<<<< HEAD
         url: "ajax/itinerarios.ajax.php",
+=======
+        url: "ajax/ajax.itinerarios.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         data: { cotizacionNuevoItinerario: JSON.stringify(filas) },
         beforeSend: function(){
 
@@ -610,6 +634,7 @@ function adicionarItinerario() {
 
 function mensajePropuestaRegistrada() {
 
+<<<<<<< HEAD
 
     
 
@@ -617,6 +642,11 @@ function mensajePropuestaRegistrada() {
 
 
 
+=======
+    tablaPropuestas();
+
+
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
     botonesCotizacion();
 
 
@@ -699,7 +729,11 @@ function tablaPropuestas() {
     
     $.ajax({
 
+<<<<<<< HEAD
         url: "ajax/propuestas.ajax.php",
+=======
+        url: "ajax/ajax.propuestas.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datostablaPropuesta,
         cache: false,

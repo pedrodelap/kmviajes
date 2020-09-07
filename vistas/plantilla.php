@@ -35,6 +35,13 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="vistas/assets/https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="vistas/assets/https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<<<<<<< HEAD
+=======
+
+    <script src="backend/vistas/assets/js/scripts-init/sweet-alerts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
   </head>
   <body>
     <div id="all">
@@ -546,6 +553,7 @@
                   <p class="lead">Are you curious about something? Do you have some kind of problem with our products? As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built gay party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.</p>
                   <p class="text-sm">Please feel free to contact us, our customer service center is working for you 24/7.</p>
                   <div class="heading">
+<<<<<<< HEAD
                     <h3>Contact form</h3>
                   </div>
                   <form>
@@ -560,31 +568,72 @@
                         <div class="form-group">
                           <label for="lastname">Lastname</label>
                           <input id="lastname" type="text" class="form-control">
+=======
+                    <h3>FORMULARIO DE CONTACTO</h3>
+                  </div>
+                  <?php
+
+                    $mensajes = new MensajesController();
+                    $mensajes -> registroMensajesController();
+
+                    ?>
+                  <form method="post" onsubmit="return validarMensaje()">
+                    <div class="row">
+                      <div class="col-md-9">
+                        <div class="form-group">
+                          <label for="firstname">Nombres y Apellidos</label>
+                          <input name="nombres" id="nombres" type="text" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="lastname">Celular</label>
+                          <input name="telefono" id="telefono" type="text" class="form-control">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
+<<<<<<< HEAD
                           <label for="email">Email</label>
                           <input id="email" type="text" class="form-control">
+=======
+                          <label for="email">Correo</label>
+                          <input type="email" name="email" id="email" class="form-control">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
+<<<<<<< HEAD
                           <label for="subject">Subject</label>
                           <input id="subject" type="text" class="form-control">
+=======
+                          <label for="subject">Asunto</label>
+                          <input name="asunto" id="asunto" type="text" class="form-control">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                         </div>
                       </div>
                       <div class="col-md-12">
                         <div class="form-group">
+<<<<<<< HEAD
                           <label for="message">Message</label>
                           <textarea id="message" class="form-control"></textarea>
+=======
+                          <label for="message">Mensaje</label>
+                          <textarea name="mensaje" id="mensaje" class="form-control"></textarea>
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                         </div>
                       </div>
                       <div class="col-md-12 text-center">
                         <button type="submit" class="btn btn-template-outlined"><i class="fa fa-envelope-o"></i> Send message</button>
                       </div>
                     </div>
+<<<<<<< HEAD
                   </form>
+=======
+                  </form>        
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                 </section>
               </div>
               <div class="col-lg-4">
@@ -639,14 +688,22 @@
               <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
               <hr>
               <h4 class="h6">Join Our Monthly Newsletter</h4>
+<<<<<<< HEAD
               <form>
+=======
+              <!-- <form> -->
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                 <div class="input-group">
                   <input type="text" class="form-control">
                   <div class="input-group-append">
                     <button type="button" class="btn btn-secondary"><i class="fa fa-send"></i></button>
                   </div>
                 </div>
+<<<<<<< HEAD
               </form>
+=======
+              <!-- </form> -->
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
               <hr class="d-block d-lg-none">
             </div>
             <div class="col-lg-3">

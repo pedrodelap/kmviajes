@@ -19,7 +19,11 @@ $(".tablas").on("click", ".btnEditarMoneda", function() {
     $.ajax({
 
 
+<<<<<<< HEAD
         url: "ajax/monedas.ajax.php",
+=======
+        url: "ajax/ajax.monedas.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,

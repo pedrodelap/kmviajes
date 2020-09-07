@@ -17,7 +17,11 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <div class="row">
+=======
+    <div class="row animated fadeIn">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
@@ -33,7 +37,11 @@
                         
                         <div>
 
+<<<<<<< HEAD
                             <table id="tablaSuscriptores" class="table table-striped dt-responsive nowrap">
+=======
+                            <table id="tablaSuscriptores" class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
