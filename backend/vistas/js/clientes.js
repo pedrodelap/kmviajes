@@ -11,6 +11,10 @@ EDITAR CLIENTE
 
 $(".tablas").on("click", ".btnEditarCliente", function() {
 
+<<<<<<< HEAD
+=======
+    console.log("dentro");
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
     var idCliente = $(this).attr("idCliente");
 
     var datos = new FormData();
@@ -19,7 +23,11 @@ $(".tablas").on("click", ".btnEditarCliente", function() {
     $.ajax({
 
 
+<<<<<<< HEAD
         url: "ajax/clientes.ajax.php",
+=======
+        url: "ajax/ajax.clientes.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,

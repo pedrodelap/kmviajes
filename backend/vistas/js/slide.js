@@ -76,7 +76,11 @@ $("#columnasSlide").on("drop", function(e) {
             datos.append("imagen", imagen);
 
             $.ajax({
+<<<<<<< HEAD
                 url: "ajax/slide.ajax.php",
+=======
+                url: "ajax/ajax.slide.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                 method: "POST",
                 data: datos,
                 cache: false,
@@ -155,7 +159,11 @@ $(".eliminarSlide").click(function() {
 
     $.ajax({
 
+<<<<<<< HEAD
         url: "ajax/slide.ajax.php",
+=======
+        url: "ajax/ajax.slide.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: borrarItem,
         cache: false,
@@ -199,7 +207,11 @@ $(".editarSlide").click(function() {
         actualizarSlide.append("enviarDescripcion", enviarDescripcion);
 
         $.ajax({
+<<<<<<< HEAD
             url: "ajax/slide.ajax.php",
+=======
+            url: "ajax/ajax.slide.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
             method: "POST",
             data: actualizarSlide,
             cache: false,
@@ -281,7 +293,11 @@ $("#guardarSlide").click(function() {
 
         $.ajax({
 
+<<<<<<< HEAD
             url: "ajax/slide.ajax.php",
+=======
+            url: "ajax/ajax.slide.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
             method: "POST",
             data: actualizarOrden,
             cache: false,

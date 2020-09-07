@@ -18,7 +18,11 @@ $(".tablas").on("click", ".btnEditarAerolinea", function() {
 
     $.ajax({
 
+<<<<<<< HEAD
         url: "ajax/aerolineas.ajax.php",
+=======
+        url: "ajax/ajax.aerolineas.php",
+>>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,
