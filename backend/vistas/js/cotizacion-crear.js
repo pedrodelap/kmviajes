@@ -12,14 +12,14 @@ $('#modalNuevoItinerario').appendTo("body");
 DOCUMENT READY
 =============================================*/
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     datePicker();
     formatoNumeros();
     limpiarModalPropuesta();
     limpiarModalItinerarioCrear();
     botonesCotizacion();
-    
+
     $.blockUI.defaults = {
         timeout: 5000,
         fadeIn: 500,
@@ -28,8 +28,8 @@ $(document).ready(function() {
 
 });
 
-$(document).keyup(function(e) {
-    if (e.keyCode == 27 && $('#modalNuevoItinerario').is(':visible'))  {
+$(document).keyup(function (e) {
+    if (e.keyCode == 27 && $('#modalNuevoItinerario').is(':visible')) {
         //alert('Esc key is press');
         $('#modalNuevoPropuesta').modal('show');
     }
@@ -92,13 +92,13 @@ AGREGANDO ITINERARIO
 =============================================*/
 
 function itinerarioActualizar() {
-    
+
     if ($("#btnItinerario").text() == "Actualizar Itinerario") {
 
         var active = $('#hidden_itinerario').val();
 
         console.log("active", active);
-        
+
         itinerarioActualizarEnTabla(active);
     }
     else {
@@ -117,7 +117,7 @@ ACTUALIZANDO ITINERARIO A LA TABLA ITINERARIOS
 function itinerarioActualizarEnTabla(id) {
 
     var row = $("#tablaItinerario button[data-id='" + id + "']")
-                .parents("tr")[0];
+        .parents("tr")[0];
 
     $(row).after(itinerarioConstruirTablaRow(id));
     $(row).remove();
@@ -163,20 +163,20 @@ function itinerarioConstruirTablaRow(id) {
 
 
     var ret = '<tr>' +
-                '<td>' + id + '</td>' +
-                '<td style="display: none;">' + origenId + '</td>' +
-                '<td>' + origenNombre + '</td>' +
-                '<td style="display: none;">' + destinoId + '</td>' +
-                '<td>' + destinoNombre + '</td>' +
-                '<td>' + fechaVuelo + '</td>' +
-                '<td>' +
-                    '<button type="button" class="border-0 btn-transition btn btn-outline-warning" onClick="itinerarioMostrar(' + id + ', ' + origenId + ', ' + destinoId + ', \'' + origenNombre + ' \', \'' + destinoNombre + ' \',\'' + fechaVuelo + ' \');" data-id="'+ id +'"><i class="lnr-pencil btn-icon-wrapper">&nbsp;</i></button>' +
-                    '<button type="button" class="border-0 btn-transition btn btn-outline-danger" onClick="itinerarioBorrar(this);" data-id="'+ id +'" ><i class="lnr-cross btn-icon-wrapper">&nbsp;</i></button>' +
-                '</td>' +
-            '</tr>';
+        '<td>' + id + '</td>' +
+        '<td style="display: none;">' + origenId + '</td>' +
+        '<td>' + origenNombre + '</td>' +
+        '<td style="display: none;">' + destinoId + '</td>' +
+        '<td>' + destinoNombre + '</td>' +
+        '<td>' + fechaVuelo + '</td>' +
+        '<td>' +
+        '<button type="button" class="border-0 btn-transition btn btn-outline-warning" onClick="itinerarioMostrar(' + id + ', ' + origenId + ', ' + destinoId + ', \'' + origenNombre + ' \', \'' + destinoNombre + ' \',\'' + fechaVuelo + ' \');" data-id="' + id + '"><i class="lnr-pencil btn-icon-wrapper">&nbsp;</i></button>' +
+        '<button type="button" class="border-0 btn-transition btn btn-outline-danger" onClick="itinerarioBorrar(this);" data-id="' + id + '" ><i class="lnr-cross btn-icon-wrapper">&nbsp;</i></button>' +
+        '</td>' +
+        '</tr>';
 
     return ret;
-    
+
 }
 
 /*=============================================
@@ -191,9 +191,9 @@ function itinerarioMostrar(id, origenId, destinoId, origenNombre, destinoNombre,
     $("#modalItinerario").text("Actualizar Itinerario");
     $("#btnItinerario").text("Actualizar Itinerario");
 
-    
+
     $('#hidden_itinerario').val(id);
-    
+
     var optionOrigen = new Option(origenNombre, origenId, true, true);
     $('#itinerarioNuevoOrigen').append(optionOrigen);
 
@@ -250,20 +250,16 @@ $("#cotizacionNuevoCliente").select2({
     placeholder: "Busca cliente aquí...",
     theme: "bootstrap4",
     ajax: {
-<<<<<<< HEAD
-        url: 'ajax/clientes.ajax.php',
-=======
         url: 'ajax/ajax.clientes.php',
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         dataType: 'json',
         delay: 250,
-        data: function(params) {
+        data: function (params) {
             return {
                 q: params.term,
                 page: params.page
             };
         },
-        processResults: function(data, params) {
+        processResults: function (data, params) {
             params.page = params.page || 1;
             return {
                 results: data.items,
@@ -289,20 +285,16 @@ $("#cotizacionNuevoAerolinea").select2({
     placeholder: "Busca aerolinea aquí...",
     theme: "bootstrap4",
     ajax: {
-<<<<<<< HEAD
-        url: 'ajax/aerolineas.ajax.php',
-=======
         url: 'ajax/ajax.aerolineas.php',
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         dataType: 'json',
         delay: 250,
-        data: function(params) {
+        data: function (params) {
             return {
                 q: params.term,
                 page: params.page
             };
         },
-        processResults: function(data, params) {
+        processResults: function (data, params) {
             params.page = params.page || 1;
             return {
                 results: data.items,
@@ -327,20 +319,16 @@ $(".cotizacionNuevoAeropuerto").select2({
     placeholder: "Busca Aropuerto",
     theme: "bootstrap4",
     ajax: {
-<<<<<<< HEAD
-        url: 'ajax/aeropuertos.ajax.php',
-=======
         url: 'ajax/ajax.aeropuertos.php',
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         dataType: 'json',
         delay: 250,
-        data: function(params) {
+        data: function (params) {
             return {
                 q: params.term,
                 page: params.page
             };
         },
-        processResults: function(data, params) {
+        processResults: function (data, params) {
             params.page = params.page || 1;
             return {
                 results: data.items,
@@ -445,7 +433,7 @@ function precioTotal() {
 AGREGANDO ITINERARIOS
 =============================================*/
 
-$("#cotizacionNuevoTipoMoneda").change(function() {
+$("#cotizacionNuevoTipoMoneda").change(function () {
 
     var metodo = $("#cotizacionNuevoTipoMoneda").val();
 
@@ -474,18 +462,14 @@ function adicionarCotizacion() {
 
         $.ajax({
 
-<<<<<<< HEAD
-            url: "ajax/cotizaciones.ajax.php",
-=======
             url: "ajax/ajax.cotizaciones.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
             method: "POST",
             data: datosCotizacion,
             cache: false,
             contentType: false,
             processData: false,
             dataType: "json",
-            success: function(respuesta) {
+            success: function (respuesta) {
 
                 $("#hidden_cotizacion_id").val(respuesta["id_cotizacion"]);
                 adicionarPropuesta();
@@ -546,31 +530,27 @@ function adicionarPropuesta() {
     datosPropuesta.append("cotizacionNuevoUsuarioCreacion", cotizacionNuevoUsuarioCreacion);
 
     for (var value of datosPropuesta.values()) {
-        console.log("datosPropuesta : ", value); 
-     }
+        console.log("datosPropuesta : ", value);
+    }
 
 
     $.ajax({
 
-<<<<<<< HEAD
-        url: "ajax/propuestas.ajax.php",
-=======
         url: "ajax/ajax.propuestas.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datosPropuesta,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             console.log("respuesta", respuesta);
 
             $("#hidden_propuesta_id").val(respuesta["id_propuesta"]);
 
             adicionarItinerario();
-            
+
 
         }
 
@@ -587,7 +567,7 @@ function adicionarItinerario() {
 
     var filas = [];
 
-    $('#tablaItinerario tr').each(function() {
+    $('#tablaItinerario tr').each(function () {
 
         var idPropuesta = $("#hidden_propuesta_id").val();
         var origen = $(this).find('td').eq(1).text();
@@ -610,19 +590,15 @@ function adicionarItinerario() {
 
     $.ajax({
         type: "POST",
-<<<<<<< HEAD
-        url: "ajax/itinerarios.ajax.php",
-=======
         url: "ajax/ajax.itinerarios.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         data: { cotizacionNuevoItinerario: JSON.stringify(filas) },
-        beforeSend: function(){
+        beforeSend: function () {
 
             $('#modalNuevoPropuesta').modal('hide');
-            $.blockUI({message: $('.body-block-example-2')});
-            
+            $.blockUI({ message: $('.body-block-example-2') });
+
         },
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             if (respuesta == "ok") {
                 setTimeout(mensajePropuestaRegistrada, 5800);
@@ -634,19 +610,9 @@ function adicionarItinerario() {
 
 function mensajePropuestaRegistrada() {
 
-<<<<<<< HEAD
-
-    
-
     tablaPropuestas();
 
 
-
-=======
-    tablaPropuestas();
-
-
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
     botonesCotizacion();
 
 
@@ -726,21 +692,17 @@ function tablaPropuestas() {
     var idCotizacion = $("#hidden_cotizacion_id").val();
     var datostablaPropuesta = new FormData();
     datostablaPropuesta.append("idCotizacion", idCotizacion);
-    
+
     $.ajax({
 
-<<<<<<< HEAD
-        url: "ajax/propuestas.ajax.php",
-=======
         url: "ajax/ajax.propuestas.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datostablaPropuesta,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             $("#tablaPropuesta").html('');
             $("#tablaPropuesta").html(respuesta);
@@ -757,31 +719,31 @@ BOTONES CABECERA COTIZACION
 
 function botonesCotizacion() {
 
-    if($("#hidden_propuesta_id").val() != "" ){
+    if ($("#hidden_propuesta_id").val() != "") {
 
-        var divBotonesCotizacion =  '<button type="button" class="btn-shadow btn btn-focus btnGenerarPDF">'+
-                                        '<span class="btn-icon-wrapper pr-1 opacity-7">'+
-                                            '<i class="pe-7s-add-user pe-7s-w-20"></i>'+
-                                        '</span>'+
-                                        'Generar PDF'+
-                                    '</button> '+
-                                    ' <button type="button" class="btn-shadow btn btn-alternate btnEnviarCorreo">'+
-                                        '<span class="btn-icon-wrapper pr-1 opacity-7">'+
-                                            '<i class="pe-7s-add-user pe-7s-w-20"></i>'+
-                                        '</span>'+
-                                        'Enviar Correo'+
-                                    '</button>';
+        var divBotonesCotizacion = '<button type="button" class="btn-shadow btn btn-focus btnGenerarPDF">' +
+            '<span class="btn-icon-wrapper pr-1 opacity-7">' +
+            '<i class="pe-7s-add-user pe-7s-w-20"></i>' +
+            '</span>' +
+            'Generar PDF' +
+            '</button> ' +
+            ' <button type="button" class="btn-shadow btn btn-alternate btnEnviarCorreo">' +
+            '<span class="btn-icon-wrapper pr-1 opacity-7">' +
+            '<i class="pe-7s-add-user pe-7s-w-20"></i>' +
+            '</span>' +
+            'Enviar Correo' +
+            '</button>';
 
         $("#divBotonesCotizacion").html(divBotonesCotizacion);
 
     } else {
 
-        var divBotonesCotizacion =  '<button type="button" class="btn-shadow btn btn-primary" data-toggle="modal" data-target="#modalNuevoCliente">'+
-                                        '<span class="btn-icon-wrapper pr-2 opacity-7">'+
-                                            '<i class="pe-7s-add-user pe-7s-w-20"></i>'+
-                                        '</span>'+
-                                        'Agregar Cliente'+
-                                    '</button>';
+        var divBotonesCotizacion = '<button type="button" class="btn-shadow btn btn-primary" data-toggle="modal" data-target="#modalNuevoCliente">' +
+            '<span class="btn-icon-wrapper pr-2 opacity-7">' +
+            '<i class="pe-7s-add-user pe-7s-w-20"></i>' +
+            '</span>' +
+            'Agregar Cliente' +
+            '</button>';
 
         $("#divBotonesCotizacion").html(divBotonesCotizacion);
 

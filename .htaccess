@@ -7,8 +7,5 @@ Options All -Indexes
 
 RewriteEngine on
 
-<<<<<<< HEAD
-RewriteRule ^(\w+)$ index.php?action=$1
-=======
+# RewriteRule ^(\w+)$ index.php?action=$1
 RewriteRule ^(\w+)$ index.php?ruta=$1
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d

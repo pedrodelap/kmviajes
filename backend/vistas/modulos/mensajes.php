@@ -14,11 +14,7 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-    <div class="row">
-=======
     <div class="row animated fadeIn">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
         <!--=====================================
                         MENSAJES
@@ -74,11 +70,7 @@
         datos.append("revisionMensajes", 1);
 
         $.ajax({
-<<<<<<< HEAD
-                url:"ajax/revision.ajax.php",
-=======
                 url:"ajax/ajax.revision.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                 method: "POST",
                 data: datos,
                 cache: false,

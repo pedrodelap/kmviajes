@@ -9,12 +9,9 @@ $('#modalEditarCliente').appendTo("body");
 EDITAR CLIENTE
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarCliente", function() {
+$(".tablas").on("click", ".btnEditarCliente", function () {
 
-<<<<<<< HEAD
-=======
     console.log("dentro");
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
     var idCliente = $(this).attr("idCliente");
 
     var datos = new FormData();
@@ -23,18 +20,14 @@ $(".tablas").on("click", ".btnEditarCliente", function() {
     $.ajax({
 
 
-<<<<<<< HEAD
-        url: "ajax/clientes.ajax.php",
-=======
         url: "ajax/ajax.clientes.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             $("#idCliente").val(respuesta["id_cliente"]);
             $("#clienteEditarNombres").val(respuesta["nombres"]);
@@ -56,7 +49,7 @@ $(".tablas").on("click", ".btnEditarCliente", function() {
 ELIMINAR CLIENTE
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarCliente", function() {
+$(".tablas").on("click", ".btnEliminarCliente", function () {
 
     var idCliente = $(this).attr("idCliente");
     console.log("idCliente", idCliente);

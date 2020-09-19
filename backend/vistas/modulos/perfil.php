@@ -14,11 +14,7 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-    <div class="row">
-=======
     <div class="row animated fadeIn">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
         <div class="col-lg-12 col-xl-6">
             <div class="main-card mb-3 card">
@@ -30,11 +26,7 @@
                     ======================================-->
                     <div id="editarPerfil">
                         <h5>Hola <?php echo $_SESSION["usuario"]; ?>
-<<<<<<< HEAD
-                            <span class="btn btn-info fa fa-edit float-left" id="btnEditarPerfil" style="font-size:10px; margin-right:10px"></span>
-=======
                             <span class="btn btn-primary fa fa-edit float-left" id="btnEditarPerfil" style="font-size:10px; margin-right:10px"></span>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                         </h5>
                         <div style="position:relative">
                             <img width="42px" src="<?php echo $_SESSION["foto"]; ?> " class="rounded-circle float-right">
@@ -55,53 +47,31 @@
                     </div>
                     <div id="formEditarPerfil" style="display:none">
 
-<<<<<<< HEAD
-                        <form id="formularioPerfil" style="padding:20px" method="post" enctype="multipart/form-data">
-
-                            <input name="editarId" type="hidden" value="<?php echo $_SESSION["id_usuario"]; ?>">
-=======
                         <form id="formularioPerfil" style="padding:20px" method="post" enctype="multipart/form-data" role="form">
 
                             <input name="editarId" id="editarId" type="hidden" value="<?php echo $_SESSION["id_usuario"]; ?>">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             <input name="actualizarSesion" type="hidden" value="ok">
 
                             <div class="form-group">
 
-<<<<<<< HEAD
-                                <input name="editarUsuario" type="text" class="form-control" value="<?php echo $_SESSION["usuario"]; ?>" required>
-=======
                                 <input type="text" name="editarUsuario" id="editarUsuario" placeholder="Editar Usuario" class="form-control" required>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             </div>
 
                             <div class="form-group">
 
-<<<<<<< HEAD
-                                <input name="editarNombre" type="text" class="form-control" value="<?php echo $_SESSION["nombres"]; ?>" required>
-=======
                                 <input type="text" name="editarNombre" id="editarNombre" placeholder="Editar Nombres" class="form-control" required>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             </div>
 
                             <div class="form-group">
 
-<<<<<<< HEAD
-                                <input name="editarPassword" type="password" placeholder="Ingrese la Contraseña hasta 10 caracteres" maxlength="10" class="form-control" required>
-=======
                                 <input type="text" name="editarApellido" id="editarApellido" placeholder="Editar Apellidos" class="form-control" required>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             </div>
 
                             <div class="form-group">
-<<<<<<< HEAD
-
-                                <input name="editarEmail" type="email" value="<?php echo $_SESSION["correo"]; ?>" class="form-control" required>
-=======
                                 <select class="form-control" name="editarTipoDocumentoCbx">
                                     <option id="editarTipoDocumentoCbx"></option>
                                     <option value="DNI">DNI</option>
@@ -132,20 +102,10 @@
                             <div class="form-group">
                                 <label for="editarPassword">Contraseña Actual</label>
                                 <input type="password" name="editarPassword" id="editarPassword" placeholder="Ingrese la Contraseña hasta 10 caracteres" maxlength="10" class="form-control" value="">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             </div>
 
                             <div class="form-group">
-<<<<<<< HEAD
-
-                                <select name="editarPerfil" class="form-control" required>
-                                    <option value="" selected>Seleccione el Rol</option>
-                                    <option value="Administrador">Administrador</option>
-                                    <option value="Editor">Editor</option>
-                                </select>
-
-=======
                                 <label for="editarPasswordNuevo">Cambiar Contraseña</label>
                                 <input type="password" name="editarPasswordNuevo" id="editarPasswordNuevo" placeholder="Ingrese la Contraseña hasta 10 caracteres" maxlength="10" class="form-control">
 
@@ -158,24 +118,15 @@
                                     <option value="Administrador">Administrador</option>
                                     <option value="Editor">Editor</option>
                                 </select>                    
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                             </div>
 
                             <div class="form-group text-center">
 
-<<<<<<< HEAD
-                                <img src="<?php echo $_SESSION["foto"]; ?>" width="10%" class="rounded-circle">
-
-                                <input type="hidden" value="<?php echo $_SESSION["foto"]; ?>" name="editarFoto">
-
-                                <input type="file" class="btn btn-default" id="cambiarFotoPerfil" style="display:inline-block; margin:10px 0">
-=======
                                 <img src="vistas/images/usuarios/admin.jpg" width="10%" class="rounded-circle previsualizar">
 
                                 <input type="hidden" name="fotoActual" id="fotoActual">
 
                                 <input type="file" class="btn btn-default" name="editarFoto" style="display:inline-block; margin:10px 0">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                                 <p class="text-center" style="font-size:12px">Tamaño recomendado de la imagen: 100px * 100px, peso máximo 2MB</p>
 
@@ -183,22 +134,14 @@
 
                             <input type="submit" id="guardarPerfil" value="Actualizar Perfil" class="btn btn-primary">
 
-<<<<<<< HEAD
-=======
                             <input type="button" id="btnEditarPerfilCancelar" value="Cancelar" class="btn">
 
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                         </form>
 
                         <?php
 
-<<<<<<< HEAD
-                        $crearPerfil2 = new ControladorPerfiles();
-                        $crearPerfil2->editarUsuarioController();
-=======
                             $editarUsuario = new ControladorUsuarios();
                             $editarUsuario->ctrEditarUsuario();
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                         ?>
 
@@ -222,65 +165,6 @@
 
                     if ($_SESSION["perfil"] == 'Administrador') {
 
-<<<<<<< HEAD
-                        echo '<div id="crearPerfil">
-
-                                <button id="registrarPerfil" style="margin-bottom:20px" class="btn-shadow btn btn-info">Registrar un nuevo miembro</button>
-
-                                <form id="formularioPerfil" style="display:none" method="post" enctype="multipart/form-data">
-    
-                                    <div class="form-group">
-            
-                                        <input name="nuevoUsuario" type="text" placeholder="Ingrese el Usuario hasta 10 caracteres" maxlength="10" class="form-control"  required>
-
-                                    </div>
-
-                                    <div class="form-group">
-            
-                                        <input name="nuevoNombre" type="text" placeholder="Ingrese el Nombre hasta 10 caracteres" maxlength="10" class="form-control"  required>
-
-                                    </div>                                                    
-
-                                    <div class="form-group">
-
-                                        <input name="nuevoPassword" type="password" placeholder="Ingrese la Contraseña hasta 10 caracteres" maxlength="10" class="form-control" required>
-
-                                    </div>
-
-                                    <div class="form-group">
-
-                                        <input name="nuevoEmail" type="email" placeholder="Ingrese el Correo Electrónico" class="form-control" required>
-
-                                    </div>
-
-                                    <div class="form-group">
-
-                                        <select name="nuevoPerfil" id="nuevoPerfil" class="form-control" required>
-                                            <option value="" selected>Seleccione el Rol</option>
-                                            <option value="Administrador">Administrador</option>
-                                            <option value="Editor">Editor</option>
-
-                                        </select>
-
-                                    </div>
-
-                                    <div class="form-group text-center">
-                                        
-                                        <input type="file" class="btn btn-default" id="subirFotoPerfil" style="display:inline-block; margin:10px 0">
-
-                                        <p class="text-center" style="font-size:12px">Tamaño recomendado de la imagen: 100px * 100px, peso máximo 2MB</p>
-
-                                    </div>
-
-                                    <input type="submit" id="guardarPerfil" value="Guardar Perfil" class="btn btn-primary">
-
-                                </form>
-                                
-                            </div>';
-
-                        $crearPerfil = new ControladorPerfiles();
-                        $crearPerfil->nuevoUsuarioController();
-=======
                         echo '<div>
 
                                 <br />
@@ -298,16 +182,11 @@
 
                         $crearPerfil = new ControladorUsuarios();
                         $crearPerfil->ctrCrearUsuario();
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     }
 
                     ?>
 
-<<<<<<< HEAD
-                    <br />
-=======
                     
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                     <div class="table-responsive">
                         <table id="tablaSuscriptores" class="table table-striped display">
@@ -316,22 +195,11 @@
                                     <th>Usuario</th>
                                     <th>Perfil</th>
                                     <th>Email</th>
-<<<<<<< HEAD
-                                    <th></th>
-=======
                                     <th>Acciones</th>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                                 </tr>
                             </thead>
                             <tbody>
 
-<<<<<<< HEAD
-                                <?php
-                                $verPerfiles = new ControladorPerfiles();
-                                $verPerfiles->verPerfilesController();
-                                $verPerfiles->borrarPerfilController();
-                                ?>
-=======
                             <?php
 
                                 $item = null;
@@ -354,7 +222,6 @@
                                 }
 
                             ?>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             </tbody>
                         </table>
@@ -367,9 +234,6 @@
         </div>
 
     </div>
-<<<<<<< HEAD
-</div>
-=======
 </div>
 
 
@@ -620,4 +484,3 @@ MODAL EDITAR USUARIO
   $eliminarUsuario -> ctrBorrarUsuario();
 
 ?>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d

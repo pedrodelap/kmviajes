@@ -9,7 +9,7 @@ $('#modalEditarAerolinea').appendTo("body");
 EDITAR AEROLINEA
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarAerolinea", function() {
+$(".tablas").on("click", ".btnEditarAerolinea", function () {
 
     var idAerolinea = $(this).attr("idAerolinea");
 
@@ -18,18 +18,14 @@ $(".tablas").on("click", ".btnEditarAerolinea", function() {
 
     $.ajax({
 
-<<<<<<< HEAD
-        url: "ajax/aerolineas.ajax.php",
-=======
         url: "ajax/ajax.aerolineas.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             $("#idAerolinea").val(respuesta["id_aerolinea"]);
             $("#aerolineaEditarCodigo").val(respuesta["codigo"]);
@@ -51,7 +47,7 @@ $(".tablas").on("click", ".btnEditarAerolinea", function() {
 ELIMINAR AEROLINEA
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarAerolinea", function() {
+$(".tablas").on("click", ".btnEliminarAerolinea", function () {
 
     var idAerolinea = $(this).attr("idAerolinea");
     console.log("idAerolinea", idAerolinea);

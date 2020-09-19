@@ -9,7 +9,7 @@ $('#modalEditarMoneda').appendTo("body");
 EDITAR MONEDA
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarMoneda", function() {
+$(".tablas").on("click", ".btnEditarMoneda", function () {
 
     var idMoneda = $(this).attr("idMoneda");
 
@@ -19,18 +19,14 @@ $(".tablas").on("click", ".btnEditarMoneda", function() {
     $.ajax({
 
 
-<<<<<<< HEAD
-        url: "ajax/monedas.ajax.php",
-=======
         url: "ajax/ajax.monedas.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             $("#idMoneda").val(respuesta["id_moneda"]);
             $("#monedaEditarNombre").val(respuesta["nombre"]);
@@ -48,7 +44,7 @@ $(".tablas").on("click", ".btnEditarMoneda", function() {
 ELIMINAR MONEDA
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarMoneda", function() {
+$(".tablas").on("click", ".btnEliminarMoneda", function () {
 
     var idMoneda = $(this).attr("idMoneda");
     console.log("idMoneda", idMoneda);

@@ -16,7 +16,7 @@ if ($("#lightbox").html() == 0) {
 /*=============================================
 Subir múltiples Imagenes
 =============================================*/
-$("body").on("dragover", function(e) {
+$("body").on("dragover", function (e) {
 
     e.preventDefault();
     e.stopPropagation();
@@ -24,7 +24,7 @@ $("body").on("dragover", function(e) {
 })
 
 
-$("#lightbox").on("dragover", function(e) {
+$("#lightbox").on("dragover", function (e) {
 
     e.preventDefault();
     e.stopPropagation();
@@ -37,7 +37,7 @@ $("#lightbox").on("dragover", function(e) {
 Soltar las Imágenes
 =============================================*/
 
-$("body").on("drop", function(e) {
+$("body").on("drop", function (e) {
 
     e.preventDefault();
     e.stopPropagation();
@@ -47,7 +47,7 @@ $("body").on("drop", function(e) {
 var imagenSize = [];
 var imagenType = [];
 
-$("#lightbox").on("drop", function(e) {
+$("#lightbox").on("drop", function (e) {
 
     e.preventDefault();
     e.stopPropagation();
@@ -89,21 +89,17 @@ $("#lightbox").on("drop", function(e) {
             datos.append("imagen", imagen);
 
             $.ajax({
-<<<<<<< HEAD
-                url: "ajax/galeria.ajax.php",
-=======
                 url: "ajax/ajax.galeria.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                 method: "POST",
                 data: datos,
                 cache: false,
                 contentType: false,
                 processData: false,
-                beforeSend: function() {
+                beforeSend: function () {
 
                     $("#lightbox").append('<li  id="status"><img src="vistas/assets/images/status.gif"></li>');
                 },
-                success: function(respuesta) {
+                success: function (respuesta) {
 
                     $("#status").remove();
 
@@ -147,7 +143,7 @@ $("#lightbox").on("drop", function(e) {
 Eliminar Item Galería
 =============================================*/
 
-$(".eliminarFoto").click(function() {
+$(".eliminarFoto").click(function () {
 
     if ($(".eliminarFoto").length == 1) {
 
@@ -166,17 +162,13 @@ $(".eliminarFoto").click(function() {
 
     $.ajax({
 
-<<<<<<< HEAD
-        url: "ajax/galeria.ajax.php",
-=======
         url: "ajax/ajax.galeria.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: borrarItem,
         cache: false,
         contentType: false,
         processData: false,
-        success: function(respuesta) {
+        success: function (respuesta) {
             console.log('respuesta', respuesta);
         }
 
@@ -192,7 +184,7 @@ Ordenar Item Galería
 var almacenarOrdenId = [];
 var ordenItem = [];
 
-$("#ordenarGaleria").click(function() {
+$("#ordenarGaleria").click(function () {
 
     $("#ordenarGaleria").hide();
     $("#guardarGaleria").show();
@@ -204,7 +196,7 @@ $("#ordenarGaleria").click(function() {
         revert: true,
         connectWith: ".bloqueGaleria",
         handle: ".handleImg",
-        stop: function(event) {
+        stop: function (event) {
 
             for (var i = 0; i < $("#lightbox li").length; i++) {
 
@@ -219,7 +211,7 @@ $("#ordenarGaleria").click(function() {
 
 })
 
-$("#guardarGaleria").click(function() {
+$("#guardarGaleria").click(function () {
 
     $("#ordenarGaleria").show();
     $("#guardarGaleria").hide();
@@ -232,17 +224,13 @@ $("#guardarGaleria").click(function() {
 
         $.ajax({
 
-<<<<<<< HEAD
-            url: "ajax/galeria.ajax.php",
-=======
             url: "ajax/ajax.galeria.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
             method: "POST",
             data: actualizarOrden,
             cache: false,
             contentType: false,
             processData: false,
-            success: function(respuesta) {
+            success: function (respuesta) {
 
                 $("#lightbox").html(respuesta);
 

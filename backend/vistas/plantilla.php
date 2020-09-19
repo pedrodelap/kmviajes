@@ -20,19 +20,13 @@
         <link rel="shortcut icon" href="vistas/assets/images/favicon.ico"/>
         <link rel="stylesheet" href="vistas/assets/css/base.min.css">
         <link rel="stylesheet" href="vistas/assets/css/style.css">
-<<<<<<< HEAD
-=======
         <link rel="stylesheet" href="vistas/assets/css/custom.css">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
         <!--SCRIPTS INCLUDES-->
 
         <!--CORE-->
         <script src="vistas/assets/js/vendors/jquery-3.3.1.min.js"></script>
-<<<<<<< HEAD
-=======
         <script src="vistas/assets/js/vendors/jquery-ui.min.js"></script>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <script src="vistas/assets/js/vendors/bootstrap.bundle.min.js"></script>
         <script src="vistas/assets/js/vendors/moment-with-locales.min.js"></script>        
         <script src="vistas/assets/js/vendors/metismenu.js"></script>
@@ -41,13 +35,6 @@
 
         <!--FORMS-->
 
-<<<<<<< HEAD
-        <!--Slick Carousel -->
-        <script src="vistas/assets/js/vendors/carousel-slider.js"></script>
-        <script src="vistas/assets/js/scripts-init/carousel-slider.js"></script>
-
-=======
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <!-- jQuery Number -->
         <script src="vistas/assets/js/vendors/jquerynumber.min.js"></script>
 
@@ -74,13 +61,8 @@
         <script src="vistas/assets/js/scripts-init/form-components/form-wizard.js"></script>
 
         <!--Input Mask-->
-<<<<<<< HEAD
-        <script src="vistas/assets/js/vendors/form-components/input-mask.js"></script>
-        <script src="vistas/assets/js/scripts-init/form-components/input-mask.js"></script>
-=======
         <script src="vistas/assets/js/vendors/form-components/input-mask.js"></script> 
         <!-- <script src="vistas/assets/js/scripts-init/form-components/input-mask.js"></script> -->
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
         <!--RangeSlider-->
         <script src="vistas/assets/js/vendors/form-components/wnumb.js"></script>
@@ -143,11 +125,7 @@
 
         <!--Perfect Scrollbar -->
         <script src="vistas/assets/js/vendors/scrollbar.js"></script>
-<<<<<<< HEAD
-        <script src="vistas/assets/js/scripts-init/scrollbar.js"></script>
-=======
         <!-- <script src="vistas/assets/js/scripts-init/scrollbar.js"></script> -->
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
         <!--Toastr-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
@@ -228,12 +206,8 @@
 
                             }else{
 
-<<<<<<< HEAD
-                                include "modulos/404.php";
-=======
                                 #include "modulos/404.php";
                                 include "modulos/inicio.php";
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             }
 
@@ -271,11 +245,7 @@
 
         <script src="vistas/js/galeria.js"></script>
         <script src="vistas/js/mensajes.js"></script>
-<<<<<<< HEAD
-        <script src="vistas/js/perfiles.js"></script>
-=======
         <script src="vistas/js/usuarios.js"></script>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <script src="vistas/js/slide.js"></script>
 
     </body>

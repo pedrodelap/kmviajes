@@ -11,11 +11,7 @@
                 </div>
             </div>
             <div class="page-title-actions">
-<<<<<<< HEAD
-                <a href="cotizacion-crear" class="btn-shadow btn btn-info">
-=======
                 <a href="cotizacion-crear" class="btn-shadow btn btn-primary">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="pe-7s-add-user pe-7s-w-20"></i>
                     </span>
@@ -25,11 +21,7 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    <div class="row">
-=======
     <div class="row animated fadeIn">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
@@ -40,11 +32,7 @@
                                         LISTADO COTIZACIONES
                         ======================================-->
 
-<<<<<<< HEAD
-                        <table class="table table-striped table-bordered dt-responsive tablas align-middle text-truncate mb-0 table-borderless table-hover">
-=======
                         <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             <thead>
                             
@@ -103,21 +91,12 @@
 
                                             <div role="group" class="btn-group-sm btn-group">
                                                 
-<<<<<<< HEAD
-                                                <button class="btnEditarCotizacion border-0 btn-transition btn btn-outline-warning" idCotizacion="'.$value["id_cotizacion"].'"><i class="lnr-pencil btn-icon-wrapper">&nbsp;</i>Editar</button>';
-                                                                
-                                                if($_SESSION["perfil"] == "Administrador"){
-                                                        
-                                                    echo '<button class="btnEliminarCotizacion border-0 btn-transition btn btn-outline-danger" idCotizacion="'.$value["id_cotizacion"].'"><i class="lnr-cross btn-icon-wrapper">&nbsp;</i>Eliminar</button>';
-                                                
-=======
                                                 <span><button class="btn btn-secondary fa fa-edit btnEditarCotizacion" idCotizacion="'.$value["id_cotizacion"].'"></button></span>&nbsp;';
 
                                                 if($_SESSION["perfil"] == "Administrador"){
 
                                                     echo '<span><button class="btn btn-danger fa fa-times btnEliminarCotizacion" idCotizacion="'.$value["id_cotizacion"].'"></button></span>';                                                        
                                                
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                                                 }
 
                                             echo '</div>  
@@ -156,16 +135,9 @@ MODAL AGREGAR CLIENTE
 
                 <!--=====================================
                 CABEZA DEL MODAL
-<<<<<<< HEAD
-                style="background:#495057; color:white"
-                ======================================-->
-
-                <div class="modal-header" style="background:#495057; color:white">
-=======
                 ======================================-->
 
                 <div class="modal-header">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Agregar cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -283,16 +255,9 @@ MODAL EDITAR CLIENTE
 
                 <!--=====================================
                 CABEZA DEL MODAL
-<<<<<<< HEAD
-                style="background:#495057; color:white"
-                ======================================-->
-
-                <div class="modal-header" style="background:#495057; color:white">
-=======
                 ======================================-->
 
                 <div class="modal-header">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Editar cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

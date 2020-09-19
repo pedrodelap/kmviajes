@@ -24,11 +24,7 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    <div class="row">
-=======
     <div class="row animated fadeIn">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
@@ -36,16 +32,10 @@
 
                         <!--=====================================
                                         CLIENTES
-<<<<<<< HEAD
-                        ======================================-->
-
-                        <table class="table table-striped table-bordered dt-responsive tablas align-middle text-truncate mb-0 table table-borderless table-hover">
-=======
                         table table-striped table-bordered dt-responsive tablas align-middle text-truncate mb-0 table-borderless table-hover
                         ======================================-->
 
                         <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             <thead>
                             
@@ -57,11 +47,7 @@
                                     <th>Número documento</th>
                                     <th>Teléfono</th>
                                     <th>Correo Electronico</th>
-<<<<<<< HEAD
-                                    <th class="text-center">Acciones</th>
-=======
                                     <th>Acciones</th>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                                 </tr> 
 
@@ -92,23 +78,6 @@
 
                                             <td>'.$value["correo"].'</td>
 
-<<<<<<< HEAD
-                                            <td class="text-center">
-
-                                            <div role="group" class="btn-group-sm btn-group">
-
-                                                <button class="btnEditarCliente border-0 btn-transition btn btn-outline-warning"  data-toggle="modal" data-target="#modalEditarCliente" idCliente="'.$value["id_cliente"].'"><i class="lnr-pencil btn-icon-wrapper">&nbsp;</i>Editar</button>';
-
-                                                if($_SESSION["perfil"] == "Administrador"){
-
-                                                    echo '<button class="btnEliminarCliente border-0 btn-transition btn btn-outline-danger" idCliente="'.$value["id_cliente"].'"><i class="lnr-cross btn-icon-wrapper">&nbsp;</i>Eliminar</button>';
-
-                                                }
-
-                                            echo '</div>
-
-                                            </td>
-=======
                                             <td>
                                 
                                                 <span><button class="btn btn-secondary fa fa-edit btnEditarCliente" idCliente="'.$value["id_cliente"].'" data-toggle="modal" data-target="#modalEditarCliente"></button></span>&nbsp;';
@@ -119,7 +88,6 @@
                                                 }
 
                                       echo '</td>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                                         </tr>';
 
@@ -151,16 +119,9 @@ MODAL AGREGAR CLIENTE
 
                 <!--=====================================
                 CABEZA DEL MODAL
-<<<<<<< HEAD
-                style="background:#495057; color:white"
-                ======================================-->
-
-                <div class="modal-header" style="background:#495057; color:white">
-=======
                 ======================================-->
 
                 <div class="modal-header">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Agregar cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -195,11 +156,7 @@ MODAL AGREGAR CLIENTE
                     <div class="input-group">               
                         <span class="input-group-text"><i class="lnr-menu"></i></span>
                         <select class="form-control" name="clienteNuevoTipoDocumento">                    
-<<<<<<< HEAD
-                            <option value="">Tpo documento</option>
-=======
                             <option value="">Tipo documento</option>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                             <option value="DNI">DNI</option>
                             <option value="RUC">RUC</option>
                             <option value="PASAPORTE">PASAPORTE</option>
@@ -212,11 +169,7 @@ MODAL AGREGAR CLIENTE
                     <!-- ENTRADA PARA EL NUMERO DE DOCUMENTO -->
                     <div class="input-group">
                         <div class="input-group-prepend">
-<<<<<<< HEAD
-                            <span class="input-group-text"><i class="">@</i></span>
-=======
                             <span class="input-group-text"><i class="lnr-file-empty"></i></span>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                         </div>
                         <input placeholder="Numero documento" name="clienteNuevoNumeroDocumento" type="text" class="form-control" required>
                     </div>
@@ -286,16 +239,9 @@ MODAL EDITAR CLIENTE
 
                 <!--=====================================
                 CABEZA DEL MODAL
-<<<<<<< HEAD
-                style="background:#495057; color:white"
-                ======================================-->
-
-                <div class="modal-header" style="background:#495057; color:white">
-=======
                 ======================================-->
 
                 <div class="modal-header">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Editar cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

@@ -6,21 +6,18 @@ $('#modalNuevoUsuario').appendTo("body");
 $('#modalEditarUsuario').appendTo("body");
 
 /*=============================================
-<<<<<<< HEAD
-EDITAR USUARIO
-=============================================*/
 
 $(".tablas").on("click", ".btnEditarUsuario", function() {
 =======
 Mostrar Formulario Registro Perfil
 =============================================*/
-$("#registrarPerfil").click(function() {
+$("#registrarPerfil").click(function () {
 
     $("#formularioPerfil").toggle("fast");
 
 })
 
-$("#subirFotoPerfil").change(function() {
+$("#subirFotoPerfil").change(function () {
 
     $("#subirFotoPerfil").attr("name", "nuevaImagen");
 
@@ -29,7 +26,7 @@ $("#subirFotoPerfil").change(function() {
 /*=============================================
 Mostrar Formulario Editar Perfil
 =============================================*/
-$("#btnEditarPerfil").click(function() {
+$("#btnEditarPerfil").click(function () {
 
     var idUsuario = $('#editarId').val();
 
@@ -45,7 +42,7 @@ $("#btnEditarPerfil").click(function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {        
+        success: function (respuesta) {
 
             $("#editarUsuario").val(respuesta["usuario"]);
             $("#editarNombre").val(respuesta["nombres"]);
@@ -73,14 +70,14 @@ $("#btnEditarPerfil").click(function() {
 
 })
 
-$("#btnEditarPerfilCancelar").click(function() {
+$("#btnEditarPerfilCancelar").click(function () {
 
     $("#formEditarPerfil").hide("fast");
     $("#editarPerfil").show("fast");
 
 })
 
-$("#cambiarFotoPerfil").change(function() {
+$("#cambiarFotoPerfil").change(function () {
 
     $("#cambiarFotoPerfil").attr("name", "editarImagen")
 
@@ -91,11 +88,10 @@ $("#cambiarFotoPerfil").change(function() {
 EDITAR USUARIO
 =============================================*/
 
-$(".table").on("click", ".btnEditarUsuario", function() {
-    
+$(".table").on("click", ".btnEditarUsuario", function () {
+
     console.log("dentro");
 
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
     var idUsuario = $(this).attr("idUsuario");
 
@@ -104,29 +100,15 @@ $(".table").on("click", ".btnEditarUsuario", function() {
 
     $.ajax({
 
-<<<<<<< HEAD
-
-        url: "ajax/usuarios.ajax.php",
-=======
         url: "ajax/ajax.usuarios.php",
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         method: "POST",
         data: datos,
         cache: false,
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-<<<<<<< HEAD
-            $("#idUsuario").val(respuesta["id_usuario"]);
-            $("#usuarioEditarNombres").val(respuesta["nombres"]);
-            $("#usuarioEditarApellidos").val(respuesta["apellidos"]);
-            $("#usuarioEditarTipoDocumento").val(respuesta["usuario"]);
-            $("#usuarioEditarTipoDocumento").val(respuesta["password"]);
-            $("#usuarioEditarNumeroDocumento").val(respuesta["foto"]);
-            $("#usuarioEditarCorreo").val(respuesta["estado"]);
-=======
             $("#idUsuarioEditar").val(respuesta["id_usuario"]);
             $("#usuarioEditar").val(respuesta["usuario"]);
             $("#usuarioEditarNombres").val(respuesta["nombres"]);
@@ -136,30 +118,22 @@ $(".table").on("click", ".btnEditarUsuario", function() {
             $("#usuarioEditarNumeroDocumento").val(respuesta["numero_documento"]);
             $("#usuarioEditarTelefono").val(respuesta["telefono"]);
             $("#usuarioEditarCorreo").val(respuesta["correo"]);
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
         }
 
     })
 
-<<<<<<< HEAD
-=======
     $('#modalEditarUsuario').modal('show');
 
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 })
 
 /*=============================================
 ELIMINAR USUARIO
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarUsuario", function() {
+$(".tablas").on("click", ".btnEliminarUsuario", function () {
 
     var idUsuario = $(this).attr("idUsuario");
-<<<<<<< HEAD
-    console.log("idUsuario", idUsuario);
-=======
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
     Swal.fire({
         title: '¿Está seguro de borrar el usuario?',

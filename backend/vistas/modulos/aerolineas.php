@@ -11,11 +11,7 @@
                 </div>
             </div>
             <div class="page-title-actions">
-<<<<<<< HEAD
-                <button type="button" class="btn-shadow btn btn-info" data-toggle="modal" data-target="#modalNuevoAerolinea">
-=======
                 <button type="button" class="btn-shadow btn btn-primary" data-toggle="modal" data-target="#modalNuevoAerolinea">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <span class="btn-icon-wrapper pr-2 opacity-7">
                         <i class="pe-7s-add-user pe-7s-w-20"></i>
                     </span>
@@ -25,11 +21,7 @@
         </div>
     </div>
 
-<<<<<<< HEAD
-    <div class="row">
-=======
     <div class="row animated fadeIn">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
@@ -41,10 +33,7 @@
                         ======================================-->
 
                         <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
-<<<<<<< HEAD
-=======
                                       
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                             <thead>
                             
@@ -57,11 +46,7 @@
                                     <th>Teléfono</th>
                                     <th>Teléfono Carga</th>
                                     <th>Tipo</th>
-<<<<<<< HEAD
-                                    <th class="text-center">Acciones</th>
-=======
                                     <th>Acciones</th>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                                 </tr> 
 
@@ -101,23 +86,6 @@
 
                                             <td>'.$value["tipo"].'</td>
 
-<<<<<<< HEAD
-                                            <td class="text-center">
-
-                                            <div role="group" class="btn-group-sm btn-group">
-                                                
-                                                <button class="btnEditarAerolinea border-0 btn-transition btn btn-outline-warning"  data-toggle="modal" data-target="#modalEditarAerolinea" idAerolinea="'.$value["id_aerolinea"].'"><i class="lnr-pencil btn-icon-wrapper">&nbsp;</i>Editar</button>';
-
-                                                if($_SESSION["perfil"] == "Administrador"){
-
-                                                    echo '<button class="btnEliminarAerolinea border-0 btn-transition btn btn-outline-danger" idAerolinea="'.$value["id_aerolinea"].'"><i class="lnr-cross btn-icon-wrapper">&nbsp;</i>Eliminar</button>';
-
-                                                }
-
-                                            echo '</div>  
-
-                                            </td>
-=======
                                             <td>
                                                 
                                                 <span><button class="btn btn-secondary fa fa-edit btnEditarAerolinea" idAerolinea="'.$value["id_aerolinea"].'" data-toggle="modal" data-target="#modalEditarAerolinea"></button></span>&nbsp;';
@@ -129,7 +97,6 @@
                                                 }
 
                                         echo '</td>
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
 
                                         </tr>';
                                 
@@ -166,11 +133,7 @@ MODAL AGREGAR AEROLINEA
                 style="background:#495057; color:white"
                 ======================================-->
 
-<<<<<<< HEAD
-                <div class="modal-header" style="background:#495057; color:white">
-=======
                 <div class="modal-header">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Agregar aerolinea</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -284,16 +247,9 @@ MODAL EDITAR AEROLINEA
 
                 <!--=====================================
                 CABEZA DEL MODAL
-<<<<<<< HEAD
-                style="background:#495057; color:white"
-                ======================================-->
-
-                <div class="modal-header" style="background:#495057; color:white">
-=======
                 ======================================-->
 
                 <div class="modal-header">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Editar aerolinea</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

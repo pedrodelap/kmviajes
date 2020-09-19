@@ -30,11 +30,7 @@
 
     ?>
 
-<<<<<<< HEAD
-    <div class="row">
-=======
     <div class="row animated fadeIn">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
         <div class="col-md-12">
             <div class="main-card mb-3 card element-block-example">
                 <div class="card-body">
@@ -114,16 +110,9 @@ MODAL AGREGAR CLIENTE
 
                 <!--=====================================
                 CABEZA DEL MODAL
-<<<<<<< HEAD
-                style="background:#495057; color:white"
-                ======================================-->
-
-                <div class="modal-header" style="background:#495057; color:white">
-=======
                 ======================================-->
 
                 <div class="modal-header">
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                     <h5 class="modal-title" id="exampleModalLongTitle">Agregar cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -242,10 +231,6 @@ MODAL CREAR PROPUESTA
 
                 <!--=====================================
                 CABEZA DEL MODAL
-<<<<<<< HEAD
-                style="background:#495057; color:white"
-=======
->>>>>>> 90cfe57fea136401cc7ad60f34fbe43057d7108d
                 ======================================-->
 
                 <div class="modal-header">
