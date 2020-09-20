@@ -39,6 +39,16 @@
                 </a>
             </li>
             <li>
+                <a href="hoteles">
+                    <i class="metismenu-icon pe-7s-mouse"></i> Hoteles
+                </a>
+            </li>
+            <li>
+                <a href="paquetes">
+                    <i class="metismenu-icon pe-7s-mouse"></i> Paquetes Turísticos
+                </a>
+            </li>            
+            <li>
                 <a href="monedas">
                     <i class="metismenu-icon pe-7s-display2"></i> Tipos de Cambio
                 </a>
