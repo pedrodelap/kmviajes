@@ -14,7 +14,7 @@ $(function () {
             $('header.nav-holder.make-sticky').removeClass('sticky');
             $('body').css('padding-top', '0');
         }
-    }); 
+    });
 
     // ------------------------------------------------------- //
     // Multi-level dropdown
@@ -221,7 +221,7 @@ $(function () {
     // ------------------------------------------------------- //
     //  Bootstrap Select
     // ------------------------------------------------------ //
-    $('.bs-select').selectpicker({
+    $('.bs-select').select({
         style: 'btn-light',
         size: 4
     });
@@ -291,5 +291,12 @@ $(function () {
             });
         }
     });
+
+    $("#dateRange").daterangepicker({
+        locale: {
+            format: 'DD MMMM, YYYY'
+        }
+    });
+
 
 });
