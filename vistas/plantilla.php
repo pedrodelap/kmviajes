@@ -175,5 +175,7 @@
     <script src="backend/vistas/assets/js/scripts-init/sweet-alerts.js"></script>
 
     <script src="vistas/assets/js/front.js"></script>
+    <script src="vistas/modulos/listapaquetes/listapaquetes.js"></script>
+
   </body>
 </html>

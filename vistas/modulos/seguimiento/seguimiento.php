@@ -1,99 +1,68 @@
-<div id="heading-breadcrumbs">
-        <div class="container">
-          <div class="row d-flex align-items-center flex-wrap">
-            <div class="col-md-7">
-              <h1 class="h2">KM Viajes</h1>
+<div class="container px-1 px-md-4 py-5 mx-auto">
+    <div class="card">
+        <div class="row d-flex justify-content-between px-3 top">
+            <div class="d-flex">
+                <h5>ORDER <span class="text-primary font-weight-bold">#6152</span></h5>
             </div>
-            <div class="col-md-5">
-              <ul class="breadcrumb d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
-                <li class="breadcrumb-item active">Seguimiento de solicitud</li>
-              </ul>
+            <div class="d-flex flex-column text-sm-right">
+                <p class="mb-0">Expected Arrival <span>01/06/20</span></p>
+                <p>Grasshoppers <span class="font-weight-bold"><a href="https://www.grasshoppers.lk/customers/action/track/V534HB">V534HB</a></span></p>
             </div>
-          </div>
+        </div> <!-- Add class 'active' to progress -->
+        <div class="row d-flex justify-content-center">
+            <div class="col-12">
+                <ul id="progressbar" class="text-center">
+                    <li class="active step0"></li>
+                    <li class="active step0"></li>
+                    <li class="active step0"></li>
+                    <li class="step0"></li>
+                    <li class="step0"></li>
+                </ul>
+            </div>
         </div>
-</div>
-
-<div id="content">
-        <div class="container">
-          <div class="row bar mb-0">
-            <div id="customer-orders" class="col-md-12">
-              <p class="text-muted lead">Se motrará los estado de la compra, si necesita soporte favor contactar con <a href="#">nosotros</a></p>
-              <div class="box mt-0 mb-lg-0">
-              <h3 class="mt-4">Proceso de compra</h3>
-              <ul id="pills-tab" role="tablist" class="nav nav-pills nav-justified">
-                <li class="nav-item"><a id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false" class="nav-link active">Solicitud</a></li>
-                <li class="nav-item"><a id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" class="nav-link">Cotización</a></li>
-                <li class="nav-item"><a id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false" class="nav-link">Reserva</a></li>
-                <li class="nav-item"><a id="pills-marketing-tab" data-toggle="pill" href="#pills-marketing" role="tab" aria-controls="pills-contact" aria-selected="true" class="nav-link">Pago</a></li>
-                <li class="nav-item"><a id="pills-marketing-tab" data-toggle="pill" href="#pills-marketing" role="tab" aria-controls="pills-contact" aria-selected="true" class="nav-link">Fecha Pago</a></li>
-              </ul>
-              <div id="pills-tabContent" class="tab-content">
-                <div id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" class="tab-pane fade active show">
-                <div class="table-responsive">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>Solicitud</th>
-                        <th>Fecha</th>
-                        <th>Paquete</th>
-                        <th>Total</th>
-                        <th>Estado</th>
-                        <th>Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th># 1735</th>
-                        <td>20/09/2020</td>
-                        <td>Lima, Cusco, Valle Sagrado, Machu Picchu 7d/6n</td>
-                        <td>$ 200.00</td>
-                        <td><span class="badge badge-success">Solicitud Registrada</span></td>
-                        <td><a disabled="disabled" href="#" class="btn btn-template-outlined btn-sm">View</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
+        <div class="row justify-content-between top">
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Order<br>Processed</p>
                 </div>
-                </div>
-                <div id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" class="tab-pane fade">
-                <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>Solicitud</th>
-                        <th>Fecha</th>
-                        <th>Paquete</th>
-                        <th>Total</th>
-                        <th>Estado</th>
-                        <th>Acción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th># 1735</th>
-                        <td>20/09/2020</td>
-                        <td>Lima, Cusco, Valle Sagrado, Machu Picchu 7d/6n</td>
-                        <td>$ 200.00</td>
-                        <td><span class="badge badge-success">Cotización Registrada</span></td>
-                        <td><a disabled="disabled" href="#" class="btn btn-template-outlined btn-sm">View</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" class="tab-pane fade">
-                  No disponible 
-                </div>
-                <div id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" class="tab-pane fade"> No disponible </div>
-                <div id="pills-marketing" role="tabpanel" aria-labelledby="pills-marketing-tab" class="tab-pane fade "> No disponible</div>
-              </div>
-              </div>
             </div>
-          </div>
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/GiWFtVu.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Order<br>Designing</p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Order<br>Shipped</p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Order<br>En Route</p>
+                </div>
+            </div>
+            <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/HdsziHP.png">
+                <div class="d-flex flex-column">
+                    <p class="font-weight-bold">Order<br>Arrived</p>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="card">
+        <div class="row d-flex justify-content-between px-3 top">
+            <div class="d-flex">
+                <h6><span class="text-primary font-weight-bold">2020-05-27 11:26:08 AM </span>REQUEST CREATED</h6>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between px-3 top">
+            <div class="d-flex">
+                <h6><span class="text-primary font-weight-bold">2020-06-04 06:59:48 AM </span>ATTEMPT 1 COMPLETED. ~ ***[AUTO GENERATED BY GRASSHOPPERS]***</h6>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-between px-3 top">
+            <div class="d-flex">
+                <h6><span class="text-primary font-weight-bold">2020-06-04 06:59:48 AM </span>RETURN TO VENDOR RECORD CREATED ~ RC806_118 </h6>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-<div class="col-lg-9">
-             
-              
-              
-  </div>

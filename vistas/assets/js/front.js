@@ -292,9 +292,9 @@ $(function () {
         }
     });
 
-    $("#dateRange").daterangepicker({
+    $("#txtFecha").daterangepicker({
         locale: {
-            format: 'DD MMMM, YYYY'
+            format: 'DD/MM/YYYY'
         }
     });
 

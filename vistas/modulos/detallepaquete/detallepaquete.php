@@ -1,3 +1,5 @@
+
+
 <div id="heading-breadcrumbs">
         <div class="container">
           <div class="row d-flex align-items-center flex-wrap">
@@ -14,95 +16,173 @@
           </div>
         </div>
       </div>
-<div id="content">
+
+<?php
+  $idPaquete = $_GET["id"];
+  
+  $paquete = ControladorPaqueteFront::ctrObtenetPaqueteById($idPaquete);
+
+?>
+      <div id="content">
         <div class="container">
-          <div class="row bar">
-            <!-- LEFT COLUMN _________________________________________________________-->
-            <div class="col-lg-12">
-              <p class="lead">Iniciaremos nuestro recorrido en la capital peruana Lima, realizando un city tour por la ciudad. Día seguido continuaremos nuestra travesía visitando una de las ciudades más visitadas de América “Cusco” donde realizaremos un paseo guiado por los puntos más importantes de la ciudad. También realizaremos una agradable y singular excursión a Moray y las famosas salineras de Maras. Y como destinos finales visitaremos el Valle Sagrado de los Incas y el imponente Machu Picchu.</p>
-              <div id="productMain" class="row">
-                <div class="col-sm-6">
-                  <div data-slider-id="1" class="owl-carousel shop-detail-carousel owl-loaded owl-drag">
-                    
-                    
-                    
-                  <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-795px, 0px, 0px); transition: 0.25s; width: 1193px;"><div class="owl-item" style="width: 397.5px;"><div> <img src="../../vistas/assets/img/catalogo_tours/1-b.jpg" alt="" class="img-fluid"></div></div><div class="owl-item" style="width: 397.5px;"><div> <img src="../../vistas/assets/img/catalogo_tours/2-b.jpg" alt="" class="img-fluid"></div></div><div class="owl-item active" style="width: 397.5px;"><div> <img src="../../vistas/assets/img/catalogo_tours/3-b.jpg" alt="" class="img-fluid"></div></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div></div>
-                </div>
-                <div class="col-sm-6">
-                  <div class="box">
-                    <form>
-                      <div class="sizes">
-                        <h3>Precio Paquete</h3>
-                      </div>
-                      <p class="price">$200.00</p>
-                      <p class="text-center">
-                        <a href="#" data-toggle="modal" data-target="#login-modal" class="btn btn-template-outlined"> <i class="fa fa-shopping-cart"></i> Solicitar</a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="" class="btn btn-default" data-original-title="Add to wishlist"><i class="fa fa-heart-o"></i></a>
-                      </p>
-                    </form>
-                  </div>
-                  <div data-slider-id="1" class="owl-thumbs">
-                    <button class="owl-thumb-item"><img src="../../vistas/assets/img/catalogo_tours/1-b-sm.png" alt="" class="img-fluid"></button>
-                    <button class="owl-thumb-item"><img src="../../vistas/assets/img/catalogo_tours/2-b-sm.png" alt="" class="img-fluid"></button>
-                    <button class="owl-thumb-item active"><img src="../../vistas/assets/img/catalogo_tours/3-b-sm.png" alt="" class="img-fluid"></button>
-                  </div>
-                </div>
+          <section class="no-mb bar">
+            <div class="row">
+              <div class="col-md-12">
+                <p class="lead no-mb"><?php echo $paquete["descripcion_corta"]?></p>
               </div>
-              <div id="details" class="box mb-4 mt-4">
-                <p></p>
-                <h4>Detalles</h4>
-                <p>Este es un tour exclusivo de 7 días donde el turista podrá disfrutar de las costumbres, el arte y la cultura de cada ciudad visitada.</p>
-                <h4>Incluye</h4>
-                <ul>
-                  <li>Traslado Aeropuerto – Hotel – Aeropuerto Lima</li>
-                  <li>Lima City Tour: Transporte, Guía y Entradas</li>
-                  <li>Traslado Aeropuerto – Hotel – Aeropuerto Cusco</li>
-                  <li>Cusco City Tour: Transporte, Guía y Entradas</li>
-                  <li>Tour Valle Sagrado: Transporte, Guía, Entradas y Almuerzo</li>
-                  <li>Tour Machu Picchu: Tren Ollantaytambo – Aguas Calientes (EXPEDITION 19:04 o similar), Bus Aguas Calientes – Machu Picchu – Aguas Calientes, Entrada para Machu Picchu, Guía Profesional Bilingüe, Visita guiada en Machu Picchu, Tren Aguas Calientes – Ollantaytambo (EXPEDITION 14:55/15:20/16:22/18:20 de acuerdo con disponibilidad) y Traslado Estación de tren – Hotel</li>
-                  <li>02 noches de hospedaje en Lima con desayuno</li>
-                  <li>03 noches de hospedaje en Cusco con desayuno</li>
-                  <li>01 noche de hospedaje en Aguas Calientes con desayuno</li>
-                  <li>Tour conductor (a partir de 5 pasajeros)</li>
-                  <li>Servicios de Agencia</li>
-                </ul>
-                <h4>No Incluye</h4>
-                <ul>
-                  <li>Pasajes Aéreos</li>
-                  <li>Bebidas, excepto lo mencionado</li>
-                  <li>Alimentación, excepto lo mencionado</li>
-                  <li>Refrigerios</li>
-                  <li>Llamadas telefónicas</li>
-                  <li>Gastos extras</li>
-                  <li>Propinas</li>
-                  <li>Seguro de Viajes</li>
-                  </ul>
-                  <h4>Servicios opcionales</h4>
-                  <ul>
-                  <li>Entrada para la montaña Huayna Picchu o a la montaña Machu Picchu: USD 40.00 por persona (¡IMPORTANTE! Estos dos servicios adicionales poseen cupos limitados puestas a disposición por el gobierno peruano, la reserva deberá ser realizada con mínimo 03 meses de anticipación)</li>
-                  <li>Si prefiere viajar en el tren VISTADOME (Ollantaytambo – Aguas Calientes: 15:37 y Aguas Calientes – Ollantaytambo: 15:48/16:22/17:23) – servicio de tren (VIP): USD 80.00 por persona (ida y retorno).</li>
-                  </ul>
-                <blockquote class="blockquote">
-                  <p class="mb-0"><em>Le sugerimos aprovechar el día para visitar los lugares más bellos de Miraflores. Visite el Parque Kennedy, también conocido como el Parque de los gatos; una corta caminata lo llevará hasta el hermoso Parque del Amor, donde podrá pasar un momento tranquilo, podrá caminar por el hermoso Malecón de Miraflores, desde donde podrá ver el Océano Pacífico, y finalmente podrá ir de shopping en Larcomar, un centro comercial de clase mundial, ubicado en un acantilado con vistas al mar. </em></p>
-                </blockquote>
-              </div>
-              <div id="product-social" class="box social text-center mb-5 mt-5">
-                <h4 class="heading-light">Compartir información</h4>
-                <ul class="social list-inline">
-                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a></li>
-                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="external gplus"><i class="fa fa-google-plus"></i></a></li>
-                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a></li>
-                  <li class="list-inline-item"><a href="#" data-animate-hover="pulse" class="email"><i class="fa fa-envelope"></i></a></li>
-                </ul>
-              </div>
-              
             </div>
-          
+          </section>
+          <section>
+          <div class="project owl-carousel">
+              <div class="item"><img src="<?php echo $paquete["foto_larga"]?>" alt="" class="img-fluid"></div>
+            </div>
+          </section>
+          <section class="bar">
+            <div class="row portfolio-project">
+              <div class="col-md-8">
+                <div class="heading">
+                  <h3><?php
+                  $precio_dolar = $paquete["precio_dolar"];
+                  $precio_sol = $paquete["precio_sol"];
+                  
+                   echo $paquete["titulo"].' por '.$precio_dolar.' o '.$precio_sol
+                   ?></h3>
+                </div>
+                <p><?php echo $paquete["descripcion_larga"]?></p>
+              </div>
+              <div class="col-md-4 project-more">
+                <div class="heading">
+                  <h3>Información</h3>
+                </div>
+                <?php 
+                $nombreCampania = $paquete["nombreCampania"];
+                 echo '<h4>Campaña</h4>   <p>'.$nombreCampania.'</p>' 
+                 ?>
+                
+                 <?php 
+                $nombreHotel = $paquete["nombreHotel"];
+                $nombreCiudad = $paquete["nombreCiudad"];
+                 echo '<h4>Hotel/Ciudad</h4>   <p>'.$nombreHotel.'/'.$nombreCiudad.'</p>' 
+                 ?>
+                 <?php 
+                $compania = $paquete["compania"];
+                 echo '<h4>Aeorolinea</h4>   <p>'.$compania.'</p>' 
+                 ?>
+                 <?php 
+                  $cantidad_adultos = $paquete["cantidad_adultos"];
+                  $cantidad_ninios = $paquete["cantidad_ninios"];
+                 echo '<h4>Pasajeros</h4>   <p>'.$cantidad_adultos.' Adultos - '.$cantidad_ninios.' Niños</p>' 
+                 ?>
+                 <?php 
+                   $fecha_inicio = $paquete["fecha_inicio"];
+                   $fecha_fin = $paquete["fecha_fin"];
+                 echo '<h4>Fechas</h4>   <p>'.$fecha_inicio.' hasta '.$fecha_fin.'</p>' 
+                 ?>
+                
+              </div>
+            </div>
+          </section>
+          <div id="details" class="box mb-4 mt-4">
+                <h4>Servicios incluidos</h4>
+                
+                <ul class="fa-ul">
+                <?php 
+                $servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
+
+                foreach ($servicios as $key => $value) {
+                
+                  echo '<li><i class="fa-li fa '.$value["icono"].'"></i>'.$value["nombre"].'</li>';
+                }
+                ?>
+                </ul>
+                <p class="loadMore text-center"><a href="#"  data-toggle="modal" data-target="#login-modal" class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i> <?php echo 'Comprar por '.$precio_dolar.' o '.$precio_sol ?></a></p>
+            </div>
+
+
+          <div class="bar pt-0">                       
+            <section>
+              <div class="row portfolio">
+                <div class="col-md-12">
+                  <div class="heading">
+                    <h3>Relacionados</h3>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="box-image">
+                    <div class="image"><img src="img/portfolio-1.jpg" alt="" class="img-fluid">
+                      <div class="overlay d-flex align-items-center justify-content-center">
+                        <div class="content">
+                          <div class="name no-mb">
+                            <h3><a href="portfolio-detail.html" class="color-white">Portfolio item</a></h3>
+                          </div>
+                          <div class="text">
+                            <p class="d-none">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                            <p class="buttons"><a href="portfolio-detail.html" class="btn btn-template-outlined-white">View</a><a href="#" class="btn btn-template-outlined-white">Website</a></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="box-image">
+                    <div class="image"><img src="img/portfolio-2.jpg" alt="" class="img-fluid">
+                      <div class="overlay d-flex align-items-center justify-content-center">
+                        <div class="content">
+                          <div class="name no-mb">
+                            <h3><a href="portfolio-detail.html" class="color-white">Portfolio item</a></h3>
+                          </div>
+                          <div class="text">
+                            <p class="d-none">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                            <p class="buttons"><a href="portfolio-detail.html" class="btn btn-template-outlined-white">View</a><a href="#" class="btn btn-template-outlined-white">Website</a></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="box-image">
+                    <div class="image"><img src="img/portfolio-3.jpg" alt="" class="img-fluid">
+                      <div class="overlay d-flex align-items-center justify-content-center">
+                        <div class="content">
+                          <div class="name no-mb">
+                            <h3><a href="portfolio-detail.html" class="color-white">Portfolio item</a></h3>
+                          </div>
+                          <div class="text">
+                            <p class="d-none">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                            <p class="buttons"><a href="portfolio-detail.html" class="btn btn-template-outlined-white">View</a><a href="#" class="btn btn-template-outlined-white">Website</a></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="box-image">
+                    <div class="image"><img src="img/portfolio-4.jpg" alt="" class="img-fluid">
+                      <div class="overlay d-flex align-items-center justify-content-center">
+                        <div class="content">
+                          <div class="name no-mb">
+                            <h3><a href="portfolio-detail.html" class="color-white">Portfolio item</a></h3>
+                          </div>
+                          <div class="text">
+                            <p class="d-none">Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+                            <p class="buttons"><a href="portfolio-detail.html" class="btn btn-template-outlined-white">View</a><a href="#" class="btn btn-template-outlined-white">Website</a></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </div>
       </div>
-
+      
       <!-- Login Modal-->
+
 <div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
         <div role="document" class="modal-dialog">
           <div class="modal-content">
@@ -111,41 +191,40 @@
               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
-              <form action="seguimiento" method="get">
+            <input type="hidden" id="id_paquete" val="<?php echo $idPaquete ?>"/>
                   <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="names">Apellidos y nombre(s)</label>
-                            <input id="names" type="text" placeholder="Nombres completos" class="form-control">
+                            <label for="txtNombre">Apellidos y nombre(s)</label>
+                            <input id="txtNombre" type="text" placeholder="Nombres completos" class="form-control">
                         </div>
                     </div>
                  
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="phoneNumber">Número de contacto</label>
-                            <input id="phoneNumber" type="tel" placeholder="+51 999999999" class="form-control">
+                            <label for="txtTelefono">Número de contacto</label>
+                            <input id="txtTelefono" type="tel" placeholder="+51 999999999" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="docNumber">Número de documento</label>
-                            <input id="docNumber" type="text" placeholder="DNI o Pasaporte" class="form-control">
+                            <label for="txtDocumento">Número de documento</label>
+                            <input id="txtDocumento" type="text" placeholder="DNI o Pasaporte" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="email">Correo contacto</label>
-                            <input id="email" type="email" placeholder="viajero@mail.com" class="form-control">
+                            <label for="txtCorreo">Correo contacto</label>
+                            <input id="txtCorreo" type="email" placeholder="viajero@mail.com" class="form-control">
                         </div>
                     </div>
 
                     <div class="col-sm-12">
                         <div class="form-group">
-                        <button class="btn btn-lg btn-outline-dark"><i class="fa fa-sign-in"></i> Enviar</button>
+                        <button onclick="registroSolicitud()" class="btn btn-lg btn-outline-dark"><i class="fa fa-sign-in"></i> Enviar</button>
                         </div>
                     </div>
                     </div>
-              </form>
               
               <p class="text-center text-muted"><a href="customer-register.html"><strong>Conoce más</strong></a>Sobre el trato de tus datos personales</p>
             </div>
