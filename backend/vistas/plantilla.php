@@ -150,6 +150,8 @@
         <!--Tables Init-->
         <script src="vistas/assets/js/scripts-init/tables.js"></script>
 
+
+        <script src="https://kit.fontawesome.com/d43bc8ede4.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -192,10 +194,13 @@
                                $_GET["ruta"] == "aerolineas" ||
                                $_GET["ruta"] == "monedas" ||
                                $_GET["ruta"] == "usuarios" ||
+                               $_GET["ruta"] == "campanas" ||
+                               $_GET["ruta"] == "paquetes" ||
                                $_GET["ruta"] == "cotizacion-crear" ||
                                $_GET["ruta"] == "cotizaciones" ||
                                $_GET["ruta"] == "carousel" ||
                                $_GET["ruta"] == "galeria" ||
+                               $_GET["ruta"] == "solicitudes" ||
                                $_GET["ruta"] == "mensajes" ||
                                $_GET["ruta"] == "perfil" ||
                                $_GET["ruta"] == "slide" ||
@@ -242,6 +247,10 @@
         <script src="vistas/js/monedas.js"></script>
         <script src="vistas/js/aerolineas.js"></script>
         <script src="vistas/js/cotizacion-crear.js"></script>
+        
+        <script src="vistas/js/campanas.js"></script>
+        <script src="vistas/js/paquetes.js"></script>
+        <script src="vistas/js/solicitudes.js"></script>
 
         <script src="vistas/js/galeria.js"></script>
         <script src="vistas/js/mensajes.js"></script>

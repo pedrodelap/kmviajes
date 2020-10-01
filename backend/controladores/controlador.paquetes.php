@@ -1,7 +1,5 @@
 <?php
 
-
-
 class ControladorPaquetes{
 
 	#MOSTRAR PAQUETES
@@ -16,74 +14,27 @@ class ControladorPaquetes{
 
 	}
 
-	#CREAR AEROLINEA
+	#CREAR PAQUETE
 	#-----------------------------------------------------
-	static public function ctrCrearPaquete(){
+	static public function ctrCrearPaquete($datos){
 
-		if(isset($_POST["aerolineaNuevoNombre"])){
+		$tabla = "tb_paquetes";
 
-            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["aerolineaNuevoCodigo"]) &&
-               preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["aerolineaNuevoNombre"]) &&
-               preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["aerolineaNuevoTipoPaquete"])){
+		$respuesta = ModeloPaquetes::mdlCrearPaquetes($tabla, $datos);
 
-			   	$tabla = "tb_aerolineas";
+		return $respuesta;
 
-				$datos = array("codigo"=>mb_strtoupper($_POST["aerolineaNuevoCodigo"]),
-							   "url"=>mb_strtoupper($_POST["aerolineaNuevoURL"]),
-							   "compania"=>$_POST["aerolineaNuevoNombre"],
-							   "direccion"=>$_POST["aerolineaNuevoDireccion"],
-                               "telefono"=>$_POST["aerolineaNuevoTelefono"],
-                               "telefono_carga"=>$_POST["aerolineaNuevoTelefonoCarga"],
-                               "tipo"=>$_POST["aerolineaNuevoTipoPaquete"]);
+	}
 
+	#CREAR PAQUETE x CAMPANA
+	#-----------------------------------------------------
+	static public function ctrCrearPaquetexCampana($datos){
 
-			   	$respuesta = ModeloPaquetes::mdlIngresarPaquete($tabla, $datos);
+		$tabla = "tb_campanias_x_paquetes";
 
-			   	if($respuesta == "ok"){
+		$respuesta = ModeloPaquetes::mdlCrearPaquetexCampana($tabla, $datos);
 
-					echo'<script>
-
-					Swal.fire({
-						  type: "success",
-						  title: "La aerolinea ha sido guardada correctamente",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-						  }).then((result) => {
-									if (result.value) {
-
-										window.location = "PAQUETES";
-
-									}
-								})
-
-					</script>';
-
-				}
-
-			}else{
-
-				echo'<script>
-
-					Swal.fire({
-						  type: "error",
-						  title: "La aerolinea no puede ir vacía o llevar caracteres especiales!",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar",
-						  closeOnConfirm: false
-						  }).then((result) => {
-							if (result.value) {
-
-								window.location = "PAQUETES";
-
-							}
-						})
-
-			  	</script>';
-
-			}
-
-		}
+		return $respuesta;
 
 	}
 
@@ -94,6 +45,19 @@ class ControladorPaquetes{
 		$tabla = "tb_aerolineas";
 
 		$respuesta = ModeloPaquetes::mdlSelectPaquetes($tabla, $valor);
+
+		return $respuesta;
+
+	}
+
+
+	#SELECT CIUDADES
+	#-----------------------------------------------------
+	static public function ctrSelectCiudades($valor){
+
+		$tabla = "tb_ciudades";
+
+		$respuesta = ModeloPaquetes::mdlSelectCiudades($tabla, $valor);
 
 		return $respuesta;
 
@@ -165,8 +129,6 @@ class ControladorPaquetes{
 
 			  	</script>';
 
-
-
 			}
 
 		}
@@ -207,6 +169,41 @@ class ControladorPaquetes{
 			}		
 
 		}
+
+	}
+
+	#CREAR PAQUETE x IMAGES
+	#-----------------------------------------------------
+	static public function ctrCrearPaquetexImages($datos){
+
+		$tabla = "tb_imagenes_paquete";
+
+		$respuesta = ModeloPaquetes::mdlCrearPaquetexImages($tabla, $datos);
+
+		return $respuesta;
+
+	}
+
+
+	#CREAR PAQUETE x SERVICIOS
+	#-----------------------------------------------------
+	static public function ctrCrearServiciosDePaquete($idPaquete, $servicioArray){
+
+		$tabla = "tb_servicios_x_paquetes";
+
+		$id = $idPaquete;
+
+		$respuesta = "";
+
+		$array = explode(",", $servicioArray);
+
+		foreach ($array as $valor) {
+
+			$respuesta = ModeloPaquetes::mdlCrearPaquetexServicios($tabla, $id, $valor);
+
+		}
+
+		return $respuesta;
 
 	}
 

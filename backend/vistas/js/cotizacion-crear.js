@@ -14,7 +14,6 @@ DOCUMENT READY
 
 $(document).ready(function() {
 
-    datePicker();
     formatoNumeros();
     limpiarModalPropuesta();
     limpiarModalItinerarioCrear();
@@ -365,25 +364,22 @@ function formatoNumeros() {
     $("#cotizacionNuevoInfanteSF").number(true, 2);
     $("#cotizacionNuevoInfanteFee").number(true, 2);
 
-}
+};
 
 /*=============================================
 FORMATO DATERANGEPICKER
 =============================================*/
 
-function datePicker() {
+$(".cotizacionNuevoFecha").daterangepicker({
+    parentEl: "#modalNuevoItinerario",
+    timePicker: true,
+    startDate: moment().startOf('hour'),
+    endDate: moment().startOf('hour').add(52, 'hour'),
+    locale: {
+        format: 'DD MMMM, YYYY hh:mm A'
+    }
+});
 
-    $(".cotizacionNuevoFecha").daterangepicker({
-        parentEl: "#modalNuevoItinerario",
-        timePicker: true,
-        startDate: moment().startOf('hour'),
-        endDate: moment().startOf('hour').add(52, 'hour'),
-        locale: {
-            format: 'DD MMMM, YYYY hh:mm A'
-        }
-    });
-
-}
 
 
 /*=============================================
@@ -427,7 +423,7 @@ function precioTotal() {
     var totalCF = (Number(AdultosTotalCF) + Number(NinioTotalCF) + Number(InfanteTotalCF));
     $("#cotizacionNuevoTotalCF").val(totalCF);
 
-}
+};
 
 /*=============================================
 AGREGANDO ITINERARIOS

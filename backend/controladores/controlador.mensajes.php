@@ -231,7 +231,7 @@ class ControladorMensajes{
 					<a href="mensajes" class="p-1 mr-0 btn btn-link">
 						<span class="icon-wrapper icon-wrapper-alt rounded-circle">
 							<span class="icon-wrapper-bg bg-danger"></span>
-								<i class="text-danger icon-anim-pulse lnr-envelope"></i>
+								<i class="text-danger icon-anim-pulse fas fa-mail-bulk"></i>
 								<span class="badge badge-dot badge-dot-sm badge-danger">1</span>
 						</span>
 					</a>
@@ -243,7 +243,7 @@ class ControladorMensajes{
 					<a href="mensajes" class="p-1 mr-0 btn btn-link">
 						<span class="icon-wrapper icon-wrapper-alt rounded-circle">
 							<span class="icon-wrapper-bg bg-primary"></span>
-								<i class="text-primary lnr-envelope"></i>
+								<i class="text-primary fas fa-mail-bulk"></i>
 								<span class="badge badge-dot badge-dot-sm badge-primary"></span>
 						</span>
 					</a>
@@ -297,5 +297,7 @@ class ControladorMensajes{
 		echo $respuesta;
 
 	}
+
+
 
 }
