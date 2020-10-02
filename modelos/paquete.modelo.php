@@ -227,9 +227,9 @@ class ModeloPaqueteFront{
 	#------------------------------------------------------------
 	static public function mdlObtenerHistoricoSeguimiento($codigoSeguimiento){
 
-		$stmt = Conexion::conectar()->prepare("SELECT distinct
+		$stmt = Conexion::conectar()->prepare("SELECT
 												sh.id_solicitud_historial as id_solicitud_historial,
-                                                sh.id_solicitud as id_solicitud,
+                                               
                                                 sh.estado_solicitud as estado_solicitud,
                                                 sh.fecha_solicitud as fecha_solicitud
 												from tb_solicitud s 
@@ -239,7 +239,7 @@ class ModeloPaqueteFront{
 		$stmt -> bindParam(":codigoSeguimiento", $codigoSeguimiento, PDO::PARAM_STR);
 		$stmt -> execute();
 
-		return $stmt -> fetch();
+		return $stmt -> fetchAll();
 
 		$stmt -> close();
 

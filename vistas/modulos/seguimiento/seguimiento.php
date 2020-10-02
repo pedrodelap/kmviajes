@@ -48,15 +48,14 @@
 				<div class="col-12">
 					<ul id="progressbar" class="text-center">
 						<?php 
-							$count = 0;
+							$count = 1;
 							$historial = ControladorPaqueteFront::ctrObtenerHistoricoSeguimiento($codigoSeguimiento);
-							foreach ($historial as $key => $value) {
+							foreach ($historial as $value) {
 								echo "<li class='step0 active'></li>";
 								$count +=1;
-								echo $key;
-														echo $value;
+								
 							}
-							echo $count;
+							
 							for ($i = $count; $i <= 5; $i++) {
 								echo '<li class="step0"></li>';
 							}
@@ -124,13 +123,13 @@
 												<tbody>
 												<?php 
 
-													foreach ($historial as $key => $value) {
+													foreach ($historial as $value) {
 														
 														$htmlAction = "";
 														$stepNumber = 1;
-														$estadoSolicitud = $value["estado_solicitud"];
-														echo $key;
-														echo $value;
+														$estadoSolicitud = $value[1];
+														
+														
 														switch ($estadoSolicitud) {
 															case "Solicitud Registrada":
 																$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
@@ -174,8 +173,8 @@
 														$stepNumber += 1;
 														
 														echo '<tr>
-																<th>#'.$value["id_solicitud_historial"].'</th>
-																<td>'.$value["fecha_solicitud"].'</td>
+																<th>#'.$value[0].'</th>
+																<td>'.$value[2].'</td>
 																<td>
 																	<span class="badge badge-info">'.$estadoSolicitud.'</span>
 																</td>
