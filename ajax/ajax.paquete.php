@@ -2,6 +2,8 @@
 
 require_once "../backend/modelos/conexion.php";
 
+
+require_once "../controladores/mensajes.controlador.php";
 require_once "../controladores/paquete.controlador.php";
 require_once "../modelos/paquete.modelo.php";
 
@@ -30,53 +32,82 @@ class AjaxPaquetes{
 	}
 
 
-	#CONSULTAR CLIENTES
+	#CREAR SOLICITUD PERSONAZALIZADA
 	#----------------------------------------------------------
 
-	
-	public $id_paquete;
-	public $id_ciudad;
-	public $fecha_inicio;
-	public $fecha_fin;
-	public $numero_ninios;
-	public $numero_adultos;
-	public $comentario;
-	public $servicios;
 	public $nombres;
 	public $apellidos;
-	public $numero_documento;
 	public $telefono;
+	public $documento;
 	public $correo;
+	public $idcliente;
+	public $idpaquete;
+	public $ciudad;
+	public $fecha;
+	public $fechaInicio;
+	public $fechaFin;
+	public $adultos;
+	public $ninos;
+	public $observacion;
+	public $nueva;
 
-	public function ajaxCrearSolicitud(){
+	public function ajaxCrearSolicitudPersonalizada(){
 
-		$datos = array(
-						  "nombres"=>$this->nombres,
-						  "apellidos"=>$this->apellidos,
-						  "numero_documento"=>$this->numero_documento,
-						  "telefono"=>$this->telefono,
-						  "correo"=>$this->correo,
-						  "servicios"=>$this->servicios,
-						  "numero_ninios"=>$this->numero_ninios,
-						  "numero_adultos"=>$this->numero_adultos,
-						  "comentario"=>$this->comentario,
-						  "fecha_inicio"=>$this->fecha_inicio,
-						  "fecha_fin"=>$this->fecha_fin,
-						  "id_ciudad"=>$this->id_ciudad,
-						  "id_paquete"=>$this->id_paquete
-					);
-		
-		$respuesta = ControladorPaqueteFront::ctrCrearSolicitud($datos);
+		$respuesta = null;
 
-		echo json_encode($respuesta);
+		$datosCliente = array("nombres"=>strtoupper($this->nombres),
+							  "apellidos"=>strtoupper($this->apellidos),
+							  "telefono"=>$this->telefono,
+							  "numero_documento"=>$this->documento,
+							  "correo"=>strtoupper($this->correo));
+
+		$respuesta = ControladorPaqueteFront::ctrCrearClienteSolicitudPersonalizada($datosCliente);
+
+		if($respuesta != "errorValidacionCliente"){
+
+			$this->idcliente = $respuesta[0];
+
+			if ($this->idpaquete == "" ){
+
+				$this->idpaquete = null;
+			}
+
+			$datosSolicitud = array("id_cliente"=>$this->idcliente,				   
+									"id_ciudad"=>$this->ciudad,
+									"fecha_mostrar"=>$this->fecha,
+									"fecha_inicio"=>$this->fechaInicio,
+									"fecha_fin"=>$this->fechaFin,
+									"cantidad_adultos"=>$this->adultos,
+									"cantidad_ninios"=>$this->ninos,
+									"comentario"=>$this->observacion,
+									"id_paquete"=>$this->idpaquete);		
+
+			$respuesta = ControladorPaqueteFront::ctrCrearSolicitudPersonalizada($datosSolicitud);
+
+			$respuesta = json_encode($respuesta);
+
+			//enviar mail
+			$datosMail = array("mailTo" => $datosCliente["correo"],
+								"nombreCliente" => $datosCliente["nombres"],
+								"tituloMail" => "Solicitud Registrada #".$resultado,
+								"enviarMensaje" => "<p>Mensaje contenido ".$resultado." </p>");
+
+			//echo "<script>".var_dump($datosSolicitud)."</script>";
+            //echo("<script>console.log('PHP: ');</script>");
+			
+            //$mail = MensajesController::ctrEnviarMail($datosMail);
+
+		}
+
+		echo json_encode($respuesta);;
 
 	}
 
 }
-/*=============================================
-EDITAR CLIENTE
-=============================================*/	
 
+/*=============================================
+LISTAR / BUSCAR PAQUETES
+=============================================*/
 
 if(isset($_POST["txtBuscar"])){
 
@@ -86,31 +117,58 @@ if(isset($_POST["txtBuscar"])){
 
 }
 
-if(isset($_POST["txtNombre"])){
+
+/*=============================================
+SOLICITUD PERSONALIZADA NUEVA
+=============================================*/
+
+if(isset($_POST["SolicitudPersonalizadaNueva"])){
 
 	$solicitud = new AjaxPaquetes();
-	$solicitud -> nombres = $_POST["txtNombre"];
-	$solicitud -> apellidos = $_POST["txtApellidos"];
-	$solicitud -> telefono = $_POST["txtTelefono"];
-	$solicitud -> numero_documento = $_POST["txtDocumento"];
-	$solicitud -> correo = $_POST["txtCorreo"];	
-	//$solicitud -> fecha = $_POST["txtFecha"];
 
-	$split = explode('-', $_POST["txtFecha"]);
-	$solicitud -> fecha_inicio = $split[0];
-	$solicitud -> fecha_fin = $split[1];
+	$solicitud -> nombres = $_POST["SolicitudPersonalizadaNombres"];
+	$solicitud -> apellidos = $_POST["SolicitudPersonalizadaApellidos"];
+	$solicitud -> telefono = $_POST["SolicitudPersonalizadaTelefono"];
+	$solicitud -> documento = $_POST["SolicitudPersonalizadaDocumento"];
+	$solicitud -> correo = $_POST["SolicitudPersonalizadaCorreo"];
+	$solicitud -> ciudad = $_POST["SolicitudPersonalizadaCiudad"];
+	$solicitud -> fecha = $_POST["SolicitudPersonalizadaFecha"];
+	$solicitud -> fechaInicio = $_POST["SolicitudPersonalizadaFechaInicio"];
+	$solicitud -> fechaFin = $_POST["nSolicitudPersonalizadaFechaFin"];
+	$solicitud -> adultos = $_POST["SolicitudPersonalizadaAdultos"];
+	$solicitud -> ninos = $_POST["SolicitudPersonalizadaNinos"];
+	$solicitud -> observacion = $_POST["SolicitudPersonalizadaObservacion"];
+	$solicitud -> idpaquete = $_POST["SolicitudPersonalizadaIdPaquete"];
+	$solicitud -> nueva = $_POST["SolicitudPersonalizadaNueva"];
+	$solicitud -> servicios = $_POST["SolicitudPersonalizadaServicios"];
 
-	$solicitud -> numero_adultos = $_POST["txtAdultos"];
-	$solicitud -> numero_ninios = $_POST["txtNinios"];
-	$solicitud -> servicios = $_POST["txtServicios"];
-	$solicitud -> comentario = $_POST["txtObservacion"];	
-	$solicitud -> id_paquete = $_POST["id_paquete"];
-	$solicitud -> id_ciudad = $_POST["id_ciudad"];
-
-	$solicitud -> ajaxCrearSolicitud();
+	$solicitud -> ajaxCrearSolicitudPersonalizada();
 
 }
 
+if(isset($_POST["SolicitudPersonalizadaNueva2"])){
+
+	$solicitud = new AjaxPaquetes();
+
+	$solicitud -> nombres = $_POST["SolicitudPersonalizadaNombres"];
+	$solicitud -> apellidos = $_POST["SolicitudPersonalizadaApellidos"];
+	$solicitud -> telefono = $_POST["SolicitudPersonalizadaTelefono"];
+	$solicitud -> documento = $_POST["SolicitudPersonalizadaDocumento"];
+	$solicitud -> correo = $_POST["SolicitudPersonalizadaCorreo"];
+	$solicitud -> ciudad = $_POST["SolicitudPersonalizadaCiudad"];
+	$solicitud -> fecha = $_POST["SolicitudPersonalizadaFecha"];
+	$solicitud -> fechaInicio = $_POST["SolicitudPersonalizadaFechaInicio"];
+	$solicitud -> fechaFin = $_POST["nSolicitudPersonalizadaFechaFin"];
+	$solicitud -> adultos = $_POST["SolicitudPersonalizadaAdultos"];
+	$solicitud -> ninos = $_POST["SolicitudPersonalizadaNinos"];
+	$solicitud -> observacion = $_POST["SolicitudPersonalizadaObservacion"];
+	$solicitud -> idpaquete = $_POST["SolicitudPersonalizadaIdPaquete"];
+	$solicitud -> nueva = $_POST["SolicitudPersonalizadaNueva"];
+	$solicitud -> servicios = $_POST["SolicitudPersonalizadaServicios"];
+
+	$solicitud -> ajaxCrearSolicitudPersonalizada();
+
+}
 
 if(isset($_POST["ciudad"])){
 

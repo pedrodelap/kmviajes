@@ -18,7 +18,7 @@ if ($("#columnasSlide").html() == 0) {
 Subir Imagen
 =============================================*/
 
-$("#columnasSlide").on("dragover", function (e) {
+$("#columnasSlide").on("dragover", function(e) {
 
     e.preventDefault();
     e.stopPropagation();
@@ -32,109 +32,109 @@ $("#columnasSlide").on("dragover", function (e) {
 Soltar Imagen
 =============================================*/
 
-$("#columnasSlide").on("drop", function (e) {
+$("#columnasSlide").on("drop", function(e) {
 
-    e.preventDefault();
-    e.stopPropagation();
+        e.preventDefault();
+        e.stopPropagation();
 
-    $("#columnasSlide").css({ "background": "white" })
+        $("#columnasSlide").css({ "background": "white" })
 
-    var archivo = e.originalEvent.dataTransfer.files;
-    var imagen = archivo[0];
+        var archivo = e.originalEvent.dataTransfer.files;
+        var imagen = archivo[0];
 
-    // Validar tamaño de la imagen
-    var imagenSize = imagen.size;
+        // Validar tamaño de la imagen
+        var imagenSize = imagen.size;
 
-    if (Number(imagenSize) > 2000000) {
+        if (Number(imagenSize) > 2000000) {
 
-        $("#columnasSlide").before('<div class="alert alert-warning alerta text-center">El archivo excede el peso permitido, 200kb</div>')
+            $("#columnasSlide").before('<div class="alert alert-warning alerta text-center">El archivo excede el peso permitido, 200kb</div>')
 
-    } else {
+        } else {
 
-        $(".alerta").remove();
+            $(".alerta").remove();
 
-    }
+        }
 
-    // Validar tipo de la imagen
-    var imagenType = imagen.type;
+        // Validar tipo de la imagen
+        var imagenType = imagen.type;
 
-    if (imagenType == "image/jpeg" || imagenType == "image/png") {
+        if (imagenType == "image/jpeg" || imagenType == "image/png") {
 
-        $(".alerta").remove();
+            $(".alerta").remove();
 
-    } else {
+        } else {
 
-        $("#columnasSlide").before('<div class="alert alert-warning alerta text-center">El archivo debe ser formato JPG o PNG</div>')
+            $("#columnasSlide").before('<div class="alert alert-warning alerta text-center">El archivo debe ser formato JPG o PNG</div>')
 
-    }
+        }
 
-    //Subir imagen al servidor
-    if (Number(imagenSize) < 2000000 && imagenType == "image/jpeg" || imagenType == "image/png") {
+        //Subir imagen al servidor
+        if (Number(imagenSize) < 2000000 && imagenType == "image/jpeg" || imagenType == "image/png") {
 
-        var datos = new FormData();
+            var datos = new FormData();
 
-        datos.append("imagen", imagen);
+            datos.append("imagen", imagen);
 
-        $.ajax({
-            url: "ajax/ajax.slide.php",
-            method: "POST",
-            data: datos,
-            cache: false,
-            contentType: false,
-            processData: false,
-            dataType: "json",
-            beforeSend: function () {
+            $.ajax({
+                url: "ajax/ajax.slide.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                beforeSend: function() {
 
-                $("#columnasSlide").before('<img src="vistas/assets/images/status.gif" id="status">');
+                    $("#columnasSlide").before('<img src="vistas/assets/images/status.gif" id="status">');
 
-            },
-            success: function (respuesta) {
+                },
+                success: function(respuesta) {
 
-                $("#status").remove();
+                    $("#status").remove();
 
-                if (respuesta == 0) {
+                    if (respuesta == 0) {
 
-                    $("#columnasSlide").before('<div class="alert alert-warning alerta text-center">La imagen es inferior a 1600px * 600px</div>')
+                        $("#columnasSlide").before('<div class="alert alert-warning alerta text-center">La imagen es inferior a 1600px * 600px</div>')
 
-                } else {
+                    } else {
 
-                    $("#columnasSlide").css({ "height": "auto" });
+                        $("#columnasSlide").css({ "height": "auto" });
 
-                    $("#columnasSlide").append('<li class="bloqueSlide"><span class="fa fa-times eliminarSlide"></span><img src="' + respuesta["v_ruta"] + '" class="handleImg"></li>');
+                        $("#columnasSlide").append('<li class="bloqueSlide"><span class="fa fa-times eliminarSlide"></span><img src="' + respuesta["v_ruta"] + '" class="handleImg"></li>');
 
-                    $("#ordenarTextSlide").append('<li><span class="fa fa-pencil" style="background:blue"></span><img src="' + respuesta["v_ruta"] + '" style="float:initial; margin-bottom:10px" width="80%"><h1>' + respuesta["v_titulo"] + '</h1><p>' + respuesta["v_descripcion"] + '</p></li>');
+                        $("#ordenarTextSlide").append('<li><span class="fa fa-pencil" style="background:blue"></span><img src="' + respuesta["v_ruta"] + '" style="float:initial; margin-bottom:10px" width="80%"><h1>' + respuesta["v_titulo"] + '</h1><p>' + respuesta["v_descripcion"] + '</p></li>');
 
-                    Swal.fire({
-                        title: "¡OK!",
-                        text: "¡La imagen se subió correctamente!",
-                        icon: "success",
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                    }).then((result) => {
-                        if (result.value) {
+                        Swal.fire({
+                            title: "¡OK!",
+                            text: "¡La imagen se subió correctamente!",
+                            icon: "success",
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                        }).then((result) => {
+                            if (result.value) {
 
-                            window.location = "slide";
+                                window.location = "slide";
 
-                        }
-                    });
+                            }
+                        });
 
+
+                    }
 
                 }
 
-            }
+            });
 
-        });
+        }
 
-    }
-
-})
-/*=====  Soltar Imagen  ======*/
+    })
+    /*=====  Soltar Imagen  ======*/
 
 /*=============================================
 Eliminar Item Slide
 =============================================*/
 
-$(".eliminarSlide").click(function () {
+$(".eliminarSlide").click(function() {
 
     if ($(".eliminarSlide").length == 1) {
 
@@ -161,7 +161,7 @@ $(".eliminarSlide").click(function () {
         cache: false,
         contentType: false,
         processData: false,
-        success: function (respuesta) {
+        success: function(respuesta) {
 
         }
 
@@ -176,7 +176,7 @@ $(".eliminarSlide").click(function () {
 Editar Item Slide
 =============================================*/
 
-$(".editarSlide").click(function () {
+$(".editarSlide").click(function() {
 
     idSlide = $(this).parent().attr("id");
     rutaImagen = $(this).parent().children("img").attr("src");
@@ -185,7 +185,7 @@ $(".editarSlide").click(function () {
 
     $(this).parent().html('<img src="' + rutaImagen + '" class="img-thumbnail"><input type="text" class="form-control" id="enviarTitulo" placeholder="Título" value="' + rutaTitulo + '"><textarea row="5" id="enviarDescripcion" class="form-control" placeholder="Descripción">' + rutaDescripcion + '</textarea><button class="btn btn-info pull-right" id="guardar' + idSlide + '" style="margin:10px">Guardar</button>');
 
-    $("#guardar" + idSlide).click(function () {
+    $("#guardar" + idSlide).click(function() {
 
         enviarId = idSlide.slice(4);
 
@@ -206,7 +206,7 @@ $(".editarSlide").click(function () {
             contentType: false,
             processData: false,
             dataType: "json",
-            success: function (respuesta) {
+            success: function(respuesta) {
 
                 $("#guardar" + idSlide).parent().html('<span class="fa fa-pencil editarSlide" style="background:blue"></span><img src="' + rutaImagen + '" style="float:left; margin-bottom:10px" width="80%"><h1>' + respuesta["titulo"] + '</h1><p>' + respuesta["descripcion"] + '</p>');
 
@@ -241,7 +241,7 @@ Ordenar Item Slide
 var almacenarOrdenId = new Array();
 var ordenItem = new Array();
 
-$("#ordenarSlide").click(function () {
+$("#ordenarSlide").click(function() {
 
     $("#ordenarSlide").hide();
     $("#guardarSlide").show();
@@ -253,7 +253,7 @@ $("#ordenarSlide").click(function () {
         revert: true,
         connectWith: ".bloqueSlide",
         handle: ".handleImg",
-        stop: function (event) {
+        stop: function(event) {
 
             for (var i = 0; i < $("#columnasSlide li").length; i++) {
 
@@ -268,7 +268,7 @@ $("#ordenarSlide").click(function () {
 
 });
 
-$("#guardarSlide").click(function () {
+$("#guardarSlide").click(function() {
 
     $("#ordenarSlide").show();
     $("#guardarSlide").hide();
@@ -287,7 +287,7 @@ $("#guardarSlide").click(function () {
             cache: false,
             contentType: false,
             processData: false,
-            success: function (respuesta) {
+            success: function(respuesta) {
 
                 $("#textoSlide ul").html(respuesta);
 

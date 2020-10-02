@@ -292,10 +292,11 @@ $(function () {
         }
     });
 
-    $("#txtFecha").daterangepicker({
+    $("#SolicitudPersonalizadaFecha").daterangepicker({
         locale: {
-            format: 'DD/MM/YYYY'
-        }
+            format: 'DD MMMM, YYYY'
+        },
+        drops: "up"
     });
 
 

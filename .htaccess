@@ -9,3 +9,4 @@ RewriteEngine on
 
 # RewriteRule ^(\w+)$ index.php?action=$1
 RewriteRule ^(\w+)$ index.php?ruta=$1
+

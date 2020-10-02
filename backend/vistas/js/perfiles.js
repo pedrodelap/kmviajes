@@ -7,13 +7,13 @@ $('.modalEdtarPerfiles').appendTo("body");
 /*=============================================
 Mostrar Formulario Registro Perfil
 =============================================*/
-$("#registrarPerfil").click(function () {
+$("#registrarPerfil").click(function() {
 
     $("#formularioPerfil").toggle("fast");
 
 })
 
-$("#subirFotoPerfil").change(function () {
+$("#subirFotoPerfil").change(function() {
 
     $("#subirFotoPerfil").attr("name", "nuevaImagen");
 
@@ -22,7 +22,7 @@ $("#subirFotoPerfil").change(function () {
 /*=============================================
 Mostrar Formulario Editar Perfil
 =============================================*/
-$("#btnEditarPerfil").click(function () {
+$("#btnEditarPerfil").click(function() {
 
     var idUsuario = $('#editarId').val();
 
@@ -38,10 +38,10 @@ $("#btnEditarPerfil").click(function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (respuesta) {
+        success: function(respuesta) {
 
             console.log("idUsuario: ", idUsuario);
-
+            
 
             $("#editarUsuario").val(respuesta["usuario"]);
             $("#editarNombre").val(respuesta["nombres"]);
@@ -66,7 +66,7 @@ $("#btnEditarPerfil").click(function () {
 
 })
 
-$("#cambiarFotoPerfil").change(function () {
+$("#cambiarFotoPerfil").change(function() {
 
     $("#cambiarFotoPerfil").attr("name", "editarImagen")
 

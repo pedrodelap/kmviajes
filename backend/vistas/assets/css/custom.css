@@ -35,3 +35,15 @@
 .fadeIn {
     animation-name: fadeIn;
 }
+
+@media (min-width: 1200px) {
+    .grid-menu.grid-menu-2col [class*="col-"]:nth-last-child(-n+3) {
+        border-bottom-width: 1px;
+    }
+    .grid-menu.grid-menu-2col [class*="col-"]:nth-child(2n) {
+        border-right-width: 1px;
+    }
+    .grid-menu.grid-menu-2col [class*="col-"]:nth-child(3n) {
+        border-right-width: 1px;
+    }
+}

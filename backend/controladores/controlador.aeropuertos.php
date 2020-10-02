@@ -26,18 +26,6 @@ class ControladorAeropuertos{
 
 	}
 
-	#SELECT AEROPUERTOSxID
-	#-----------------------------------------------------
-	static public function ctrSelectAeropuertosPorId($valor){
-
-		$tabla = "tb_aeropuertos";
-
-		$respuesta = ModeloAeropuertos::mdlSelectAeropuertosPorId($tabla, $valor);
-
-		return $respuesta;
-
-	}
-
 	#ELIMINAR AEROPUERTO
 	#-----------------------------------------------------
 	static public function ctrEliminarAeropuerto(){

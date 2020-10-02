@@ -181,6 +181,8 @@ class ControladorPerfiles{
 
 	public static function editarUsuarioController(){
 
+		echo'<script> console.log("editarFoto : editarFoto"); </script>';
+
 		$ruta = "";
 
 		if(isset($_POST["editarId"])){

@@ -2,7 +2,7 @@
 EDITAR PROPUESTA
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarPropuesta", function () {
+$(".tablas").on("click", ".btnEditarPropuesta", function() {
 
     var idCliente = $(this).attr("idPropuesta");
 
@@ -18,7 +18,7 @@ $(".tablas").on("click", ".btnEditarPropuesta", function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (respuesta) {
+        success: function(respuesta) {
 
             $("#hidden_propuesta_id").val(respuesta["id_propuesta"]);
             $("#hidden_cotizacion_id").val(respuesta["id_cotizacion"]);
@@ -53,7 +53,7 @@ $(".tablas").on("click", ".btnEditarPropuesta", function () {
 ELIMINAR CLIENTE
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarCliente", function () {
+$(".tablas").on("click", ".btnEliminarCliente", function() {
 
     var idCliente = $(this).attr("idCliente");
     console.log("idCliente", idCliente);

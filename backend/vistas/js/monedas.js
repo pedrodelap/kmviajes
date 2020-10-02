@@ -9,7 +9,7 @@ $('#modalEditarMoneda').appendTo("body");
 EDITAR MONEDA
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarMoneda", function () {
+$(".tablas").on("click", ".btnEditarMoneda", function() {
 
     var idMoneda = $(this).attr("idMoneda");
 
@@ -26,7 +26,7 @@ $(".tablas").on("click", ".btnEditarMoneda", function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (respuesta) {
+        success: function(respuesta) {
 
             $("#idMoneda").val(respuesta["id_moneda"]);
             $("#monedaEditarNombre").val(respuesta["nombre"]);
@@ -44,7 +44,7 @@ $(".tablas").on("click", ".btnEditarMoneda", function () {
 ELIMINAR MONEDA
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarMoneda", function () {
+$(".tablas").on("click", ".btnEliminarMoneda", function() {
 
     var idMoneda = $(this).attr("idMoneda");
     console.log("idMoneda", idMoneda);

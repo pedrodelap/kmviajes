@@ -9,7 +9,7 @@ $('#modalEditarCliente').appendTo("body");
 EDITAR CLIENTE
 =============================================*/
 
-$(".tablas").on("click", ".btnEditarCliente", function () {
+$(".tablas").on("click", ".btnEditarCliente", function() {
 
     console.log("dentro");
     var idCliente = $(this).attr("idCliente");
@@ -27,7 +27,7 @@ $(".tablas").on("click", ".btnEditarCliente", function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (respuesta) {
+        success: function(respuesta) {
 
             $("#idCliente").val(respuesta["id_cliente"]);
             $("#clienteEditarNombres").val(respuesta["nombres"]);
@@ -49,7 +49,7 @@ $(".tablas").on("click", ".btnEditarCliente", function () {
 ELIMINAR CLIENTE
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarCliente", function () {
+$(".tablas").on("click", ".btnEliminarCliente", function() {
 
     var idCliente = $(this).attr("idCliente");
     console.log("idCliente", idCliente);

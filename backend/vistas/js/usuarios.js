@@ -6,18 +6,15 @@ $('#modalNuevoUsuario').appendTo("body");
 $('#modalEditarUsuario').appendTo("body");
 
 /*=============================================
-
-$(".tablas").on("click", ".btnEditarUsuario", function() {
-=======
 Mostrar Formulario Registro Perfil
 =============================================*/
-$("#registrarPerfil").click(function () {
+$("#registrarPerfil").click(function() {
 
     $("#formularioPerfil").toggle("fast");
 
 })
 
-$("#subirFotoPerfil").change(function () {
+$("#subirFotoPerfil").change(function() {
 
     $("#subirFotoPerfil").attr("name", "nuevaImagen");
 
@@ -26,7 +23,7 @@ $("#subirFotoPerfil").change(function () {
 /*=============================================
 Mostrar Formulario Editar Perfil
 =============================================*/
-$("#btnEditarPerfil").click(function () {
+$("#btnEditarPerfil").click(function() {
 
     var idUsuario = $('#editarId').val();
 
@@ -42,7 +39,7 @@ $("#btnEditarPerfil").click(function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (respuesta) {
+        success: function(respuesta) {        
 
             $("#editarUsuario").val(respuesta["usuario"]);
             $("#editarNombre").val(respuesta["nombres"]);
@@ -70,14 +67,14 @@ $("#btnEditarPerfil").click(function () {
 
 })
 
-$("#btnEditarPerfilCancelar").click(function () {
+$("#btnEditarPerfilCancelar").click(function() {
 
     $("#formEditarPerfil").hide("fast");
     $("#editarPerfil").show("fast");
 
 })
 
-$("#cambiarFotoPerfil").change(function () {
+$("#cambiarFotoPerfil").change(function() {
 
     $("#cambiarFotoPerfil").attr("name", "editarImagen")
 
@@ -88,8 +85,8 @@ $("#cambiarFotoPerfil").change(function () {
 EDITAR USUARIO
 =============================================*/
 
-$(".table").on("click", ".btnEditarUsuario", function () {
-
+$(".table").on("click", ".btnEditarUsuario", function() {
+    
     console.log("dentro");
 
 
@@ -107,7 +104,7 @@ $(".table").on("click", ".btnEditarUsuario", function () {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function (respuesta) {
+        success: function(respuesta) {
 
             $("#idUsuarioEditar").val(respuesta["id_usuario"]);
             $("#usuarioEditar").val(respuesta["usuario"]);
@@ -131,7 +128,7 @@ $(".table").on("click", ".btnEditarUsuario", function () {
 ELIMINAR USUARIO
 =============================================*/
 
-$(".tablas").on("click", ".btnEliminarUsuario", function () {
+$(".tablas").on("click", ".btnEliminarUsuario", function() {
 
     var idUsuario = $(this).attr("idUsuario");
 

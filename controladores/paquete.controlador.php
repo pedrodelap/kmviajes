@@ -1,5 +1,6 @@
 <?php
 
+
 class ControladorPaqueteFront{
 
     static public function ctrlistarTodosPaquetesDisponibles($filter){
@@ -12,11 +13,11 @@ class ControladorPaqueteFront{
 
             echo '<div class="col-md-4" id="paquete_'.$value["id_paquete"].'" >
                     <div class="box-image-text">
-                        <div class="image"><img src="vistas/assets/img/catalogo_tours/5.jpg" alt="" class="img-fluid">
+                        <div class="image"><img src="backend/'.$value["ruta_imagen"].'" alt="" class="img-fluid">
                             <div class="overlay d-flex align-items-center justify-content-center">
                             <div class="content">
                                 <div class="name">
-                                <h3><a href="#" class="color-white" style="text-decoration: none;">'.$value["precio_sol"].' o '.$value["precio_dolar"].'</a></h3>
+                                <h3><a href="#" class="color-white" style="text-decoration: none;">'.$value["precio_sol"].' S/. o '.$value["precio_dolar"].' $</a></h3>
                                 </div>
                                 <div class="text">
                                     <p class="buttons"><button idPaquete="'.$value["id_paquete"].'" class=" btn-buscar2 btn btn-template-outlined-white">Ver</button></p>
@@ -48,6 +49,7 @@ class ControladorPaqueteFront{
         return $respuesta;
     
     }
+
     static public function ctrListarServiciosPorPaquete($id){
 
         $respuesta = ModeloPaqueteFront::mdlListarServiciosPorPaquete($id);
@@ -68,15 +70,153 @@ class ControladorPaqueteFront{
     
     }
 
-    static public function ctrCrearSolicitud($datos){
-       
-		$respuesta = ModeloPaqueteFront::mdlCrearSolicitudPaso1($datos);
-        if($respuesta != 'false'){
-            $respuesta = ModeloPaqueteFront::mdlCrearSolicitudPaso2($datos,$respuesta["id_cliente"]);
+    static public function ctrListarPaquetePorCampania($id_campania){
+
+        $respuesta = ModeloPaqueteFront::mdlListarPaquetePorCampania($id_campania);
+        return $respuesta;
+    
+    }
+
+    static public function ctrListarFotosPorPaquete($id){
+
+        $respuesta = ModeloPaqueteFront::mdlListarFotosPorPaquete($id);
+        return $respuesta;
+    
+    }
+
+    static public function ctrCrearClienteSolicitudPersonalizada($datosCliente){
+
+        $resultado = "";
+
+        if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $datosCliente["nombres"]) &&
+        preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $datosCliente["apellidos"]) &&			   
+        preg_match('/^[a-zA-Z0-9. ]+$/', $datosCliente["numero_documento"]) &&
+        preg_match('/^[0-9]+$/', $datosCliente["numero_documento"]) &&
+        preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $datosCliente["correo"]) &&
+        preg_match('/^[()\-0-9 ]+$/', $datosCliente["telefono"] )){
+
+
+            $respuesta = ModeloPaqueteFront::mdlCrearClienteSolicitudPersonalizada($datosCliente);
+    
+            $resultado = $respuesta;
+            
+            
+            
+
+        }else {
+
+            $respuesta= "errorValidacionCliente";
+
         }
+
+        return $respuesta;
+
+    }
+
+    static public function ctrCrearSolicitudPersonalizada($datosSolicitud){
+
+        $respuesta = ModeloPaqueteFront::mdlCrearSolicitudPersonalizada($datosSolicitud);
+    
 		return $respuesta;
 
-	}
+    }
 
+    static public function ctrCrearSolicitudPersonalizadaHistorial($datosCliente){
+
+        $respuesta = ModeloPaqueteFront::mdlCrearClienteSolicitudPersonalizada($datosCliente);
     
+		return $respuesta;
+
+    }
+
+
+    static public function ctrEnviarPagoPasarella($data){
+
+        //$data = array("first_name" => "First name","last_name" => "last name","email"=>"email@gmail.com","addresses" => array ("address1" => "some address" ,"city" => "city","country" => "CA", "first_name" =>  "Mother","last_name" =>  "Lastnameson","phone" => "555-1212", "province" => "ON", "zip" => "123 ABC" ) );
+
+
+        //"ApiKey~merchantId~referenceCode~tx_value~currency"
+        $signature = md5("4Vj8eK4rloUd272L48hsrarnUA~508029~".$data["referenceCode"]."~".$data["amount"]."~".$data["currency"]);
+        $datosPago = array(
+            "language" => "es",
+            "command" => "SUBMIT_TRANSACTION",
+            "merchant" => array(
+               "apiKey" => "4Vj8eK4rloUd272L48hsrarnUA",
+               "apiLogin" => "pRRXKOl8ikMmt9u"
+            ),
+            "transaction" => array(
+               "order" => array(
+                    "accountId" => "512323",
+                    "referenceCode" => "'".$data["referenceCode"]."'",
+                    "description" => "'".$data['description']."'",
+                    "language" => "es",
+                    "signature" => "'".$signature."'",    
+                    "additionalValues" => array(
+                        "TX_VALUE" => array( 
+                            "value" => "'".$data['amount']."'",
+                            "currency" => "'".$data['currency']."'"
+                        )
+                    ),
+                    "buyer" => array(
+                        "dniNumber" => "'".$data['dniNumber']."'",
+                        "emailAddress" => "'".$data['emailAddress']."'",
+                        "fullName" => "'".$data['fullName']."'",
+                        "shippingAddress" => array(
+                            "country" => "PE",
+                            "phone" => "'".$data['phone']."'"
+                        ),
+                        "dniType" => "DNI",
+                        "contactPhone" => "'".$data['phone']."'"
+                    ),
+                    "shippingAddress" => array(
+                        "country" => "PE",
+                        "phone"=> "'".$data['phone']."'"
+                    )
+                ),
+               "payer" => array(
+                    "dniNumber" => "'".$data['dniNumber']."'",
+                    "emailAddress" => "'".$data['emailAddress']."'",
+                    "fullName" => "'".$data['fullName']."'",
+                    "dniType" => "DNI",
+                    "billingAddress" => array(
+                        "country" =>"PE",
+                        "phone" => "'".$data['phone']."'"
+                    ),
+                    "contactPhone" => "'".$data['phone']."'",
+                    "merchantPayerId" => "'".$data['merchantPayerId']."'"
+                ),
+               "creditCard" => array(
+                    "number" => "'".$data['number']."'",
+                    "securityCode" => "'".$data['securityCode']."'",
+                    "expirationDate" => "'".$data['expirationDate']."'",
+                    "name" => "'".$data['fullName']."'",
+                    "processWithoutCvv2" => false
+                ),
+               "extraParameters" => array(
+                  "INSTALLMENTS_NUMBER" => 0
+               ),
+               "type" => "AUTHORIZATION_AND_CAPTURE",
+               "paymentMethod" => "'".$data['paymentMethod']."'",
+               "paymentCountry" => "PE"
+               
+            ),
+            "test" => true
+        );
+        $url = "https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi";
+
+        $respuesta = CallApi::httpPost($url, $datosPago);
+        return $respuesta;
+    }
+
+    static public function ctrObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento){
+        $respuesta = ModeloPaqueteFront::mdlObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento);
+		return $respuesta;
+
+    }
+
+    static public function ctrObtenerHistoricoSeguimiento($codigoSeguimiento){
+        $respuesta = ModeloPaqueteFront::mdlObtenerHistoricoSeguimiento($codigoSeguimiento);
+		return $respuesta;
+
+    }
 }

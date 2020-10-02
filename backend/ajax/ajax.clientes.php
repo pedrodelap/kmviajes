@@ -24,6 +24,26 @@ class AjaxClientes{
 	}
 
 
+	#MOSTRAR CLIENTE DESDE SOLICITUD
+	#----------------------------------------------------------
+
+	public $idClienteSolicitud;
+
+	public function ajaxMostrarClienteSolicitud(){
+
+		$item = "id_cliente";
+		
+		$valor = $this->idClienteSolicitud;
+
+		$respuesta = ControladorClientes::ctrMostrarClientes($item, $valor);
+
+		echo json_encode($respuesta);
+
+
+	}
+
+
+
 	#CONSULTAR CLIENTES
 	#----------------------------------------------------------
 
@@ -76,5 +96,19 @@ if(isset($_POST["idCliente"])){
 	$cliente = new AjaxClientes();
 	$cliente -> idCliente = $_POST["idCliente"];
 	$cliente -> ajaxEditarCliente();
+
+}
+
+
+/*=============================================
+CONSULTAR CLIENTE DESDE SOLICITUD
+=============================================*/	
+
+
+if(isset($_POST["idClienteDato"])){
+
+	$cliente = new AjaxClientes();
+	$cliente -> idClienteSolicitud = $_POST["idClienteSolicitud"];
+	$cliente -> ajaxMostrarClienteSolicitud();
 
 }

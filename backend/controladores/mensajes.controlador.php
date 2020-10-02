@@ -11,7 +11,7 @@ class ControladorMensajes{
 		foreach ($respuesta as $row => $item){
 
 			echo '<div class="well well-sm" id="'.$item["id_mensajes"].'">
-					<a href="index.php?action=mensajes&idBorrar='.$item["id_mensajes"].'"><span class="fa fa-times pull-right"></span></a>
+					<a href="index.php?ruta=mensajes&idBorrar='.$item["id_mensajes"].'"><span class="fa fa-times pull-right"></span></a>
 					<p>'.$item["v_fecha_registro"].'</p>
 					<h5>De: '.$item["v_nombre"].'</h5>
 					<h6>Email: '.$item["v_email"].'</h6>
@@ -71,7 +71,7 @@ class ControladorMensajes{
 			$mensaje =$_POST['enviarMensaje'];
 
 			$para = $email . ', ';
-			$para .= 'cursos@tutorialesatualcance.com';
+			$para .= 'pedrodelap@gmail.com';
 
 			$título = 'Respuesta a su mensaje';
 
@@ -84,13 +84,13 @@ class ControladorMensajes{
 								<h1>Hola '.$nombre.'</h1>
 								<p>'.$mensaje.'</p>
 								<hr>
-								<p><b>Juan Fernando Urrego A.</b><br>
-								Instructor Tutoriales a tu Alcance<br> 
-								Medellín - Antioquia</br> 
+								<p><b>'.$_SESSION["nombres"].' '.$_SESSION["apellidos"].'</b><br>
+								KM Viajes y Aventura<br> 
+								Lima - Perú</br> 
 								WhatsApp: +57 301 391 74 61</br> 
-								cursos@tutorialesatualcance.com</p>
+								pedrodelap@gmail.com</p>
 
-								<h3><a href="http://www.tutorialesatualcance.com" target="blank">www.tutorialesatualcance.com</a></h3>
+								<h3><a href="http://www.kmviajes.com" target="blank">www.kmviajes.com</a></h3>
 
 								<a href="http://www.facebook.com" target="blank"><img src="https://s23.postimg.org/cb2i89a23/facebook.jpg"></a> 
 								<a href="http://www.youtube.com" target="blank"><img src="https://s23.postimg.org/mcbxvbciz/youtube.jpg"></a> 
@@ -104,7 +104,7 @@ class ControladorMensajes{
 
 		   $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
 		   $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-		   $cabeceras .= 'From: <cursos@tutorialesatualcance.com>' . "\r\n";
+		   $cabeceras .= 'From: <pedrodelap@gmail.com>' . "\r\n";
 
 		   $envio = mail($para, $título, $mensaje, $cabeceras);
 
@@ -165,7 +165,7 @@ class ControladorMensajes{
 									WhatsApp: +57 301 391 74 61</br> 
 									cursos@tutorialesatualcance.com</p>
 
-									<h3><a href="http://www.tutorialesatualcance.com" target="blank">www.tutorialesatualcance.com</a></h3>
+									<h3><a href="http://www.kmviajes.com" target="blank">www.kmviajes.com</a></h3>
 
 									<a href="http://www.facebook.com" target="blank"><img src="https://s23.postimg.org/cb2i89a23/facebook.jpg"></a> 
 									<a href="http://www.youtube.com" target="blank"><img src="https://s23.postimg.org/mcbxvbciz/youtube.jpg"></a> 
@@ -198,7 +198,6 @@ class ControladorMensajes{
 									    window.location = "mensajes";
 									} 
 							});
-
 
 					</script>';
 
