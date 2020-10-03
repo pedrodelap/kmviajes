@@ -9,16 +9,21 @@ class CallApi{
 //using php curl (sudo apt-get install php-curl) 
 function httpPost($url, $data){
     $curl = curl_init($url);
-
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+   
     
-    $response = curl_exec($curl);
+    $data = curl_exec($curl);
     curl_close($curl);
-    return $response;
+
+    $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $data);
+    $xml = new \SimpleXMLElement($data);
+    $array = json_decode(json_encode((array)$xml), TRUE);
+    //print_r($array);
+
+    return $array;
 }
 }
 

@@ -90,7 +90,8 @@
     <script src="vistas/assets/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
     <script src="vistas/assets/js/jquery.parallax-1.1.3.js"></script>
     <script src="backend/vistas/assets/js/vendors/select2.min.js"></script>
-
+    <script src="vistas/assets/js/jquery.creditCardValidator.js"></script>
+    
     <script src="vistas/assets/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
 
     <!--Datepickers-->

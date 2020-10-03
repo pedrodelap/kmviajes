@@ -223,26 +223,26 @@
 				</div>
 				<div class="row">
 
-				<div class="col-sm-6">
-						<div class="form-group">
-							<label for="SolicitudPersonalizadaTelefono">Número de contacto</label>
-							<input id="SolicitudPersonalizadaTelefono" type="tel" placeholder="(+51) ___-___-___" class="form-control" maxlength="9" require/>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="SolicitudPersonalizadaTelefono">Número de contacto</label>
+								<input id="SolicitudPersonalizadaTelefono" type="tel" placeholder="(+51) ___-___-___" class="form-control" maxlength="9" require/>
+							</div>
 						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="SolicitudPersonalizadaDocumento">Número de documento</label>
-							<input id="SolicitudPersonalizadaDocumento" type="text" placeholder="DNI o Pasaporte" class="form-control" maxlength="15" />
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="SolicitudPersonalizadaDocumento">Número de documento</label>
+								<input id="SolicitudPersonalizadaDocumento" type="text" placeholder="DNI o Pasaporte" class="form-control" maxlength="15" />
+							</div>
 						</div>
-					</div>
 
-				
+					
 				</div>
 				<div class="row">
 				<div class="col-sm-12">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaCorreo">Correo contacto</label>
-							<input id="SolicitudPersonalizadaCorreo" type="email" placeholder="viajero@mail.com" class="form-control" require/>
+							<input id="SolicitudPersonalizadaCorreo" type="email" disabled class="form-control" placeholder="mail@mail.com" require/>
 						</div>
 					</div>
 				</div>

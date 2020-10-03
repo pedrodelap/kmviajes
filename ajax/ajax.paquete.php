@@ -103,6 +103,14 @@ class AjaxPaquetes{
 
 	}
 
+	public function ajaxPagarOnLine($datosPago){
+		
+		$respuesta = null;
+		$respuesta = ControladorPaqueteFront::ctrEnviarPagoPasarella($datosPago);
+		echo json_encode($respuesta);;
+
+	}
+
 }
 
 /*=============================================
@@ -174,5 +182,26 @@ if(isset($_POST["ciudad"])){
 
 	$cliente = new AjaxPaquetes();
 	$cliente -> ajaxListCiudaddes();
+
+}
+
+if(isset($_POST["pagar"])){
+
+	$pagar = new AjaxPaquetes();
+
+	$datosPago = array("referenceCode"=>$_POST["referenceCode"],
+						"amount"=>$_POST["amount"],
+					  	"currency"=>$_POST["currency"],
+						"description"=>$_POST["description"],
+						"emailAddress"=>$_POST["emailAddress"],
+						"fullName"=>$_POST["fullName"],
+						"phone"=>$_POST["phone"],
+						"merchantPayerId"=>$_POST["merchantPayerId"],
+						"number"=>$_POST["number"],
+						"securityCode"=>$_POST["securityCode"],
+						"expirationDate"=>$_POST["expirationDate"],
+						"paymentMethod"=>$_POST["paymentMethod"],
+						"dniNumber"=>$_POST["dniNumber"]);
+	$pagar -> ajaxPagarOnLine($datosPago);
 
 }

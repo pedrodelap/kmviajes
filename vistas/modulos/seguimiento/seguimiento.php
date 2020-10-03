@@ -29,8 +29,8 @@
 				<div class="heading">
 					<h2>Modulo de seguimiento</h2>
 				</div>
-				<p class="lead">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+				<p>
+				Hola <b><?php echo $paquete["nombres"]." ".$paquete["apellidos"]; ?></b>, te mostramos los datos de la solicitud como los estados de la misma ...dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
 				</p>
 			</div>
 		</div>
@@ -193,29 +193,34 @@
 							<div class="col-lg-3">
 								<div id="order-summary" class="box mb-4 p-0">
 									<div class="box-header mt-0">
-										<h3>Información</h3>
+										<h3>Informacion</h3>
 									</div>
-									<p class="text-muted text-small">Shipping and additional costs are calculated based
-										on the values you have entered.</p>
+									<p class="text-muted text-small"><?php echo $paquete["descripcion_corta"]; ?></p>
 									<div class="table-responsive">
 										<table class="table">
 											<tbody>
 												<tr>
-													<td>Descripción</td>
-													<th>Berlin</th>
+													<th colspan="2"><?php echo $paquete["titulo"]; ?></th>
+												</tr>
+											
+												<tr>
+													<td>Destino</td>
+													<th><?php echo $paquete["ciudad"]; ?></th>
 												</tr>
 												<tr>
 													<td>Pasajeros</td>
-													<th>4 Adultos - 2 Niños</th>
+													<th><?php echo $paquete["pasajeros"]; ?></th>
 												</tr>
 												<tr>
 													<td>Fecha*</td>
-													<th>2020-12-30</th>
+													<th><?php echo $paquete["fecha_fin"]; ?></th>
 												</tr>
-												<tr class="total">
-													<td>Total</td>
-													<th>$456.00</th>
-												</tr>
+
+												<input type="hidden" id="amount" value="<?php echo $paquete["precio_dolar"]; ?>"/>
+												<input type="hidden" id="description" value="<?php echo $paquete["titulo"]; ?>"/>
+												<input type="hidden" id="phone" value="<?php echo $paquete["telefono"]; ?>"/>
+												<input type="hidden" id="merchantPayerId" value="<?php echo $paquete["id_cliente"]; ?>"/>
+												<input type="hidden" id="dniNumber" value="<?php echo $paquete["numero_documento"]; ?>"/>
 											</tbody>
 										</table>
 									</div>
@@ -249,3 +254,80 @@
 	</section>
 </div>
 <!-- Container-->
+
+
+<!-- Login Modal-->
+
+
+ <div id="pagar-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
+        <div role="document" class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="login-modalLabel" class="modal-title">Realizar Pago</h4>
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+            <input type="hidden" id="codigoSeguimiento" value="<?php echo $codigoSeguimiento ?>"/>
+                  <div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="card_number">Número de Tarjeta</label>
+								<div class="input-group mb-3">
+								
+								<div class="input-group-append">
+									<span class="input-group-text" id="type"><img class="img_card" src="https://img.icons8.com/android/48/000000/bank-card-back-side.png"/></span>
+								</div>
+								<input id="card_number" maxlength="16" type="text" placeholder="Numero de tarjeta" class="form-control">
+								</div>
+							</div>
+						</div>
+					</div>
+                 
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="expiry_month">Mes Vencimiento</label>
+								<input id="expiry_month" type="text" maxlength="2" placeholder="MM" class="form-control">
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="expiry_year">Año Vencimiento</label>
+								<input id="expiry_year" type="text" maxlength="4" placeholder="AAAA" class="form-control">
+							</div>
+						</div>
+						
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label for="cvv">CVV</label>
+								<input id="cvv" type="password" maxlength="4" placeholder="000" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="name_on_card">Titular de Tarjeta</label>
+								<input id="name_on_card" type="text" class="form-control" placeholder="" require/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="txtCorreo">Correo contacto</label>
+								<input id="txtCorreo" type="email" disabled class="form-control" value="<?php echo $paquete["correo"];?>" require/>
+							</div>
+						</div>
+					</div>
+
+                    <div class="modal-footer">
+						<button onclick="realizarPago()" id="btn_pagar" class="btn btn-primary">Realizar Pago</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+						</div>
+                    </div>
+               </div>
+          </div>
+        </div>
+      </div>
+      <!-- Login modal end-->

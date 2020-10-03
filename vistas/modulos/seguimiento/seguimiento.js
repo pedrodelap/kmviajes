@@ -1,82 +1,97 @@
-/* $("#ccnum").keyup(function (e) {
-    var num = $(this).val().toString();
-    var charCount = num.length;
+function cardFormValidate() {
+    var cardValid = 0;
 
-    
-    if (charCount == 1) {
-        if (num == "4") {
-            $("#type").html('<img class="img_card " src="https://img.icons8.com/color/48/000000/visa.png"/>');
-        }
-    }
-    if (charCount == 2) {
-        if (num == "34" || num == "37") {
-            $("#type").html("AMEX");
-        } else if (num == "51" || num == "55" || num == "53") {
-            $("#type").html('<img class="img_card"  src="https://img.icons8.com/fluent/48/000000/mastercard.png"/>');
-        } else if (num == "55") {
-            $("#type").html("DISCOVER");
-        }
-    }
-    if (charCount == 3) {
-        if (num == "644") {
-            $("#type").html('<img class="img_card" src="https://img.icons8.com/color/48/000000/discover.png"/>')
-        }
-    }
-    if (charCount == 4) {
-        if (num == "6011") {
-            $("#type").html('<img class="img_card" src="https://img.icons8.com/color/48/000000/discover.png"/>');
-        }
-    }
-    
-    if (charCount == 13 || charCount == 14 || charCount == 15 || charCount == 16) {
-        var valid = isValid(num, charCount);
-        if (valid) {
+    //card number validation
+    $('#card_number').validateCreditCard(function (result) {
+        if (result.valid) {
+            $("#card_number").removeClass('required');
+            switch (result.card_type.name) {
+                case "visa":
+                    $("#type").html('<img class="img_card " src="https://img.icons8.com/color/48/000000/visa.png"/>');
+                    break;
+                case "mastercard":
+                    $("#type").html('<img class="img_card"  src="https://img.icons8.com/fluent/48/000000/mastercard.png"/>');
+                    break;
+                case "amex":
+                    $("#type").html('<img class="img_card"  src="https://img.icons8.com/fluent/48/000000/amex.png"/>');
 
+                    break;
+                case "diners_club_international":
+                    $("#type").html('<img class="img_card"  src="https://img.icons8.com/color/48/000000/diners-club.png"/>');
+                    break;
+
+                case "maestro":
+                    $("#type").html('<img class="img_card"  src="https://img.icons8.com/color/48/000000/discover.png"/>');
+
+                    break;
+                default:
+                    $("#type").html('<img class="img_card"  src="https://img.icons8.com/android/48/000000/bank-card-back-side.png"/>');
+
+                    break;
+            }
+            tipoTarjeta = result.card_type.name;
+            $("#card_number").removeClass("inp-icon-fail");
+            $("#card_number").addClass("inp-icon");
+            $("#btn_pagar").prop('disabled', false);
+            cardValid = 1;
         } else {
-            $("#type").html('<img class="img_card" class="img_card" src="https://img.icons8.com/android/32/000000/bank-card-back-side.png"/>');
+
+            $("#card_number").removeClass("inp-icon");
+            $("#card_number").addClass("inp-icon-fail");
+            $("#btn_pagar").prop('disabled', true);
+            cardValid = 0;
         }
-    }
-   
-});*/
+    });
 
-function isValid(ccNum, charCount) {
-    var double = true;
-    var numArr = [];
-    var sumTotal = 0;
-    for (i = 0; i < charCount; i++) {
-        var digit = parseInt(ccNum.charAt(i));
-
-        if (double) {
-            digit = digit * 2;
-            digit = toSingle(digit);
-            double = false;
-        } else {
-            double = true;
-        }
-        numArr.push(digit);
-    }
-
-    for (i = 0; i < numArr.length; i++) {
-        sumTotal += numArr[i];
-    }
-    var diff = eval(sumTotal % 10);
-    console.log(diff);
-    console.log(diff == "0");
-    return (diff == "0");
-}
-
-function toSingle(digit) {
-    if (digit > 9) {
-        var tmp = digit.toString();
-        var d1 = parseInt(tmp.charAt(0));
-        var d2 = parseInt(tmp.charAt(1));
-        return (d1 + d2);
+    //card details validation
+    var cardName = $("#name_on_card").val();
+    var expMonth = $("#expiry_month").val();
+    var expYear = $("#expiry_year").val();
+    var cvv = $("#cvv").val();
+    var regName = /^[a-z ,.'-]+$/i;
+    var regMonth = /^01|02|03|04|05|06|07|08|09|10|11|12$/;
+    var regYear = /^2020|2021|2022|2023|2024|2025|2026|2027|2028|2029|2030|2031|2031|2032|2033|2034|2035$/;
+    var regCVV = /^[0-9]{3,3}$/;
+    if (cardValid == 0) {
+        $("#card_number").addClass('required');
+        $("#card_number").focus();
+        return false;
+    } else if (!regMonth.test(expMonth)) {
+        $("#card_number").val(cc_format($("#card_number").val()));
+        $("#card_number").removeClass('required');
+        $("#expiry_month").addClass('required');
+        $("#expiry_month").focus();
+        return false;
+    } else if (!regYear.test(expYear)) {
+        $("#card_number").removeClass('required');
+        $("#expiry_month").removeClass('required');
+        $("#expiry_year").addClass('required');
+        $("#expiry_year").focus();
+        return false;
+    } else if (!regCVV.test(cvv)) {
+        $("#card_number").removeClass('required');
+        $("#expiry_month").removeClass('required');
+        $("#expiry_year").removeClass('required');
+        $("#cvv").addClass('required');
+        $("#cvv").focus();
+        return false;
+    } else if (!regName.test(cardName)) {
+        $("#card_number").removeClass('required');
+        $("#expiry_month").removeClass('required');
+        $("#expiry_year").removeClass('required');
+        $("#cvv").removeClass('required');
+        $("#name_on_card").addClass('required');
+        $("#name_on_card").focus();
+        return false;
     } else {
-        return digit;
+        $("#card_number").removeClass('required');
+        $("#expiry_month").removeClass('required');
+        $("#expiry_year").removeClass('required');
+        $("#cvv").removeClass('required');
+        $("#name_on_card").removeClass('required');
+        return true;
     }
 }
-
-
 
 function cc_format(value) {
     var v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
@@ -93,58 +108,111 @@ function cc_format(value) {
     }
 }
 
-onload = function () {
-    document.getElementById('ccnum').oninput = function () {
-        this.value = cc_format(this.value)
+var tipoTarjeta = "VISA";
 
-        var num = $(this).val().toString();
-        var charCount = num.length;
+$(document).ready(function () {
+    //card validation on input fields
+    $('#pagar-modal input[type=text]').on('keyup', function () {
+        cardFormValidate();
+    });
+});
 
-        /* VALIDACION DE TIPO */
-        if (charCount == 1) {
-            if (num == "4") {
-                $("#type").html('<img class="img_card " src="https://img.icons8.com/color/48/000000/visa.png"/>');
+
+function realizarPago() {
+
+    var referenceCode = $("#codigoSeguimiento").val();
+    var amount = $("#amount").val();
+    var currency = "USD";
+    var description = $("#description").val();
+    var emailAddress = $("#txtCorreo").val();
+    var fullName = $("#name_on_card").val();
+    var phone = $("#phone").val();
+    var merchantPayerId = $("#merchantPayerId").val();
+    var number = $("#card_number").val().replace(/\s/g, '');
+    var securityCode = $("#cvv").val();
+    var expirationDate = $("#expiry_year").val() + "/" + $("#expiry_month").val();
+    var paymentMethod = tipoTarjeta.toUpperCase() == "VISA" ? "VISA" : "MASTERCARD";
+    var dniNumber = $("#dniNumber").val();
+    var pagar = true;
+
+    var formPago = new FormData();
+
+    formPago.append("referenceCode", referenceCode);
+    formPago.append("amount", amount);
+    formPago.append("currency", currency);
+    formPago.append("description", description);
+    formPago.append("emailAddress", emailAddress);
+    formPago.append("fullName", fullName);
+    formPago.append("phone", phone);
+    formPago.append("merchantPayerId", merchantPayerId);
+    formPago.append("number", number);
+    formPago.append("securityCode", securityCode);
+    formPago.append("expirationDate", expirationDate);
+    formPago.append("paymentMethod", paymentMethod);
+    formPago.append("dniNumber", dniNumber);
+    formPago.append("pagar", pagar);
+
+
+    $.ajax({
+
+        url: "ajax/ajax.paquete.php",
+        method: "POST",
+        data: formPago,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+
+            var state = respuesta.transactionResponse.state;
+
+            if (state == "APPROVED") {
+
+                Swal.fire({
+                    type: "success",
+                    title: "El pago se realizó correctamente código:" + respuesta.transactionResponse.orderId,
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar",
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result.value) {
+
+                        $('#pagar-modal').modal('hide');
+                        limpiarDatosTarjeta();
+                    }
+                });
+
+            }
+            else {
+
+
+                Swal.fire({
+                    type: "error",
+                    title: respuesta.transactionResponse.paymentNetworkResponseErrorMessage,
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar",
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result.value) {
+
+                        $('#pagar-modal').modal('hide');
+
+                    }
+                });
+
+
+
             }
         }
-        if (charCount == 2) {
-            if (num == "34" || num == "37") {
-                $("#type").html("AMEX");
-            } else if (num == "51" || num == "55" || num == "53") {
-                $("#type").html('<img class="img_card"  src="https://img.icons8.com/fluent/48/000000/mastercard.png"/>');
-            } else if (num == "55") {
-                $("#type").html("DISCOVER");
-            }
-        }
-        if (charCount == 3) {
-            if (num == "644") {
-                $("#type").html('<img class="img_card" src="https://img.icons8.com/color/48/000000/discover.png"/>')
-            }
-        }
-        if (charCount == 4) {
-            if (num == "6011") {
-                $("#type").html('<img class="img_card" src="https://img.icons8.com/color/48/000000/discover.png"/>');
-            }
-        }
-        /* !VALIDACION DE TIPO */
 
-        /* ALGORITMO */
-        if (charCount == 13 || charCount == 14 || charCount == 15 || charCount == 16) {
-            var valid = isValid(num, charCount);
-            if (valid) {
+    });
+};
 
-            } else {
-                $("#type").html('<img class="img_card" class="img_card" src="https://img.icons8.com/android/32/000000/bank-card-back-side.png"/>');
-            }
-        }
 
-    }
-}
-function checkDigit(event) {
-    var code = (event.which) ? event.which : event.keyCode;
+function limpiarDatosTarjeta() {
+    $("#card_number").val('');
+    $("#cvv").val('');
+    $("#expiry_year").val('');
+    $("#expiry_month").val('');
 
-    if ((code < 48 || code > 57) && (code > 31)) {
-        return false;
-    }
-
-    return true;
 }

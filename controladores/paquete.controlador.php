@@ -1,5 +1,6 @@
 <?php
 
+require_once "controlador.apiCall.php";
 
 class ControladorPaqueteFront{
 
@@ -147,56 +148,56 @@ class ControladorPaqueteFront{
             "transaction" => array(
                "order" => array(
                     "accountId" => "512323",
-                    "referenceCode" => "'".$data["referenceCode"]."'",
-                    "description" => "'".$data['description']."'",
+                    "referenceCode" => $data["referenceCode"],
+                    "description" => $data['description'],
                     "language" => "es",
-                    "signature" => "'".$signature."'",    
+                    "signature" => $signature,    
                     "additionalValues" => array(
                         "TX_VALUE" => array( 
-                            "value" => "'".$data['amount']."'",
-                            "currency" => "'".$data['currency']."'"
+                            "value" => $data['amount'],
+                            "currency" => $data['currency']
                         )
                     ),
                     "buyer" => array(
-                        "dniNumber" => "'".$data['dniNumber']."'",
-                        "emailAddress" => "'".$data['emailAddress']."'",
-                        "fullName" => "'".$data['fullName']."'",
+                        "dniNumber" => $data['dniNumber'],
+                        "emailAddress" => $data['emailAddress'],
+                        "fullName" => $data['fullName'],
                         "shippingAddress" => array(
                             "country" => "PE",
-                            "phone" => "'".$data['phone']."'"
+                            "phone" => $data['phone']
                         ),
                         "dniType" => "DNI",
-                        "contactPhone" => "'".$data['phone']."'"
+                        "contactPhone" => $data['phone']
                     ),
                     "shippingAddress" => array(
                         "country" => "PE",
-                        "phone"=> "'".$data['phone']."'"
+                        "phone"=> $data['phone']
                     )
                 ),
                "payer" => array(
-                    "dniNumber" => "'".$data['dniNumber']."'",
-                    "emailAddress" => "'".$data['emailAddress']."'",
-                    "fullName" => "'".$data['fullName']."'",
+                    "dniNumber" => $data['dniNumber'],
+                    "emailAddress" => $data['emailAddress'],
+                    "fullName" => $data['fullName'],
                     "dniType" => "DNI",
                     "billingAddress" => array(
                         "country" =>"PE",
-                        "phone" => "'".$data['phone']."'"
+                        "phone" => $data['phone']
                     ),
-                    "contactPhone" => "'".$data['phone']."'",
-                    "merchantPayerId" => "'".$data['merchantPayerId']."'"
+                    "contactPhone" => $data['phone'],
+                    "merchantPayerId" => $data['merchantPayerId']
                 ),
                "creditCard" => array(
-                    "number" => "'".$data['number']."'",
-                    "securityCode" => "'".$data['securityCode']."'",
-                    "expirationDate" => "'".$data['expirationDate']."'",
-                    "name" => "'".$data['fullName']."'",
+                    "number" => $data['number'],
+                    "securityCode" => $data['securityCode'],
+                    "expirationDate" => $data['expirationDate'],
+                    "name" => $data['fullName'],
                     "processWithoutCvv2" => false
                 ),
                "extraParameters" => array(
                   "INSTALLMENTS_NUMBER" => 0
                ),
                "type" => "AUTHORIZATION_AND_CAPTURE",
-               "paymentMethod" => "'".$data['paymentMethod']."'",
+               "paymentMethod" => $data['paymentMethod'],
                "paymentCountry" => "PE"
                
             ),

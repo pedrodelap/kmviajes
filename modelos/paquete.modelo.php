@@ -205,8 +205,15 @@ class ModeloPaqueteFront{
 												ifnull(p.descripcion_corta,'-') as descripcion_corta,
 												ifnull(p.titulo,'Solicitud personalizada') as titulo,
 												p.precio_dolar,
-												p.precio_sol
+												p.precio_sol,
+												cc.correo,
+												cc.nombres,
+												cc.apellidos,
+												cc.telefono,
+												cc.id_cliente,
+												cc.numero_documento
 												from tb_solicitud s 
+												inner join tb_clientes cc on cc.id_cliente = s.id_cliente
 												left join tb_paquetes p on s.id_paquete = p.id_paquete
 												left join tb_ciudades c on s.id_ciudad=c.id_ciudad
 												left join tb_ciudades c2 on p.id_ciudad=c2.id_ciudad
