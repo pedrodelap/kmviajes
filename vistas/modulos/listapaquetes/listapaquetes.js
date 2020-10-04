@@ -2,6 +2,20 @@ $(document).ready(function () {
     listarPaquetesDisponibles();
     listarCiudades();
 
+    $('#SolicitudPersonalizadaCiudad').select2({
+        placeholder: 'Ciudad',
+        width: 'resolve'
+    });
+
+    $("#SolicitudPersonalizadaServicios").select2({
+        closeOnSelect: false,
+        placeholder: "Placeholder",
+        allowHtml: true,
+        allowClear: true,
+        tags: true,
+        width: 'resolve'
+    });
+
 });
 
 $(".btn-buscar").click(function (e) {
@@ -76,7 +90,9 @@ function registroSolicitud() {
     var SolicitudPersonalizadaAdultos = $("#SolicitudPersonalizadaAdultos").val();
     var SolicitudPersonalizadaNinos = $("#SolicitudPersonalizadaNinos").val();
     var SolicitudPersonalizadaObservacion = $("#SolicitudPersonalizadaObservacion").val();
-    var SolicitudPersonalizadaObservacionPaquete = $("#id_paquete").val();
+    var SolicitudPersonalizadaIdPaquete = $("#id_paquete").val();
+    //Servicios
+    var SolicitudPersonalizadaServicios = $("#SolicitudPersonalizadaServicios").val().toString();
     var SolicitudPersonalizadaNueva = true;
 
     var SolicitudPersonalizada = new FormData();
@@ -93,8 +109,9 @@ function registroSolicitud() {
     SolicitudPersonalizada.append("SolicitudPersonalizadaAdultos", SolicitudPersonalizadaAdultos);
     SolicitudPersonalizada.append("SolicitudPersonalizadaNinos", SolicitudPersonalizadaNinos);
     SolicitudPersonalizada.append("SolicitudPersonalizadaObservacion", SolicitudPersonalizadaObservacion);
-    SolicitudPersonalizada.append("SolicitudPersonalizadaObservacionPaquete", SolicitudPersonalizadaObservacionPaquete);
+    SolicitudPersonalizada.append("SolicitudPersonalizadaIdPaquete", SolicitudPersonalizadaIdPaquete);
     SolicitudPersonalizada.append("SolicitudPersonalizadaNueva", SolicitudPersonalizadaNueva);
+    SolicitudPersonalizada.append("SolicitudPersonalizadaServicios", SolicitudPersonalizadaServicios);
 
     /*
     for (var value of SolicitudPersonalizada.values()) {
@@ -112,7 +129,7 @@ function registroSolicitud() {
         dataType: "json",
         success: function (respuesta) {
 
-            if(respuesta == "errorValidacionCliente"){
+            if (respuesta == "errorValidacionCliente") {
 
                //console.log("ingreso al primer if");
                 Swal.fire({
@@ -130,7 +147,7 @@ function registroSolicitud() {
                 });
             }
 
-            if(respuesta != "errorValidacionCliente"){
+            if (respuesta != "errorValidacionCliente") {
 
                 //console.log("ingreso al segundo if");
                 Swal.fire({
@@ -167,53 +184,4 @@ function limpiarSolicitudPersonalizada() {
     $("#SolicitudPersonalizadaNinos").val('');
     $("#SolicitudPersonalizadaObservacion").val('');
 
-}
-
-
-
-function registroSolicitudDos() {
-
-    var txtNombre = $("#txtNombre2").val();
-    var txtApellidos = '';
-    var nombreSeparete = txtNombre.split(" ");
-    if (nombreSeparete.length > 1) {
-        txtNombre = nombreSeparete[0];
-        var txtApellidos = nombreSeparete[1];
-    }
-
-    var txtTelefono = $("#txtTelefono2").val();
-    var txtDocumento = $("#txtDocumento2").val();
-    var txtCorreo = $("#txtCorreo2").val();
-    var id_paquete = $("#id_paquete2").val();
-
-    var datosForm = new FormData();
-
-    datosForm.append("txtNombre", txtNombre);
-    datosForm.append("txtApellidos", txtApellidos);
-    datosForm.append("txtTelefono", txtTelefono);
-    datosForm.append("txtCorreo", txtCorreo);
-    datosForm.append("txtFecha", "1-2");
-    datosForm.append("txtDocumento", txtDocumento);
-
-    datosForm.append("id_paquete", id_paquete);
-    datosForm.append("nuevaSolicitud", "true");
-
-    console.log("datosForm: ", datosForm);
-
-    $.ajax({
-
-        url: "ajax/ajax.paquete.php",
-        method: "POST",
-        data: datosForm,
-        cache: false,
-        contentType: false,
-        processData: false,
-        dataType: "json",
-        success: function (respuesta) {    
-            
-            $('#solicitud-modal-dos').modal('hide');
-
-        }
-
-    });
 }

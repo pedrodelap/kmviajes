@@ -1,9 +1,10 @@
 <?php
 
 require_once "../backend/modelos/conexion.php";
-
-require_once "../controladores/paquete.controlador.php";
 require_once "../modelos/paquete.modelo.php";
+
+require_once "../controladores/controlador.mensajes.php";
+require_once "../controladores/paquete.controlador.php";
 
 class AjaxPaquetes{
 
@@ -29,6 +30,13 @@ class AjaxPaquetes{
 		return $respuesta;
 	}
 
+	public function ajaxPagarOnLine($datosPago){
+
+		$respuesta = null;
+		$respuesta = ControladorPaqueteFront::ctrEnviarPagoPasarella($datosPago);
+		echo json_encode($respuesta);;
+
+	}	
 
 	#CREAR SOLICITUD PERSONAZALIZADA
 	#----------------------------------------------------------
@@ -82,7 +90,20 @@ class AjaxPaquetes{
 
 			$respuesta = ControladorPaqueteFront::ctrCrearSolicitudPersonalizada($datosSolicitud);
 
-			$respuesta = json_encode($respuesta);
+			$idSolicitud = $respuesta["codigo_seguimiento"];
+			
+			//enviar mail
+			$datosMail = array("mailTo" => $datosCliente["correo"],
+								"nombreCliente" => $datosCliente["nombres"],
+								"tituloMail" => "Solicitud Registrada #".$idSolicitud,
+								"enviarMensaje" => "<p>Mensaje contenido ".$idSolicitud." </p>");
+
+			//echo "<script>".var_dump($datosSolicitud)."</script>";
+            //echo("<script>console.log('PHP: ');</script>");
+			
+            MensajesController::ctrEnviarMail($datosMail); 
+
+			//$respuesta = json_encode($respuesta);
 
 		}
 
@@ -125,8 +146,28 @@ if(isset($_POST["SolicitudPersonalizadaNueva"])){
 	$solicitud -> adultos = $_POST["SolicitudPersonalizadaAdultos"];
 	$solicitud -> ninos = $_POST["SolicitudPersonalizadaNinos"];
 	$solicitud -> observacion = $_POST["SolicitudPersonalizadaObservacion"];
-	$solicitud -> idpaquete = $_POST["SolicitudPersonalizadaObservacionPaquete"];
+	$solicitud -> idpaquete = $_POST["SolicitudPersonalizadaIdPaquete"];
 	$solicitud -> nueva = $_POST["SolicitudPersonalizadaNueva"];
+
+	$solicitud -> ajaxCrearSolicitudPersonalizada();
+
+}
+
+
+if(isset($_POST["SolicitudPersonalizadaNueva2"])){
+
+	$solicitud = new AjaxPaquetes();
+
+	$solicitud -> nombres = $_POST["SolicitudPersonalizadaNombres"];
+	$solicitud -> apellidos = $_POST["SolicitudPersonalizadaApellidos"];
+	$solicitud -> telefono = $_POST["SolicitudPersonalizadaTelefono"];
+	$solicitud -> documento = $_POST["SolicitudPersonalizadaDocumento"];
+	$solicitud -> correo = $_POST["SolicitudPersonalizadaCorreo"];
+	$solicitud -> adultos = $_POST["SolicitudPersonalizadaAdultos"];
+	$solicitud -> ninos = $_POST["SolicitudPersonalizadaNinos"];
+	$solicitud -> observacion = $_POST["SolicitudPersonalizadaObservacion"];
+	$solicitud -> idpaquete = $_POST["SolicitudPersonalizadaIdPaquete"];
+	$solicitud -> nueva = $_POST["SolicitudPersonalizadaNueva2"];
 
 	$solicitud -> ajaxCrearSolicitudPersonalizada();
 
@@ -136,5 +177,26 @@ if(isset($_POST["ciudad"])){
 
 	$cliente = new AjaxPaquetes();
 	$cliente -> ajaxListCiudaddes();
+
+}
+
+if(isset($_POST["pagar"])){
+
+	$pagar = new AjaxPaquetes();
+
+	$datosPago = array("referenceCode"=>$_POST["referenceCode"],
+						"amount"=>$_POST["amount"],
+					  	"currency"=>$_POST["currency"],
+						"description"=>$_POST["description"],
+						"emailAddress"=>$_POST["emailAddress"],
+						"fullName"=>$_POST["fullName"],
+						"phone"=>$_POST["phone"],
+						"merchantPayerId"=>$_POST["merchantPayerId"],
+						"number"=>$_POST["number"],
+						"securityCode"=>$_POST["securityCode"],
+						"expirationDate"=>$_POST["expirationDate"],
+						"paymentMethod"=>$_POST["paymentMethod"],
+						"dniNumber"=>$_POST["dniNumber"]);
+	$pagar -> ajaxPagarOnLine($datosPago);
 
 }

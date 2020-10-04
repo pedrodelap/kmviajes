@@ -14,7 +14,7 @@
 			</div>
 			<div class="col-md-5">
 				<ul class="breadcrumb d-flex justify-content-end">
-					<li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+					<li class="breadcrumb-item"><a href="principal">Inicio</a></li>
 					<li class="breadcrumb-item"><a href="#">Catálogo</a></li>
 					<li class="breadcrumb-item active"><?php echo $paquete["nombreCiudad"]; ?></li>
 				</ul>
@@ -200,51 +200,86 @@
 				<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
 						aria-hidden="true">×</span></button>
 			</div>
+
 			<div class="modal-body">
-				<input type="hidden" id="id_paquete2" val="<?php echo $idPaquete ?>" />
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="txtNombre2">Nombres</label>
-							<input id="txtNombre2" type="text" placeholder="Nombres completos" class="form-control">
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="txtNombre2">Apellidos</label>
-							<input id="txtNombre2" type="text" placeholder="Nombres completos" class="form-control">
-						</div>
-					</div>
-				</div>
+				<input type="hidden" id="id_paquete2" value="<?php echo $idPaquete ?>" />
 				<div class="row">
 
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="txtTelefono2">Número de contacto</label>
-							<input id="txtTelefono2" type="tel" placeholder="+51 999999999" class="form-control">
+							<label for="SolicitudPersonalizadaNombres">Nombres</label>
+							<input id="SolicitudPersonalizadaNombres" type="text" placeholder="Nombres completos" class="form-control" require/>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="txtDocumento2">Número de documento</label>
-							<input id="txtDocumento2" type="text" placeholder="DNI o Pasaporte" class="form-control">
+							<label for="SolicitudPersonalizadaApellidos">Apellidos</label>
+							<input id="SolicitudPersonalizadaApellidos" type="text" placeholder="Nombres completos" class="form-control" require/>
 						</div>
 					</div>
+					
 
 				</div>
 				<div class="row">
 
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="SolicitudPersonalizadaTelefono">Número de contacto</label>
+								<input id="SolicitudPersonalizadaTelefono" type="tel" placeholder="(+51) ___-___-___" class="form-control" maxlength="9" require/>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="SolicitudPersonalizadaDocumento">Número de documento</label>
+								<input id="SolicitudPersonalizadaDocumento" type="text" placeholder="DNI o Pasaporte" class="form-control" maxlength="15" />
+							</div>
+						</div>
+
+					
+				</div>
+				<div class="row">
+				<div class="col-sm-12">
+						<div class="form-group">
+							<label for="SolicitudPersonalizadaCorreo">Correo contacto</label>
+							<input id="SolicitudPersonalizadaCorreo" type="email" class="form-control" placeholder="mail@mail.com" require/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					
+
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="SolicitudPersonalizadaAdultos">Viajeros Adultos</label>
+							<input type="number" id="SolicitudPersonalizadaAdultos" value="1" class="form-control" />
+						</div>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="SolicitudPersonalizadaNinos">Viajeros Niños</label>
+							<input type="number" id="SolicitudPersonalizadaNinos" value="0" class="form-control" />
+						</div>
+					</div>
+				</div>
+
+				
+
+				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
-							<label for="txtCorreo2">Correo contacto</label>
-							<input id="txtCorreo2" type="email" placeholder="viajero@mail.com" class="form-control">
+							<label for="SolicitudPersonalizadaObservacion">Comentarios</label>
+							<textarea id="SolicitudPersonalizadaObservacion" class="form-control" rows="2"></textarea>
 						</div>
 					</div>
 				</div>
+				
 				<div class="modal-footer">
-					<button onclick="registroSolicitudxPaquete()" class="btn btn-primary">Enviar Solicitud</button>
+					<button onclick="registroSolicitud2()" class="btn btn-primary">Enviar Solicitud</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-				</div>
+				  </div>
+
 			</div>
 		</div>
 	</div>

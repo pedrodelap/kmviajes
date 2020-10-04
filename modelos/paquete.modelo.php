@@ -188,4 +188,71 @@ class ModeloPaqueteFront{
 	}
 
 
+	#CONSULTAR SOLICITUD POR SEGUIMIENTO
+	#------------------------------------------------------------
+	static public function mdlObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento){
+
+		$stmt = Conexion::conectar()->prepare("SELECT 
+													ifnull(s.fecha_inicio,p.fecha_inicio) as fecha_inicio,
+													ifnull(s.fecha_fin,p.fecha_fin) as fecha_fin,
+												(CASE
+														WHEN s.id_ciudad is null THEN c2.nombre
+														else c.nombre
+													end ) as ciudad,
+												CONCAT( ifnull(s.numero_adultos, 0) , ' Adultos - ', ifnull(s.numero_ninios, 0) , ' Niños') as 'pasajeros',
+												ifnull(p.descripcion_corta,'-') as descripcion_corta,
+												ifnull(p.titulo,'Solicitud personalizada') as titulo,
+												p.precio_dolar,
+												p.precio_sol,
+												cc.correo,
+												cc.nombres,
+												cc.apellidos,
+												cc.telefono,
+												cc.id_cliente,
+												cc.numero_documento
+												from tb_solicitud s 
+												inner join tb_clientes cc on cc.id_cliente = s.id_cliente
+												left join tb_paquetes p on s.id_paquete = p.id_paquete
+												left join tb_ciudades c on s.id_ciudad=c.id_ciudad
+												left join tb_ciudades c2 on p.id_ciudad=c2.id_ciudad
+												WHERE s.codigo_seguimiento =:codigoSeguimiento");
+												 
+		$stmt -> bindParam(":codigoSeguimiento", $codigoSeguimiento, PDO::PARAM_STR);
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+	}
+	
+	#CONSULTAR HISTORICO DE SEGUIMIENTO
+	#------------------------------------------------------------
+	static public function mdlObtenerHistoricoSeguimiento($codigoSeguimiento){
+
+		$stmt = Conexion::conectar()->prepare("SELECT
+												sh.id_solicitud_historial as id_solicitud_historial,
+                                               
+                                                sh.estado_solicitud as estado_solicitud,
+                                                sh.fecha_solicitud as fecha_solicitud
+												from tb_solicitud s 
+												inner join tb_solicitudes_historial sh on sh.id_solicitud = s.id_solicitud
+												WHERE s.codigo_seguimiento =:codigoSeguimiento");
+												 
+		$stmt -> bindParam(":codigoSeguimiento", $codigoSeguimiento, PDO::PARAM_STR);
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
+
+
+
+
 }

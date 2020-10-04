@@ -83,4 +83,61 @@ class MensajesController{
 		}
 
 	}
+
+	#Enviar Mensajes
+	#------------------------------------------------------------
+	public static function ctrEnviarMail($datos){
+
+		//echo("<script>console.log('PHP: paso 1');</script>");
+		if(isset($datos)){
+
+			//echo("<script>console.log('xxx".$datos["mailTo"]."');</script>");
+			$email = $datos["mailTo"];
+			$nombre = $datos["nombreCliente"];
+			$titulo = $datos["tituloMail"];
+			$contenido =$datos["enviarMensaje"];
+
+			$para = $email . ', ';
+			$para .= 'rarg15@gmail.com';
+
+			//$título = 'Respuesta a su mensaje';
+
+			$mensaje ='<html>
+							<head>
+								<title>Respuesta a su Mensaje</title>
+							</head>
+
+							<body>
+								<h1>Hola '.$nombre.'</h1>
+								<p>'.$contenido.'</p>
+								<hr>
+								KM Viajes y Aventura<br> 
+								Lima - Perú</br> 
+								WhatsApp: +57 301 391 74 61</br> 
+								pedrodelap@gmail.com</p>
+
+								<h3><a href="http://www.kmviajes.com" target="blank">www.kmviajes.com</a></h3>
+
+								<a href="http://www.facebook.com" target="blank"><img src="https://s23.postimg.org/cb2i89a23/facebook.jpg"></a> 
+								<a href="http://www.youtube.com" target="blank"><img src="https://s23.postimg.org/mcbxvbciz/youtube.jpg"></a> 
+								<a href="http://www.twitter.com" target="blank"><img src="https://s23.postimg.org/tcvcacox7/twitter.jpg"></a> 
+								<br>
+
+								<img src="https://s23.postimg.org/dsnyjtesr/unnamed.jpg">
+							</body>
+
+					   </html>';
+
+		   $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
+		   $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+		   $cabeceras .= 'From: <rarg15@gmail.com>' . "\r\n";
+
+		   $envio = mail($para, $titulo, $mensaje, $cabeceras);
+		  
+		   
+
+		}
+
+	}
+
 }

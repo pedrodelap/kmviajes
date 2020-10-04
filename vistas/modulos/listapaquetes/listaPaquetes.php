@@ -99,7 +99,8 @@
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaCiudad">Destino</label>							
 							
-							<select class="form-control" name="SolicitudPersonalizadaCiudad" id="SolicitudPersonalizadaCiudad">
+							
+							<select style="width: 100%;height:36px" class="form-control" name="SolicitudPersonalizadaCiudad" id="SolicitudPersonalizadaCiudad">
                             </select>
 
 						</div>
@@ -136,31 +137,13 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
-							<label for="txtViajeros">Servicios disponibles</label><br />
-
-
-
-								<div class="checkbox">
-									<label>Todo incluido
-										<input type="checkbox">
-									</label>
-								</div>
-
-							<label class="checkbox-inline"><i class="fas fa-address-card"></i>
-								Todo incluido
-								<input class="checkboxService" type="checkbox" value="allIn" />  </label>
-							<label class="checkbox-inline">
-								Hotel 4 y 5
-								<input class="checkboxService" type="checkbox" value="hotel4_5" /></label>
-							<label class="checkbox-inline">
-								Traslados
-								<input class="checkboxService" type="checkbox" value="traslados" /></label>
-							<label class="checkbox-inline">
-								Tarjeta asistencia
-								<input class="checkboxService" type="checkbox" value="tarjeta_asistencia" /></label>
-					
-
-
+							<label for="txtViajeros">Servicios que desearía contar</label>
+							<select style="width: 100%" multiple="multiple" name ="SolicitudPersonalizadaServicios" id="SolicitudPersonalizadaServicios">
+								<option value="allIn" data-badge="allIn">Todo incluido</option>
+								<option value="hotel4_5" data-badge="hotel4_5">Hotel 4 y 5</option>
+								<option value="translado" data-badge="allIn">Traslados</option>
+								<option value="tarjeta_asistencia" data-badge="tarjeta">Tarjeta asistencia</option>
+							</select>
 						</div>
 					</div>
 				</div>

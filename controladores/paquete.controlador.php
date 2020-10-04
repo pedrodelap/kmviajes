@@ -1,5 +1,7 @@
 <?php
 
+require_once "controlador.apiCall.php";
+
 class ControladorPaqueteFront{
 
     static public function ctrlistarTodosPaquetesDisponibles($filter){
@@ -124,6 +126,97 @@ class ControladorPaqueteFront{
 		return $respuesta;
 
     }
+
+    static public function ctrEnviarPagoPasarella($data){
+
+        //$data = array("first_name" => "First name","last_name" => "last name","email"=>"email@gmail.com","addresses" => array ("address1" => "some address" ,"city" => "city","country" => "CA", "first_name" =>  "Mother","last_name" =>  "Lastnameson","phone" => "555-1212", "province" => "ON", "zip" => "123 ABC" ) );
+
+
+        //"ApiKey~merchantId~referenceCode~tx_value~currency"
+        $signature = md5("4Vj8eK4rloUd272L48hsrarnUA~508029~".$data["referenceCode"]."~".$data["amount"]."~".$data["currency"]);
+        $datosPago = array(
+            "language" => "es",
+            "command" => "SUBMIT_TRANSACTION",
+            "merchant" => array(
+               "apiKey" => "4Vj8eK4rloUd272L48hsrarnUA",
+               "apiLogin" => "pRRXKOl8ikMmt9u"
+            ),
+            "transaction" => array(
+               "order" => array(
+                    "accountId" => "512323",
+                    "referenceCode" => $data["referenceCode"],
+                    "description" => $data['description'],
+                    "language" => "es",
+                    "signature" => $signature,    
+                    "additionalValues" => array(
+                        "TX_VALUE" => array( 
+                            "value" => $data['amount'],
+                            "currency" => $data['currency']
+                        )
+                    ),
+                    "buyer" => array(
+                        "dniNumber" => $data['dniNumber'],
+                        "emailAddress" => $data['emailAddress'],
+                        "fullName" => $data['fullName'],
+                        "shippingAddress" => array(
+                            "country" => "PE",
+                            "phone" => $data['phone']
+                        ),
+                        "dniType" => "DNI",
+                        "contactPhone" => $data['phone']
+                    ),
+                    "shippingAddress" => array(
+                        "country" => "PE",
+                        "phone"=> $data['phone']
+                    )
+                ),
+               "payer" => array(
+                    "dniNumber" => $data['dniNumber'],
+                    "emailAddress" => $data['emailAddress'],
+                    "fullName" => $data['fullName'],
+                    "dniType" => "DNI",
+                    "billingAddress" => array(
+                        "country" =>"PE",
+                        "phone" => $data['phone']
+                    ),
+                    "contactPhone" => $data['phone'],
+                    "merchantPayerId" => $data['merchantPayerId']
+                ),
+               "creditCard" => array(
+                    "number" => $data['number'],
+                    "securityCode" => $data['securityCode'],
+                    "expirationDate" => $data['expirationDate'],
+                    "name" => $data['fullName'],
+                    "processWithoutCvv2" => false
+                ),
+               "extraParameters" => array(
+                  "INSTALLMENTS_NUMBER" => 0
+               ),
+               "type" => "AUTHORIZATION_AND_CAPTURE",
+               "paymentMethod" => $data['paymentMethod'],
+               "paymentCountry" => "PE"
+               
+            ),
+            "test" => true
+        );
+        $url = "https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi";
+
+        $respuesta = CallApi::httpPost($url, $datosPago);
+        return $respuesta;
+    }
+
+    static public function ctrObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento){
+        $respuesta = ModeloPaqueteFront::mdlObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento);
+		return $respuesta;
+
+    }
+
+    static public function ctrObtenerHistoricoSeguimiento($codigoSeguimiento){
+        $respuesta = ModeloPaqueteFront::mdlObtenerHistoricoSeguimiento($codigoSeguimiento);
+		return $respuesta;
+
+    }
+
 
    
 }
