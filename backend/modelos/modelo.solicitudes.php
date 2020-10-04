@@ -113,6 +113,30 @@ class ModeloSolicitudes{
 	}
 
 
+	static public function mdlEstadoRegistradaACotizada($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_solicitud, estado_solicitud, fecha_solicitud) VALUES (:id_solicitud, :estado_solicitud, NOW());");
+
+		$stmt->bindParam(":id_solicitud", $datos["id_solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":estado_solicitud", $datos["estado_solicitud"], PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+		
+		}
+
+		$stmt->close();
+		$stmt = null;
+
+	}
+	
+
+
 	#EDITAR SOLICITUDES
 	#------------------------------------------------------------
 	static public function mdlEditarSolicitud($tabla, $datos){
@@ -127,7 +151,6 @@ class ModeloSolicitudes{
 	#------------------------------------------------------------
 	static public function mdlActualizarSolicitud($tabla, $item1, $valor1, $valor){
 	}
-
 
 	#SOLICITUDES REVISADOS
 	#------------------------------------------------------------

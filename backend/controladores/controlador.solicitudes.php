@@ -73,6 +73,17 @@ class ControladorSolicitudes{
 	static public function ctrEliminarSolicitud(){
 	}
 
+	#ELIMINAR SOLICITUDES
+	#-----------------------------------------------------
+	static public function ctrEstadoRegistradaACotizada($datos){
+
+		$tabla = 'tb_solicitudes_historial';
+
+		$respuesta = ModeloSolicitudes::mdlEstadoRegistradaACotizada($tabla, $datos);
+
+		return $respuesta;
+	}
+
 
 	#SOLICITUDES SIN REVISAR
 	#------------------------------------------------------------
