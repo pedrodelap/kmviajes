@@ -242,7 +242,7 @@
 				<div class="col-sm-12">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaCorreo">Correo contacto</label>
-							<input id="SolicitudPersonalizadaCorreo" type="email" disabled class="form-control" placeholder="mail@mail.com" require/>
+							<input id="SolicitudPersonalizadaCorreo" type="email" class="form-control" placeholder="mail@mail.com" require/>
 						</div>
 					</div>
 				</div>
@@ -283,6 +283,7 @@
 
 			</div>
 		</div>
+		
 	</div>
 </div>
 <!-- Login modal end-->
