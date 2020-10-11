@@ -43,10 +43,8 @@
                                     
                                     <th style="width:10px">#</th>
                                     <th>Solicitante</th>
-                                    <th>Ciudad</th>
+                                    
                                     <th>Paquete</th>
-                                    <th>Fecha de viaje</th>
-                                    <th>Cant. adultos / niños</th>
                                     <th>Fecha de registro</th>
                                     <th>Estado Solicitud</th>
                                     <th>Acciones</th>
@@ -72,27 +70,27 @@
 
                                     } else {
 
-                                        $paquete = '<div class="badge badge-pill badge-primary btnDetallePaqueteSolicitud" idPaqueteDeSolicitud="'.$value["id_paquete"].'">Paquete</div>';
+                                        $paquete = '<div class="badge badge-pill badge-primary " onclick="btnDetallePaqueteSolicitud('.$value["id_paquete"].')">Paquete</div>';
                                     }
 
-                                    switch ($value["estado_solictud"]) 
+                                    switch ($value["estado_solicitud"]) 
                                     {
-                                        case "registrada":
+                                        case "Registrada":
 
                                             $estado_solictud = '<div class="estadoSolicitudRegistrada badge badge-pill badge-secondary" idSolicitud="'.$value["id_solicitud"].'">registrada</div>' ;
                                             break;
 
-                                        case "cotizada":
+                                        case "Cotizada":
 
                                             $estado_solictud = '<div class="estadoSolicitudCotizada badge badge-pill badge-info" idSolicitud="'.$value["id_solicitud"].'">cotizada</div>' ;
                                             break;
 
-                                        case "en reserva":
+                                        case "Reservada":
                                             
                                             $estado_solictud = '<div class="estadoSolicitud badge badge-pill badge-success" idSolicitud="'.$value["id_solicitud"].'">en reserva</div>' ;
                                             break;
                                         
-                                        case "cancelada":
+                                        case "Cancelada":
                                             
                                             $estado_solictud = '<div class="badge badge-pill badge-danger" idSolicitud="'.$value["id_solicitud"].'">cancelada</div>' ;
                                             break;
@@ -103,15 +101,9 @@
 
                                             <td>'.($key+1).'</td>
 
-                                            <td><button class="mb-2 mr-2 btn btn-link text-left btmMostrarSolicitante" idCliente="'.$value["id_cliente"].'">'.$value["solicitante"].'<span class="badge badge-primary badge-dot badge-dot-lg"> </span></button></td>
-
-                                            <td>'.$value["ciudad"].'</td>
+                                            <td><button class="mb-2 mr-2 btn btn-link text-left" onclick="btmMostrarSolicitante('.$value["id_cliente"].')" idCliente="'.$value["id_cliente"].'">'.$value["solicitante"].'<span class="badge badge-primary badge-dot badge-dot-lg"> </span></button></td>
 
                                             <td>'.$paquete.'</td>
-
-                                            <td>Del '.$value["fecha_inicio"].' al '.$value["fecha_fin"].'</td>
-
-                                            <td>'.$value["numero_ninios"].' / '.$value["numero_adultos"].'</td>
 
                                             <td>'.$value["fecha_registro"].'</td>
 
@@ -251,64 +243,7 @@ MODAL MOSTRAR DATOS PAQUETE
                                 <div class="scroll-area-sm">
                                         <div class="scrollbar-container">
                                             <div class="p-3">
-                                                <div class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                    
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-success"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <h4 class="timeline-title">All Hands Meeting</h4>
-                                                                <p>Lorem ipsum dolor sic amet, today at <a href="javascript:void(0);">12:00 PM</a></p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-warning"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <p>Another meeting today, at <b class="text-danger">12:00 PM</b></p>
-                                                                <p>Yet another one, at <span class="text-success">15:00 PM</span></p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-danger"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <h4 class="timeline-title">Build the production release</h4>
-                                                                <p>Lorem ipsum dolor sit amit,consectetur eiusmdd tempor incididunt ut labore et dolore magna elit enim at minim veniam quis nostrud</p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-primary"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <h4 class="timeline-title text-success">Something not important</h4>
-                                                                <p>Lorem ipsum dolor sit amit,consectetur elit enim at minim veniam quis nostrud</p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-success"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <h4 class="timeline-title">All Hands Meeting</h4>
-                                                                <p>Lorem ipsum dolor sic amet, today at <a href="javascript:void(0);">12:00 PM</a></p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-warning"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <p>Another meeting today, at <b class="text-danger">12:00 PM</b></p>
-                                                                <p>Yet another one, at <span class="text-success">15:00 PM</span></p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-danger"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <h4 class="timeline-title">Build the production release</h4>
-                                                                <p>Lorem ipsum dolor sit amit,consectetur eiusmdd tempor incididunt ut labore et dolore magna elit enim at minim veniam quis nostrud</p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="vertical-timeline-item vertical-timeline-element">
-                                                        <div><span class="vertical-timeline-element-icon bounce-in"><i class="badge badge-dot badge-dot-xl badge-primary"> </i></span>
-                                                            <div class="vertical-timeline-element-content bounce-in">
-                                                                <h4 class="timeline-title text-success">Something not important</h4>
-                                                                <p>Lorem ipsum dolor sit amit,consectetur elit enim at minim veniam quis nostrud</p><span class="vertical-timeline-element-date"></span></div>
-                                                        </div>
-                                                    </div>
+                                                <div id="datosPaqueteMostrar1" class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
                                                 </div>
                                             </div>
                                         </div>
@@ -559,6 +494,28 @@ MODAL AGREGAR CLIENTE
         </div>
     </div>
 </div>
+
+<script>
+    $(window).on("load",function(){
+
+        var datos = new FormData();
+
+        datos.append("revisionSolicitudes", 1);
+
+        $.ajax({
+                url:"ajax/ajax.revision.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(respuesta){}
+
+            });
+
+
+    })
+</script>
 
 
 

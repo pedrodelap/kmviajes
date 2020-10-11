@@ -14,7 +14,7 @@
 			</div>
 			<div class="col-md-5">
 				<ul class="breadcrumb d-flex justify-content-end">
-					<li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+					<li class="breadcrumb-item"><a href="principal">Inicio</a></li>
 					<li class="breadcrumb-item"><a href="#">Catálogo</a></li>
 					<li class="breadcrumb-item active"><?php echo $paquete["nombreCiudad"]; ?></li>
 				</ul>
@@ -200,7 +200,6 @@
 				<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span
 						aria-hidden="true">×</span></button>
 			</div>
-			
 
 			<div class="modal-body">
 				<input type="hidden" id="id_paquete2" value="<?php echo $idPaquete ?>" />
@@ -283,7 +282,6 @@
 
 			</div>
 		</div>
-		
 	</div>
 </div>
 <!-- Login modal end-->

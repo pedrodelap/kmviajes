@@ -49,27 +49,7 @@ class ModeloSolicitudes{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT   solicitud.id_solicitud,
-															CONCAT(cliente.nombres,' ',cliente.apellidos) AS solicitante,
-															CONCAT(paises.nombre,' - ',ciudades.nombre)AS ciudad,
-															solicitud.id_paquete,
-															solicitud.id_ciudad,
-															solicitud.fecha_inicio,
-															solicitud.fecha_fin,
-															solicitud.numero_ninios,
-															solicitud.numero_adultos,
-														 	solicitud.comentario,
-															solicitud.estado_solictud,
-															solicitud.fecha_registro,
-															solicitud.id_cliente
-													  FROM  tb_solicitud solicitud      
-												INNER JOIN 	tb_ciudades ciudades
-														ON 	( ciudades.id_ciudad = solicitud.id_ciudad)
-												INNER JOIN 	tb_paises paises
-														ON 	( paises.id_pais = ciudades.id_pais)
-												INNER JOIN 	tb_clientes cliente
-														ON 	( cliente.id_cliente = solicitud.id_cliente)
-												  ORDER BY 	solicitud.id_solicitud DESC");
+			$stmt = Conexion::conectar()->prepare("CALL usp_listar_solicitudes()");
 
 			$stmt -> execute();
 
@@ -82,7 +62,6 @@ class ModeloSolicitudes{
 		$stmt = null;
 
 	}
-
 
 	#MOSTRAR PAQUETE DE SOLICITUD
 	#------------------------------------------------------------
@@ -117,9 +96,15 @@ class ModeloSolicitudes{
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
-		$stmt -> execute();
+		if($stmt -> execute()){
 
-		return $stmt -> fetch();
+			return $stmt -> fetch();
+
+		}else{
+
+			return 'error';
+
+		}
 
 		$stmt -> close();
 
@@ -128,23 +113,12 @@ class ModeloSolicitudes{
 	}
 
 
+	static public function mdlEstadoRegistradaACotizada($tabla, $datos){
 
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_solicitud, estado_solicitud, fecha_solicitud) VALUES (:id_solicitud, :estado_solicitud, NOW());");
 
-
-	#EDITAR SOLICITUDES
-	#------------------------------------------------------------
-	static public function mdlEditarSolicitud($tabla, $datos){
-
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombres = :nombres, apellidos = :apellidos, tipo_documento = :tipo_documento, numero_documento = :numero_documento, telefono = :telefono, correo = :correo, fecha_nacimiento = :fecha_nacimiento WHERE id_cliente = :id_cliente");
-
-		$stmt->bindParam(":id_cliente", $datos["id"], PDO::PARAM_INT);
-		$stmt->bindParam(":nombres", $datos["nombres"], PDO::PARAM_STR);
-		$stmt->bindParam(":apellidos", $datos["apellidos"], PDO::PARAM_STR);
-		$stmt->bindParam(":tipo_documento", $datos["tipo_documento"], PDO::PARAM_STR);
-		$stmt->bindParam(":numero_documento", $datos["numero_documento"], PDO::PARAM_STR);
-		$stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
-		$stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
-		$stmt->bindParam(":fecha_nacimiento", $datos["fecha_nacimiento"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_solicitud", $datos["id_solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":estado_solicitud", $datos["estado_solicitud"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -153,60 +127,52 @@ class ModeloSolicitudes{
 		}else{
 
 			return "error";
-
+		
 		}
 
 		$stmt->close();
 		$stmt = null;
 
 	}
+	
+
+
+	#EDITAR SOLICITUDES
+	#------------------------------------------------------------
+	static public function mdlEditarSolicitud($tabla, $datos){
+	}
 
 	#ELIMINAR SOLICITUDES
 	#------------------------------------------------------------
 	static public function mdlSolicitud($tabla, $datos){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_cliente = :id");
-
-		$stmt -> bindParam(":id", $datos, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-		
-		}else{
-
-			return "error";	
-
-		}
-
-		$stmt -> close();
-
-		$stmt = null;
-
 	}
 
 	#ACTUALIZAR SOLICITUDES
 	#------------------------------------------------------------
 	static public function mdlActualizarSolicitud($tabla, $item1, $valor1, $valor){
+	}
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :$item1 WHERE id_cliente = :id");
+	#SOLICITUDES REVISADOS
+	#------------------------------------------------------------
+	public static function mdlSolicitudesRevisadas($datosModel, $tabla){
 
-		$stmt -> bindParam(":".$item1, $valor1, PDO::PARAM_STR);
-		$stmt -> bindParam(":id_cliente", $valor, PDO::PARAM_INT);
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET revision = :revision");
 
-		if($stmt -> execute()){
+		$stmt->bindParam(":revision", $datosModel, PDO::PARAM_INT);
+
+		if($stmt->execute()){
 
 			return "ok";
-		
-		}else{
-
-			return "error";	
 
 		}
 
-		$stmt -> close();
+		else{
 
-		$stmt = null;
+			return "error";
+
+		}
+
+		$stmt->close();
 
 	}
 

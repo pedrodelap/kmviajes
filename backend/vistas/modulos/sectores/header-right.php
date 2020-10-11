@@ -8,24 +8,27 @@
             ?>
 
                     <ul class="header-megamenu nav">
+                    <?php
 
+                        $revisarMensajes = new ControladorSolicitudes();
+                        $revisarMensajes -> ctrSolicitudesSinRevisar();
+
+                    ?>
                     <?php
 
                         $revisarMensajes = new ControladorMensajes();
                         $revisarMensajes -> ctrMensajesSinRevisar();
 
-                    ?>         
-
-                        <li class="btn-group nav-item ">
+                    ?>
+                        <li class="btn-group nav-item "><i class=""></i>
                             <a href="suscriptores" class="p-1 mr-0 btn btn-link">
                                 <span class="icon-wrapper icon-wrapper-alt rounded-circle">
                                     <span class="icon-wrapper-bg bg-primary"></span>
-                                        <i class="fa text-primary fa-users"></i>
+                                        <i class="text-primary fas fa-users"></i>
                                         <span class="badge badge-dot badge-dot-sm badge-primary"></span>
                                 </span>
                             </a>
                         </li>
-
                     </ul>
 
             <?php
@@ -75,6 +78,11 @@
 
                                                         $cantidadMensajes = new ControladorMensajes();
                                                         $cantidadMensajes -> ctrCantidadMensajesSinRevisar();
+                                                    }
+                                                    if($_SESSION["perfil"] == 'Administrador'){
+
+                                                        $cantidadSolicitudes = new ControladorSolicitudes();
+                                                        $cantidadSolicitudes -> ctrCantidadSolicitudesSinRevisar();
                                                     }
                                                 ?>
                                                 </li>

@@ -99,7 +99,8 @@
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaCiudad">Destino</label>							
 							
-							<select style="width: 100%" class="form-control" name="SolicitudPersonalizadaCiudad" id="SolicitudPersonalizadaCiudad">
+							
+							<select style="width: 100%;height:36px" class="form-control" name="SolicitudPersonalizadaCiudad" id="SolicitudPersonalizadaCiudad">
                             </select>
 
 						</div>

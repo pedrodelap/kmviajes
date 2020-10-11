@@ -22,7 +22,7 @@ function registroSolicitud2() {
     SolicitudPersonalizada.append("SolicitudPersonalizadaNinos", SolicitudPersonalizadaNinos);
     SolicitudPersonalizada.append("SolicitudPersonalizadaObservacion", SolicitudPersonalizadaObservacion);
     SolicitudPersonalizada.append("SolicitudPersonalizadaIdPaquete", SolicitudPersonalizadaIdPaquete);
-    SolicitudPersonalizada.append("SolicitudPersonalizadaNueva", SolicitudPersonalizadaNueva2);
+    SolicitudPersonalizada.append("SolicitudPersonalizadaNueva2", SolicitudPersonalizadaNueva2);
 
 
     $.ajax({

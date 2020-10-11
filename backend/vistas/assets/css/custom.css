@@ -47,3 +47,21 @@
         border-right-width: 1px;
     }
 }
+.img_card {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .inp-icon {
+    background: url(https://img.icons8.com/fluent/48/000000/ok.png) no-repeat
+      calc(100% - 10px) center;
+    background-size: 24px;
+    padding-right: 20px;
+  }
+  
+  .inp-icon-fail {
+    background: url(https://img.icons8.com/flat_round/64/000000/error--v1.png)
+      no-repeat calc(100% - 10px) center;
+    background-size: 24px;
+    padding-right: 20px;
+  }

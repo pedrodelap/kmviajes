@@ -8,11 +8,11 @@
 	<div class="container">
 		<div class="row d-flex align-items-center flex-wrap">
 			<div class="col-md-7">
-				<h1 class="h2">KM Viajes</h1>
+				<h1 class="h2"><a href="principal">KM Viajes</a></h1>
 			</div>
 			<div class="col-md-5">
 				<ul class="breadcrumb d-flex justify-content-end">
-					<li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+					<li class="breadcrumb-item"><a href="principal">Inicio</a></li>
 					<li class="breadcrumb-item"><a href="#">SOLICITUTD </a></li>
 					<li class="breadcrumb-item active"><?php echo $codigoSeguimiento; ?></li>
 				</ul>
@@ -131,11 +131,11 @@
 														
 														
 														switch ($estadoSolicitud) {
-															case "Solicitud Registrada":
+															case "Registrada":
 																$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
 																
 															break;
-															case "Solicitud Cotizada":
+															case "Cotizada":
 																if($stepNumber <=3 ){
 																	$htmlAction = '<a href="#" class="btn btn-template-outlined btn-sm">Cancelar</a>';
 																}
@@ -144,7 +144,7 @@
 																}
 																
 															break;
-															case "Solicitud Reservada":
+															case "Reservada":
 																if($stepNumber <=3 ){
 																	$htmlAction = '<a href="#" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Pagar</a>';
 																}
@@ -152,7 +152,7 @@
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
 																}
 															break;
-															case "Solicitud Pagada":
+															case "Pagada":
 																if($stepNumber <=3 ){
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
 																}
@@ -275,7 +275,7 @@
 								<div class="input-group mb-3">
 								
 								<div class="input-group-append">
-									<span class="input-group-text" id="type"><img class="img_card" src="https://img.icons8.com/android/48/000000/bank-card-back-side.png"/></span>
+									<span class="input-group-text" style="padding:0 5px;" id="type"><img class="img_card" src="https://img.icons8.com/android/48/000000/bank-card-back-side.png"/></span>
 								</div>
 								<input id="card_number" maxlength="16" type="text" placeholder="Numero de tarjeta" class="form-control">
 								</div>

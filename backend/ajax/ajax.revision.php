@@ -6,6 +6,9 @@ require_once "../modelos/modelo.suscriptores.php";
 require_once "../controladores/controlador.mensajes.php";
 require_once "../modelos/modelo.mensajes.php";
 
+require_once "../controladores/controlador.solicitudes.php";
+require_once "../modelos/modelo.solicitudes.php";
+
 #CLASE Y MÉTODOS
 #-------------------------------------------------------------
 class Ajax{
@@ -39,6 +42,21 @@ class Ajax{
 
 	}
 
+	#REVISAR SUSCRIPTORES
+	#----------------------------------------------------------
+
+	public $revisionSolicitudes;
+
+	public function gestorRevisionSolicitudesAjax(){
+
+		$datos = $this->revisionSolicitudes;
+
+		$respuesta = ControladorSolicitudes::ctrSolicitudesRevisadasController($datos);
+
+		echo $respuesta;
+
+	}
+
 }
 
 #OBJETOS
@@ -56,5 +74,13 @@ if(isset($_POST["revisionSuscriptores"])){
 	$b = new Ajax();
 	$b -> revisionSuscriptores = $_POST["revisionSuscriptores"];
 	$b -> gestorRevisionSuscriptoresAjax();
+
+}
+
+if(isset($_POST["revisionSolicitudes"])){
+
+	$c = new Ajax();
+	$c -> revisionSolicitudes = $_POST["revisionSolicitudes"];
+	$c -> gestorRevisionSolicitudesAjax();
 
 }

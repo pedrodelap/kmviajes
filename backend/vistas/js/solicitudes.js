@@ -11,9 +11,9 @@ $('#modalDatosPaquete').appendTo("body");
 MOSTRAR DATOS DEL CLIENTE
 =============================================*/
 
-$(".btmMostrarSolicitante").click(function() {
+function btmMostrarSolicitante( idCliente) {
 
-    var idClienteSolicitud = $(this).attr("idCliente");
+    var idClienteSolicitud = idCliente;
     var idClientes = new FormData();
     idClientes.append("idClienteSolicitud", idClienteSolicitud);
     idClientes.append("idClienteDato", true);
@@ -38,23 +38,22 @@ $(".btmMostrarSolicitante").click(function() {
         }
 
     });
-
-});
-
+}
 
 /*=============================================
 MOSTRAR DETALLE DEL PAQUETE DE LA SOLICITUD
 =============================================*/
 
-$(".btnDetallePaqueteSolicitud2").click(function() {
+function btnDetallePaqueteSolicitud( idPaqueteDeSolicitudT) {
 
-    var idPaqueteDeSolicitud = $(this).attr("idPaqueteDeSolicitud");
+    var idPaqueteDeSolicitudT = idPaqueteDeSolicitudT;
 
-    console.log("idPaqueteDeSolicitud: ",idPaqueteDeSolicitud);
+    //console.log("idPaqueteDeSolicitudT: ",idPaqueteDeSolicitudT);
 
     var datos = new FormData();
 
-    datos.append("idPaqueteDeSolicitud", idPaqueteDeSolicitud);
+    datos.append("idPaquete", true);
+    datos.append("idPaqueteDeSolicitudT", idPaqueteDeSolicitudT);
 
     $.ajax({
 
@@ -67,18 +66,28 @@ $(".btnDetallePaqueteSolicitud2").click(function() {
         dataType: "json",
         success: function(respuesta) {
 
-            console.log("respuesta: ",respuesta);
+            if(respuesta != "error"){
 
-            $('#modalDatosPaquete').modal('show');
+                //console.log("en el If ");
+                //console.log("respuesta: ",respuesta);
+                $('#datosPaqueteMostrar1').html(respuesta);
+                $("#solicitanteTelefono").val(respuesta["numero_documento"]);
+                $('#modalDatosPaquete').modal('show');
+
+            }else{
+
+                console.log("en el Else ");
+                console.log("respuesta: ",respuesta);
+
+            }
+
+
 
         }
 
     });
 
-
-});
-
-
+}
 
 /*=============================================
 CAMBIAR ESTADO DE LA SOLICITUD DE REGISTRADA A COTIZADA
@@ -87,7 +96,11 @@ CAMBIAR ESTADO DE LA SOLICITUD DE REGISTRADA A COTIZADA
 $(".table").on("click", ".estadoSolicitudRegistrada", function() {
 
     var idSolicitud = $(this).attr("idSolicitud");
-    console.log("idSolicitud", idSolicitud);
+
+    var datos = new FormData();
+
+    datos.append("idSolicitud", idSolicitud);
+    datos.append("Reservada", true);
 
     Swal.fire({
         title: '¿Está seguro de cambiar la solicitud a Cotizada?',
@@ -102,6 +115,42 @@ $(".table").on("click", ".estadoSolicitudRegistrada", function() {
         if (result.value) {
 
             console.log("idSolicitud", idSolicitud);
+
+            $.ajax({
+
+                url: "ajax/ajax.solicitudes.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta) {
+        
+                    if(respuesta == "ok"){
+        
+                        console.log("respuesta: ",respuesta);
+
+                        Swal.fire({
+                            type: "success",
+                            title: "La solicitud ha sido cambiada correctamente",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                            }).then((result) => {
+                                      if (result.value) {
+  
+                                          window.location = "solicitudes";
+  
+                                      }
+                        });
+                                
+                    }
+        
+                }
+        
+            });
+            
         }
 
     })

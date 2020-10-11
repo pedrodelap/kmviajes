@@ -158,8 +158,8 @@ class ModeloPaqueteFront{
 	static public function mdlCrearSolicitudPersonalizada($datosSolicitud){
 
 		#echo "<script>".var_dump($datosSolicitud)."</script>";
-		$codigoSeguimiento = substr(md5(time()),0, 12);
-		$stmt = Conexion::conectar()->prepare("CALL usp_insert_solicitud(:id_paquete, :id_ciudad, :fecha_inicio, :fecha_fin, :fecha, :cantidad_ninios, :cantidad_adultos, :comentario, :id_cliente, :codigo, :servicios);");
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_solicitud(:id_paquete, :id_ciudad, :fecha_inicio, :fecha_fin, :fecha, :cantidad_ninios, :cantidad_adultos, :comentario, :id_cliente);");
 
 		$stmt->bindParam(":id_paquete", $datosSolicitud["id_paquete"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_ciudad", $datosSolicitud["id_ciudad"], PDO::PARAM_STR);
@@ -170,12 +170,10 @@ class ModeloPaqueteFront{
 		$stmt->bindParam(":cantidad_ninios", $datos["cantidad_ninios"], PDO::PARAM_STR);
 		$stmt->bindParam(":comentario", $datosSolicitud["comentario"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_cliente", $datosSolicitud["id_cliente"], PDO::PARAM_STR);
-		$stmt->bindParam(":codigo", $codigoSeguimiento, PDO::PARAM_STR);
-		$stmt->bindParam(":servicios", $datosSolicitud["servicios"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
-			return $codigoSeguimiento;
+			return $stmt -> fetch();
 
 		}else{
 
@@ -253,6 +251,8 @@ class ModeloPaqueteFront{
         $stmt = null;
 
     }
+
+
 
 
 }

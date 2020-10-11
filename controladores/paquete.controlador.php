@@ -99,10 +99,7 @@ class ControladorPaqueteFront{
 
             $respuesta = ModeloPaqueteFront::mdlCrearClienteSolicitudPersonalizada($datosCliente);
     
-            $resultado = $respuesta;
-            
-            
-            
+		    $resultado = $respuesta;
 
         }else {
 
@@ -129,7 +126,6 @@ class ControladorPaqueteFront{
 		return $respuesta;
 
     }
-
 
     static public function ctrEnviarPagoPasarella($data){
 
@@ -220,4 +216,7 @@ class ControladorPaqueteFront{
 		return $respuesta;
 
     }
+
+
+   
 }

@@ -93,4 +93,19 @@ class ModeloMensajes{
 
 	}
 
+
+	#SELECCIONAR SOLICITUDES SIN REVISAR
+	#------------------------------------------------------------
+	public static function mdlSolicitudesSinRevisar($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT revision FROM $tabla");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+	}
+
 }
