@@ -185,3 +185,17 @@ $(".table").on("click", ".estadoSolicitudCotizada", function() {
     })
 
 });
+
+
+
+/*=============================================
+MOSTRAR DETALLE DEL PAQUETE DE LA SOLICITUD
+=============================================*/
+
+function btnDetalleSinPaqueteSolicitud(idSolicitudSinPaquete ) {
+
+    var idSolicitud = idSolicitudSinPaquete;
+
+    window.location = "index.php?ruta=cotizacion-crear&idSolicitud="+idSolicitud;
+
+}

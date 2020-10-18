@@ -58,21 +58,6 @@ class ControladorSolicitudes{
 
 	}
 	
-	#CREAR SOLICITUDES
-	#-----------------------------------------------------
-	static public function ctrCrearSolicitud(){
-	}
-
-	#EDITAR SOLICITUDES
-	#-----------------------------------------------------
-	static public function ctrEditarSolicitud(){
-	}
-
-	#ELIMINAR SOLICITUDES
-	#-----------------------------------------------------
-	static public function ctrEliminarSolicitud(){
-	}
-
 	#ELIMINAR SOLICITUDES
 	#-----------------------------------------------------
 	static public function ctrEstadoRegistradaACotizada($datos){
@@ -173,8 +158,19 @@ class ControladorSolicitudes{
 
 		echo $respuesta;
 
-	}	
+	}
 
+	#CONSULTAR PROPUESTAS
+	#-----------------------------------------------------
+	static public function ctrConsultrarIdCotizacion($valor, $item){
+
+		$tabla = "tb_cotizaciones";
+
+		$respuesta = ModeloSolicitudes::mdlConsultrarIdCotizacion($tabla, $valor, $item);
+
+		return $respuesta;
+
+	}
 
 }
 

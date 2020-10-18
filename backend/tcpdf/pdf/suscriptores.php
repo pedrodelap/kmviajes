@@ -1,7 +1,7 @@
 <?php
 
-require_once "../../controladores/suscriptores.controlador.php";
-require_once "../../modelos/suscriptores.modelo.php";
+require_once "../../controladores/controlador.suscriptores.php";
+require_once "../../modelos/modelo.suscriptores.php";
 
 class ImpresionSuscriptores{
 

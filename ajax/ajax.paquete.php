@@ -111,6 +111,31 @@ class AjaxPaquetes{
 
 	}
 
+
+
+	public $search;
+
+	public function ajaxSearchPaisCiudad(){
+
+		$valor = $this->search;
+
+		$respuesta = ControladorPaqueteFront::ctrSelectSearchPaisCiudad($valor);
+
+		$i = 0;
+		
+		foreach ($respuesta[1] as $key) 
+		{
+
+			$response[] = array("value"=>$key['id'],"label"=>$key['name']);
+
+			$i++;
+		}
+
+		echo json_encode($response);
+
+	}
+
+
 }
 
 /*=============================================
@@ -198,5 +223,14 @@ if(isset($_POST["pagar"])){
 						"paymentMethod"=>$_POST["paymentMethod"],
 						"dniNumber"=>$_POST["dniNumber"]);
 	$pagar -> ajaxPagarOnLine($datosPago);
+
+}
+
+
+if(isset($_POST['search'])){
+
+	$buscarCiudadPais = new AjaxPaquetes();
+	$buscarCiudadPais -> search = $_POST["search"];
+	$buscarCiudadPais -> ajaxSearchPaisCiudad();
 
 }

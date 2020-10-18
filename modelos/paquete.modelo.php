@@ -187,7 +187,6 @@ class ModeloPaqueteFront{
 
 	}
 
-
 	#CONSULTAR SOLICITUD POR SEGUIMIENTO
 	#------------------------------------------------------------
 	static public function mdlObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento){
@@ -252,6 +251,39 @@ class ModeloPaqueteFront{
 
     }
 
+		#SELECT AEROPUERTOS
+	#------------------------------------------------------------
+	static public function mdlSelectCiudades($valor){
+
+		$term = '%'.$valor.'%';
+
+		$stmt = Conexion::conectar()->prepare("SELECT ciudad.id_pais 'id',
+		                                              CONCAT(ciudad.nombre,' (',aeropuerto.codigo,'), ',aeropuerto.nombre,'(',aeropuerto.codigo,'), ',pais.nombre) 'name'
+   												 FROM tb_aeropuertos aeropuerto
+                                           INNER JOIN tb_ciudades ciudad
+	 											   ON (aeropuerto.id_ciudad = ciudad.id_ciudad)
+										   INNER JOIN tb_paises pais
+	                                               ON (pais.id_pais = ciudad.id_pais)
+											    WHERE pais.nombre LIKE :term
+												   OR ciudad.nombre LIKE :term
+												   OR aeropuerto.nombre LIKE :term
+												   OR aeropuerto.codigo LIKE :term ");
+
+		$stmt->bindParam(":term",$term, PDO::PARAM_STR);
+
+		$stmt->execute();
+
+		$stat[0] = true;
+
+		$stat[1] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		return $stat;
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 
 

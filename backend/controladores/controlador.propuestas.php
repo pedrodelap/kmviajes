@@ -34,33 +34,34 @@ class ControladorPropuestas{
 
 									<td>'.$value["aerolinea"].'</td>
 
-									<td>'.$value["cantidad_pasajeros"].'</td>
+									<td>'.$value["cantidad"].'</td>
 
-									<td>'.$value["nombre"].'</td>
-									
-									<td>'.$value["cantidad_sf"].'</td>
-									
-									<td>'.$value["cantidad_fee"].'</td>
-									
-									<td>'.$value["estado"].'</td>									
+									<td>'.$value["detraccion"].'</td>
 
-									<td>'.$value["usuario_modificacion"].'</td>
+									<td>'.$value["costo"].'</td>
 
-									<td>'.$value["fecha_modificacion"].'</td>
+									<td>'.$value["cuota"].'</td>';
 
-									<td class="text-center">
+									if($value["estado"] == 1){
 
-										<div role="group" class="btn-group-sm btn-group">
+										$tablaPropuesta .= '<td><input type="checkbox" checked data-toggle="toggle" data-size="mini" data-onstyle="primary" class="btn btn-secondary fa fa-edit btnCambiarPropuesta" estadoPropuesta="1" idPropuesta="'.$value["id_propuesta"].'"></td>';
 
-											<button class="btnEditarPropuesta border-0 btn-transition btn btn-outline-warning"  data-toggle="modal" data-target="#modalEditarCliente" idPropuesta="'.$value["id_propuesta"].'"><i class="lnr-pencil btn-icon-wrapper">&nbsp;</i>Editar</button>
+									}else {
 
-											<button class="btnEliminarPropuesta border-0 btn-transition btn btn-outline-danger" idPropuesta="'.$value["id_propuesta"].'"><i class="lnr-cross btn-icon-wrapper">&nbsp;</i>Eliminar</button>
+										$tablaPropuesta .= '<td><input type="checkbox" data-toggle="toggle" data-size="mini" data-onstyle="primary" class="btn btn-secondary fa fa-edit btnCambiarPropuesta" estadoPropuesta="0" idPropuesta="'.$value["id_propuesta"].'"></td>';
 
-										</div>
+									}
 
-									</td>
+									$tablaPropuesta .= '<td> <span><button class="btn btn-secondary fa fa-edit btnEditarPropuesta" idPropuesta="'.$value["id_propuesta"].'" data-toggle="modal" data-target="#modalEditarCotizacion"></button></span>&nbsp;';
 
-								</tr>';
+										if($_SESSION["perfil"] == "Administrador"){
+
+											$tablaPropuesta .= '<span><button class="btn btn-danger fa fa-times btnEliminarPropuesta" idPropuesta="'.$value["id_propuesta"].'"></button></span>';
+										}											
+
+									$tablaPropuesta .= '</td>
+
+                                </tr>';
 
 		}
 
@@ -68,4 +69,16 @@ class ControladorPropuestas{
 
 	}
 
+	#ACTUALIZAR COTIZACION ESTADO
+	#------------------------------------------------------------
+	static public function ctrActualizarEstadoPropuesta($datos){
+
+		$tabla = "tb_propuestas";
+
+		$respuesta = ModeloPropuestas::mdlActualizarEstadoPropuesta($tabla, $datos);
+
+		return $respuesta;
+	}
+
 }
+

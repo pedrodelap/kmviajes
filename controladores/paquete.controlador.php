@@ -217,6 +217,14 @@ class ControladorPaqueteFront{
 
     }
 
+    static public function ctrSelectSearchPaisCiudad($valor){
+
+		$respuesta = ModeloPaqueteFront::mdlSelectCiudades($valor);
+
+		return $respuesta;
+
+    }
+
 
    
 }

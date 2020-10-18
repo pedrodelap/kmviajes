@@ -62,7 +62,7 @@
 
         <!--Input Mask-->
         <script src="vistas/assets/js/vendors/form-components/input-mask.js"></script> 
-        <!-- <script src="vistas/assets/js/scripts-init/form-components/input-mask.js"></script> -->
+        <script src="vistas/assets/js/scripts-init/form-components/input-mask.js"></script>
 
         <!--RangeSlider-->
         <script src="vistas/assets/js/vendors/form-components/wnumb.js"></script>

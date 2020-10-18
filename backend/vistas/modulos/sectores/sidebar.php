@@ -15,7 +15,7 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="metismenu-icon pe-7s-light"></i> Cotizaciones
+                    <i class="metismenu-icon fas fa-file-powerpoint"></i> Cotizaciones
                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>

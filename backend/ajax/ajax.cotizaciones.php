@@ -9,13 +9,15 @@ class AjaxCotizaciones{
 	#----------------------------------------------------------
 
 	public $idCliente;
-	public $usuarioCreacion;	
+	public $idSolicitud;
+	public $usuarioCreacion;
 
 	public function ajaxCrearCotizacion(){
 
 		$datos = array("idCliente"=>$this->idCliente,
+					   "id_solicitud"=>$this->idSolicitud,
 					   "usuario_creacion"=>$this->usuarioCreacion);
-	
+
 		$respuesta = ControladorCotizaciones::ctrCrearCotizacion($datos);
 
 		echo json_encode($respuesta);
@@ -33,7 +35,8 @@ if(isset($_POST["cotizacionNuevoCliente"])){
 
 	$cotizacion = new AjaxCotizaciones();
 	$cotizacion -> idCliente = $_POST["cotizacionNuevoCliente"];
-	$cotizacion -> usuarioCreacion = $_POST["cotizacionNuevoUsuarioCreacion"];	
+	$cotizacion -> idSolicitud = $_POST["cotizacionNuevoIdSolicitud"];	
+	$cotizacion -> usuarioCreacion = $_POST["cotizacionNuevoUsuarioCreacion"];
 	$cotizacion -> ajaxCrearCotizacion();
 
 }

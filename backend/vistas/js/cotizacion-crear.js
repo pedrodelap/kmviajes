@@ -154,11 +154,11 @@ function itinerarioConstruirTablaRow(id) {
     var fechaVuelo = $('#itinerarioNuevoFechaVuelo').val();
 
 
-    console.log("origenId : ", origenId);
-    console.log("destinoId : ", destinoId);
-    console.log("origenNombre : ", origenNombre);
-    console.log("destinoNombre : ", destinoNombre);
-    console.log("fechaVuelo : ", fechaVuelo);
+    //console.log("origenId : ", origenId);
+    //console.log("destinoId : ", destinoId);
+    //console.log("origenNombre : ", origenNombre);
+    //console.log("destinoNombre : ", destinoNombre);
+    //console.log("fechaVuelo : ", fechaVuelo);
 
 
     var ret = '<tr>' +
@@ -350,19 +350,23 @@ FORMATOS AL PRECIO FINAL
 
 function formatoNumeros() {
 
-    $("#cotizacionNuevoDetraccion").number(true, 0);
-
     $("#cotizacionNuevoAdultosCantidad").number(true, 0);
-    $("#cotizacionNuevoAdultosSF").number(true, 2);
+    $("#cotizacionNuevoAdultosCostoUnitario").number(true, 2);
     $("#cotizacionNuevoAdultosFee").number(true, 2);
 
-    $("#cotizacionNuevoNinioCantidad").number(true, 0);
-    $("#cotizacionNuevoNinioSF").number(true, 2);
-    $("#cotizacionNuevoNinioFee").number(true, 2);
+    $("#cotizacionNuevoNinosCantidad").number(true, 0);
+    $("#cotizacionNuevoNinosCostoUnitario").number(true, 2);
+    $("#cotizacionNuevoNinosFee").number(true, 2);
 
-    $("#cotizacionNuevoInfanteCantidad").number(true, 0);
-    $("#cotizacionNuevoInfanteSF").number(true, 2);
-    $("#cotizacionNuevoInfanteFee").number(true, 2);
+    $("#cotizacionNuevoDetraccion").number(true, 0);
+    $("#cotizacionNuevoCambioMoneda").number(true, 2);
+
+    $("#cotizacionNuevoServicioTraslados").number(true, 2);
+    $("#cotizacionNuevoServicioAlojamiento").number(true, 2);
+    $("#cotizacionNuevoServicioIncluido").number(true, 2);
+    $("#cotizacionNuevoServicioDesayuno").number(true, 2);
+    $("#cotizacionNuevoServicioTarjeta").number(true, 2);
+    $("#cotizacionNuevoServicioMaletas").number(true, 2);
 
 };
 
@@ -389,72 +393,106 @@ FUNCIÓN PRECIO TOTAL
 function precioTotal() {
 
     var AdultosCantidad = $("#cotizacionNuevoAdultosCantidad").val();
-    var AdultosTotalSF = $("#cotizacionNuevoAdultosSF").val();
+    var AdultosCostoUnitario = $("#cotizacionNuevoAdultosCostoUnitario").val();
     var AdultosFee = $("#cotizacionNuevoAdultosFee").val();
-    var AdultosTotalCF = (Number(AdultosCantidad) * Number(AdultosFee));
-    var AdultosTotalGanancia = (Number(AdultosTotalSF) + Number(AdultosTotalCF));
-    $("#cotizacionNuevoAdultosTotalCF").val(AdultosTotalCF);
-    $("#cotizacionNuevoAdultosTotalGanancia").val(AdultosTotalGanancia);
+    
+    var NuevoAdultosCobrar = (Number(AdultosCantidad) * Number(AdultosCostoUnitario) ) + ( Number(AdultosCantidad) * Number(AdultosFee));
+    var NuevoAdultosPagarAV = (Number(AdultosCantidad) * Number(AdultosCostoUnitario));
+    var NuevoAdultosGanancia = (Number(AdultosCantidad) * Number(AdultosFee))
 
-    var NinioCantidad = $("#cotizacionNuevoNinioCantidad").val();
-    var NinioTotalSF = $("#cotizacionNuevoNinioSF").val();
-    var NinioFee = $("#cotizacionNuevoNinioFee").val();
-    var NinioTotalCF = (Number(NinioCantidad) * Number(NinioFee));
-    var NinioTotalGanancia = (Number(NinioTotalSF) + Number(NinioTotalCF));
-    $("#cotizacionNuevoNinioTotalCF").val(NinioTotalCF);
-    $("#cotizacionNuevoNinioTotalGanancia").val(NinioTotalGanancia);
+    $("#cotizacionNuevoAdultosCobrar").val(NuevoAdultosCobrar);
+    $("#cotizacionNuevoAdultosPagarAV").val(NuevoAdultosPagarAV);
+    $("#cotizacionNuevoAdultosGanancia").val(NuevoAdultosGanancia);
+    
+  
+    
+    var NinosCantidad = $("#cotizacionNuevoNinosCantidad").val();
+    var NinosCostoUnitario = $("#cotizacionNuevoNinosCostoUnitario").val();
+    var NinosFee = $("#cotizacionNuevoNinosFee").val();
+    
+    var NuevoNinosCobrar = (Number(NinosCantidad) * Number(NinosCostoUnitario) ) + ( Number(NinosCantidad) * Number(NinosFee));
+    var NinosPagarAV = (Number(NinosCantidad) * Number(NinosCostoUnitario));
+    var NuevoNinosGanancia = (Number(NinosCantidad) * Number(NinosFee))
 
-    var InfanteCantidad = $("#cotizacionNuevoInfanteCantidad").val();
-    var InfanteTotalSF = $("#cotizacionNuevoInfanteSF").val();
-    var InfanteFee = $("#cotizacionNuevoInfanteFee").val();
-    var InfanteTotalCF = (Number(InfanteCantidad) * Number(InfanteFee));
-    var InfanteTotalGanancia = (Number(InfanteTotalSF) + Number(InfanteTotalCF));
-    $("#cotizacionNuevoInfanteTotalCF").val(InfanteTotalCF);
-    $("#cotizacionNuevoInfanteTotalGanancia").val(InfanteTotalGanancia);
+    $("#cotizacionNuevoNinosCobrar").val(NuevoNinosCobrar);
+    $("#cotizacionNuevoNinosPagarAV").val(NinosPagarAV);
+    $("#cotizacionNuevoNinosGanancia").val(NuevoNinosGanancia);
 
-    var detraccion = $("#cotizacionNuevoDetraccion").val();
 
-    var total = (InfanteTotalGanancia + NinioTotalGanancia + AdultosTotalGanancia) - ((InfanteTotalGanancia + NinioTotalGanancia + AdultosTotalGanancia) * detraccion) / 100;
-    $("#cotizacionNuevoTotal").val(total);
+    var CobrarDolares = (NuevoAdultosCobrar + NuevoNinosCobrar);
+    $("#cotizacionNuevoTotalCobrarDolares").val(CobrarDolares);
 
-    var totalFEE = (Number(AdultosFee) + Number(NinioFee) + Number(InfanteFee));
-    $("#cotizacionNuevoTotalFEE").val(totalFEE);
+    var GananciaTotal = (NuevoAdultosGanancia + NuevoNinosGanancia);
+    $("#cotizacionNuevoGananciaTotal").val(GananciaTotal);
 
-    var totalCF = (Number(AdultosTotalCF) + Number(NinioTotalCF) + Number(InfanteTotalCF));
-    $("#cotizacionNuevoTotalCF").val(totalCF);
+    var PagarAVTotal = (NuevoAdultosPagarAV + NinosPagarAV);
+    $("#cotizacionNuevoTotalAV").val(PagarAVTotal);
 
-};
+    var CambioMoneda = $("#cotizacionNuevoCambioMoneda").val();
 
-/*=============================================
-AGREGANDO ITINERARIOS
-=============================================*/
+    var CobrarSoles = (CobrarDolares * CambioMoneda);
+    $("#cotizacionNuevoTotalCobrarSoles").val(CobrarSoles);
 
-$("#cotizacionNuevoTipoMoneda").change(function() {
+    if(CobrarDolares != "" && CobrarDolares != null ){
+        $("#cotizacionNuevoTotalCobrarDolares").addClass("is-valid");
+    }
 
-    var metodo = $("#cotizacionNuevoTipoMoneda").val();
+    if(CambioMoneda != "" && CambioMoneda != null ){
+        $("#cotizacionNuevoTotalCobrarSoles").addClass("is-valid");
+    }
 
-    if (metodo != "5") {
+    var Detraccion = $("#cotizacionNuevoDetraccion").val();
+
+    if(Detraccion != "" && Detraccion != null ){
+
+
+        var DetraccionRestar = (CobrarDolares*Detraccion)/100;
+
+        CobrarDolaresNuevo = CobrarDolares - DetraccionRestar; 
+        CobrarSolesNuevo   = (CobrarDolares - DetraccionRestar)*CambioMoneda;
+
+        $("#cotizacionNuevoTotalCobrarDolares").val(CobrarDolaresNuevo);
+        $("#cotizacionNuevoTotalCobrarSoles").val(CobrarSolesNuevo);
+
+        
 
     }
 
-});
+};
+
+
 
 /*=============================================
 AGREGANDO COTIZACION
 =============================================*/
+function adicionarCotizacion() {
+
+    if($("#hidden_cotizacion_id").val() == ""){
+        adicionarCotizacion();
+    }else {
+        adicionarPropuesta();
+    }
+
+}
 
 function adicionarCotizacion() {
 
     var cotizacionNuevoCliente = $("#cotizacionNuevoCliente option:selected").val();
     var cotizacionNuevoUsuarioCreacion = $("#hidden_usuario_creacion").val();
+    var cotizacionNuevoIdSolicitud = $("#hidden_solicitud_id").val();
 
     if ($("#hidden_cotizacion_id").val() == "") {
 
         var datosCotizacion = new FormData();
 
+        datosCotizacion.append("cotizacionNuevoIdSolicitud", cotizacionNuevoIdSolicitud);
         datosCotizacion.append("cotizacionNuevoCliente", cotizacionNuevoCliente);
         datosCotizacion.append("cotizacionNuevoUsuarioCreacion", cotizacionNuevoUsuarioCreacion);
 
+
+        //console.log("cotizacionNuevoCliente",cotizacionNuevoCliente);
+        //console.log("cotizacionNuevoUsuarioCreacion",cotizacionNuevoUsuarioCreacion);
+        //console.log("cotizacionNuevoIdSolicitud",cotizacionNuevoIdSolicitud);
 
         $.ajax({
 
@@ -492,19 +530,16 @@ function adicionarPropuesta() {
     var coti_id = $("#hidden_cotizacion_id").val()
 
     var cotizacionNuevoCotizacion = $("#hidden_cotizacion_id").val();
-    var cotizacionNuevoTipoViaje = $("[name='cotizacionNuevoTipoViaje']:checked").val();
+    var cotizacionNuevoTipoViaje = $('select[name=cotizacionNuevoTipoViaje] option').filter(':selected').val();
     var cotizacionNuevoAerolinea = $("#cotizacionNuevoAerolinea option:selected").val();
-    var cotizacionNuevoTipoMoneda = $("#cotizacionNuevoTipoMoneda option:selected").val();
-    var cotizacionNuevoDetraccion = $("#cotizacionNuevoDetraccion").val();
     var cotizacionNuevoAdultosCantidad = $("#cotizacionNuevoAdultosCantidad").val();
-    var cotizacionNuevoAdultosSF = $("#cotizacionNuevoAdultosSF").val();
+    var cotizacionNuevoAdultosCostoUnitario = $("#cotizacionNuevoAdultosCostoUnitario").val();
     var cotizacionNuevoAdultosFee = $("#cotizacionNuevoAdultosFee").val();
-    var cotizacionNuevoNinioCantidad = $("#cotizacionNuevoNinioCantidad").val();
-    var cotizacionNuevoNinioSF = $("#cotizacionNuevoNinioSF").val();
-    var cotizacionNuevoNinioFee = $("#cotizacionNuevoNinioFee").val();
-    var cotizacionNuevoInfanteCantidad = $("#cotizacionNuevoInfanteCantidad").val();
-    var cotizacionNuevoInfanteSF = $("#cotizacionNuevoInfanteSF").val();
-    var cotizacionNuevoInfanteFee = $("#cotizacionNuevoInfanteFee").val();
+    var cotizacionNuevoNinosCantidad = $("#cotizacionNuevoNinosCantidad").val();
+    var cotizacionNuevoNinosCostoUnitario = $("#cotizacionNuevoNinosCostoUnitario").val();
+    var cotizacionNuevoNinosFee = $("#cotizacionNuevoNinosFee").val();    
+    var cotizacionNuevoDetraccion = $("#cotizacionNuevoDetraccion").val();
+    var cotizacionNuevoCambioMoneda = $("#cotizacionNuevoCambioMoneda").val();
     var cotizacionNuevoUsuarioCreacion = $("#hidden_usuario_creacion").val();
 
     var datosPropuesta = new FormData();
@@ -512,23 +547,34 @@ function adicionarPropuesta() {
     datosPropuesta.append("cotizacionNuevoCotizacion", cotizacionNuevoCotizacion);
     datosPropuesta.append("cotizacionNuevoTipoViaje", cotizacionNuevoTipoViaje);
     datosPropuesta.append("cotizacionNuevoAerolinea", cotizacionNuevoAerolinea);
-    datosPropuesta.append("cotizacionNuevoTipoMoneda", cotizacionNuevoTipoMoneda);
-    datosPropuesta.append("cotizacionNuevoDetraccion", cotizacionNuevoDetraccion);
     datosPropuesta.append("cotizacionNuevoAdultosCantidad", cotizacionNuevoAdultosCantidad);
-    datosPropuesta.append("cotizacionNuevoAdultosSF", cotizacionNuevoAdultosSF);
+    datosPropuesta.append("cotizacionNuevoAdultosCostoUnitario", cotizacionNuevoAdultosCostoUnitario);
     datosPropuesta.append("cotizacionNuevoAdultosFee", cotizacionNuevoAdultosFee);
-    datosPropuesta.append("cotizacionNuevoNinioCantidad", cotizacionNuevoNinioCantidad);
-    datosPropuesta.append("cotizacionNuevoNinioSF", cotizacionNuevoNinioSF);
-    datosPropuesta.append("cotizacionNuevoNinioFee", cotizacionNuevoNinioFee);
-    datosPropuesta.append("cotizacionNuevoInfanteCantidad", cotizacionNuevoInfanteCantidad);
-    datosPropuesta.append("cotizacionNuevoInfanteSF", cotizacionNuevoInfanteSF);
-    datosPropuesta.append("cotizacionNuevoInfanteFee", cotizacionNuevoInfanteFee);
+    datosPropuesta.append("cotizacionNuevoNinosCantidad", cotizacionNuevoNinosCantidad);
+    datosPropuesta.append("cotizacionNuevoNinosCostoUnitario", cotizacionNuevoNinosCostoUnitario);
+    datosPropuesta.append("cotizacionNuevoNinosFee", cotizacionNuevoNinosFee);
+    datosPropuesta.append("cotizacionNuevoDetraccion", cotizacionNuevoDetraccion);
+    datosPropuesta.append("cotizacionNuevoCambioMoneda", cotizacionNuevoCambioMoneda);
     datosPropuesta.append("cotizacionNuevoUsuarioCreacion", cotizacionNuevoUsuarioCreacion);
 
+    /*
     for (var value of datosPropuesta.values()) {
-        console.log("datosPropuesta : ", value); 
+        console.log("datosPropuesta : ", value);
      }
+    */
 
+     console.log("cotizacionNuevoCotizacion", cotizacionNuevoCotizacion);
+     console.log("cotizacionNuevoTipoViaje", cotizacionNuevoTipoViaje);
+     console.log("cotizacionNuevoAerolinea", cotizacionNuevoAerolinea);
+     console.log("cotizacionNuevoAdultosCantidad", cotizacionNuevoAdultosCantidad);
+     console.log("cotizacionNuevoAdultosCostoUnitario", cotizacionNuevoAdultosCostoUnitario);
+     console.log("cotizacionNuevoAdultosFee", cotizacionNuevoAdultosFee);
+     console.log("cotizacionNuevoNinosCantidad", cotizacionNuevoNinosCantidad);
+     console.log("cotizacionNuevoNinosCostoUnitario", cotizacionNuevoNinosCostoUnitario);
+     console.log("cotizacionNuevoNinosFee", cotizacionNuevoNinosFee);
+     console.log("cotizacionNuevoDetraccion", cotizacionNuevoDetraccion);
+     console.log("cotizacionNuevoCambioMoneda", cotizacionNuevoCambioMoneda);
+     console.log("cotizacionNuevoUsuarioCreacion", cotizacionNuevoUsuarioCreacion);
 
     $.ajax({
 
@@ -640,26 +686,24 @@ function limpiarModalPropuesta() {
     $("[name=cotizacionNuevoTipoViaje]").prop("checked", false);
     $('#cotizacionNuevoAerolinea').val(null).trigger('change');
     $("#cotizacionNuevoTipoMoneda").val("");
-    $("#cotizacionNuevoDetraccion").val("");
-    $("#cotizacionNuevoTotal").val("");
 
     $("#cotizacionNuevoAdultosCantidad").val("");
-    $("#cotizacionNuevoAdultosSF").val("");
+    $("#cotizacionNuevoAdultosCostoUnitario").val("");
     $("#cotizacionNuevoAdultosFee").val("");
-    $("#cotizacionNuevoAdultosTotalCF").val("");
-    $("#cotizacionNuevoAdultosTotalGanancia").val("");
 
-    $("#cotizacionNuevoNinioCantidad").val("");
-    $("#cotizacionNuevoNinioSF").val("");
-    $("#cotizacionNuevoNinioFee").val("");
-    $("#cotizacionNuevoNinioTotalCF").val("");
-    $("#cotizacionNuevoNinioTotalGanancia").val("");
+    $("#cotizacionNuevoNinosCantidad").val("");
+    $("#cotizacionNuevoNinosCostoUnitario").val("");
+    $("#cotizacionNuevoNinosFee").val("");
 
-    $("#cotizacionNuevoInfanteCantidad").val("");
-    $("#cotizacionNuevoInfanteSF").val("");
-    $("#cotizacionNuevoInfanteFee").val("");
-    $("#cotizacionNuevoInfanteTotalCF").val("");
-    $("#cotizacionNuevoInfanteTotalGanancia").val("");
+    $("#cotizacionNuevoDetraccion").val("");
+    $("#cotizacionNuevoCambioMoneda").val("");
+
+    $("#cotizacionNuevoServicioTraslados").val("");
+    $("#cotizacionNuevoServicioAlojamiento").val("");
+    $("#cotizacionNuevoServicioIncluido").val("");
+    $("#cotizacionNuevoServicioDesayuno").val("");
+    $("#cotizacionNuevoServicioTarjeta").val("");
+    $("#cotizacionNuevoServicioMaletas").val("");
 
     $("#tablaItinerario").html("");
 
@@ -707,7 +751,7 @@ function tablaPropuestas() {
 
     });
 
-}
+};
 
 /*=============================================
 BOTONES CABECERA COTIZACION
@@ -744,4 +788,70 @@ function botonesCotizacion() {
         $("#divBotonesCotizacion").html(divBotonesCotizacion);
 
     }
-}
+};
+
+
+/*=============================================
+CONSULTA X ID PROPUESTAS DATOS
+=============================================*/
+
+$(".btnEditarPropuesta").click(function() {
+
+    var idPropuesta = $(this).attr("idPropuesta");
+
+    console.log(idPropuesta);
+
+
+});
+
+
+/*=============================================
+ACTUALIZAR PROPUESTAS ESTADO
+=============================================*/
+
+$('.btnCambiarPropuesta').change(function() {
+
+    var idPropuesta = $(this).attr("idPropuesta");
+    var estadoPropuesta = $(this).attr("estadoPropuesta");
+
+    var cambiar = "";
+
+    if (estadoPropuesta == "1"){
+        // console.log('entro en 1');
+        estadoPropuesta = $(this).attr("estadoPropuesta","0");
+        cambiar = "0";
+        
+    }
+    
+    if (estadoPropuesta == "0"){
+        // console.log('entro en 0');
+        estadoPropuesta = $(this).attr("estadoPropuesta","1");
+        cambiar = "1";
+        
+    }
+
+    //console.log('idPropuesta', idPropuesta);
+    //console.log('estadoPropuesta', estadoPropuesta);
+
+    var actualizarEstadoPropuesta = new FormData();
+    actualizarEstadoPropuesta.append("idPropuestaEstado", idPropuesta);
+    actualizarEstadoPropuesta.append("estadoPropuesta", cambiar);
+    
+    $.ajax({
+
+        url: "ajax/ajax.propuestas.php",
+        method: "POST",
+        data: actualizarEstadoPropuesta,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+
+            console.log(respuesta);
+
+        }
+
+    });
+
+});

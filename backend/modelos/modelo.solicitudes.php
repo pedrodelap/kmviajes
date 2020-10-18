@@ -134,23 +134,6 @@ class ModeloSolicitudes{
 		$stmt = null;
 
 	}
-	
-
-
-	#EDITAR SOLICITUDES
-	#------------------------------------------------------------
-	static public function mdlEditarSolicitud($tabla, $datos){
-	}
-
-	#ELIMINAR SOLICITUDES
-	#------------------------------------------------------------
-	static public function mdlSolicitud($tabla, $datos){
-	}
-
-	#ACTUALIZAR SOLICITUDES
-	#------------------------------------------------------------
-	static public function mdlActualizarSolicitud($tabla, $item1, $valor1, $valor){
-	}
 
 	#SOLICITUDES REVISADOS
 	#------------------------------------------------------------
@@ -173,6 +156,24 @@ class ModeloSolicitudes{
 		}
 
 		$stmt->close();
+
+	}
+
+	#MOSTRAR CLIENTE
+	#------------------------------------------------------------
+	static public function mdlConsultrarIdCotizacion($tabla, $valor, $item){
+
+		$stmt = Conexion::conectar()->prepare("SELECT id_cotizacion FROM $tabla WHERE $item = :$item");
+
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
 
 	}
 

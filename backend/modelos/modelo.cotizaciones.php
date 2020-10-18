@@ -8,9 +8,10 @@ class ModeloCotizaciones{
 	#------------------------------------------------------------
 	static public function mdlCrearCotizacion($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("CALL usp_insert_cotizacion(:id_cliente, :usuario_creacion)");
-
-		$stmt->bindParam(":id_cliente", $datos["idCliente"], PDO::PARAM_INT);		
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_cotizacion(:id_cliente, :id_solicitud, :usuario_creacion);");
+		
+		$stmt->bindParam(":id_cliente", $datos["idCliente"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_solicitud", $datos["id_solicitud"], PDO::PARAM_INT);
 		$stmt->bindParam(":usuario_creacion", $datos["usuario_creacion"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
@@ -66,6 +67,6 @@ class ModeloCotizaciones{
 
 		$stmt = null;
 
-	}	
+	}
 
 }

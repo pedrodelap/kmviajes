@@ -3,7 +3,12 @@ $(document).ready(function () {
     listarCiudades();
 
     $('#SolicitudPersonalizadaCiudad').select2({
-        placeholder: 'Ciudad',
+
+        closeOnSelect: false,
+        placeholder: "Placeholder",
+        allowHtml: true,
+        allowClear: true,
+        tags: true,
         width: 'resolve'
     });
 
@@ -16,6 +21,30 @@ $(document).ready(function () {
         width: 'resolve'
     });
 
+
+
+    $( "#SolicitudPersonalizadaPaisCiudad" ).autocomplete({
+        source: function( request, response ) {
+            
+            $.ajax({
+                url: "ajax/ajax.paquete.php",
+                type: 'post',
+                dataType: "json",
+                data: {
+                    search: request.term
+                },
+                success: function( data ) {
+                    response( data );
+                }
+            });
+        },
+        select: function (event, ui) {
+            $('#SolicitudPersonalizadaPaisCiudad').val(ui.item.label); // display the selected text
+            $('#SolicitudPersonalizadaPaisCiudadId').val(ui.item.value); // save selected id to input
+            return false;
+        }
+    });
+
 });
 
 $(".btn-buscar").click(function (e) {
@@ -23,7 +52,6 @@ $(".btn-buscar").click(function (e) {
     listarPaquetesDisponibles();
 
 });
-
 
 function listarPaquetesDisponibles() {
 
@@ -83,7 +111,7 @@ function registroSolicitud() {
     var SolicitudPersonalizadaTelefono = $("#SolicitudPersonalizadaTelefono").val();
     var SolicitudPersonalizadaDocumento = $("#SolicitudPersonalizadaDocumento").val();
     var SolicitudPersonalizadaCorreo = $("#SolicitudPersonalizadaCorreo").val();
-    var SolicitudPersonalizadaCiudad = $("#SolicitudPersonalizadaCiudad").val();
+    var SolicitudPersonalizadaCiudad = $("#SolicitudPersonalizadaPaisCiudadId").val();
     var SolicitudPersonalizadaFecha = $("#SolicitudPersonalizadaFecha").val();
     var SolicitudPersonalizadaFechaInicio = $('#SolicitudPersonalizadaFecha').data('daterangepicker').startDate.format('DD-MM-YYYY');
     var nSolicitudPersonalizadaFechaFin = $('#SolicitudPersonalizadaFecha').data('daterangepicker').endDate.format('DD-MM-YYYY');

@@ -97,6 +97,8 @@
     <script src="backend/vistas/assets/js/vendors/moment-with-locales.min.js"></script>
     <script src="backend/vistas/assets/js/vendors/form-components/daterangepicker.js"></script>
     <script src="backend/vistas/assets/js/scripts-init/sweet-alerts.js"></script>
+    
+    <script src="https://code.jquery.com/ui/jquery-ui-git.js" ></script>
 
      <!--SweetAlert2-->        
     

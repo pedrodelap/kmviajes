@@ -9,39 +9,33 @@ class AjaxPropuestas{
 	#----------------------------------------------------------
 
 	public $propuestaIDCotizacion;
-	public $propuestaTipoViaje;
-	public $propuestaIDAerolinea;
-	public $propuestaIDTipoMoneda;
-	public $propuestaDetraccion;
+	public $propuestaTipoViaje;	
+	public $propuestaIDAerolinea;	
 	public $propuestaAdultosCantidad;
-	public $propuestaAdultosSF;
-	public $propuestaAdultosFee;
-	public $propuestaNinioCantidad;
-	public $propuestaNinioSF;
-	public $propuestaNinioFee;
-	public $propuestaInfanteCantidad;
-	public $propuestaInfanteSF;
-	public $propuestaInfanteFee;
-	public $propuestaUsuarioCreacion;
+    public $propuestaAdultosCostoUnitario;
+    public $propuestaAdultosFee;
+    public $propuestaNinosCantidad;
+    public $propuestaNinosCostoUnitario;
+    public $propuestaNinosFee;
+    public $propuestaDetraccion;
+	public $propuestaCambioMoneda;
+    public $propuestaUsuarioCreacion;
 
 	public function ajaxCrearPropuesta(){
 
 		$datos = array("id_cotizacion"=>$this->propuestaIDCotizacion,
-					"tipo_viaje"=>$this->propuestaTipoViaje,
-					"id_aerolinea"=>$this->propuestaIDAerolinea,
-					"id_moneda"=>$this->propuestaIDTipoMoneda,
-					"detracion"=>$this->propuestaDetraccion,
-					"adultos_cantidad"=>$this->propuestaAdultosCantidad,
-					"adultos_sf"=>$this->propuestaAdultosSF,
-					"adultos_fee"=>$this->propuestaAdultosFee,
-					"ninio_cantidad"=>$this->propuestaNinioCantidad,
-					"ninio_sf"=>$this->propuestaNinioSF,
-					"ninio_fee"=>$this->propuestaNinioFee,
-					"infante_cantidad"=>$this->propuestaInfanteCantidad,
-					"infante_sf"=>$this->propuestaInfanteSF,
-					"infante_fee"=>$this->propuestaInfanteFee,				   
-					"usuario_creacion"=>$this->propuestaUsuarioCreacion);
-		
+					   "tipo_viaje"=>$this->propuestaTipoViaje,
+					   "id_aerolinea"=>$this->propuestaIDAerolinea,
+					   "adultos_cantidad"=>$this->propuestaAdultosCantidad,
+					   "adultos_costo_unitario"=>$this->propuestaAdultosCostoUnitario,
+					   "adultos_fee"=>$this->propuestaAdultosFee,
+					   "ninio_cantidad"=>$this->propuestaNinosCantidad,
+					   "ninio_costo_unitario"=>$this->propuestaNinosCostoUnitario,
+					   "ninio_fee"=>$this->propuestaNinosFee,
+					   "detraccion"=>$this->propuestaDetraccion,
+					   "tipo_cambio"=>$this->propuestaCambioMoneda,				   
+					   "usuario_creacion"=>$this->propuestaUsuarioCreacion);
+
 		$respuesta = ControladorPropuestas::ctrCrearPropuesta($datos);
 
 		echo json_encode($respuesta);
@@ -82,6 +76,25 @@ class AjaxPropuestas{
 
 	}
 
+
+	#ACTUALIZAR PROPUESTAS ESTADO
+	#----------------------------------------------------------
+
+	public $estadoidPropuesta;
+	public $estadoPropuesta;
+
+	public function ajaxActualizarEstadoPropuesta(){
+
+		$datos = array("id_propuesta"=>$this->estadoidPropuesta,
+					   "estado"=>$this->estadoPropuesta);
+
+		$respuesta = ControladorPropuestas::ctrActualizarEstadoPropuesta($datos);
+
+		echo $respuesta;
+
+
+	}
+
 }
 
 /*=============================================
@@ -94,18 +107,15 @@ if(isset($_POST["cotizacionNuevoCotizacion"])){
 	$propuesta -> propuestaIDCotizacion = $_POST["cotizacionNuevoCotizacion"];
 	$propuesta -> propuestaTipoViaje = $_POST["cotizacionNuevoTipoViaje"];	
 	$propuesta -> propuestaIDAerolinea = $_POST["cotizacionNuevoAerolinea"];	
-	$propuesta -> propuestaIDTipoMoneda = $_POST["cotizacionNuevoTipoMoneda"];	
-	$propuesta -> propuestaDetraccion = $_POST["cotizacionNuevoDetraccion"];
 	$propuesta -> propuestaAdultosCantidad = $_POST["cotizacionNuevoAdultosCantidad"];
-	$propuesta -> propuestaAdultosSF = $_POST["cotizacionNuevoAdultosSF"];
-	$propuesta -> propuestaAdultosFee = $_POST["cotizacionNuevoAdultosFee"];
-	$propuesta -> propuestaNinioCantidad = $_POST["cotizacionNuevoNinioCantidad"];
-	$propuesta -> propuestaNinioSF = $_POST["cotizacionNuevoNinioSF"];
-	$propuesta -> propuestaNinioFee = $_POST["cotizacionNuevoNinioFee"];
-	$propuesta -> propuestaInfanteCantidad = $_POST["cotizacionNuevoInfanteCantidad"];
-	$propuesta -> propuestaInfanteSF = $_POST["cotizacionNuevoInfanteSF"];
-	$propuesta -> propuestaInfanteFee = $_POST["cotizacionNuevoInfanteFee"];	
-	$propuesta -> propuestaUsuarioCreacion = $_POST["cotizacionNuevoUsuarioCreacion"];
+    $propuesta -> propuestaAdultosCostoUnitario = $_POST["cotizacionNuevoAdultosCostoUnitario"];
+    $propuesta -> propuestaAdultosFee = $_POST["cotizacionNuevoAdultosFee"];
+    $propuesta -> propuestaNinosCantidad = $_POST["cotizacionNuevoNinosCantidad"];
+    $propuesta -> propuestaNinosCostoUnitario = $_POST["cotizacionNuevoNinosCostoUnitario"];
+    $propuesta -> propuestaNinosFee = $_POST["cotizacionNuevoNinosFee"];
+    $propuesta -> propuestaDetraccion = $_POST["cotizacionNuevoDetraccion"];
+    $propuesta -> propuestaCambioMoneda = $_POST["cotizacionNuevoCambioMoneda"];
+    $propuesta -> propuestaUsuarioCreacion = $_POST["cotizacionNuevoUsuarioCreacion"];
 	$propuesta -> ajaxCrearPropuesta();
 
 }
@@ -133,5 +143,18 @@ if(isset($_POST["idPropuesta"])){
 	$propuesta = new AjaxPropuestas();
 	$propuesta -> idPropuesta = $_POST["idPropuesta"];
 	$propuesta -> ajaxEditarPropuesta();
+
+}
+
+/*=============================================
+ACTUALIZAR PROPUESTAS ESTADO
+=============================================*/	
+
+if(isset($_POST["idPropuestaEstado"])){
+
+	$propuesta = new AjaxPropuestas();
+	$propuesta -> estadoidPropuesta = $_POST["idPropuestaEstado"];
+	$propuesta -> estadoPropuesta = $_POST["estadoPropuesta"];
+	$propuesta -> ajaxActualizarEstadoPropuesta();
 
 }

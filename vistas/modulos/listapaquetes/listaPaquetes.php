@@ -39,15 +39,79 @@
 					<a href="#" data-toggle="modal" data-target="#modal-soluciud-personalizada"
 						class="btn btn-template-outlined">Descubrir más paquetes</a>
 				</div>
+
 			</div>
 		</div>
 	</div>
 </section>
 
+<style>
+
+ul.ui-autocomplete {
+    z-index: 1100;
+}
+
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+}
+
+.ui-autocomplete > li > div {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+
+.ui-state-hover,
+.ui-state-active,
+.ui-state-focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+
+
+</style>
+
+
 <!-- Login Modal-->
 <div id="modal-soluciud-personalizada" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true"
 	class="modal fade">
-	<div role="document" class="modal-dialog modal-lg">
+	<div role="document" class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 id="login-modalLabel" class="modal-title">
@@ -61,25 +125,27 @@
 				<input type="hidden" id="id_paquete" />
 				<div class="row">
 
-					<div class="col-sm-3">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaNombres">Nombres</label>
 							<input id="SolicitudPersonalizadaNombres" type="text" placeholder="Nombres completos" class="form-control" require/>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaApellidos">Apellidos</label>
 							<input id="SolicitudPersonalizadaApellidos" type="text" placeholder="Nombres completos" class="form-control" require/>
 						</div>
 					</div>
-					<div class="col-sm-3">
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaTelefono">Número de contacto</label>
 							<input id="SolicitudPersonalizadaTelefono" type="tel" placeholder="(+51) ___-___-___" class="form-control" maxlength="9" require/>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaDocumento">Número de documento</label>
 							<input id="SolicitudPersonalizadaDocumento" type="text" placeholder="DNI o Pasaporte" class="form-control" maxlength="15" />
@@ -89,25 +155,23 @@
 				</div>
 				<div class="row">
 
-					<div class="col-sm-6">
+					<div class="col-sm-12">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaCorreo">Correo contacto</label>
 							<input id="SolicitudPersonalizadaCorreo" type="email" placeholder="viajero@mail.com" class="form-control" require/>
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="SolicitudPersonalizadaCiudad">Destino</label>							
-							
-							
-							<select style="width: 100%;height:36px" class="form-control" name="SolicitudPersonalizadaCiudad" id="SolicitudPersonalizadaCiudad">
-                            </select>
-
-						</div>
-					</div>
-
 				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="SolicitudPersonalizadaPaisCiudad">Destino</label>
+							<input id="SolicitudPersonalizadaPaisCiudad" type='text' class="form-control"/>
+							<input id="SolicitudPersonalizadaPaisCiudadId" type="hidden" value="">
+						</div>
 
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
@@ -137,12 +201,15 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
-							<label for="txtViajeros">Servicios que desearía contar</label>
-							<select style="width: 100%" multiple="multiple" name ="SolicitudPersonalizadaServicios" id="SolicitudPersonalizadaServicios">
-								<option value="allIn" data-badge="allIn">Todo incluido</option>
-								<option value="hotel4_5" data-badge="hotel4_5">Hotel 4 y 5</option>
-								<option value="translado" data-badge="allIn">Traslados</option>
-								<option value="tarjeta_asistencia" data-badge="tarjeta">Tarjeta asistencia</option>
+							<label for="SolicitudPersonalizadaServicios">Servicios disponibles</label>
+							<select style="width: 100%" multiple="multiple" class="form-control" name ="SolicitudPersonalizadaServicios" id="SolicitudPersonalizadaServicios">
+								<option value="1" data-badge="1">Boleto Aéreo</option>
+								<option value="2" data-badge="2">Traslados</option>
+								<option value="3" data-badge="3">Noche de Alojamiento</option>
+								<option value="4" data-badge="4">Sistema todo incluido</option>
+								<option value="5" data-badge="5">Desayuno</option>
+								<option value="6" data-badge="6">Tarjeta de Asistencia</option>
+								<option value="7" data-badge="7">Rastro de maletas</option>							
 							</select>
 						</div>
 					</div>
