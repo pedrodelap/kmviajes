@@ -36,6 +36,17 @@ class AjaxSolicitudes{
 
 		echo json_encode($respuesta);
 
+	}
+	
+	public function ajaxEstadoAceptadaAReservada(){
+
+		$datos = array("id_solicitud"=>$this->idSolicitud,					
+					"estado_solicitud"=>"Reservada");
+
+		$respuesta = ControladorSolicitudes::ctrEstadoRegistradaACotizada($datos);
+
+		echo json_encode($respuesta);
+
     }
 
 
@@ -54,13 +65,26 @@ if(isset($_POST["idPaqueteDeSolicitudT"])){
 }
 
 /*=============================================
-CONSULTAR CAMPAÑAS
+SOLICITUD ESTADO REGISTRADA A COTIZADA
+=============================================*/	
+
+if(isset($_POST["Cotizada"])){
+
+	$cliente = new AjaxSolicitudes();
+	$cliente -> idSolicitud = $_POST["idSolicitud"];
+    $cliente -> ajaxEstadoRegistradaACotizada();
+
+}
+
+
+/*=============================================
+SOLICITUD ESTADO ACEPTADA A RESERVADA
 =============================================*/	
 
 if(isset($_POST["Reservada"])){
 
 	$cliente = new AjaxSolicitudes();
 	$cliente -> idSolicitud = $_POST["idSolicitud"];
-    $cliente -> ajaxEstadoRegistradaACotizada();
+    $cliente -> ajaxEstadoAceptadaAReservada();
 
 }

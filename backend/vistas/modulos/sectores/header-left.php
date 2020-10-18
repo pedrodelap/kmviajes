@@ -1,11 +1,12 @@
 <div class="app-header-left">
     <div class="search-wrapper">
         <div class="input-holder">
-            <input type="text" class="search-input" placeholder="Type to search">
+            <input type="text" class="search-input" placeholder="Escribe para buscar">
             <button class="search-icon"><span></span></button>
         </div>
         <button class="close"></button>
     </div>
+    <!--
     <ul class="header-megamenu nav">
         <li class="nav-item">
             <a href="javascript:void(0);" data-placement="bottom" rel="popover-focus" data-offset="300" data-toggle="popover-custom" class="nav-link">
@@ -180,4 +181,5 @@
             </div>
         </li>
     </ul>
+    -->
 </div>
