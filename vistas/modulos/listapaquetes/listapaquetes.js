@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    $("#loading-airplane").hide();
+    console.info("hide");
     listarPaquetesDisponibles();
     listarCiudades();
 

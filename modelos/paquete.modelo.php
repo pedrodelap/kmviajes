@@ -209,7 +209,8 @@ class ModeloPaqueteFront{
 												cc.apellidos,
 												cc.telefono,
 												cc.id_cliente,
-												cc.numero_documento
+												cc.numero_documento,
+												s.id_solicitud
 												from tb_solicitud s 
 												inner join tb_clientes cc on cc.id_cliente = s.id_cliente
 												left join tb_paquetes p on s.id_paquete = p.id_paquete
@@ -252,6 +253,24 @@ class ModeloPaqueteFront{
 
     }
 
+	#CREAR CLIENTE
+	#------------------------------------------------------------
+	static public function mdlCrearVenta($datosVenta){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_venta(:pId_solicitud, :pNroOperacion);");
+
+		$stmt->bindParam(":pId_solicitud", $datosVenta["solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":pNroOperacion", $datosVenta["operacion"], PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+	}
 
 
 

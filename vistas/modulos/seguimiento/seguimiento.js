@@ -115,6 +115,17 @@ $(document).ready(function () {
     $('#pagar-modal input[type=text]').on('keyup', function () {
         cardFormValidate();
     });
+
+    $(".my-rating-4").starRating({
+        totalStars: 5,
+        starShape: 'rounded',
+        starSize: 40,
+        emptyColor: 'lightgray',
+        hoverColor: 'salmon',
+        activeColor: 'crimson',
+        useGradient: false
+    });
+
 });
 
 
@@ -133,6 +144,7 @@ function realizarPago() {
     var expirationDate = $("#expiry_year").val() + "/" + $("#expiry_month").val();
     var paymentMethod = tipoTarjeta.toUpperCase() == "VISA" ? "VISA" : "MASTERCARD";
     var dniNumber = $("#dniNumber").val();
+    var id_solicitud = $("#id_solicitud").val();
     var pagar = true;
 
     var formPago = new FormData();
@@ -150,6 +162,7 @@ function realizarPago() {
     formPago.append("expirationDate", expirationDate);
     formPago.append("paymentMethod", paymentMethod);
     formPago.append("dniNumber", dniNumber);
+    formPago.append("id_solicitud", id_solicitud);
     formPago.append("pagar", pagar);
 
 
@@ -162,8 +175,11 @@ function realizarPago() {
         contentType: false,
         processData: false,
         dataType: "json",
+        beforeSend: function () {
+            $("#loading-airplane").show();
+        },
         success: function (respuesta) {
-
+            $("#loading-airplane").hide();
             var state = respuesta.transactionResponse.state;
 
             if (state == "APPROVED") {
