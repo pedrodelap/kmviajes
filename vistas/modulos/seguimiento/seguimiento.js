@@ -238,11 +238,10 @@ function limpiarDatosTarjeta() {
 function registrarEstado() {
 
     var id_solicitud = $("#id_solicitud").val();
-    var estado = "Aprobado";
+    var estado = "Aceptada";
     var cambiarEstado = true;
 
     var formPago = new FormData();
-
 
     formPago.append("estado", estado);
     formPago.append("id_solicitud", id_solicitud);
@@ -262,7 +261,10 @@ function registrarEstado() {
             $("#loading-airplane").show();
         },
         success: function (respuesta) {
-            $("#loading-airplane").hide();
+            
+            console.log(respuesta);
+
+            location.reload();
         }
 
     });

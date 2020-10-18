@@ -263,7 +263,7 @@ class ModeloPaqueteFront{
                                                 sh.fecha_solicitud as fecha_solicitud
 												from tb_solicitud s 
 												inner join tb_solicitudes_historial sh on sh.id_solicitud = s.id_solicitud
-												WHERE s.codigo_seguimiento =:codigoSeguimiento and sh.estado_solicitud <>'Aprobado'");
+												WHERE s.codigo_seguimiento =:codigoSeguimiento and sh.estado_solicitud <>'Aceptada'");
 												 
 		$stmt -> bindParam(":codigoSeguimiento", $codigoSeguimiento, PDO::PARAM_STR);
 		$stmt -> execute();
@@ -335,7 +335,7 @@ class ModeloPaqueteFront{
 		$stmt = Conexion::conectar()->prepare("CALL usp_insert_estado_cotizacion_estado(:pId_solicitud, :pestado);");
 
 		$stmt->bindParam(":pId_solicitud", $datosVenta["solicitud"], PDO::PARAM_INT);
-		$stmt->bindParam(":pestado", "Aprobada", PDO::PARAM_STR);
+		$stmt->bindParam(":pestado", $datosVenta["estado"], PDO::PARAM_STR);
 
 		$stmt -> execute();
 

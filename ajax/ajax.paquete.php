@@ -110,7 +110,7 @@ class AjaxPaquetes{
 			$datosMail = array("mailTo" => $datosCliente["correo"],
 								"nombreCliente" => $datosCliente["nombres"],
 								"tituloMail" => "Solicitud Registrada #".$idSolicitud,
-								"enviarMensaje" => "<p>Mensaje contenido ".$idSolicitud." </p>");
+								"enviarMensaje" => $idSolicitud);
 
 			//echo "<script>".var_dump($datosSolicitud)."</script>";
             //echo("<script>console.log('PHP: ');</script>");
@@ -152,9 +152,11 @@ class AjaxPaquetes{
 	public function ajaxCambiarEstadoHistorialSolicitud($datos){
 
 		$datosVenta = array("solicitud"=>$datos["id_solicitud"],
-							"operacion"=>$datos["estado"]
+							"estado"=>$datos["estado"]
 		);
 		ControladorPaqueteFront::ctrCrearHistorialSolicitud($datosVenta);
+
+		echo json_encode('ok');
 
 	}
 
@@ -264,5 +266,5 @@ if(isset($_POST['cambiarEstado'])){
 
 	$datosPago = array("estado"=>$_POST["estado"],
 						"id_solicitud"=>$_POST["id_solicitud"]);
-	$pagar -> ajaxPagarOnLine($datosPago);
+	$pagar -> ajaxCambiarEstadoHistorialSolicitud($datosPago);
 }
