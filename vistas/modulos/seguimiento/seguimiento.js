@@ -258,9 +258,27 @@ function registrarEstado() {
         },
         success: function (respuesta) {
 
-            console.log(respuesta);
+            $("#loading-airplane").hide();
 
-            location.reload();
+            if(respuesta = 'ok'){
+
+                console.log(respuesta);
+
+                Swal.fire({
+                    title: "¡OK!",
+                    text: "¡Cotización aceptada correctamente!",
+                    icon: "success",
+                    confirmButtonText: "Cerrar",
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result.value) {
+
+                        location.reload();
+                    }
+                });
+
+            }
+
         }
 
     });
