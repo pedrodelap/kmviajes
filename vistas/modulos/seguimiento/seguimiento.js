@@ -52,7 +52,12 @@ function cardFormValidate() {
     var regMonth = /^01|02|03|04|05|06|07|08|09|10|11|12$/;
     var regYear = /^2020|2021|2022|2023|2024|2025|2026|2027|2028|2029|2030|2031|2031|2032|2033|2034|2035$/;
     var regCVV = /^[0-9]{3,3}$/;
-    if (cardValid == 0) {
+    if (!regName.test(cardName)) {
+        $("#name_on_card").addClass('required');
+        $("#name_on_card").focus();
+    }
+    else if (cardValid == 0) {
+        $("#name_on_card").removeClass('required');
         $("#card_number").addClass('required');
         $("#card_number").focus();
         return false;
@@ -74,14 +79,6 @@ function cardFormValidate() {
         $("#expiry_year").removeClass('required');
         $("#cvv").addClass('required');
         $("#cvv").focus();
-        return false;
-    } else if (!regName.test(cardName)) {
-        $("#card_number").removeClass('required');
-        $("#expiry_month").removeClass('required');
-        $("#expiry_year").removeClass('required');
-        $("#cvv").removeClass('required');
-        $("#name_on_card").addClass('required');
-        $("#name_on_card").focus();
         return false;
     } else {
         $("#card_number").removeClass('required');
@@ -193,8 +190,7 @@ function realizarPago() {
                 }).then((result) => {
                     if (result.value) {
 
-                        $('#pagar-modal').modal('hide');
-                        limpiarDatosTarjeta();
+                        location.reload();
                     }
                 });
 
@@ -261,7 +257,7 @@ function registrarEstado() {
             $("#loading-airplane").show();
         },
         success: function (respuesta) {
-            
+
             console.log(respuesta);
 
             location.reload();

@@ -136,7 +136,7 @@
 																
 															break;
 															case "Cotizada":
-																if($count <=3 ){
+																if($count ==2 ){
 																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar</button>';
 																}
 																else{
@@ -161,7 +161,7 @@
 																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-sm btn-warning" >Notificar a Asesor</button>';
 																}
 																else{
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción'.$stepNumber.'</button>';
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																}
 															break;
 															case "Completa":
@@ -169,7 +169,7 @@
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-success">Calificar Servicios</button>';
 																}
 																else{
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción'.$stepNumber.'</button>';
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																}
 															break;
 															default:
