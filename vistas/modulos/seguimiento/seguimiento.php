@@ -48,7 +48,8 @@
 					<ul id="progressbar" class="text-center">
 						<?php 
 							$count = 0;
-							$historial = ControladorPaqueteFront::ctrObtenerHistoricoSeguimiento($codigoSeguimiento);
+							$historial = ControladorPaqueteFront::ctrObtenerHistoricoSeguimientoSinAprobado($codigoSeguimiento);
+							$historial2 = ControladorPaqueteFront::ctrObtenerHistoricoSeguimiento($codigoSeguimiento);
 							foreach ($historial as $value) {
 								echo "<li class='step0 active'></li>";
 								$count +=1;
@@ -122,7 +123,7 @@
 												<tbody>
 												<?php 
 												
-													foreach ($historial as $value) {
+													foreach ($historial2 as $value) {
 														
 														$htmlAction = "";
 														
@@ -136,15 +137,19 @@
 															break;
 															case "Cotizada":
 																if($count <=3 ){
-																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm">Cancelar</button>';
+																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar</button>';
 																}
 																else{
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																}
 																
 															break;
+															case "Aprobada":
+																$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
+																
+															break;
 															case "Reservada":
-																if($count <= 3 ){
+																if($count <= 4 ){
 																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago</button>';
 																}
 																else{
@@ -152,7 +157,7 @@
 																}
 															break;
 															case "Pagada":
-																if($count == 4 ){
+																if($count == 5 ){
 																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-sm btn-warning" >Notificar a Asesor</button>';
 																}
 																else{
@@ -160,7 +165,7 @@
 																}
 															break;
 															case "Completa":
-																if($count == 5 ){
+																if($count == 6 ){
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-success">Calificar Servicios</button>';
 																}
 																else{

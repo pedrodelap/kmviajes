@@ -225,6 +225,12 @@ class ControladorPaqueteFront{
 
     }
 
+    static public function ctrObtenerHistoricoSeguimientoSinAprobado($codigoSeguimiento){
+        $respuesta = ModeloPaqueteFront::mdlObtenerHistoricoSeguimiento2($codigoSeguimiento);
+		return $respuesta;
+
+    }
+
     static public function ctrSelectSearchPaisCiudad($valor){
 
 		$respuesta = ModeloPaqueteFront::mdlSelectCiudades($valor);
@@ -233,6 +239,13 @@ class ControladorPaqueteFront{
 
     }
 
+    static public function ctrCrearHistorialSolicitud($datosVenta){
+
+        $respuesta = ModeloPaqueteFront::mdlCrearHisorialSolicitud($datosVenta);
+    
+		return $respuesta;
+
+    }
 
    
 }

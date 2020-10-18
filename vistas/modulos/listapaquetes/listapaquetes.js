@@ -26,9 +26,9 @@ $(document).ready(function () {
 
 
 
-    $( "#SolicitudPersonalizadaPaisCiudad" ).autocomplete({
-        source: function( request, response ) {
-            
+    $("#SolicitudPersonalizadaPaisCiudad").autocomplete({
+        source: function (request, response) {
+
             $.ajax({
                 url: "ajax/ajax.paquete.php",
                 type: 'post',
@@ -36,8 +36,8 @@ $(document).ready(function () {
                 data: {
                     search: request.term
                 },
-                success: function( data ) {
-                    response( data );
+                success: function (data) {
+                    response(data);
                 }
             });
         },
@@ -183,7 +183,7 @@ function registroSolicitud() {
                 //console.log("ingreso al segundo if");
                 Swal.fire({
                     type: "success",
-                    title: "La propuesta a sido registrada correctamente",
+                    title: "La solicitud a sido registrada correctamente",
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar",
                     closeOnConfirm: false

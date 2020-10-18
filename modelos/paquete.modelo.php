@@ -250,6 +250,30 @@ class ModeloPaqueteFront{
 
         $stmt = null;
 
+	}
+	
+	#CONSULTAR HISTORICO DE SEGUIMIENTO
+	#------------------------------------------------------------
+	static public function mdlObtenerHistoricoSeguimiento2($codigoSeguimiento){
+
+		$stmt = Conexion::conectar()->prepare("SELECT
+												sh.id_solicitud_historial as id_solicitud_historial,
+                                               
+                                                sh.estado_solicitud as estado_solicitud,
+                                                sh.fecha_solicitud as fecha_solicitud
+												from tb_solicitud s 
+												inner join tb_solicitudes_historial sh on sh.id_solicitud = s.id_solicitud
+												WHERE s.codigo_seguimiento =:codigoSeguimiento and sh.estado_solicitud <>'Aprobado'");
+												 
+		$stmt -> bindParam(":codigoSeguimiento", $codigoSeguimiento, PDO::PARAM_STR);
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+        $stmt = null;
+
     }
 
 		#SELECT AEROPUERTOS
@@ -285,7 +309,7 @@ class ModeloPaqueteFront{
 		$stmt = null;
 
 	}
-	#CREAR CLIENTE
+	#CREAR VENTA
 	#------------------------------------------------------------
 	static public function mdlCrearVenta($datosVenta){
 
@@ -293,6 +317,25 @@ class ModeloPaqueteFront{
 
 		$stmt->bindParam(":pId_solicitud", $datosVenta["solicitud"], PDO::PARAM_INT);
 		$stmt->bindParam(":pNroOperacion", $datosVenta["operacion"], PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+	}
+
+	#CREAR HISTORIAL SOLICITUD
+	#------------------------------------------------------------
+	static public function mdlCrearHisorialSolicitud($datosVenta){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_estado_cotizacion_estado(:pId_solicitud, :pestado);");
+
+		$stmt->bindParam(":pId_solicitud", $datosVenta["solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":pestado", "Aprobada", PDO::PARAM_STR);
 
 		$stmt -> execute();
 

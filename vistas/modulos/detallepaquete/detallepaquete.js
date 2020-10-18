@@ -59,7 +59,7 @@ function registroSolicitud2() {
                 //console.log("ingreso al segundo if");
                 Swal.fire({
                     type: "success",
-                    title: "La propuesta a sido registrada correctamente",
+                    title: "La solicitud a sido registrada correctamente",
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar",
                     closeOnConfirm: false

@@ -100,7 +100,7 @@
 
 						$cantidad_ninios = $paquete["cantidad_ninios"];
 
-						echo '<h4>Pasajeros</h4>   <p>'.$cantidad_adultos.' Adultos - '.$cantidad_ninios.' Niños</p>' ;
+						//echo '<h4>Pasajeros</h4>   <p>'.$cantidad_adultos.' Adultos - '.$cantidad_ninios.' Niños</p>' ;
 
 					?>
 					<?php 

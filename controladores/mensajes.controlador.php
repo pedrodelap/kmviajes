@@ -105,7 +105,7 @@ class MensajesController{
 
 			//$título = 'Respuesta a su mensaje';
 
-			$mensaje ='<html>
+			/*$mensaje ='<html>
 							<head>
 								<title>Respuesta a su Mensaje</title>
 							</head>
@@ -129,8 +129,10 @@ class MensajesController{
 								<img src="https://s23.postimg.org/dsnyjtesr/unnamed.jpg">
 							</body>
 
-					   </html>';
-
+					   </html>';*/
+			$mensajeOriginal =  file_get_contents("email_template.html");
+			$mensaje = str_replace("@user", $nombre, $mensajeOriginal);
+			$mensaje = str_replace("@seguimiento", $contenido, $mensaje);
 		   $cabeceras  = 'MIME-Version: 1.0' . "\r\n";
 		   $cabeceras .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
 		   $cabeceras .= 'From: <rarg15@gmail.com>' . "\r\n";

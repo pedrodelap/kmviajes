@@ -149,6 +149,14 @@ class AjaxPaquetes{
 
 	}
 
+	public function ajaxCambiarEstadoHistorialSolicitud($datos){
+
+		$datosVenta = array("solicitud"=>$datos["id_solicitud"],
+							"operacion"=>$datos["estado"]
+		);
+		ControladorPaqueteFront::ctrCrearHistorialSolicitud($datosVenta);
+
+	}
 
 }
 
@@ -248,4 +256,13 @@ if(isset($_POST['search'])){
 	$buscarCiudadPais -> search = $_POST["search"];
 	$buscarCiudadPais -> ajaxSearchPaisCiudad();
 
+}
+
+
+if(isset($_POST['cambiarEstado'])){
+	$pagar = new AjaxPaquetes();
+
+	$datosPago = array("estado"=>$_POST["estado"],
+						"id_solicitud"=>$_POST["id_solicitud"]);
+	$pagar -> ajaxPagarOnLine($datosPago);
 }

@@ -232,3 +232,38 @@ function limpiarDatosTarjeta() {
     $("#expiry_month").val('');
 
 }
+
+
+
+function registrarEstado() {
+
+    var id_solicitud = $("#id_solicitud").val();
+    var estado = "Aprobado";
+    var cambiarEstado = true;
+
+    var formPago = new FormData();
+
+
+    formPago.append("estado", estado);
+    formPago.append("id_solicitud", id_solicitud);
+    formPago.append("cambiarEstado", cambiarEstado);
+
+
+    $.ajax({
+
+        url: "ajax/ajax.paquete.php",
+        method: "POST",
+        data: formPago,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        beforeSend: function () {
+            $("#loading-airplane").show();
+        },
+        success: function (respuesta) {
+            $("#loading-airplane").hide();
+        }
+
+    });
+}
