@@ -310,14 +310,7 @@
                			 </div>
 						</div>
 						<div class="col-sm-6">
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="name_on_card"><b>Titular de tarjeta</b></label>
-										<input id="name_on_card" type="text" class="form-control" placeholder="" require/>
-									</div>
-								</div>
-							</div>
+							
 
 							<div class="row">
 								<div class="col-sm-12">
@@ -355,7 +348,14 @@
 									</div>
 								</div>
 							</div>
-							
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="name_on_card"><b>Titular de tarjeta</b></label>
+										<input id="name_on_card" type="text" class="form-control" placeholder="" require/>
+									</div>
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="form-group">
