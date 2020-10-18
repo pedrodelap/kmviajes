@@ -84,7 +84,12 @@
 
                                         case "Cotizada":
 
-                                            $estado_solictud = '<div class="estadoSolicitudCotizada badge badge-pill badge-info" idSolicitud="'.$value["id_solicitud"].'">cotizada</div>' ;
+                                            $estado_solictud = '<div class="badge badge-pill badge-info" idSolicitud="'.$value["id_solicitud"].'">cotizada</div>' ;
+                                            break;
+
+                                        case "Aceptada":
+                                        
+                                            $estado_solictud = '<div class="estadoSolicitudAceptada badge badge-pill badge-warning" idSolicitud="'.$value["id_solicitud"].'">aceptada</div>' ;
                                             break;
 
                                         case "Reservada":

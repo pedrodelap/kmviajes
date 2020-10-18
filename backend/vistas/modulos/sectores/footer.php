@@ -1,7 +1,9 @@
 <div class="app-wrapper-footer">
     <div class="app-footer">
         <div class="app-footer__inner">
+
             <div class="app-footer-left">
+                <!--
                 <div class="footer-dots">
                     <div class="dropdown">
                         <a aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="dot-btn-wrapper">
@@ -338,8 +340,11 @@
                     </div>
 
                 </div>
+                -->
             </div>
+
             <div class="app-footer-right">
+                <!--
                 <ul class="header-megamenu nav">
                     <li class="nav-item">
                         <a data-placement="top" rel="popover-focus" data-offset="300" data-toggle="popover-custom" class="nav-link">
@@ -429,7 +434,9 @@
                         </div>
                     </li>
                 </ul>
+                 -->
             </div>
+        
         </div>
     </div>
 </div>

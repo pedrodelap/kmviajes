@@ -4,18 +4,18 @@
             <li class="app-sidebar__heading">Dashboards</li>
             <li>
                 <a href="inicio" class="mm-active">
-                    <i class="metismenu-icon pe-7s-rocket"></i> Inicio
+                    <i class="metismenu-icon lnr-laptop"></i> Inicio
                 </a>
             </li>
             <li class="app-sidebar__heading">Menú </li>
             <li>
                 <a href="clientes">
-                    <i class="metismenu-icon pe-7s-diamond"></i> Clientes
+                    <i class="metismenu-icon lnr-users"></i> Clientes
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="metismenu-icon fas fa-file-powerpoint"></i> Cotizaciones
+                    <i class="metismenu-icon fas fa-file-signature"></i> Cotizaciones
                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>
@@ -35,41 +35,35 @@
             </li>
             <li>
                 <a href="campanas">
-                    <i class="metismenu-icon pe-7s-mouse"></i> Campañas Turísticas
+                    <i class="metismenu-icon fas fa-luggage-cart"></i> Campañas Turísticas
                 </a>
             </li>
             <li>
                 <a href="paquetes">
-                    <i class="metismenu-icon pe-7s-mouse"></i> Paquetes Turísticos
+                    <i class="metismenu-icon fas fa-box-open"></i> Paquetes Turísticos
                 </a>
             </li>
 
             <li>
                 <a href="solicitudes">
-                    <i class="metismenu-icon pe-7s-mouse"></i> Bandeja de Solicitudes
+                    <i class="metismenu-icon far fa-folder-open"></i> Bandeja de Solicitudes
                 </a>
             </li>
             
 
             <li>
                 <a href="aerolineas">
-                    <i class="metismenu-icon pe-7s-mouse"></i> Aerolíneas
+                    <i class="metismenu-icon pe-7s-plane"></i> Aerolíneas
                 </a>
             </li>
             <li>
                 <a href="hoteles">
-                    <i class="metismenu-icon pe-7s-mouse"></i> Hoteles
-                </a>
-            </li>
-
-            <li>
-                <a href="monedas">
-                    <i class="metismenu-icon pe-7s-display2"></i> Tipos de Cambio
+                    <i class="metismenu-icon lnr-apartment"></i> Hoteles
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="metismenu-icon pe-7s-car"></i> Sitio Web
+                    <i class="metismenu-icon fas fa-copy"></i> Sitio Web
                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>
@@ -95,7 +89,13 @@
             <li class="app-sidebar__heading">Web Principal</li>
             <li>
                 <a href="../index" target="_blank">
-                    <i class="metismenu-icon pe-7s-rocket"></i> Ver Sitio Web
+                    <i class="metismenu-icon far fa-copy"></i> Ver Sitio Web
+                </a>
+            </li>
+            <li class="app-sidebar__heading">Salir</li>
+            <li>
+                <a href="salir">
+                    <i class="metismenu-icon pe-7s-power"></i> Cerrar Sesión
                 </a>
             </li>
         </ul>

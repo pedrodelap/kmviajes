@@ -100,7 +100,7 @@ $(".table").on("click", ".estadoSolicitudRegistrada", function() {
     var datos = new FormData();
 
     datos.append("idSolicitud", idSolicitud);
-    datos.append("Reservada", true);
+    datos.append("Cotizada", true);
 
     Swal.fire({
         title: '¿Está seguro de cambiar la solicitud a Cotizada?',
@@ -162,10 +162,15 @@ $(".table").on("click", ".estadoSolicitudRegistrada", function() {
 CAMBIAR ESTADO DE LA SOLICITUD DE REGISTRADA A COTIZADA
 =============================================*/
 
-$(".table").on("click", ".estadoSolicitudCotizada", function() {
+$(".table").on("click", ".estadoSolicitudAceptada", function() {
 
     var idSolicitud = $(this).attr("idSolicitud");
-    console.log("idSolicitud", idSolicitud);
+
+    var datos = new FormData();
+
+    datos.append("idSolicitud", idSolicitud);
+    datos.append("Reservada", true);
+
 
     Swal.fire({
         title: '¿Está seguro de cambiar la solicitud a En Reserva?',
@@ -180,6 +185,43 @@ $(".table").on("click", ".estadoSolicitudCotizada", function() {
         if (result.value) {
 
             console.log("idSolicitud", idSolicitud);
+
+            $.ajax({
+
+                url: "ajax/ajax.solicitudes.php",
+                method: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function(respuesta) {
+        
+                    if(respuesta == "ok"){
+        
+                        console.log("respuesta: ",respuesta);
+
+                        Swal.fire({
+                            type: "success",
+                            title: "La solicitud ha sido cambiada correctamente",
+                            showConfirmButton: true,
+                            confirmButtonText: "Cerrar",
+                            closeOnConfirm: false
+                            }).then((result) => {
+                                      if (result.value) {
+  
+                                          window.location = "solicitudes";
+  
+                                      }
+                        });
+                                
+                    }
+        
+                }
+        
+            });
+
+
         }
 
     })
