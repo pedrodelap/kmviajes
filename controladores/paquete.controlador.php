@@ -127,6 +127,14 @@ class ControladorPaqueteFront{
 
     }
 
+    static public function ctrCrearVenta($datosVenta){
+
+        $respuesta = ModeloPaqueteFront::mdlCrearVenta($datosVenta);
+    
+		return $respuesta;
+
+    }
+
     static public function ctrEnviarPagoPasarella($data){
 
         //$data = array("first_name" => "First name","last_name" => "last name","email"=>"email@gmail.com","addresses" => array ("address1" => "some address" ,"city" => "city","country" => "CA", "first_name" =>  "Mother","last_name" =>  "Lastnameson","phone" => "555-1212", "province" => "ON", "zip" => "123 ABC" ) );

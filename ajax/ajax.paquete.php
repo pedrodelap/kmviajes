@@ -34,7 +34,21 @@ class AjaxPaquetes{
 
 		$respuesta = null;
 		$respuesta = ControladorPaqueteFront::ctrEnviarPagoPasarella($datosPago);
-		echo json_encode($respuesta);;
+		
+
+		$statePago = $respuesta["transactionResponse"]["state"];
+
+		if ($statePago == "APPROVED"){
+			$orderID = $respuesta["transactionResponse"]["orderId"];
+			$datosVenta = array("solicitud"=>$datosPago["id_solicitud"],
+			"operacion"=>$orderID
+		  );
+		  ControladorPaqueteFront::ctrCrearVenta($datosVenta);
+		}
+
+		
+		
+		echo json_encode($respuesta);
 
 	}	
 
@@ -221,7 +235,8 @@ if(isset($_POST["pagar"])){
 						"securityCode"=>$_POST["securityCode"],
 						"expirationDate"=>$_POST["expirationDate"],
 						"paymentMethod"=>$_POST["paymentMethod"],
-						"dniNumber"=>$_POST["dniNumber"]);
+						"dniNumber"=>$_POST["dniNumber"],
+						"id_solicitud"=>$_POST["id_solicitud"]);
 	$pagar -> ajaxPagarOnLine($datosPago);
 
 }

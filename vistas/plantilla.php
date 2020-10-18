@@ -24,7 +24,7 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="vistas/assets/css/custom.css">
 
-
+    <link rel="stylesheet" type="text/css" href="https://github.com/nashio/star-rating-svg/blob/master/src/css/star-rating-svg.css"/>
     <link rel="stylesheet" href="backend/vistas/assets/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Favicon and apple touch icons-->
@@ -78,8 +78,12 @@
 
 
     </div>
+    <div id="loading-airplane">
+        <lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_z6Hw67.json"  background="transparent"  speed="0.5"  style="width: 100px; height: 100px;"  loop  autoplay></lottie-player><div id="heading-breadcrumbs">
+    </div>
     <!-- Javascript files-->
 
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="vistas/assets/vendor/jquery/jquery.min.js"></script>
     <script src="vistas/assets/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="vistas/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -101,7 +105,7 @@
     <script src="https://code.jquery.com/ui/jquery-ui-git.js" ></script>
 
      <!--SweetAlert2-->        
-    
+     <script src="vistas/assets/js/jquery.star-rating-svg.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     <script src="vistas/assets/js/front.js"></script>

@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    $("#loading-airplane").hide();
+    console.info("hide");
     listarPaquetesDisponibles();
     listarCiudades();
 
@@ -159,16 +162,16 @@ function registroSolicitud() {
 
             if (respuesta == "errorValidacionCliente") {
 
-               //console.log("ingreso al primer if");
+                //console.log("ingreso al primer if");
                 Swal.fire({
                     type: "error",
                     title: "¡Los datos del solicitante no pueden ir vacíos o llevar caracteres especiales!",
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar",
                     closeOnConfirm: false
-                    }).then((result) => {
-                      if (result.value) {
-                          
+                }).then((result) => {
+                    if (result.value) {
+
                         $('#modal-soluciud-personalizada').modal('hide');
 
                     }
@@ -213,3 +216,6 @@ function limpiarSolicitudPersonalizada() {
     $("#SolicitudPersonalizadaObservacion").val('');
 
 }
+
+
+

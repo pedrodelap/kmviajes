@@ -4,7 +4,6 @@
 	$paquete = ControladorPaqueteFront::ctrObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento);
 ?>
 
-<div id="heading-breadcrumbs">
 	<div class="container">
 		<div class="row d-flex align-items-center flex-wrap">
 			<div class="col-md-7">
@@ -48,7 +47,7 @@
 				<div class="col-12">
 					<ul id="progressbar" class="text-center">
 						<?php 
-							$count = 1;
+							$count = 0;
 							$historial = ControladorPaqueteFront::ctrObtenerHistoricoSeguimiento($codigoSeguimiento);
 							foreach ($historial as $value) {
 								echo "<li class='step0 active'></li>";
@@ -56,7 +55,7 @@
 								
 							}
 							
-							for ($i = $count; $i <= 5; $i++) {
+							for ($i = $count; $i <= 4; $i++) {
 								echo '<li class="step0"></li>';
 							}
 						?>
@@ -122,55 +121,63 @@
 												</thead>
 												<tbody>
 												<?php 
-
+												
 													foreach ($historial as $value) {
 														
 														$htmlAction = "";
-														$stepNumber = 1;
+														
 														$estadoSolicitud = $value[1];
 														
 														
 														switch ($estadoSolicitud) {
 															case "Registrada":
-																$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
+																$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																
 															break;
 															case "Cotizada":
-																if($stepNumber <=3 ){
-																	$htmlAction = '<a href="#" class="btn btn-template-outlined btn-sm">Cancelar</a>';
+																if($count <=3 ){
+																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm">Cancelar</button>';
 																}
 																else{
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																}
 																
 															break;
 															case "Reservada":
-																if($stepNumber <=3 ){
-																	$htmlAction = '<a href="#" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Pagar</a>';
+																if($count <= 3 ){
+																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago</button>';
 																}
 																else{
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																}
 															break;
 															case "Pagada":
-																if($stepNumber <=3 ){
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
+																if($count == 4 ){
+																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-sm btn-warning" >Notificar a Asesor</button>';
 																}
 																else{
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción'.$stepNumber.'</button>';
+																}
+															break;
+															case "Completa":
+																if($count == 5 ){
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-success">Calificar Servicios</button>';
+																}
+																else{
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción'.$stepNumber.'</button>';
 																}
 															break;
 															default:
-																if($stepNumber <=3 ){
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
+																if($count <=3 ){
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																}
 																else{
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabledt="">Sin acción</button>';
+																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																}
 															break;
 															
 														}
-														$stepNumber += 1;
+														
 														
 														echo '<tr>
 																<th>#'.$value[0].'</th>
@@ -221,6 +228,7 @@
 												<input type="hidden" id="phone" value="<?php echo $paquete["telefono"]; ?>"/>
 												<input type="hidden" id="merchantPayerId" value="<?php echo $paquete["id_cliente"]; ?>"/>
 												<input type="hidden" id="dniNumber" value="<?php echo $paquete["numero_documento"]; ?>"/>
+												<input type="hidden" id="id_solicitud" value="<?php echo $paquete["id_solicitud"]; ?>"/>
 											</tbody>
 										</table>
 									</div>
@@ -260,74 +268,128 @@
 
 
  <div id="pagar-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
-        <div role="document" class="modal-dialog">
+        <div role="document" class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
+			<img src="https://img.icons8.com/material-rounded/24/000000/lock.png"/>
               <h4 id="login-modalLabel" class="modal-title">Realizar Pago</h4>
               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
             </div>
-            <div class="modal-body">
-            <input type="hidden" id="codigoSeguimiento" value="<?php echo $codigoSeguimiento ?>"/>
-                  <div class="row">
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label for="card_number">Número de Tarjeta</label>
-								<div class="input-group mb-3">
-								
-								<div class="input-group-append">
-									<span class="input-group-text" style="padding:0 5px;" id="type"><img class="img_card" src="https://img.icons8.com/android/48/000000/bank-card-back-side.png"/></span>
-								</div>
-								<input id="card_number" maxlength="16" type="text" placeholder="Numero de tarjeta" class="form-control">
-								</div>
-							</div>
-						</div>
-					</div>
-                 
+            	<div class="modal-body">
+					<input type="hidden" id="codigoSeguimiento" value="<?php echo $codigoSeguimiento ?>"/>
 					<div class="row">
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label for="expiry_month">Mes Vencimiento</label>
-								<input id="expiry_month" type="text" maxlength="2" placeholder="MM" class="form-control">
+						<div class="col-sm-6">
+							<div class="image">
+								<img src="backend/vistas/images/paquetes/74_img_4_20200926051408.png" alt="" class="img-fluid">
 							</div>
+							<div class="table-responsive">
+							<table class="table">
+								<tbody>
+								<tr>
+									<th colspan="2"><?php echo $paquete["titulo"]; ?></th>
+								</tr>
+								<tr>
+									<td>Destino</td>
+									<th><?php echo $paquete["ciudad"]; ?></th>
+								</tr>
+								<tr>
+									<td>Fecha</td>
+									<th><?php echo $paquete["fecha_fin"]; ?></th>
+								</tr>
+								<tr class="total">
+									<td>Total</td>
+									<th>$<?php echo number_format($paquete["precio_dolar"],2); ?></th>
+								</tr>
+								</tbody>
+							</table>
+               			 </div>
 						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label for="expiry_year">Año Vencimiento</label>
-								<input id="expiry_year" type="text" maxlength="4" placeholder="AAAA" class="form-control">
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="name_on_card"><b>Titular de tarjeta</b></label>
+										<input id="name_on_card" type="text" class="form-control" placeholder="" require/>
+									</div>
+								</div>
 							</div>
+
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="card_number"><b>Número de tarjeta</b></label>
+										<div class="input-group mb-3">
+										
+										<div class="input-group-append">
+											<span class="input-group-text" style="padding:0 5px;" id="type"><img class="img_card" src="https://img.icons8.com/android/48/000000/bank-card-back-side.png"/></span>
+										</div>
+										<input id="card_number" maxlength="16" type="text" placeholder="Numero de tarjeta" class="form-control">
+										</div>
+									</div>
+								</div>
+							</div>
+						
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="expiry_month"><b>Mes expiración</b></label>
+										<input id="expiry_month" type="text" maxlength="2" placeholder="MM" class="form-control">
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="expiry_year"><b>Año expiración</b></label>
+										<input id="expiry_year" type="text" maxlength="4" placeholder="AAAA" class="form-control">
+									</div>
+								</div>
+								
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="cvv"><b>CVV</b></label>
+										<input id="cvv" type="password" maxlength="4" placeholder="000" class="form-control">
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="txtCorreo"><b>Correo contacto</b></label>
+										<input id="txtCorreo" type="email" disabled class="form-control" value="<?php echo $paquete["correo"];?>" require/>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+										<button onclick="realizarPago()" id="btn_pagar" class="btn  btn-primary" style="float: right;">Confirmar pago de $<?php echo number_format($paquete["precio_dolar"],2)?></button>
+								</div>
+							</div>
+							
+							
 						</div>
 						
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label for="cvv">CVV</label>
-								<input id="cvv" type="password" maxlength="4" placeholder="000" class="form-control">
-							</div>
-						</div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label for="name_on_card">Titular de Tarjeta</label>
-								<input id="name_on_card" type="text" class="form-control" placeholder="" require/>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="form-group">
-								<label for="txtCorreo">Correo contacto</label>
-								<input id="txtCorreo" type="email" disabled class="form-control" value="<?php echo $paquete["correo"];?>" require/>
-							</div>
-						</div>
-					</div>
-
-                    <div class="modal-footer">
-						<button onclick="realizarPago()" id="btn_pagar" class="btn btn-primary">Realizar Pago</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-						</div>
-                    </div>
-               </div>
+					
+			   </div>
+			   
           </div>
         </div>
       </div>
       <!-- Login modal end-->
+<div id="calificar-modal" tabindex="-1" role="dialog" aria-labelledby="calificar-modalLabel" aria-hidden="true" class="modal fade">
+<div role="document" class="modal-dialog ">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 id="calificar-modalLabel" class="modal-title">Calificar servicios</h4>
+              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+				<div class="my-rating-4" data-rating="2.5"></div>
+			</div>
+			<div class="modal-footer">
+				<button onclick="realizarPago()" id="btn_pagar" class="btn btn-primary">Realizar Pago</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+			</div>
+	</div>
+</div>
+</div>	 
