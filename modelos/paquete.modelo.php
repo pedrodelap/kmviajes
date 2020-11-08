@@ -203,6 +203,7 @@ class ModeloPaqueteFront{
 												ifnull(p.titulo,'Solicitud personalizada') as titulo,
 												p.precio_dolar,
 												p.precio_sol,
+												p.fecha_mostrar,
 												cc.correo,
 												cc.nombres,
 												cc.apellidos,

@@ -67,8 +67,45 @@ if(isset($_GET['idSolicitud'])){
                     <div class="page-title-subheading">Easily create beautiful form multi step wizards!</div>
                 </div>
             </div>
+
+            <?php
+
+                if(isset($_GET['idSolicitud'])){
+
+            ?>
+                <div class="page-title-actions">
+                    <a href="fpdf/cotizacion.php" target="blank">
+                        <button type="button" class="btn-shadow btn btn-alternate">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                                <i class="fas fa-file-pdf"></i>
+                            </span>
+                            Generar PDF
+                        </button>&nbsp;
+                    </a>
+
+                    <button type="button" class="btn-shadow btn btn-focus" onclick="validarClienteSeleccionado()" >
+                        <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        Enviar Correo
+                    </button>&nbsp;
+                </div>
+
+            <?php
+
+                } else {
+
+            ?>
+
             <div class="page-title-actions" id="divBotonesCotizacion">
             </div>
+
+            <?php
+
+                }
+
+            ?>
+
        </div>
     </div>
     <div class="row animated fadeIn">
@@ -99,24 +136,6 @@ if(isset($_GET['idSolicitud'])){
                             </span>
                             Crear Propuesta
                         </button>&nbsp;
-
-                        
-                        <a href="tcpdf/pdf/cotizacion_personal.php?idSolicitud=61" target="blank">
-                            <button type="button" class="btn-shadow btn btn-alternate">
-                                <span class="btn-icon-wrapper pr-2 opacity-7">
-                                    <i class="fas fa-file-pdf"></i>
-                                </span>
-                                Generar PDF
-                            </button>&nbsp;
-                        </a>
-
-                        <button type="button" class="btn-shadow btn btn-focus" onclick="validarClienteSeleccionado()" >
-                            <span class="btn-icon-wrapper pr-2 opacity-7">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            Enviar Correo
-                        </button>&nbsp;
-
 
                         <hr>
 

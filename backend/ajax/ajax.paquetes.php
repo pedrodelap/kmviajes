@@ -12,6 +12,7 @@ class AjaxPaquetes{
 	public $paqueteCampana;
 	public $paqueteAerolinea;
 	public $paqueteCiudad;
+	public $paqueteHotel;
 	public $paquetePrecioSoles;
 	public $paquetePrecioDolares;
 	public $paqueteCantidadAdultos;
@@ -21,6 +22,7 @@ class AjaxPaquetes{
 	public $paqueteFechaFin;
 	public $paqueteDescripcionCorta;
 	public $paqueteDescripcionLarga;
+	public $paqueteDetalle;
 
 	public $id_paquete;
 
@@ -29,6 +31,7 @@ class AjaxPaquetes{
 		$datos = array("titulo"=>$this->paqueteTitulo,					
 					"id_aerolinea"=>$this->paqueteAerolinea,
 					"id_ciudad"=>$this->paqueteCiudad,
+					"id_hotel"=>$this->paqueteHotel,
 					"precio_sol"=>$this->paquetePrecioSoles,
 					"precio_dolar"=>$this->paquetePrecioDolares,
 					"cantidad_adultos"=>$this->paqueteCantidadAdultos,
@@ -37,7 +40,7 @@ class AjaxPaquetes{
 					"fecha_inicio"=>$this->paqueteFechaInicio,
 					"fecha_fin"=>$this->paqueteFechaFin,
 					"descripcion_corta"=>$this->paqueteDescripcionCorta,
-					"descripcion_larga"=>$this->paqueteDescripcionLarga);
+					"detalle"=>$this->paqueteDetalle);
 		
 		$respuesta = ControladorPaquetes::ctrCrearPaquete($datos);
 
@@ -162,9 +165,9 @@ if(isset($_POST["nuevoPaqueteTitulo"])){
 	$paquete = new AjaxPaquetes();
 	$paquete -> paqueteTitulo = $_POST["nuevoPaqueteTitulo"];
 	$paquete -> paqueteCampana = $_POST["nuevoPaqueteCampana"];
-
 	$paquete -> paqueteAerolinea = $_POST["nuevoPaqueteAerolinea"];	
-	$paquete -> paqueteCiudad = $_POST["nuevoPaqueteCiudad"];	
+	$paquete -> paqueteCiudad = $_POST["nuevoPaqueteCiudad"];
+	$paquete -> paqueteHotel = $_POST["nuevoPaqueteHotel"];
 	$paquete -> paquetePrecioSoles = $_POST["nuevoPaquetePrecioSoles"];	
 	$paquete -> paquetePrecioDolares = $_POST["nuevoPaquetePrecioDolares"];
 	$paquete -> paqueteCantidadAdultos = $_POST["nuevoPaqueteCantidadAdultos"];
@@ -174,6 +177,7 @@ if(isset($_POST["nuevoPaqueteTitulo"])){
 	$paquete -> paqueteFechaFin = $_POST["nuevoPaqueteFechaFin"];
 	$paquete -> paqueteDescripcionCorta = $_POST["nuevoPaqueteDescripcionCorta"];
 	$paquete -> paqueteDescripcionLarga = $_POST["nuevoPaqueteDescripcionLarga"];
+	$paquete -> paqueteDetalle = $_POST["nuevoPaqueteDetalle"];
 	$paquete -> ajaxCrearPaquete();
 
 }

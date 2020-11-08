@@ -77,7 +77,7 @@ $(".paqueteCiudad").select2({
 
 
 /*=============================================
-SELECCIONAR CAPAÑA EN PAQUETES / CAPAÑA EN PAQUETES
+SELECCIONAR CAMPAÑA EN PAQUETES / BUSCAR CAMPAÑA EN PAQUETES
 =============================================*/
 
 $(".campanaEnPaquete").select2({
@@ -110,6 +110,40 @@ $(".campanaEnPaquete").select2({
     templateSelection: formatRepoSelection
 });
 
+
+/*=============================================
+SELECCIONAR HOTEL EN PAQUETES
+=============================================*/
+
+$(".paqueteHotel").select2({
+    dropdownParent: $('#modalNuevoPaquete'),
+    placeholder: "Buscar Hotel",
+    theme: "bootstrap4",
+    ajax: {
+        url: 'ajax/ajax.hoteles.php',
+        dataType: 'json',
+        delay: 250,
+        data: function(params) {
+            return {
+                q: params.term,
+                page: params.page
+            };
+        },
+        processResults: function(data, params) {
+            params.page = params.page || 1;
+            return {
+                results: data.items,
+                pagination: {
+                    more: (params.page * 30) < data.total_count
+                }
+            };
+        },
+        cache: false
+    },
+    minimumInputLength: 3,
+    templateResult: formatRepo,
+    templateSelection: formatRepoSelection
+});
 
 /*=============================================
 FORMATOS INICIALES PAQUETTES TURISTICOS
@@ -268,6 +302,7 @@ $(".adicionarPaqueteTuristico").click(function() {
     var nuevoPaqueteCampana = $("#nuevoCampanadePaquete option:selected").val();
     var nuevoPaqueteAerolinea = $("#nuevoPaqueteAerolinea option:selected").val();
     var nuevoPaqueteCiudad = $("#nuevoPaqueteCiudad option:selected").val();
+    var nuevoPaqueteHotel = $("#nuevoPaqueteHotel option:selected").val();
     var nuevoPaquetePrecioSoles = $("#nuevoPaquetePrecioSoles").val();
     var nuevoPaquetePrecioDolares = $("#nuevoPaquetePrecioDolares").val();
     var nuevoPaqueteCantidadAdultos = $("#nuevoPaqueteCantidadAdultos").val();
@@ -277,6 +312,7 @@ $(".adicionarPaqueteTuristico").click(function() {
     var nuevoPaqueteFechaFin = $('#nuevoPaqueteFecha').data('daterangepicker').endDate.format('DD-MM-YYYY');
     var nuevoPaqueteDescripcionCorta = $('#nuevoPaqueteDescripcionCorta').val();
     var nuevoPaqueteDescripcionLarga = $('#nuevoPaqueteDescripcionLarga').val();
+    var nuevoPaqueteDetalle = $('#nuevoPaqueteDetalle').val();
 
     var datosPaquetes = new FormData();
 
@@ -285,6 +321,7 @@ $(".adicionarPaqueteTuristico").click(function() {
     datosPaquetes.append("nuevoPaqueteCampana", nuevoPaqueteCampana);
     datosPaquetes.append("nuevoPaqueteAerolinea", nuevoPaqueteAerolinea);
     datosPaquetes.append("nuevoPaqueteCiudad", nuevoPaqueteCiudad);
+    datosPaquetes.append("nuevoPaqueteHotel", nuevoPaqueteHotel);
     datosPaquetes.append("nuevoPaquetePrecioSoles", nuevoPaquetePrecioSoles);
     datosPaquetes.append("nuevoPaquetePrecioDolares", nuevoPaquetePrecioDolares);
     datosPaquetes.append("nuevoPaqueteCantidadAdultos", nuevoPaqueteCantidadAdultos);
@@ -294,14 +331,14 @@ $(".adicionarPaqueteTuristico").click(function() {
     datosPaquetes.append("nuevoPaqueteFechaFin", nuevoPaqueteFechaFin);
     datosPaquetes.append("nuevoPaqueteDescripcionCorta", nuevoPaqueteDescripcionCorta);
     datosPaquetes.append("nuevoPaqueteDescripcionLarga", nuevoPaqueteDescripcionLarga);
+    datosPaquetes.append("nuevoPaqueteDetalle", nuevoPaqueteDetalle);
 
     /*
     for (var value of datosPaquetes.values()) {
         console.log("datosPaquetes : ", value); 
-     }
-     */
+     }*/
 
-    console.log("antes del Ajax");
+    console.log("nuevoPaqueteHotel : ", nuevoPaqueteHotel);
 
      $.ajax({
 
@@ -433,11 +470,3 @@ $(".paqueteNuevoFecha").daterangepicker({
     drops: ('down'),
     opens: ('left') 
 });
-
-
-
-
-
-
-
-

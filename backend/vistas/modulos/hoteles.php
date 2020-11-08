@@ -42,11 +42,11 @@
                                 <tr>
                                     
                                     <th style="width:10px">#</th>
-                                    <th>País - Ciudad </th>
-                                    <th>Nombre</th>
-                                    <th>Teléfono</th>
-                                    <th>Correo Electronico</th>
-                                    <th>Dirección</th>                
+                                    <th>Nombre </th>
+                                    <th>Ciudad - País</th>
+                                    <th>Teléfono </th>
+                                    <th>Calificación </th>
+                                    <th>Servicios </th>                
                                     <th>Acciones</th>
 
                                 </tr> 
@@ -57,29 +57,45 @@
                                 <?php
 
                                 $item = null;
+
                                 $valor = null;
 
                                 $hoteles = ControladorHoteles::ctrMostrarHoteles($item, $valor);
 
                                 foreach ($hoteles as $key => $value) {
-                                    
 
                                     echo '<tr>
 
                                             <td>'.($key+1).'</td>
 
-                                            <td>'.$value["nombres"].' '.$value["apellidos"].'</td>
+                                            <td>'.$value["nombre"].'</td>
 
-                                            <td>'.$value["tipo_documento"].'</td>
+                                            <td>'.$value["pais"].'</td>
 
-                                            <td>'.$value["numero_documento"].'</td>
+                                            <td>'.$value["telefono"].'</td>';
 
-                                            <td>'.$value["telefono"].'</td>
+                                            $estrellasPositivas = $value["calificacion"];
 
-                                            <td>'.$value["correo"].'</td>
+                                            $estrellasPositivasMostrar = '';
+
+                                            $estrellasBlancasMostrar = '';
+
+                                            $estrellasBlancas = 5- $estrellasPositivas; 
+
+                                            for ($i = 1; $i <= $estrellasPositivas; $i++) {
+                                                $estrellasPositivasMostrar .= '<i class="fas fa-star"></i>';
+                                            }
+
+                                            for ($j = 1; $j <= $estrellasBlancas; $j++) {
+                                                $estrellasBlancasMostrar .= '<i class="far fa-star"></i>';
+                                            }
+
+                                      echo '<td><div class="mb-2 mr-2 badge badge-pill badge-primary" data-toggle="tooltip" title="'.$estrellasPositivas.' Estrellas" data-placement="top" >'.$estrellasPositivasMostrar.''.$estrellasBlancasMostrar.'</div></td>
+
+                                            <td> Ver </td>
 
                                             <td>
-                                
+
                                                 <span><button class="btn btn-secondary fa fa-edit btnEditarHotel" idHotel="'.$value["id_hotel"].'" data-toggle="modal" data-target="#modalEditarHotel"></button></span>&nbsp;';
 
                                                 if($_SESSION["perfil"] == "Administrador"){
@@ -108,7 +124,7 @@
 
 
 <!--=====================================
-MODAL AGREGAR CLIENTE
+MODAL AGREGAR HOTELES
 ======================================-->
 
 <div class="modal fade" id="modalNuevoHotel" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

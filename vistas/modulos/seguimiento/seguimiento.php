@@ -3,11 +3,11 @@
 	$codigoSeguimiento = $_GET["codseg"];
 	$paquete = ControladorPaqueteFront::ctrObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento);
 ?>
-
+<div id="heading-breadcrumbs">
 	<div class="container">
 		<div class="row d-flex align-items-center flex-wrap">
 			<div class="col-md-7">
-				<h1 class="h2"><a href="principal">KM Viajes</a></h1>
+				<h1 class="h2"><a href="principal" style="text-decoration: none">KM Viajes</a></h1>
 			</div>
 			<div class="col-md-5">
 				<ul class="breadcrumb d-flex justify-content-end">
@@ -137,7 +137,7 @@
 															break;
 															case "Cotizada":
 																if($count <= 2 ){
-																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar'.$count.'</button>';
+																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar </button>';
 																}
 																else{
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
@@ -150,7 +150,7 @@
 															break;
 															case "Reservada":
 																if($count <= 4 ){
-																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago'.$count.'</button>';
+																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago </button>';
 																}
 																else{
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
@@ -181,9 +181,7 @@
 																}
 															break;
 															
-														}
-														$count2 +=1;
-														
+														}														
 														
 														echo '<tr>
 																<th>#'.$value[0].'</th>
@@ -220,13 +218,15 @@
 													<td>Destino</td>
 													<th><?php echo $paquete["ciudad"]; ?></th>
 												</tr>
+												<!--
 												<tr>
 													<td>Pasajeros</td>
-													<th><?php echo $paquete["pasajeros"]; ?></th>
+													<th><?php //echo $paquete["pasajeros"]; ?></th>
 												</tr>
+												-->
 												<tr>
 													<td>Fecha*</td>
-													<th><?php echo $paquete["fecha_fin"]; ?></th>
+													<th><?php echo $paquete["fecha_mostrar"]; ?></th>
 												</tr>
 
 												<input type="hidden" id="amount" value="<?php echo $paquete["precio_dolar"]; ?>"/>

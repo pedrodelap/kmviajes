@@ -34,7 +34,14 @@ function registroSolicitud2() {
         contentType: false,
         processData: false,
         dataType: "json",
+        beforeSend: function () {
+
+            $("#loading-airplane").show();
+        
+        },
         success: function (respuesta) {
+
+            $("#loading-airplane").hide();
 
             if (respuesta == "errorValidacionCliente") {
 

@@ -72,7 +72,6 @@
                                 $paquetes = ControladorPaquetes::ctrMostrarPaquetes($item, $valor);
 
                                 foreach ($paquetes as $key => $value) {
-                                    
 
                                     echo '<tr>
 
@@ -80,7 +79,7 @@
 
                                             <td>'.$value["titulo"].'</td>
 
-                                            <td>'.$value["aerolinea_nombre"].'</td>                                            
+                                            <td>'.$value["aerolinea_nombre"].'</td>
 
                                             <td>'.$value["ciudad_pais"].'</td>
 
@@ -112,7 +111,7 @@
                             </tbody>
 
                         </table>
-                        
+
                         <!--====  Fin de PAQUETES  ====-->
                 </div>
             </div>
@@ -160,7 +159,12 @@ MODAL AGREGAR PAQUETE
                             </li>
                             <li>
                                 <a href="#step-3">
-                                    <em>3</em><span>Imagenes</span>
+                                    <em>3</em><span>Detalles del Paquete Turístico</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-4">
+                                    <em>4</em><span>Imagenes</span>
                                 </a>
                             </li>
                         </ul>
@@ -170,30 +174,30 @@ MODAL AGREGAR PAQUETE
                             <div id="step-1">
                                 <div id="accordion" class="accordion-wrapper mb-3">
                                     <div class="card">
-                                                                                    
+
                                         <div class="card-body">
 
                                             <div class="form-row">
 
-                                                <div class="col-md-3">
-                                                    <div class="position-relative form-group"><label for="nuevoPaqueteTitulo">Titulo</label><input name="nuevoPaqueteTitulo" id="nuevoPaqueteTitulo" placeholder="Ingresar Titulo" class="form-control">
+                                                <div class="col-md-2">
+                                                    <div class="position-relative form-group"><label for="nuevoPaqueteTitulo">Titulo del Paquete</label><input name="nuevoPaqueteTitulo" id="nuevoPaqueteTitulo" placeholder="Ingresar Titulo" class="form-control">
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="position-relative form-group"><label for="nuevoCampanadePaquete">Campaña</label>
 
                                                         <select class="form-control campanaEnPaquete" name="nuevoCampanadePaquete" id="nuevoCampanadePaquete">
-                                                        </select>                                                   
+                                                        </select>
 
                                                     </div>
-                                                </div>                                                
+                                                </div>
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-2">
                                                     <div class="position-relative form-group"><label for="nuevoPaqueteAerolinea">Aerolíneas </label>
 
                                                         <select class="form-control paqueteAerolinea" name="nuevoPaqueteAerolinea" id="nuevoPaqueteAerolinea">
-                                                        </select>                                                   
+                                                        </select>
 
                                                     </div>
                                                 </div>
@@ -202,10 +206,19 @@ MODAL AGREGAR PAQUETE
                                                     <div class="position-relative form-group"><label for="nuevoPaqueteCiudad">Ciudad</label>
 
                                                         <select class="form-control paqueteCiudad" name="nuevoPaqueteCiudad" id="nuevoPaqueteCiudad">
-                                                        </select>                                                   
+                                                        </select>
 
                                                     </div>
-                                                </div>                                                
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="position-relative form-group"><label for="nuevoPaqueteHotel">Hotel</label>
+
+                                                        <select class="form-control paqueteHotel" name="nuevoPaqueteHotel" id="nuevoPaqueteHotel">
+                                                        </select>
+
+                                                    </div>
+                                                </div>
 
                                             </div>
 
@@ -252,7 +265,7 @@ MODAL AGREGAR PAQUETE
                                         </div>
                                         
                                     </div>
-                                </div>                                            
+                                </div>
                             </div>
 
                             <div id="step-2">
@@ -266,10 +279,10 @@ MODAL AGREGAR PAQUETE
                                                 <div class="col-md-2">
                                                     <div class="position-relative form-group"><label for="nuevoPaquetePrecioSoles">Precio Soles</label>
                                                         <div class="input-group">
-                                                            <input name="nuevoPaquetePrecioSoles" id="nuevoPaquetePrecioSoles" placeholder="" type="text" class="form-control">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">S/.</span>
                                                             </div>
+                                                            <input name="nuevoPaquetePrecioSoles" id="nuevoPaquetePrecioSoles" placeholder="" type="text" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -277,10 +290,10 @@ MODAL AGREGAR PAQUETE
                                                 <div class="col-md-2">
                                                     <div class="position-relative form-group"><label for="nuevoPaquetePrecioDolares">Precio Dolares</label>
                                                         <div class="input-group">
-                                                            <input name="nuevoPaquetePrecioDolares" id="nuevoPaquetePrecioDolares" placeholder="" type="text" class="form-control">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">$</span>
                                                             </div>
+                                                            <input name="nuevoPaquetePrecioDolares" id="nuevoPaquetePrecioDolares" placeholder="" type="text" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -299,8 +312,6 @@ MODAL AGREGAR PAQUETE
                                                     <div class="position-relative form-group"><label for="nuevoPaqueteFecha">Fecha de Fin</label><input name="nuevoPaqueteFecha" id="nuevoPaqueteFecha" placeholder="" type="text" class="form-control paqueteNuevoFecha">
                                                     </div>
                                                 </div>
-
-                                             
 
                                             </div>
 
@@ -326,7 +337,7 @@ MODAL AGREGAR PAQUETE
                                                     </div>
                                                 </div>
 
-                                            </div>    
+                                            </div>
 
                                         </div>
 
@@ -335,6 +346,31 @@ MODAL AGREGAR PAQUETE
                             </div>
 
                             <div id="step-3">
+                                <div id="accordion" class="accordion-wrapper mb-3">
+                                    <div class="card">
+
+                                        <div class="card-body">
+
+                                            <div class="form-row">
+
+                                                <div class="col-12 col-md-12">
+                                                    <div class="position-relative form-group">
+                                                        <label for="nuevoPaqueteDetalle ">Detalles del Paquete Turístico </label>
+                                                        <div class="input-group">
+                                                        <textarea placeholder="" name="nuevoPaqueteDetalle" id="nuevoPaqueteDetalle" class="form-control" rows="6" required></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="step-4">
                                 <div id="accordion" class="accordion-wrapper mb-3">
                                     <div class="card">
                                         <div id="headingOne" class="card-header">
@@ -359,7 +395,7 @@ MODAL AGREGAR PAQUETE
                                                 <h5 class="card-title">Lista de imagenes del Paquete Turístico</h5>
 
                                                 <div id="divGaleriaPaqueteNuevo"></div>
-   
+
                                             </div>
                                         </div>
 
@@ -475,7 +511,7 @@ MODAL CREAR ITINERARIO
                             
                             <!-- ENTRADA PARA IMAGEN-->
                             <div class="input-group">
-                                <form method="post" id="upload_form">                            
+                                <form method="post" id="upload_form">
                                     <input type="file" class="form-control-file paqueteNuevoImagenVisualizar" id="campanaNuevoImagen">
                                     <small class="form-text text-muted">Agrege una imagen para la campaña con las dimensiones 540x290.</small>
                                 </form>

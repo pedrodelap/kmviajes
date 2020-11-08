@@ -196,6 +196,7 @@
                                $_GET["ruta"] == "usuarios" ||
                                $_GET["ruta"] == "campanas" ||
                                $_GET["ruta"] == "paquetes" ||
+                               $_GET["ruta"] == "hoteles" ||
                                $_GET["ruta"] == "cotizacion-crear" ||
                                $_GET["ruta"] == "cotizaciones" ||
                                $_GET["ruta"] == "carousel" ||

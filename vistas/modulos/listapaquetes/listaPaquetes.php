@@ -30,9 +30,9 @@
 				</div>
 				<div class="row text-center" id="content-data-paquete"></div>
 				<div class="pages">
-					<p class="loadMore text-center">
+					<!-- <p class="loadMore text-center">
 						<a href="#" class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i> Mostrar más</a>
-					</p>
+					</p>-->
 				</div>
 				<div class="see-more text-center">
 					<p>Desea consultar un paquete personalizado?</p>

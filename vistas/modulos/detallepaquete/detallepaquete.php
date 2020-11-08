@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row d-flex align-items-center flex-wrap">
 			<div class="col-md-7">
-				<h1 class="h2">KM Viajes</h1>
+				<h1 class="h2"><a href="principal" style="text-decoration: none">KM Viajes</a></h1>
 			</div>
 			<div class="col-md-5">
 				<ul class="breadcrumb d-flex justify-content-end">
@@ -52,7 +52,7 @@
 			</div>
 
 		</section>
-		<section class="bar">
+		<section class="no-mb bar">
 			<div class="row portfolio-project">
 				<div class="col-md-8">
 					<div class="heading">
@@ -63,7 +63,7 @@
 								
 								echo $paquete["titulo"].' por $'.$precio_dolar.' o S/.'.$precio_sol; ?>
 						</h3>
-		
+
 					</div>
 					<p><?php echo $paquete["descripcion_larga"]?></p>
 				</div>
@@ -139,16 +139,83 @@
 					<?php echo 'Reservalo a S/.'.$precio_sol.' o $'.$precio_dolar ?></a></p>
 		</div>
 
-		<div class="bar pt-0">
-			<section>
-				<div class="row portfolio">
-					<div class="col-md-12">
-						<div class="heading">
-							<h3>Relacionados</h3>
+
+
+		<section class="bar background-white">
+			<div class="heading">
+				<h3>Servicios del Paquete</h3>
+			</div>
+			<div class="container text-center">
+				<div class="row">
+
+					<?php 
+
+					$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
+
+					foreach ($servicios as $key => $value) {
+
+						echo '<div class="col-lg-3 col-md-6">
+								<div class="box-simple">
+									<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
+									<h3 class="h4">'.$value["nombre"].'</h3>
+								</div>
+							  </div>';
+
+					}
+
+				?>
+
+				</div>
+			</div>
+		</section>
+
+
+		<section class="bar background-white">
+			
+				<div class="row">
+					<div class="col-lg-12">
+						<div id="accordion" role="tablist" class="mb-5">
+
+							<div class="card">
+								<div id="headingTwo" role="tab" class="card-header">
+									<h5 class="mb-0"><a data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+											aria-controls="collapseTwo" class="collapsed">Accordion Item No.2</a></h5>
+								</div>
+								<div id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion"
+									class="collapse">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-12">
+												<p>It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur
+													muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look
+													out the window at the dull weather. Drops of rain could be heard hitting the pane, which made
+													him feel quite sad.</p>
+												<p>It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur
+													muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look
+													out the window at the dull weather. Drops of rain could be heard hitting the pane, which made
+													him feel quite sad.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
+				</div>
+			
+		</section>
 
-					<?php
+	<div class="bar pt-0">
+		<section>
+			<div class="row portfolio">
+				<div class="col-md-12">
+					<div class="heading">
+						<h3>Relacionados</h3>
+					</div>
+				</div>
+
+				<?php
 					
 						$id_campania = $paquete["id_campania"];
 
@@ -179,13 +246,13 @@
 
 					?>
 
-				</div>
+			</div>
 
-			</section>
-
-		</div>
+		</section>
 
 	</div>
+
+</div>
 
 </div>
 
@@ -208,46 +275,51 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaNombres">Nombres</label>
-							<input id="SolicitudPersonalizadaNombres" type="text" placeholder="Nombres completos" class="form-control" require/>
+							<input id="SolicitudPersonalizadaNombres" type="text" placeholder="Nombres completos"
+								class="form-control" require />
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaApellidos">Apellidos</label>
-							<input id="SolicitudPersonalizadaApellidos" type="text" placeholder="Nombres completos" class="form-control" require/>
+							<input id="SolicitudPersonalizadaApellidos" type="text" placeholder="Nombres completos"
+								class="form-control" require />
 						</div>
 					</div>
-					
+
 
 				</div>
 				<div class="row">
 
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="SolicitudPersonalizadaTelefono">Número de contacto</label>
-								<input id="SolicitudPersonalizadaTelefono" type="tel" placeholder="(+51) ___-___-___" class="form-control" maxlength="9" require/>
-							</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="SolicitudPersonalizadaTelefono">Número de contacto</label>
+							<input id="SolicitudPersonalizadaTelefono" type="tel" placeholder="(+51) ___-___-___"
+								class="form-control" maxlength="9" require />
 						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label for="SolicitudPersonalizadaDocumento">Número de documento</label>
-								<input id="SolicitudPersonalizadaDocumento" type="text" placeholder="DNI o Pasaporte" class="form-control" maxlength="15" />
-							</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="SolicitudPersonalizadaDocumento">Número de documento</label>
+							<input id="SolicitudPersonalizadaDocumento" type="text" placeholder="DNI o Pasaporte"
+								class="form-control" maxlength="15" />
 						</div>
+					</div>
 
-					
+
 				</div>
 				<div class="row">
-				<div class="col-sm-12">
+					<div class="col-sm-12">
 						<div class="form-group">
 							<label for="SolicitudPersonalizadaCorreo">Correo contacto</label>
-							<input id="SolicitudPersonalizadaCorreo" type="email" class="form-control" placeholder="mail@mail.com" require/>
+							<input id="SolicitudPersonalizadaCorreo" type="email" class="form-control"
+								placeholder="mail@mail.com" require />
 						</div>
 					</div>
 				</div>
 
 				<div class="row">
-					
+
 
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -264,7 +336,7 @@
 					</div>
 				</div>
 
-				
+
 
 				<div class="row">
 					<div class="col-sm-12">
@@ -274,11 +346,11 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="modal-footer">
 					<button onclick="registroSolicitud2()" class="btn btn-primary">Enviar Solicitud</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-				  </div>
+				</div>
 
 			</div>
 		</div>
