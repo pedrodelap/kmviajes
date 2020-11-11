@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		</section>
-		<section>
+		<section  class="no-mb bar">
 
 			<div class="project owl-carousel">
 
@@ -117,20 +117,24 @@
 			</div>
 		</section>
 
+		
 		<div id="details" class="box mb-4 mt-4">
+			<!--
 			<h4>Servicios incluidos</h4>
 
 			<ul class="fa-ul">
-
+			-->
 				<?php 
-
+					
 					$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
-
+					
+										
 					foreach ($servicios as $key => $value) {
 
 						echo '<li><i class="fa-li fa '.$value["icono"].'"></i>'.$value["nombre"].'</li>';
 
 					}
+					
 				?>
 
 			</ul>
@@ -138,9 +142,9 @@
 					class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i>
 					<?php echo 'Reservalo a S/.'.$precio_sol.' o $'.$precio_dolar ?></a></p>
 		</div>
+		
 
-
-
+		
 		<section class="bar background-white">
 			<div class="heading">
 				<h3>Servicios del Paquete</h3>
@@ -154,12 +158,28 @@
 
 					foreach ($servicios as $key => $value) {
 
-						echo '<div class="col-lg-3 col-md-6">
-								<div class="box-simple">
-									<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
-									<h3 class="h4">'.$value["nombre"].'</h3>
-								</div>
-							  </div>';
+						if($value["nombre"] == 'Boleto Aéreo' ){
+
+							echo '<div class="col-lg-3 col-md-6">
+									<div class="box-simple">
+										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
+										<h3 class="h4">'.$value["nombre"].'</h3>
+										<p>'.$value["descripcion"].' LIMA / '.$paquete["nombreCiudad"].' / LIMA.</p>
+									</div>
+								</div>';
+
+						}else {
+
+							echo '<div class="col-lg-3 col-md-6">
+									<div class="box-simple">
+										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
+										<h3 class="h4">'.$value["nombre"].'</h3>
+										<p>'.$value["descripcion"].'.</p>
+									</div>
+								</div>';
+
+						}
+
 
 					}
 
@@ -169,90 +189,139 @@
 			</div>
 		</section>
 
-
 		<section class="bar background-white">
-			
+			<div class="heading">
+				<h3>Servicios del Hotel</h3>
+			</div>
+			<div class="container text-center">
 				<div class="row">
-					<div class="col-lg-12">
-						<div id="accordion" role="tablist" class="mb-5">
 
-							<div class="card">
-								<div id="headingTwo" role="tab" class="card-header">
-									<h5 class="mb-0"><a data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
-											aria-controls="collapseTwo" class="collapsed">Accordion Item No.2</a></h5>
-								</div>
-								<div id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion"
-									class="collapse">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-12">
-												<p>It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur
-													muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look
-													out the window at the dull weather. Drops of rain could be heard hitting the pane, which made
-													him feel quite sad.</p>
-												<p>It showed a lady fitted out with a fur hat and fur boa who sat upright, raising a heavy fur
-													muff that covered the whole of her lower arm towards the viewer. Gregor then turned to look
-													out the window at the dull weather. Drops of rain could be heard hitting the pane, which made
-													him feel quite sad.</p>
-											</div>
-										</div>
+					<?php 
+
+					$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
+
+					foreach ($servicios as $key => $value) {
+
+						if($value["nombre"] == 'Boleto Aéreo' ){
+
+							echo '<div class="col-lg-3 col-md-6">
+									<div class="box-simple">
+										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
+										<h3 class="h4">'.$value["nombre"].'</h3>
+										<p>'.$value["descripcion"].' LIMA / '.$paquete["nombreCiudad"].' / LIMA.</p>
 									</div>
-								</div>
-							</div>
+								</div>';
 
-						</div>
-					</div>
-				</div>
-			
-		</section>
+						}else {
 
-	<div class="bar pt-0">
-		<section>
-			<div class="row portfolio">
-				<div class="col-md-12">
-					<div class="heading">
-						<h3>Relacionados</h3>
-					</div>
-				</div>
-
-				<?php
-					
-						$id_campania = $paquete["id_campania"];
-
-						$relacionados = ControladorPaqueteFront::ctrListarPaquetePorCampania($id_campania);
-
-						foreach ($relacionados as $key => $value) {
-
-							$ruta = "index.php?ruta=detallepaquete&id=".$value["id_paquete"];
-
-							echo '<div class="col-md-6 col-lg-3">
-									<div class="box-image">
-										<div class="image"><img src="backend/'.$value["ruta_imagen"].'" alt="" class="img-fluid">
-											<div class="overlay d-flex align-items-center justify-content-center">
-												<div class="content">
-													<div class="name">
-														<h3><a href="#" class="color-white" style="text-decoration: none;">S/.'.$value["precio_sol"].'  o  $'.$value["precio_dolar"].' </a></h3>
-													</div>
-													<div class="text">
-														<p class="buttons"><a href="'.$ruta.'" class=" btn-buscar2 btn btn-template-outlined-white">Ver</a></p>
-													</div>
-												</div>
-											</div>
-										</div>
+							echo '<div class="col-lg-3 col-md-6">
+									<div class="box-simple">
+										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
+										<h3 class="h4">'.$value["nombre"].'</h3>
+										<p>'.$value["descripcion"].'.</p>
 									</div>
 								</div>';
 
 						}
 
-					?>
 
+					}
+
+				?>
+
+				</div>
+			</div>
+		</section>
+
+		<section class="bar background-white">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="accordion" role="tablist" class="mb-5">
+
+						<div class="card">
+							<div id="headingTwo" role="tab" class="card-header">
+								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+										aria-controls="collapseTwo" class="collapsed">Accordion Item No.2</a></h5>
+							</div>
+							<div id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion"
+								class="collapse">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12">
+											<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
+												raising a heavy fur
+												muff that covered the whole of her lower arm towards the viewer. Gregor
+												then turned to look
+												out the window at the dull weather. Drops of rain could be heard hitting
+												the pane, which made
+												him feel quite sad.</p>
+											<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
+												raising a heavy fur
+												muff that covered the whole of her lower arm towards the viewer. Gregor
+												then turned to look
+												out the window at the dull weather. Drops of rain could be heard hitting
+												the pane, which made
+												him feel quite sad.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
 			</div>
 
 		</section>
 
-	</div>
+		<div class="bar pt-0">
+			<section>
+				<div class="row portfolio">
+					<div class="col-md-12">
+						<div class="heading">
+							<h3>Relacionados</h3>
+						</div>
+					</div>
 
-</div>
+					<?php
+						
+							$id_campania = $paquete["id_campania"];
+
+							$relacionados = ControladorPaqueteFront::ctrListarPaquetePorCampania($id_campania);
+
+							foreach ($relacionados as $key => $value) {
+
+								$ruta = "index.php?ruta=detallepaquete&id=".$value["id_paquete"];
+
+								echo '<div class="col-md-6 col-lg-3">
+										<div class="box-image">
+											<div class="image"><img src="backend/'.$value["ruta_imagen"].'" alt="" class="img-fluid">
+												<div class="overlay d-flex align-items-center justify-content-center">
+													<div class="content">
+														<div class="name">
+															<h3><a href="#" class="color-white" style="text-decoration: none;">S/.'.$value["precio_sol"].'  o  $'.$value["precio_dolar"].' </a></h3>
+														</div>
+														<div class="text">
+															<p class="buttons"><a href="'.$ruta.'" class=" btn-buscar2 btn btn-template-outlined-white">Ver</a></p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>';
+
+							}
+
+						?>
+
+				</div>
+
+			</section>
+
+		</div>
+
+	</div>
 
 </div>
 
