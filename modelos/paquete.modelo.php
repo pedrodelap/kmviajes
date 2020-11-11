@@ -78,7 +78,7 @@ class ModeloPaqueteFront{
 
     static public function mdlListarServiciosPorPaquete($id){
        
-        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono from tb_servicios_x_paquetes sp
+        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion from tb_servicios_x_paquetes sp
                                               join  tb_servicios s on s.id_servicio = sp.id_servicio
                                                WHERE sp.id_paquete =:id");
         $stmt -> bindParam(":id", $id, PDO::PARAM_INT);
@@ -203,6 +203,7 @@ class ModeloPaqueteFront{
 												ifnull(p.titulo,'Solicitud personalizada') as titulo,
 												p.precio_dolar,
 												p.precio_sol,
+												p.fecha_mostrar,
 												cc.correo,
 												cc.nombres,
 												cc.apellidos,

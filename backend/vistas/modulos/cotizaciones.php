@@ -60,7 +60,6 @@
                                 $cotizaciones = ControladorCotizaciones::ctrMostrarCotizaciones($item, $valor);
 
                                 foreach ($cotizaciones as $key => $value) {
-                                    
 
                                     echo '<tr>
 
@@ -81,34 +80,30 @@
                                                     echo '<a href="#" class="mb-2 mr-2 badge badge-success">Venta</a>';
                                                 }
 
-                                    echo '</td>
+                                      echo '</td>
 
                                             <td><a href="#" class="mb-2 mr-2 badge badge-focus">Generar PDF</a></td>
 
                                             <td><a href="#" class="mb-2 mr-2 badge badge-alternate">Enviar Correo</a></td>
 
-                                            <td class="text-center">
+                                            <td>
 
-                                            <div role="group" class="btn-group-sm btn-group">
-                                                
                                                 <span><button class="btn btn-secondary fa fa-edit btnEditarCotizacion" idCotizacion="'.$value["id_cotizacion"].'"></button></span>&nbsp;';
 
                                                 if($_SESSION["perfil"] == "Administrador"){
 
-                                                    echo '<span><button class="btn btn-danger fa fa-times btnEliminarCotizacion" idCotizacion="'.$value["id_cotizacion"].'"></button></span>';                                                        
-                                               
+                                                    echo '<span><button class="btn btn-danger fa fa-times btnEliminarCliente" idCotizacion="'.$value["id_cotizacion"].'"></button></span>';
+
                                                 }
 
-                                            echo '</div>  
-
-                                            </td>
+                                      echo '</td>
 
                                         </tr>';
-                                
+
                                     }
 
                                 ?>
-                            
+
                             </tbody>
 
                         </table>

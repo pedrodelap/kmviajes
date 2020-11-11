@@ -62,7 +62,6 @@
                                 $clientes = ControladorClientes::ctrMostrarClientes($item, $valor);
 
                                 foreach ($clientes as $key => $value) {
-                                    
 
                                     echo '<tr>
 

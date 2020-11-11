@@ -8,13 +8,15 @@ class ModeloPaquetes{
 	#------------------------------------------------------------
 	static public function mdlCrearPaquetes($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("CALL usp_insert_paquete(:titulo, :id_aerolinea, :descripcion_corta, :descripcion_larga, :id_ciudad, :precio_sol, :precio_dolar, :fecha_inicio, :fecha_fin, :cantidad_adultos, :cantidad_ninios, :fecha_mostrar)");
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_paquete(:titulo, :id_aerolinea, :descripcion_corta, :descripcion_larga, :detalle, :id_ciudad, :id_hotel, :precio_sol, :precio_dolar, :fecha_inicio, :fecha_fin, :cantidad_adultos, :cantidad_ninios, :fecha_mostrar);");
 		
 		$stmt->bindParam(":titulo", $datos["titulo"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_aerolinea", $datos["id_aerolinea"], PDO::PARAM_INT);
 		$stmt->bindParam(":descripcion_corta", $datos["descripcion_corta"], PDO::PARAM_STR);
 		$stmt->bindParam(":descripcion_larga", $datos["descripcion_larga"], PDO::PARAM_STR);
+		$stmt->bindParam(":detalle", $datos["detalle"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_ciudad", $datos["id_ciudad"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_hotel", $datos["id_hotel"], PDO::PARAM_INT);
 		$stmt->bindParam(":precio_sol", $datos["precio_sol"], PDO::PARAM_STR);
 		$stmt->bindParam(":precio_dolar", $datos["precio_dolar"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);

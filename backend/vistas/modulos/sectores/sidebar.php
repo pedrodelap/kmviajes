@@ -15,7 +15,7 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="metismenu-icon fas fa-file-signature"></i> Cotizaciones
+                    <i class="metismenu-icon far fa-folder-open"></i> Cotizaciones
                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>
                 <ul>
@@ -46,7 +46,7 @@
 
             <li>
                 <a href="solicitudes">
-                    <i class="metismenu-icon far fa-folder-open"></i> Bandeja de Solicitudes
+                    <i class="metismenu-icon fas fa-envelope-open-text"></i> Bandeja de Solicitudes
                 </a>
             </li>
             
@@ -89,7 +89,7 @@
             <li class="app-sidebar__heading">Web Principal</li>
             <li>
                 <a href="../index" target="_blank">
-                    <i class="metismenu-icon far fa-copy"></i> Ver Sitio Web
+                    <i class="metismenu-icon fas fa-globe"></i> Ver Sitio Web
                 </a>
             </li>
             <li class="app-sidebar__heading">Salir</li>

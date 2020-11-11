@@ -79,7 +79,7 @@ class AjaxPaquetes{
 							  "apellidos"=>strtoupper($this->apellidos),
 							  "telefono"=>$this->telefono,
 							  "numero_documento"=>$this->documento,
-							  "correo"=>strtoupper($this->correo));
+							  "correo"=>strtolower($this->correo));
 
 		$respuesta = ControladorPaqueteFront::ctrCrearClienteSolicitudPersonalizada($datosCliente);
 

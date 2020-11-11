@@ -140,7 +140,7 @@ class MensajesController{
 																	<tr>
 																		<td colspan="3" height="60"></td></tr><tr><td width="25"></td>
 																		<td align="center">
-																			<h1 style="font-family:HelveticaNeue-Light,arial,sans-serif;font-size:48px;color:#404040;line-height:48px;font-weight:bold;margin:0;padding:0">¡Bienvenido '.$nombre.' a nuestra agencia! </h1>
+																			<h1 style="font-family:HelveticaNeue-Light,arial,sans-serif;font-size:48px;color:#da4d4d;line-height:48px;font-weight:bold;margin:0;padding:0">¡Bienvenido '.$nombre.' a nuestra agencia! </h1>
 																		</td>
 																		<td width="25"></td>
 																	</tr>
@@ -157,7 +157,7 @@ class MensajesController{
 																			<table align="center" cellpadding="0" cellspacing="0" style="font-family:HelveticaNeue-Light,Arial,sans-serif;margin:0 auto;padding:0">
 																			<tbody>
 																				<tr>
-																					<td align="center" style="margin:0;text-align:center"><a href="http://localhost/kmviajes/index.php?ruta=seguimiento&codseg='.$contenido.'" style="font-size:21px;line-height:22px;text-decoration:none;color:#ffffff;font-weight:bold;border-radius:2px;background-color:#0096d3;padding:14px 40px;display:block;letter-spacing:1.2px" target="_blank" >Acceder a KM Viajes!</a></td>
+																					<td align="center" style="margin:0;text-align:center"><a href="http://localhost/kmviajes/index.php?ruta=seguimiento&codseg='.$contenido.'" style="font-size:21px;line-height:22px;text-decoration:none;color:#ffffff;font-weight:bold;border-radius:2px;background-color:#da4d4d;padding:14px 40px;display:block;letter-spacing:1.2px" target="_blank" >Acceder a KM Viajes!</a></td>
 																				  </tr>
 																			   </tbody>
 																			</table>
@@ -179,7 +179,7 @@ class MensajesController{
 																	<td colspan="4" align="center">&nbsp;</td>
 																  </tr>
 																<tr>
-																	<td colspan="4" align="center"><h2 style="font-size:24px">¡Campañas del mes!</h2></td>
+																	<td colspan="4" align="center"><h2 style="font-size:24px;color:#da4d4d;>¡Campañas del mes!</h2></td>
 																  </tr>
 																<tr>
 																	<td colspan="4">&nbsp;</td>
@@ -199,7 +199,7 @@ class MensajesController{
 																	<td colspan="5" height="40" style="padding:0;margin:0;font-size:0;line-height:0"></td>
 																  </tr>
 																<tr>
-																	<td width="300" align="right" valign="top"><img src="https://firebasestorage.googleapis.com/v0/b/tenedores-45125.appspot.com/o/mail2.jpg?alt=media&token=71ff4adc-3752-4568-a1cc-a771d33f2de5" alt="no fees" width="120" height="120" class="CToWUd"></td>
+																	<td width="300" align="right" valign="top"><img src="https://firebasestorage.googleapis.com/v0/b/tenedores-45125.appspot.com/o/mail2.jpg?alt=media&token=71ff4adc-3752-4568-a1cc-a771d33f2de5" alt="no fees" width="300" height="120" class="CToWUd"></td>
 																	<td width="30"></td>
 																	<td align="left" valign="middle">
 																		<h3 style="color:#404040;font-size:18px;line-height:24px;font-weight:bold;padding:0;margin:0">Cusco</h3>
@@ -213,7 +213,7 @@ class MensajesController{
 																	<td colspan="5" height="40" style="padding:0;margin:0;font-size:0;line-height:0"></td>
 																   </tr>
 																<tr>
-																	<td width="300" align="right" valign="top"><img src="https://firebasestorage.googleapis.com/v0/b/tenedores-45125.appspot.com/o/mail3.jpg?alt=media&token=4c039491-a75f-4661-a3de-f922bf410e9a" alt="creditibility" width="120" height="120" class="CToWUd"></td>
+																	<td width="300" align="right" valign="top"><img src="https://firebasestorage.googleapis.com/v0/b/tenedores-45125.appspot.com/o/mail3.jpg?alt=media&token=4c039491-a75f-4661-a3de-f922bf410e9a" alt="creditibility" width="300" height="120" class="CToWUd"></td>
 																	<td width="30"></td>
 																	<td align="left" valign="middle">
 																		<h3 style="color:#404040;font-size:18px;line-height:24px;font-weight:bold;padding:0;margin:0">Europa</h3>
@@ -242,7 +242,7 @@ class MensajesController{
 																			<table align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;padding:0">
 																			<tbody>
 																				<tr>
-																					<td align="center" style="margin:0;text-align:center"><a href="#" style="font-size:18px;font-family:HelveticaNeue-Light,Arial,sans-serif;line-height:22px;text-decoration:none;color:#ffffff;font-weight:bold;border-radius:2px;background-color:#00a3df;padding:14px 40px;display:block" target="_blank" >Visitar Ahora!</a></td>
+																					<td align="center" style="margin:0;text-align:center"><a href="#" style="font-size:18px;font-family:HelveticaNeue-Light,Arial,sans-serif;line-height:22px;text-decoration:none;color:#ffffff;font-weight:bold;border-radius:2px;background-color:#da4d4d;padding:14px 40px;display:block" target="_blank" >Visitar Ahora!</a></td>
 																				</tr>
 																			   </tbody>
 																			 </table>

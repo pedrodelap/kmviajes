@@ -177,7 +177,7 @@ $(".table").on("click", ".estadoSolicitudAceptada", function() {
         text: "¡Si no lo está puede cancelar la acción!",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3ac47d',
+        confirmButtonColor: '#6c757d',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Si, cambiar la solicitud a En Reserva!'

@@ -69,7 +69,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="scroll-area-xs" style="height: 150px;">
+                                    <div class="scroll-area-xs">
                                         <div class="scrollbar-container ps">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
@@ -90,10 +90,11 @@
                                                     <a href="perfil" class="nav-link">Editar Perfil 
                                                     </a>
                                                 </li>
+                                                <!--
                                                 <li class="nav-item">
                                                     <a href="perfil" class="nav-link">Términos y Condiciones
                                                     </a>
-                                                </li>
+                                                </li>-->
                                                 <li class="nav-item">
                                                     <a href="salir" class="nav-link">Salir
                                                     </a>

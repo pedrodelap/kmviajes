@@ -94,7 +94,12 @@
 
                                         case "Reservada":
                                             
-                                            $estado_solictud = '<div class="estadoSolicitud badge badge-pill badge-success" idSolicitud="'.$value["id_solicitud"].'">en reserva</div>' ;
+                                            $estado_solictud = '<div class="estadoSolicitud badge badge-pill badge-secondary" idSolicitud="'.$value["id_solicitud"].'">en reserva</div>' ;
+                                            break;
+
+                                        case "Pagada":
+                                        
+                                            $estado_solictud = '<div class="estadoSolicitud badge badge-pill badge-success" idSolicitud="'.$value["id_solicitud"].'">Pagada</div>' ;
                                             break;
                                         
                                         case "Cancelada":
