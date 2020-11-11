@@ -148,7 +148,7 @@ class MensajesController{
 																		<td colspan="3" height="40"></td></tr><tr><td colspan="5" align="center">
 																			<p style="color:#404040;font-size:16px;line-height:24px;font-weight:lighter;padding:0;margin:0">Hemos creado un código de seguimiento <b>'.$contenido.'</b> para poder ayudarte a un mejor control e identificación de tu solicitud.</p><br>
 																			<p style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">
-																				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+																				Con el código podrá verificar el estado del proceos de cotización hasta la compra final, cualquier consulta podria contactarse con la agencia indicando los últimos 8 digitos del código.</p>
 																		</td>
 																	</tr>
 																	<tr>
@@ -179,18 +179,18 @@ class MensajesController{
 																	<td colspan="4" align="center">&nbsp;</td>
 																  </tr>
 																<tr>
-																	<td colspan="4" align="center"><h2 style="font-size:24px">Promociones</h2></td>
+																	<td colspan="4" align="center"><h2 style="font-size:24px">¡Campañas del mes!</h2></td>
 																  </tr>
 																<tr>
 																	<td colspan="4">&nbsp;</td>
 																  </tr>
 																<tr>
-																	<td width="120" align="right" valign="top"><img src="https://ci3.googleusercontent.com/proxy/1fMAjnDrJK5MhATxQ3lx3Ruidu6qRhcDGJ0rwIsJixO6YkCgstf6SeUYT1P829yenIH0=s0-d-e1-ft#http://i.imgbox.com/qrfX6RWN.png" alt="tool" width="120" height="120" class="CToWUd"></td>
+																	<td width="300" align="right" valign="top"><img src="https://firebasestorage.googleapis.com/v0/b/tenedores-45125.appspot.com/o/mail1.jpg?alt=media&token=7ded5e84-e6db-44ac-8104-29a2fe5a9e7b" alt="tool" width="300" height="120" class="CToWUd"></td>
 																	<td width="30"></td>
 																	<td align="left" valign="middle">
 																		<h3 style="color:#404040;font-size:18px;line-height:24px;font-weight:bold;padding:0;margin:0"></h3>
 																		<div style="line-height:5px;padding:0;margin:0">&nbsp;</div>
-																		<div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Habitant morbi tristique senectus et netus.</div>
+																		<div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">México, te invitamos a conocer el pais norteño y disfrutar lo mejor de la cutlura</div>
 																		<div style="line-height:10px;padding:0;margin:0">&nbsp;</div>
 																	  </td>
 																	<td width="30"></td>
@@ -199,12 +199,12 @@ class MensajesController{
 																	<td colspan="5" height="40" style="padding:0;margin:0;font-size:0;line-height:0"></td>
 																  </tr>
 																<tr>
-																	<td width="120" align="right" valign="top"><img src="https://ci5.googleusercontent.com/proxy/njj9DkeL98F-yLiv89UNoEw1S1e2nzF-LZxkrH-2z_7zbMZxkRpnEZcGlzbHHx6-gQCw=s0-d-e1-ft#http://i.imgbox.com/5zbmOytI.png" alt="no fees" width="120" height="120" class="CToWUd"></td>
+																	<td width="300" align="right" valign="top"><img src="https://firebasestorage.googleapis.com/v0/b/tenedores-45125.appspot.com/o/mail2.jpg?alt=media&token=71ff4adc-3752-4568-a1cc-a771d33f2de5" alt="no fees" width="120" height="120" class="CToWUd"></td>
 																	<td width="30"></td>
 																	<td align="left" valign="middle">
-																		<h3 style="color:#404040;font-size:18px;line-height:24px;font-weight:bold;padding:0;margin:0">Web Development</h3>
+																		<h3 style="color:#404040;font-size:18px;line-height:24px;font-weight:bold;padding:0;margin:0">Cusco</h3>
 																		  <div style="line-height:5px;padding:0;margin:0">&nbsp;</div>
-																		  <div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Auctor neque vitae tempus quam pellentesque nec nam aliquam</div>
+																		  <div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Conoce Cusco y todo lo que tiene que ofrecerte, dejate enamorar de lo mejor de este magnifico lugar</div>
 																		  <div style="line-height:10px;padding:0;margin:0">&nbsp;</div>
 																	  </td>
 																	<td width="30"></td>
@@ -213,12 +213,12 @@ class MensajesController{
 																	<td colspan="5" height="40" style="padding:0;margin:0;font-size:0;line-height:0"></td>
 																   </tr>
 																<tr>
-																	<td width="120" align="right" valign="top"><img src="https://ci6.googleusercontent.com/proxy/DNTeYqE9_K5958g241BcfbHoq3tjt6SBUA5zx6pBxhwZTfSGpSERi0OomHdFoIdGxclS=s0-d-e1-ft#http://i.imgbox.com/AXtx1Oto.png" alt="creditibility" width="120" height="120" class="CToWUd"></td>
+																	<td width="300" align="right" valign="top"><img src="https://firebasestorage.googleapis.com/v0/b/tenedores-45125.appspot.com/o/mail3.jpg?alt=media&token=4c039491-a75f-4661-a3de-f922bf410e9a" alt="creditibility" width="120" height="120" class="CToWUd"></td>
 																	<td width="30"></td>
 																	<td align="left" valign="middle">
-																		<h3 style="color:#404040;font-size:18px;line-height:24px;font-weight:bold;padding:0;margin:0">API Implementation</h3>
+																		<h3 style="color:#404040;font-size:18px;line-height:24px;font-weight:bold;padding:0;margin:0">Europa</h3>
 																		  <div style="line-height:5px;padding:0;margin:0">&nbsp;</div>
-																		  <div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Enim facilisis gravida neque convallis a. Lorem donec massa sapien faucibus et molestie. Justo laoreet sit amet cursus sit amet dictum sit amet</div>
+																		  <div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Un destino, que facilita conocer más de un pais, decideté a viajar y disfrutar este destino!</div>
 																		  <div style="line-height:10px;padding:0;margin:0">&nbsp;</div>
 																	   </td>
 																	<td width="30"></td>
@@ -233,7 +233,7 @@ class MensajesController{
 																<tr>
 																	<td>
 																		<h2 style="color:#404040;font-size:22px;font-weight:bold;line-height:26px;padding:0;margin:0">&nbsp;</h2>
-																		<div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Fermentum leo vel orci porta non pulvinar neque. Lacus sed viverra tellus in hac habitasse. </div>
+																		<div style="color:#404040;font-size:16px;line-height:22px;font-weight:lighter;padding:0;margin:0">Disfruta de tus aventuras con KM Viajes.</div>
 																	  </td>
 																  </tr>
 																<tr>

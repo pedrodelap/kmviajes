@@ -3,7 +3,7 @@
 	$codigoSeguimiento = $_GET["codseg"];
 	$paquete = ControladorPaqueteFront::ctrObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento);
 ?>
-
+<div id="heading-breadcrumbs">
 	<div class="container">
 		<div class="row d-flex align-items-center flex-wrap">
 			<div class="col-md-7">
@@ -137,7 +137,7 @@
 															break;
 															case "Cotizada":
 																if($count <= 2 ){
-																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar'.$count.'</button>';
+																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar</button>';
 																}
 																else{
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
@@ -149,8 +149,8 @@
 																
 															break;
 															case "Reservada":
-																if($count <= 4 ){
-																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago'.$count.'</button>';
+																if($count == 3 ){
+																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago</button>';
 																}
 																else{
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';

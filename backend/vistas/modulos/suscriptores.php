@@ -56,7 +56,7 @@
                                 </tbody>
                             </table>
 
-                        <a href="tcpdf/pdf/suscriptores.php" target="blank">
+                        <a href="tcpdf/pdf/generar_cotizacion.php" target="blank">
                         <button class="btn btn-warning pull-right" style="margin:20px;">Imprimir Suscriptores</button>
                         </a>
                         </div>

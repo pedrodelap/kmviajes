@@ -59,7 +59,11 @@ $pdf->writeHTML($html2, false, false, false, false, '');
 
 }
 
+//$pdf->Output('suscriptores.pdf');
+$pdf->Output(__DIR__ . '/suscriptores.pdf', 'F');
 $pdf->Output('suscriptores.pdf');
+//$pdf_string = $pdf->Output('pseudo.pdf', 'S');
+//file_put_contents('./mydir/myfile.pdf', $pdf_string);
 
 }
 
