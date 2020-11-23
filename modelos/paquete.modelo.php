@@ -21,7 +21,11 @@ class ModeloPaqueteFront{
 														ci.nombre as 'nombreCiudad',
 														h.nombre  as 'nombreHotel',
 														cp.id_campania,
-														a.compania
+														a.compania,
+														p.detalle,
+														p.informacion_hotel,
+														p.informacion_traslados,
+														p.consideraciones							
 												   from tb_campanias_x_paquetes cp
                                              inner join tb_paquetes p on cp. id_paquete = p.id_paquete
                                              inner join tb_campenias c on cp.id_campania = c.id_campania
@@ -78,7 +82,7 @@ class ModeloPaqueteFront{
 
     static public function mdlListarServiciosPorPaquete($id){
        
-        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion from tb_servicios_x_paquetes sp
+        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion,s.calificable from tb_servicios_x_paquetes sp
                                               join  tb_servicios s on s.id_servicio = sp.id_servicio
                                                WHERE sp.id_paquete =:id");
         $stmt -> bindParam(":id", $id, PDO::PARAM_INT);
@@ -210,12 +214,17 @@ class ModeloPaqueteFront{
 												cc.telefono,
 												cc.id_cliente,
 												cc.numero_documento,
-												s.id_solicitud
+												s.id_solicitud,
+												p.id_paquete,
+												h.id_hotel,
+												h.nombre as nombre_hotel
 												from tb_solicitud s 
 												inner join tb_clientes cc on cc.id_cliente = s.id_cliente
+												
 												left join tb_paquetes p on s.id_paquete = p.id_paquete
 												left join tb_ciudades c on s.id_ciudad=c.id_ciudad
 												left join tb_ciudades c2 on p.id_ciudad=c2.id_ciudad
+												inner join tb_hoteles h on h.id_hotel = p.id_hotel
 												WHERE s.codigo_seguimiento =:codigoSeguimiento");
 												 
 		$stmt -> bindParam(":codigoSeguimiento", $codigoSeguimiento, PDO::PARAM_STR);
@@ -348,6 +357,48 @@ class ModeloPaqueteFront{
 
 	}
 
+	static public function mdlObtenetPaqueteByIdCalificar($id){
 
+		$stmt = Conexion::conectar()->prepare(  "SELECT p.id_paquete,
+														p.titulo,
+														p.descripcion_corta,
+														p.descripcion_larga,
+														p.precio_dolar,
+														p.precio_sol,
+														p.fecha_inicio,
+														p.fecha_fin,
+														p.cantidad_adultos,
+														p.cantidad_ninios,
+														p.foto_larga,
+														p.flag,
+														p.fecha_mostrar,
+														c.nombre as 'nombreCampania',
+														ci.nombre as 'nombreCiudad',
+														h.nombre  as 'nombreHotel',
+														cp.id_campania,
+														a.compania,
+														p.detalle,
+														p.informacion_hotel,
+														p.informacion_traslados,
+														p.consideraciones							
+												   from tb_campanias_x_paquetes cp
+                                             inner join tb_paquetes p on cp. id_paquete = p.id_paquete
+                                             inner join tb_campenias c on cp.id_campania = c.id_campania
+                                             inner join tb_ciudades ci on p.id_ciudad = ci.id_ciudad
+                                             left join tb_hoteles h on p.id_hotel = h.id_hotel
+                                             left join tb_aerolineas a on a.id_aerolinea = p.id_aerolinea
+												 WHERE p.id_paquete =:id");
+												 
+		$stmt -> bindParam(":id", $id, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
 
 }

@@ -34,6 +34,26 @@
                 </ul>
             </li>
             <li>
+                <a href="#">
+                    <i class="metismenu-icon far fa-folder-open"></i> Ventas
+                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="venta-docelectronico">
+                            <i class="metismenu-icon"></i>Generación Boleta/Factura
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="ventas">
+                            <i class="metismenu-icon"></i>Ventas Online
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
                 <a href="campanas">
                     <i class="metismenu-icon fas fa-luggage-cart"></i> Campañas Turísticas
                 </a>

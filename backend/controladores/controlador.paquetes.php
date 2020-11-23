@@ -207,5 +207,15 @@ class ControladorPaquetes{
 
 	}
 
+	#CONSULTAR PAQUETE PARA COTIZACION PDF	
+	#-----------------------------------------------------
+	static public function ctrObtenetPaqueteById($id){
+
+        $respuesta = ModeloPaquetes::mdlObtenetPaqueteByIdSolicitud($id);
+        return $respuesta;
+    
+    }
+
+
 }
 

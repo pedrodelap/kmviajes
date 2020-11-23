@@ -29,7 +29,8 @@
 					<h2>Modulo de seguimiento</h2>
 				</div>
 				<p>
-				Hola <b><?php echo $paquete["nombres"]." ".$paquete["apellidos"]; ?></b>, te mostramos los datos de la solicitud como los estados de la misma ...dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+				Hola <b><?php echo $paquete["nombres"]." ".$paquete["apellidos"]; ?></b>, te mostramos los datos de la solicitud y te guiaremos en el paso a paso para completar con la compra del servicio<br>
+				Los pasos se iran complentando cuando cada responsable, el asesor o el cliente, confirme el estado del proceso.
 				</p>
 			</div>
 		</div>
@@ -93,7 +94,7 @@
 			</div>
 
 
-
+			<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-template-outlined btn-sm">Aceptar</button>
 
 			<div class="container px-1 px-md-4 py-5 mx-auto">
 				<div class="card">
@@ -136,15 +137,11 @@
 																
 															break;
 															case "Cotizada":
-																if($count <= 2 ){
-<<<<<<< HEAD
-																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar</button>';
-=======
-																	$htmlAction = '<button type="button" class="btn btn-template-outlined btn-sm" onclick="registrarEstado()">Aceptar </button>';
->>>>>>> 143a7978508f38267b81d117e9498fdd62ad22d2
+																if($count <= 1 ){
+																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#cotizacion-modal" class="btn btn-template-outlined btn-sm">Aceptar</button>';
 																}
 																else{
-																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
+																	$htmlAction = '<a class="btn btn-sm btn-default" href="backend/tcpdf/pdf/'.$codigoSeguimiento.'.pdf" target="_blank">Ver Cotización</a>';
 																}
 																
 															break;
@@ -153,13 +150,8 @@
 																
 															break;
 															case "Reservada":
-<<<<<<< HEAD
 																if($count == 3 ){
 																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago</button>';
-=======
-																if($count <= 4 ){
-																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago </button>';
->>>>>>> 143a7978508f38267b81d117e9498fdd62ad22d2
 																}
 																else{
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
@@ -389,22 +381,116 @@
 			   
           </div>
         </div>
-      </div>
+	  </div>
+	  
+
+
+	  <!-- Login modal end-->
+	<div id="cotizacion-modal" tabindex="-1" role="dialog" aria-labelledby="cotizacion-modalLabel" aria-hidden="true" class="modal fade">
+		<div role="document" class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4 id="cotizacion-modalLabel" class="modal-title">Confirmación de Cotización</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+					</div>
+					<div class="modal-body">
+						<p>Es necesario confirmar la cotización para poder activar el proceso de pago, puede revisarla <a href="<?php echo "backend/tcpdf/pdf/".$codigoSeguimiento.'.pdf' ?>" target="_blank">aqui</a> o revisar su bandeja. Si se encuentra conforme con la cotización favor de aceptar la cotización</p>
+					</div>
+					<div class="modal-footer">
+						<button onclick="registrarEstado()" id="btn_pagar" class="btn btn-primary">Aceptar Cotización</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+					</div>
+			</div>
+		</div>
+	</div>	 
+
+
       <!-- Login modal end-->
-<div id="calificar-modal" tabindex="-1" role="dialog" aria-labelledby="calificar-modalLabel" aria-hidden="true" class="modal fade">
-<div role="document" class="modal-dialog ">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 id="calificar-modalLabel" class="modal-title">Calificar servicios</h4>
-              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-            </div>
-            <div class="modal-body">
-				<div class="my-rating-4" data-rating="2.5"></div>
+	<div id="calificar-modal" tabindex="-1" role="dialog" aria-labelledby="calificar-modalLabel" aria-hidden="true" class="modal fade">
+		<div role="document" class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h4 id="calificar-modalLabel" class="modal-title">Módulo de calificación</h4>
+					<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+					</div>
+					<div class="modal-body">
+						<p>Para poder seguir mejorando necesitamos, necesitamos de su apoyo para completar un cuestinario sobre los servicios contratados</p>
+						<h4>Servicios Contratados</h4>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<?php 
+									$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($paquete['id_paquete']);			
+									foreach ($servicios as $key => $value) {
+										
+										if($value["calificable"] == 1){
+											echo '<tr><td style="padding:4px;font-size:12px;">'.$value["nombre"].'</td><td style="padding:4px"><div class="my-rating-4" data-rating="0"></div></td></tr>';
+										}
+									}
+								?>
+							</table>
+						</div>
+						<p>Nos gustaria conocer su opinion del Hotel <b><?php  echo $paquete['nombre_hotel'];?> </b>
+						
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<tr>
+									<td style="padding:4px;font-size:12px;padding:3px"><h4>Servicios ofrecidos por el Hotel:</h4></td>
+									<td style="padding:4px"><div id="idHotelAll"  data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Aparcamiento</td>
+									<td style="padding:4px"><div id="idHotelServ1" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">WIFI</td>
+									<td style="padding:4px"><div id="idHotelServ2" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Piscina</td>
+									<td style="padding:4px"><div id="idHotelServ3" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Aire acondicionado</td>
+									<td style="padding:4px"><div id="idHotelServ4" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Lavanderia</td>
+									<td style="padding:4px"><div id="idHotelServ5" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">SPA</td>
+									<td style="padding:4px"><div id="idHotelServ6" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Gimnasio</td>
+									<td style="padding:4px"><div id="idHotelServ7" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Restaurante</td>
+									<td style="padding:4px"><div id="idHotelServ8" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Bar</td>
+									<td style="padding:4px"><div id="idHotelServ9" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+								<tr>
+									<td style="font-size:12px;padding:3px">Pet friendly</td>
+									<td style="padding:4px"><div id="idHotelServ10" class="hotel-service-rating" data-rating="0"></div></td>
+								</tr>
+							</table>
+						</div>
+						<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="name_on_card"><b>Favor si desea registrar un comentario adicional en forma general:</b></label>
+								<textarea placeholder="Comentarios adicionales" name="comentarios" rows="3" class="form-control" required></textarea>
+							</div>
+						</div>	
+					</div>
+					<div class="modal-footer">
+						<button onclick="realizarPago()" id="btn_pagar" class="btn btn-primary">Enviar</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+					</div>
 			</div>
-			<div class="modal-footer">
-				<button onclick="realizarPago()" id="btn_pagar" class="btn btn-primary">Realizar Pago</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-			</div>
-	</div>
-</div>
-</div>	 
+		</div>
+	</div>	 

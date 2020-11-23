@@ -118,12 +118,8 @@
 		</section>
 
 		
-		<div id="details" class="box mb-4 mt-4">
-			<!--
-			<h4>Servicios incluidos</h4>
-
-			<ul class="fa-ul">
-			-->
+		<!--<div id="details" class="box mb-4 mt-4">
+			
 				<?php 
 					
 					$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
@@ -138,11 +134,9 @@
 				?>
 
 			</ul>
-			<p class="loadMore text-center"><a href="#" data-toggle="modal" data-target="#modal-soluciud-paquete"
-					class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i>
-					<?php echo 'Reservalo a S/.'.$precio_sol.' o $'.$precio_dolar ?></a></p>
+			
 		</div>
-		
+				-->
 
 		
 		<section class="bar background-white">
@@ -239,41 +233,124 @@
 				<div class="col-lg-12">
 					<div id="accordion" role="tablist" class="mb-5">
 
-						<div class="card">
-							<div id="headingTwo" role="tab" class="card-header">
-								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
-										aria-controls="collapseTwo" class="collapsed">Accordion Item No.2</a></h5>
+					<?php
+
+					$arrayLiDetalle = explode("-",$paquete["detalle"]) ;
+					$detailText = "";
+					foreach($arrayLiDetalle as $key => $val) {
+						if(strlen($val)>0){
+							$detailText .= '- '.$val.'<br>';
+						}
+					}
+
+					
+					echo '<div class="card">
+							<div id="headingDetail" role="tab" class="card-header">
+								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseDetail" aria-expanded="false"
+										aria-controls="collapseDetail" class="collapsed">Detalle del paquete</a></h5>
 							</div>
-							<div id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion"
+							<div id="collapseDetail" role="tabpanel" aria-labelledby="headingDetail" data-parent="#accordion"
 								class="collapse">
 								<div class="card-body">
 									<div class="row">
 										<div class="col-md-12">
-											<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
-												raising a heavy fur
-												muff that covered the whole of her lower arm towards the viewer. Gregor
-												then turned to look
-												out the window at the dull weather. Drops of rain could be heard hitting
-												the pane, which made
-												him feel quite sad.</p>
-											<p>It showed a lady fitted out with a fur hat and fur boa who sat upright,
-												raising a heavy fur
-												muff that covered the whole of her lower arm towards the viewer. Gregor
-												then turned to look
-												out the window at the dull weather. Drops of rain could be heard hitting
-												the pane, which made
-												him feel quite sad.</p>
+												'.$detailText.'
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>';
+
+						$arrayLihotel = explode("-",$paquete["informacion_hotel"]) ;
+						$hotelDetailText = "";
+						foreach($arrayLihotel as $key => $val) {
+							if(strlen($val)>0){
+								$hotelDetailText .= '- '.$val.'<br>';
+							}
+						}
+
+
+						echo '<div class="card">
+							<div id="headingHotel" role="tab" class="card-header">
+								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseHotel" aria-expanded="false"
+										aria-controls="collapseHotel" class="collapsed">Información del Hotel</a></h5>
+							</div>
+							<div id="collapseHotel" role="tabpanel" aria-labelledby="headingHotel" data-parent="#accordion"
+								class="collapse">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12">
+											'.$hotelDetailText.'
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>';
+
+
+						$arrayLiDetalle = explode("-",$paquete["informacion_traslados"]) ;
+						$detailText = "";
+						foreach($arrayLiDetalle as $key => $val) {
+							if(strlen($val)>0){
+								$detailText .= '- '.$val.'<br>';
+							}
+						}
+
+
+						echo '<div class="card">
+							<div id="headingTraslados" role="tab" class="card-header">
+								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseTraslados" aria-expanded="false"
+										aria-controls="collapseTraslados" class="collapsed">Información Traslados</a></h5>
+							</div>
+							<div id="collapseTraslados" role="tabpanel" aria-labelledby="headingTraslados" data-parent="#accordion"
+								class="collapse">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12">
+											'.$detailText.'
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>';
+
+
+						$arrayLiDetalle = explode("-",$paquete["consideraciones"]) ;
+						$detailText = "";
+						foreach($arrayLiDetalle as $key => $val) {
+							if(strlen($val)>0){
+								$detailText .= '- '.$val.'<br>';
+							}
+						}
+					
+						echo '<div class="card">
+							<div id="headingConsideraciones" role="tab" class="card-header">
+								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseConsideraciones" aria-expanded="false"
+										aria-controls="collapseConsideraciones" class="collapsed">Consideraciones</a></h5>
+							</div>
+							<div id="collapseConsideraciones" role="tabpanel" aria-labelledby="headingConsideraciones" data-parent="#accordion"
+								class="collapse">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-12">
+											'.$detailText.'
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>';
+
+					?>
 
 					</div>
 				</div>
 			</div>
 
 		</section>
+
+		<p class="loadMore text-center"><a href="#" data-toggle="modal" data-target="#modal-soluciud-paquete"
+					class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i>
+					<?php echo 'Reservalo a S/.'.$precio_sol.' o $'.$precio_dolar ?></a></p>
 
 		<div class="bar pt-0">
 			<section>

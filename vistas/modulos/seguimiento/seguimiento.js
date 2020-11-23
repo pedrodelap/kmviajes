@@ -119,13 +119,51 @@ $(document).ready(function () {
     $(".my-rating-4").starRating({
         totalStars: 5,
         starShape: 'rounded',
-        starSize: 40,
+        starSize: 25,
         emptyColor: 'lightgray',
-        hoverColor: 'salmon',
-        activeColor: 'crimson',
-        useGradient: false
+        hoverColor: '#da4d4d',
+        activeColor: '#da4d4d',
+        useGradient: true
     });
 
+    $(".hotel-service-rating").starRating({
+        totalStars: 5,
+        starShape: 'rounded',
+        starSize: 25,
+        emptyColor: 'lightgray',
+        hoverColor: '#da4d4d',
+        activeColor: '#da4d4d',
+        useGradient: true,
+        disableAfterRate: false,
+        initialRating: 0,
+    });
+
+    $("#idHotelAll").starRating({
+        totalStars: 5,
+        starShape: 'rounded',
+        starSize: 25,
+        disableAfterRate: false,
+        emptyColor: 'lightgray',
+        hoverColor: '#da4d4d',
+        activeColor: '#da4d4d',
+        useGradient: false,
+        minRating: 1,
+        initialRating: 0,
+        callback: function (currentRating, $el) {
+            console.log(currentRating);
+            $('#idHotelServ1').starRating('setRating', currentRating, true);
+            $('#idHotelServ2').starRating('setRating', currentRating, true);
+            $('#idHotelServ3').starRating('setRating', currentRating, true);
+            $('#idHotelServ4').starRating('setRating', currentRating, true);
+            $('#idHotelServ5').starRating('setRating', currentRating, true);
+            $('#idHotelServ6').starRating('setRating', currentRating, true);
+            $('#idHotelServ7').starRating('setRating', currentRating, true);
+            $('#idHotelServ8').starRating('setRating', currentRating, true);
+            $('#idHotelServ9').starRating('setRating', currentRating, true);
+            $('#idHotelServ10').starRating('setRating', currentRating, true);
+
+        }
+    });
 });
 
 
@@ -263,7 +301,60 @@ function registrarEstado() {
 
             $("#loading-airplane").hide();
 
-            if(respuesta = 'ok'){
+            if (respuesta = 'ok') {
+
+                console.log(respuesta);
+
+                Swal.fire({
+                    title: "¡OK!",
+                    text: "¡Cotización aceptada correctamente!",
+                    icon: "success",
+                    confirmButtonText: "Cerrar",
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result.value) {
+
+                        location.reload();
+                    }
+                });
+
+            }
+
+        }
+
+    });
+}
+
+function registrarEstado() {
+
+    var id_solicitud = $("#id_solicitud").val();
+    var estado = "Aceptada";
+    var cambiarEstado = true;
+
+    var formPago = new FormData();
+
+    formPago.append("estado", estado);
+    formPago.append("id_solicitud", id_solicitud);
+    formPago.append("cambiarEstado", cambiarEstado);
+
+
+    $.ajax({
+
+        url: "ajax/ajax.paquete.php",
+        method: "POST",
+        data: formPago,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        beforeSend: function () {
+            $("#loading-airplane").show();
+        },
+        success: function (respuesta) {
+
+            $("#loading-airplane").hide();
+
+            if (respuesta = 'ok') {
 
                 console.log(respuesta);
 

@@ -282,4 +282,58 @@ class ModeloPaquetes{
 
 	}
 
+	#CONSULTAR PAQUETE PARA COTIZACION PDF	
+	#-----------------------------------------------------
+	static public function mdlObtenetPaqueteByIdSolicitud($id){
+
+		$stmt = Conexion::conectar()->prepare(  "SELECT p.id_paquete,
+														p.titulo,
+														p.descripcion_corta,
+														p.descripcion_larga,
+														p.precio_dolar,
+														p.precio_sol,
+														p.fecha_inicio,
+														p.fecha_fin,
+														p.cantidad_adultos,
+														p.cantidad_ninios,
+														p.foto_larga,
+														p.flag,
+														p.fecha_mostrar,
+														c.nombre as 'nombreCampania',
+														ci.nombre as 'nombreCiudad',
+														h.nombre  as 'nombreHotel',
+														cp.id_campania,
+														a.compania,
+														p.detalle,
+														p.informacion_hotel,
+														p.informacion_traslados,
+														p.consideraciones,
+														s.codigo_seguimiento,
+														s.numero_adultos,
+														s.numero_ninios,
+														cli.nombres,
+														cli.apellidos,
+														cli.numero_documento
+												   from tb_campanias_x_paquetes cp
+                                             inner join tb_paquetes p on cp. id_paquete = p.id_paquete
+											 inner join tb_solicitud s on s.id_paquete = p.id_paquete
+											 inner join tb_clientes cli on cli.id_cliente = s.id_cliente	   
+                                             inner join tb_campenias c on cp.id_campania = c.id_campania
+                                             inner join tb_ciudades ci on p.id_ciudad = ci.id_ciudad
+                                             left join tb_hoteles h on p.id_hotel = h.id_hotel
+                                             left join tb_aerolineas a on a.id_aerolinea = p.id_aerolinea
+												 WHERE s.id_solicitud =:id");
+												 
+		$stmt -> bindParam(":id", $id, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
+
 }

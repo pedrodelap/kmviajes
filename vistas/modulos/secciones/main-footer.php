@@ -5,8 +5,7 @@
 			<div class="col-lg-3">
 				<h4 class="h6">Sobre Nosotros</h4>
 				<p>
-					Pellentesque habitant morbi tristique senectus et netus et malesuada
-					fames ac turpis egestas.
+					Somos una agencia de Viaje que te ayudamos a tener un viaje soñado
 				</p>
 				<hr />
 				<h4 class="h6">ÚNETE A NUESTRO BOLETÍN MENSUAL</h4>
@@ -23,14 +22,14 @@
 				<hr class="d-block d-lg-none" />
 			</div>
 			<div class="col-lg-3">
-				<h4 class="h6">Blog</h4>
+				<h4 class="h6">Enlaces de interés</h4>
 				<ul class="list-unstyled footer-blog-list">
 					<li class="d-flex align-items-center">
 						<div class="image">
 							<img src="vistas/assets/img/detailsquare.jpg" alt="..." class="img-fluid" />
 						</div>
 						<div class="text">
-							<h5 class="mb-0"><a href="#">Blog post name</a></h5>
+							<h5 class="mb-0"><a href="#">MINCETUR</a></h5>
 						</div>
 					</li>
 					<li class="d-flex align-items-center">
@@ -38,7 +37,7 @@
 							<img src="vistas/assets/img/detailsquare.jpg" alt="..." class="img-fluid" />
 						</div>
 						<div class="text">
-							<h5 class="mb-0"><a href="#">Blog post name</a></h5>
+							<h5 class="mb-0"><a href="#">Marca Perú</a></h5>
 						</div>
 					</li>
 					<li class="d-flex align-items-center">
@@ -47,7 +46,7 @@
 						</div>
 						<div class="text">
 							<h5 class="mb-0">
-								<a href="#">Very very long blog post name</a>
+								<a href="#">Camara de Lima</a>
 							</h5>
 						</div>
 					</li>
@@ -66,22 +65,22 @@
 			<div class="col-lg-3">
 				<ul class="list-inline photo-stream">
 					<li class="list-inline-item">
-						<a href="#"><img src="vistas/assets/img/detailsquare.jpg" alt="..." class="img-fluid" /></a>
+						<a href="#"><img src="vistas/assets/img/catalogo_tours/1-b-sm.png" alt="..." class="img-fluid" /></a>
 					</li>
 					<li class="list-inline-item">
-						<a href="#"><img src="vistas/assets/img/detailsquare2.jpg" alt="..." class="img-fluid" /></a>
+						<a href="#"><img src="vistas/assets/img/catalogo_tours/2-b-sm.png" alt="..." class="img-fluid" /></a>
 					</li>
 					<li class="list-inline-item">
-						<a href="#"><img src="vistas/assets/img/detailsquare3.jpg" alt="..." class="img-fluid" /></a>
+						<a href="#"><img src="vistas/assets/img/catalogo_tours/3-b-sm.png" alt="..." class="img-fluid" /></a>
 					</li>
 					<li class="list-inline-item">
-						<a href="#"><img src="vistas/assets/img/detailsquare3.jpg" alt="..." class="img-fluid" /></a>
+						<a href="#"><img src="vistas/assets/img/catalogo_tours/2-b-sm.png" alt="..." class="img-fluid" /></a>
 					</li>
 					<li class="list-inline-item">
-						<a href="#"><img src="vistas/assets/img/detailsquare2.jpg" alt="..." class="img-fluid" /></a>
+						<a href="#"><img src="vistas/assets/img/catalogo_tours/3-b-sm.png" alt="..." class="img-fluid" /></a>
 					</li>
 					<li class="list-inline-item">
-						<a href="#"><img src="vistas/assets/img/detailsquare.jpg" alt="..." class="img-fluid" /></a>
+						<a href="#"><img src="vistas/assets/img/catalogo_tours/1-b-sm.png" alt="..." class="img-fluid" /></a>
 					</li>
 				</ul>
 			</div>
