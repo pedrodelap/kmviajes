@@ -303,4 +303,5 @@ $(function () {
     });
 
 
+    $(".scroll").jScroll();
 });

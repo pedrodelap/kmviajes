@@ -70,7 +70,11 @@
                 </a>
             </li>
             
-
+            <li>
+                <a href="solicitud-calificar">
+                    <i class="metismenu-icon lnr-apartment"></i> Validar Paquetes
+                </a>
+            </li>
             <li>
                 <a href="aerolineas">
                     <i class="metismenu-icon pe-7s-plane"></i> Aerolíneas

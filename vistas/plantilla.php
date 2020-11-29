@@ -53,7 +53,8 @@
         if(isset($_GET["ruta"])){
 
             if($_GET["ruta"] == "detallepaquete" ||
-               $_GET["ruta"] == "seguimiento")
+               $_GET["ruta"] == "seguimiento" || 
+               $_GET["ruta"] == "pago")
             {
 
             include "vistas/modulos/".$_GET["ruta"]."/".$_GET["ruta"].".php";
@@ -107,12 +108,13 @@
      <!--SweetAlert2-->        
      <script src="vistas/assets/js/jquery.star-rating-svg.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
+    <script src="vistas/assets/js/jquery.jscroll.js"></script>
     <script src="vistas/assets/js/front.js"></script>
     <script src="vistas/modulos/listapaquetes/listapaquetes.js"></script>
     
     <script src="vistas/modulos/detallepaquete/detallepaquete.js"></script>
     <script src="vistas/modulos/seguimiento/seguimiento.js"></script>
+    <script src="vistas/modulos/pago/pago.js"></script>
 
 </body>
 

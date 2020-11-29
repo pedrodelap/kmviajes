@@ -208,7 +208,8 @@
                                $_GET["ruta"] == "suscriptores" ||
                                $_GET["ruta"] == "salir" || 
                                $_GET["ruta"] == "ventas" ||
-                               $_GET["ruta"] == "venta-docelectronico" ){
+                               $_GET["ruta"] == "venta-docelectronico" ||
+                               $_GET["ruta"] == "solicitud-calificar" ){
 
                                 include "modulos/".$_GET["ruta"].".php";
 

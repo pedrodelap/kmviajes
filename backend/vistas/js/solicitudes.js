@@ -6,12 +6,13 @@ $('#modalDatosSolicitante').appendTo("body");
 
 $('#modalDatosPaquete').appendTo("body");
 
+$('#modalCalificar').appendTo("body");
 
 /*=============================================
 MOSTRAR DATOS DEL CLIENTE
 =============================================*/
 
-function btmMostrarSolicitante( idCliente) {
+function btmMostrarSolicitante(idCliente) {
 
     var idClienteSolicitud = idCliente;
     var idClientes = new FormData();
@@ -27,9 +28,9 @@ function btmMostrarSolicitante( idCliente) {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-            $nombreCompleto = respuesta["nombres"] + ' ' + respuesta["apellidos"];         
+            $nombreCompleto = respuesta["nombres"] + ' ' + respuesta["apellidos"];
             $("#solicitanteNombre").val($nombreCompleto);
             $("#solicitanteTelefono").val(respuesta["numero_documento"]);
             $("#solicitanteCorreo").val(respuesta["correo"])
@@ -44,7 +45,7 @@ function btmMostrarSolicitante( idCliente) {
 MOSTRAR DETALLE DEL PAQUETE DE LA SOLICITUD
 =============================================*/
 
-function btnDetallePaqueteSolicitud( idPaqueteDeSolicitudT) {
+function btnDetallePaqueteSolicitud(idPaqueteDeSolicitudT) {
 
     var idPaqueteDeSolicitudT = idPaqueteDeSolicitudT;
 
@@ -64,9 +65,9 @@ function btnDetallePaqueteSolicitud( idPaqueteDeSolicitudT) {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-            if(respuesta != "error"){
+            if (respuesta != "error") {
 
                 //console.log("en el If ");
                 //console.log("respuesta: ",respuesta);
@@ -74,10 +75,10 @@ function btnDetallePaqueteSolicitud( idPaqueteDeSolicitudT) {
                 $("#solicitanteTelefono").val(respuesta["numero_documento"]);
                 $('#modalDatosPaquete').modal('show');
 
-            }else{
+            } else {
 
                 console.log("en el Else ");
-                console.log("respuesta: ",respuesta);
+                console.log("respuesta: ", respuesta);
 
             }
 
@@ -93,7 +94,7 @@ function btnDetallePaqueteSolicitud( idPaqueteDeSolicitudT) {
 CAMBIAR ESTADO DE LA SOLICITUD DE REGISTRADA A COTIZADA
 =============================================*/
 
-$(".table").on("click", ".estadoSolicitudRegistrada", function() {
+$(".table").on("click", ".estadoSolicitudRegistrada", function () {
 
     var idSolicitud = $(this).attr("idSolicitud");
 
@@ -125,11 +126,11 @@ $(".table").on("click", ".estadoSolicitudRegistrada", function() {
                 contentType: false,
                 processData: false,
                 dataType: "json",
-                success: function(respuesta) {
-        
-                    if(respuesta == "ok"){
-        
-                        console.log("respuesta: ",respuesta);
+                success: function (respuesta) {
+
+                    if (respuesta == "ok") {
+
+                        console.log("respuesta: ", respuesta);
 
                         Swal.fire({
                             type: "success",
@@ -137,20 +138,20 @@ $(".table").on("click", ".estadoSolicitudRegistrada", function() {
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar",
                             closeOnConfirm: false
-                            }).then((result) => {
-                                      if (result.value) {
-  
-                                          window.location = "solicitudes";
-  
-                                      }
+                        }).then((result) => {
+                            if (result.value) {
+
+                                window.location = "solicitudes";
+
+                            }
                         });
-                                
+
                     }
-        
+
                 }
-        
+
             });
-            
+
         }
 
     })
@@ -162,7 +163,7 @@ $(".table").on("click", ".estadoSolicitudRegistrada", function() {
 CAMBIAR ESTADO DE LA SOLICITUD DE REGISTRADA A COTIZADA
 =============================================*/
 
-$(".table").on("click", ".estadoSolicitudAceptada", function() {
+$(".table").on("click", ".estadoSolicitudAceptada", function () {
 
     var idSolicitud = $(this).attr("idSolicitud");
 
@@ -195,11 +196,11 @@ $(".table").on("click", ".estadoSolicitudAceptada", function() {
                 contentType: false,
                 processData: false,
                 dataType: "json",
-                success: function(respuesta) {
-        
-                    if(respuesta == "ok"){
-        
-                        console.log("respuesta: ",respuesta);
+                success: function (respuesta) {
+
+                    if (respuesta == "ok") {
+
+                        console.log("respuesta: ", respuesta);
 
                         Swal.fire({
                             type: "success",
@@ -207,18 +208,18 @@ $(".table").on("click", ".estadoSolicitudAceptada", function() {
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar",
                             closeOnConfirm: false
-                            }).then((result) => {
-                                      if (result.value) {
-  
-                                          window.location = "solicitudes";
-  
-                                      }
+                        }).then((result) => {
+                            if (result.value) {
+
+                                window.location = "solicitudes";
+
+                            }
                         });
-                                
+
                     }
-        
+
                 }
-        
+
             });
 
 
@@ -234,10 +235,10 @@ $(".table").on("click", ".estadoSolicitudAceptada", function() {
 MOSTRAR DETALLE DEL PAQUETE DE LA SOLICITUD
 =============================================*/
 
-function btnDetalleSinPaqueteSolicitud(idSolicitudSinPaquete ) {
+function btnDetalleSinPaqueteSolicitud(idSolicitudSinPaquete) {
 
     var idSolicitud = idSolicitudSinPaquete;
 
-    window.location = "index.php?ruta=cotizacion-crear&idSolicitud="+idSolicitud;
+    window.location = "index.php?ruta=cotizacion-crear&idSolicitud=" + idSolicitud;
 
 }

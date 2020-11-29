@@ -2,6 +2,7 @@
 	
 	$codigoSeguimiento = $_GET["codseg"];
 	$paquete = ControladorPaqueteFront::ctrObtenetPaqueteByCodigoSeguimiento($codigoSeguimiento);
+	$pasajeros = $paquete["pasajeros"] + $paquete["ninos"];
 ?>
 <div id="heading-breadcrumbs">
 	<div class="container">
@@ -37,73 +38,71 @@
 
 		<div class="col-md-12">
 
-
-			<div class="row d-flex justify-content-between px-3 top">
-				<div class="d-flex">
-					<h5>SOLICITUTD <span class="text-primary font-weight-bold">#<?php echo $codigoSeguimiento; ?></span></h5>
-				</div>
+			<div class="card">
 				
-			</div> <!-- Add class 'active' to progress -->
-			<div class="row d-flex justify-content-center">
-				<div class="col-12">
-					<ul id="progressbar" class="text-center">
-						<?php 
-							$count = 0;
-							$historial = ControladorPaqueteFront::ctrObtenerHistoricoSeguimientoSinAprobado($codigoSeguimiento);
-							$historial2 = ControladorPaqueteFront::ctrObtenerHistoricoSeguimiento($codigoSeguimiento);
-							foreach ($historial as $value) {
-								echo "<li class='step0 active'></li>";
-								$count +=1;
+				<div class="row d-flex justify-content-between px-3 top">
+					<div class="d-flex">
+						<h5>SOLICITUTD <span class="text-primary font-weight-bold">#<?php echo $codigoSeguimiento; ?></span></h5>
+					</div>
+					
+				</div> <!-- Add class 'active' to progress -->
+				<div class="row d-flex justify-content-center">
+					<div class="col-12">
+						<ul id="progressbar" class="text-center">
+							<?php 
+								$count = 0;
+								$historial = ControladorPaqueteFront::ctrObtenerHistoricoSeguimientoSinAprobado($codigoSeguimiento);
+								$historial2 = ControladorPaqueteFront::ctrObtenerHistoricoSeguimiento($codigoSeguimiento);
+								foreach ($historial as $value) {
+									echo "<li class='step0 active'></li>";
+									$count +=1;
+									
+								}
 								
-							}
-							
-							for ($i = $count; $i <= 4; $i++) {
-								echo '<li class="step0"></li>';
-							}
-						?>
-					</ul>
-				</div>
-			</div>
-			<div class="row justify-content-between top">
-				<div class="row d-flex icon-content"> <img class="icon" src="https://img.icons8.com/wired/64/000000/form.png"/>
-					<div class="d-flex flex-column">
-						<p class="font-weight-bold">Solicitud<br>Registrada</p>
+								for ($i = $count; $i <= 4; $i++) {
+									echo '<li class="step0"></li>';
+								}
+							?>
+						</ul>
 					</div>
 				</div>
-				<div class="row d-flex icon-content"> <img  class="icon" src="https://img.icons8.com/carbon-copy/100/000000/invoice-1.png"/>
-					<div class="d-flex flex-column">
-						<p class="font-weight-bold">Solicitud<br>Cotizada</p>
+				<div class="row justify-content-between top">
+					<div class="row d-flex icon-content"> <img class="icon" src="https://img.icons8.com/wired/64/000000/form.png"/>
+						<div class="d-flex flex-column">
+							<p class="font-weight-bold">Solicitud<br>Registrada</p>
+						</div>
 					</div>
-				</div>
-				<div class="row d-flex icon-content"> <img class="icon" src="https://img.icons8.com/dotty/80/000000/cruise-control-on.png"/>
-					<div class="d-flex flex-column">
-						<p class="font-weight-bold">Solicitud<br>Reservada</p>
+					<div class="row d-flex icon-content"> <img  class="icon" src="https://img.icons8.com/carbon-copy/100/000000/invoice-1.png"/>
+						<div class="d-flex flex-column">
+							<p class="font-weight-bold">Solicitud<br>Cotizada</p>
+						</div>
 					</div>
-				</div>
-				<div class="row d-flex icon-content"> <img class="icon"  src="https://img.icons8.com/ios-filled/50/000000/paid-bill.png"/>
-					<div class="d-flex flex-column">
-						<p class="font-weight-bold">Solicitud<br>Pagada</p>
+					<div class="row d-flex icon-content"> <img class="icon" src="https://img.icons8.com/dotty/80/000000/cruise-control-on.png"/>
+						<div class="d-flex flex-column">
+							<p class="font-weight-bold">Solicitud<br>Reservada</p>
+						</div>
 					</div>
-				</div>
-				<div class="row d-flex icon-content"> <img  class="icon" src="https://img.icons8.com/ios-filled/50/000000/passenger-with-baggage.png"/>
-					<div class="d-flex flex-column">
-						<p class="font-weight-bold">Solicitud<br>Completa!</p>
+					<div class="row d-flex icon-content"> <img class="icon"  src="https://img.icons8.com/ios-filled/50/000000/paid-bill.png"/>
+						<div class="d-flex flex-column">
+							<p class="font-weight-bold">Solicitud<br>Pagada</p>
+						</div>
 					</div>
+					<div class="row d-flex icon-content"> <img  class="icon" src="https://img.icons8.com/ios-filled/50/000000/passenger-with-baggage.png"/>
+						<div class="d-flex flex-column">
+							<p class="font-weight-bold">Solicitud<br>Completa!</p>
+						</div>
+					</div>
+					
 				</div>
+			</div>					
+
+			<div class="">
 				
-			</div>
-
-
-			<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-template-outlined btn-sm">Aceptar</button>
-
-			<div class="container px-1 px-md-4 py-5 mx-auto">
-				<div class="card">
-				</div>
 				<div id="content">
-					<div class="container">
-						<div class="row">
+					<div class="">
+						<div class="row portfolio-project">
 
-							<div id="checkout" class="col-lg-9">
+							<div id="checkout" class="col-md-8">
 								<div class="box">
 									<ul class="nav nav-pills nav-fill">
 										<li class="nav-item"><a href="#" class="nav-link active"><i
@@ -130,14 +129,13 @@
 														
 														$estadoSolicitud = $value[1];
 														
-														
 														switch ($estadoSolicitud) {
 															case "Registrada":
 																$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
 																
 															break;
 															case "Cotizada":
-																if($count <= 1 ){
+																if($count <= 2 ){
 																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#cotizacion-modal" class="btn btn-template-outlined btn-sm">Aceptar</button>';
 																}
 																else{
@@ -151,7 +149,7 @@
 															break;
 															case "Reservada":
 																if($count == 3 ){
-																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#pagar-modal" class="btn btn-template-outlined btn-sm">Realizar Pago</button>';
+																	$htmlAction = '<a href="index.php?ruta=pago&codseg='.$codigoSeguimiento.'"  class="btn btn-template-outlined btn-sm">Realizar Pago</a>';
 																}
 																else{
 																	$htmlAction = '<button type="button" class="btn btn-sm btn-default" disabled>Sin acción</button>';
@@ -202,45 +200,64 @@
 
 								</div>
 							</div>
-							<div class="col-lg-3">
-								<div id="order-summary" class="box mb-4 p-0">
-									<div class="box-header mt-0">
-										<h3>Informacion</h3>
-									</div>
-									<p class="text-muted text-small"><?php echo $paquete["descripcion_corta"]; ?></p>
-									<div class="table-responsive">
-										<table class="table">
-											<tbody>
-												<tr>
-													<th colspan="2"><?php echo $paquete["titulo"]; ?></th>
-												</tr>
-											
-												<tr>
-													<td>Destino</td>
-													<th><?php echo $paquete["ciudad"]; ?></th>
-												</tr>
-												<!--
-												<tr>
-													<td>Pasajeros</td>
-													<th><?php //echo $paquete["pasajeros"]; ?></th>
-												</tr>
-												-->
-												<tr>
-													<td>Fecha*</td>
-													<th><?php echo $paquete["fecha_mostrar"]; ?></th>
-												</tr>
 
-												<input type="hidden" id="amount" value="<?php echo $paquete["precio_dolar"]; ?>"/>
-												<input type="hidden" id="description" value="<?php echo $paquete["titulo"]; ?>"/>
-												<input type="hidden" id="phone" value="<?php echo $paquete["telefono"]; ?>"/>
-												<input type="hidden" id="merchantPayerId" value="<?php echo $paquete["id_cliente"]; ?>"/>
-												<input type="hidden" id="dniNumber" value="<?php echo $paquete["numero_documento"]; ?>"/>
-												<input type="hidden" id="id_solicitud" value="<?php echo $paquete["id_solicitud"]; ?>"/>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
+
+							<div class="col-md-4  project-more">
+					<div class="scroll card" style="padding: 10px"> 
+						<div class="heading">
+							<h3>Información del Paquete</h3>
+						</div>
+                        <h3><?php echo $paquete["titulo"]; ?></h3>
+						<?php
+							$compania = $paquete["compania"];
+							echo '<h4>Aeorolinea</h4><span>'.$compania.'</span>' 
+                        ?>
+                        <hr/>
+
+                        <?php 
+							$nombreHotel = $paquete["nombre_hotel"];
+                            $nombreCiudad = $paquete["ciudad"];
+                            echo '<h4>Viaje</h4> <span>'.$paquete["fecha_mostrar"].'</span>' ;
+                            echo '<hr/><h4>Hotel</h4><span style="font-style: italic;font-size:13px;">'.$nombreHotel.' de '.$nombreCiudad.'</span>';
+                            echo '<div id="idHotelServ3" class="my-rating-hotel" data-rating="'.$paquete["calificacion"].'"></div>';
+                           
+                        ?>  
+                        <div style="padding:5px;">
+                            <?php 
+                            $servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($paquete["id_paquete"]);
+                            
+							foreach ($servicios as $key => $value) {
+                                echo '<span style="float:left;font-size:13px;width:50%;margin-bottom:2px"><i class="'.$value["icono"].'" style="color:#da4d4d" aria-hidden="true"></i> '.$value["nombre"].'</span>';
+                            }
+                            ?>  
+						</div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>Pasajeros</td>
+                                    <th style="text-align:right;"><?php 
+                                    
+                                    echo $pasajeros;
+                                    ?></th>
+                                </tr>
+                               
+                                <tr>
+                                    <td>Precio Dolares x Unid.</td>
+                                    <th style="text-align:right;"><?php echo '$ '.number_format($paquete["precio_dolar"],2);?></th>
+                                </tr>
+                                <tr class="total">
+                                    <td>Total</td>
+                                    <th style="text-align:right;"><?php echo '$ '.number_format($pasajeros * $paquete["precio_dolar"],2);?></th>
+                                </tr>
+                                </tbody>
+							</table>
+							<input type="hidden" id="id_solicitud" value="<?php echo $paquete["id_solicitud"]; ?>"/>
+                        </div><!--table-responsive-->
+					</div>
+				</div>
+
+							
 						</div>
 					</div>
 
@@ -267,125 +284,12 @@
 			</div>
 
 	</section>
+	<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-template-outlined btn-sm">Aceptar</button>
+
+			
 </div>
 <!-- Container-->
 
-
-<!-- Login Modal-->
-
-
- <div id="pagar-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
-        <div role="document" class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-			<img src="https://img.icons8.com/material-rounded/24/000000/lock.png"/>
-              <h4 id="login-modalLabel" class="modal-title">Realizar Pago</h4>
-              <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-            </div>
-            	<div class="modal-body">
-					<input type="hidden" id="codigoSeguimiento" value="<?php echo $codigoSeguimiento ?>"/>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="image">
-								<img src="backend/vistas/images/paquetes/74_img_4_20200926051408.png" alt="" class="img-fluid">
-							</div>
-							<div class="table-responsive">
-							<table class="table">
-								<tbody>
-								<tr>
-									<th colspan="2"><?php echo $paquete["titulo"]; ?></th>
-								</tr>
-								<tr>
-									<td>Destino</td>
-									<th><?php echo $paquete["ciudad"]; ?></th>
-								</tr>
-								<tr>
-									<td>Fecha</td>
-									<th><?php echo $paquete["fecha_fin"]; ?></th>
-								</tr>
-								<tr class="total">
-									<td>Total</td>
-									<th>$<?php echo number_format($paquete["precio_dolar"],2); ?></th>
-								</tr>
-								</tbody>
-							</table>
-               			 </div>
-						</div>
-						<div class="col-sm-6">
-							
-
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="card_number"><b>Número de tarjeta</b></label>
-										<div class="input-group mb-3">
-										
-										<div class="input-group-append">
-											<span class="input-group-text" style="padding:0 5px;" id="type"><img class="img_card" src="https://img.icons8.com/android/48/000000/bank-card-back-side.png"/></span>
-										</div>
-										<input id="card_number" maxlength="16" type="text" placeholder="Numero de tarjeta" class="form-control">
-										</div>
-									</div>
-								</div>
-							</div>
-						
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="expiry_month"><b>Mes expiración</b></label>
-										<input id="expiry_month" type="text" maxlength="2" placeholder="MM" class="form-control">
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="expiry_year"><b>Año expiración</b></label>
-										<input id="expiry_year" type="text" maxlength="4" placeholder="AAAA" class="form-control">
-									</div>
-								</div>
-								
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label for="cvv"><b>CVV</b></label>
-										<input id="cvv" type="password" maxlength="4" placeholder="000" class="form-control">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="name_on_card"><b>Titular de tarjeta</b></label>
-										<input id="name_on_card" type="text" class="form-control" placeholder="" require/>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="txtCorreo"><b>Correo contacto</b></label>
-										<input id="txtCorreo" type="email" disabled class="form-control" value="<?php echo $paquete["correo"];?>" require/>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-										<button onclick="realizarPago()" id="btn_pagar" class="btn  btn-primary" style="float: right;">Confirmar pago de $<?php echo number_format($paquete["precio_dolar"],2)?></button>
-								</div>
-							</div>
-							
-							
-						</div>
-						
-					</div>
-					
-			   </div>
-			   
-          </div>
-        </div>
-	  </div>
-	  
-
-
-	  <!-- Login modal end-->
 	<div id="cotizacion-modal" tabindex="-1" role="dialog" aria-labelledby="cotizacion-modalLabel" aria-hidden="true" class="modal fade">
 		<div role="document" class="modal-dialog ">
 				<div class="modal-content">
@@ -403,83 +307,238 @@
 			</div>
 		</div>
 	</div>	 
-
-
-      <!-- Login modal end-->
-	<div id="calificar-modal" tabindex="-1" role="dialog" aria-labelledby="calificar-modalLabel" aria-hidden="true" class="modal fade">
-		<div role="document" class="modal-dialog ">
-				<div class="modal-content">
-					<div class="modal-header">
-					<h4 id="calificar-modalLabel" class="modal-title">Módulo de calificación</h4>
-					<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-					</div>
-					<div class="modal-body">
-						<p>Para poder seguir mejorando necesitamos, necesitamos de su apoyo para completar un cuestinario sobre los servicios contratados</p>
-						<h4>Servicios Contratados</h4>
-						<div class="table-responsive">
-							<table class="table table-hover">
-								<?php 
-									$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($paquete['id_paquete']);			
-									foreach ($servicios as $key => $value) {
-										
-										if($value["calificable"] == 1){
-											echo '<tr><td style="padding:4px;font-size:12px;">'.$value["nombre"].'</td><td style="padding:4px"><div class="my-rating-4" data-rating="0"></div></td></tr>';
-										}
+		 
+<!-- Login modal end-->
+<div id="calificar-modal" tabindex="-1" role="dialog" aria-labelledby="calificar-modalLabel" aria-hidden="true" class="modal fade">
+	<div role="document" class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h4 id="calificar-modalLabel" class="modal-title">Módulo de calificación</h4>
+				<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="modal-body">
+					<p>Para poder seguir mejorando, necesitamos contar con su apoyo para completar un cuestinario sobre los servicios contratados</p>
+					<h4>Servicios Contratados</h4>
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<?php 
+								$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($paquete['id_paquete']);			
+								foreach ($servicios as $key => $value) {
+									
+									if($value["calificable"] == 1){
+										echo '<tr><td style="padding:4px;font-size:14px;">'.$value["nombre"].'</td><td style="padding:4px"><div class="my-rating-4" data-rating="0"></div></td></tr>';
 									}
-								?>
-							</table>
-						</div>
-						<p>Nos gustaria conocer su opinion del Hotel <b><?php  echo $paquete['nombre_hotel'];?> </b>
+								}
+							?>
+						</table>
+					</div>
+					<p>Nos gustaria conocer su opinion del Hotel <b><?php  echo $paquete['nombre_hotel'];?> </b>
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<tr>
+								<td style="padding:4px;font-size:12px;padding:3px"><h4 style="margin:0 auto">Servicios ofrecidos por el Hotel:</h4></td>
+								<td style="padding:4px"><div id="idHotelAll"  data-rating="0"></div></td>
+							</tr>
+							
+						</table>
 						
-						<div class="table-responsive">
-							<table class="table table-hover">
-								<tr>
-									<td style="padding:4px;font-size:12px;padding:3px"><h4>Servicios ofrecidos por el Hotel:</h4></td>
-									<td style="padding:4px"><div id="idHotelAll"  data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Aparcamiento</td>
-									<td style="padding:4px"><div id="idHotelServ1" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">WIFI</td>
-									<td style="padding:4px"><div id="idHotelServ2" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Piscina</td>
-									<td style="padding:4px"><div id="idHotelServ3" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Aire acondicionado</td>
-									<td style="padding:4px"><div id="idHotelServ4" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Lavanderia</td>
-									<td style="padding:4px"><div id="idHotelServ5" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">SPA</td>
-									<td style="padding:4px"><div id="idHotelServ6" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Gimnasio</td>
-									<td style="padding:4px"><div id="idHotelServ7" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Restaurante</td>
-									<td style="padding:4px"><div id="idHotelServ8" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Bar</td>
-									<td style="padding:4px"><div id="idHotelServ9" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-								<tr>
-									<td style="font-size:12px;padding:3px">Pet friendly</td>
-									<td style="padding:4px"><div id="idHotelServ10" class="hotel-service-rating" data-rating="0"></div></td>
-								</tr>
-							</table>
+					</div>
+					
+					<div id="divCalificarHotel" style="display:none;">
+						<p>Nos podría ayudar marcando los servicios prestados por el hotel <b><?php  echo $paquete['nombre_hotel'];?> </b>
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+										<td style="font-size:14px;padding:3px">Aparcamiento</td>
+										<td style="padding:4px;  width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffAparcamiento" class="onoffswitch2-checkbox" id="onOffAparcamiento" >
+												<label class="onoffswitch2-label" for="onOffAparcamiento">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div>
-						<div class="row">
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">WIFI</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffWifi" class="onoffswitch2-checkbox" id="onOffWifi" >
+												<label class="onoffswitch2-label" for="onOffWifi">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">Piscina</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffPiscina" class="onoffswitch2-checkbox" id="onOffPiscina" >
+												<label class="onoffswitch2-label" for="onOffPiscina">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">Aire acondicionado</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffAire" class="onoffswitch2-checkbox" id="onOffAire" >
+												<label class="onoffswitch2-label" for="onOffAire">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">Lavanderia</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffLavanderia" class="onoffswitch2-checkbox" id="onOffLavanderia" >
+												<label class="onoffswitch2-label" for="onOffLavanderia">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">SPA</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffSpa" class="onoffswitch2-checkbox" id="onOffSpa" >
+												<label class="onoffswitch2-label" for="onOffSpa">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">Gimnasio</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffGym" class="onoffswitch2-checkbox" id="onOffGym" >
+												<label class="onoffswitch2-label" for="onOffGym">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">Restaurante</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffRestaurant" class="onoffswitch2-checkbox" id="onOffRestaurant" >
+												<label class="onoffswitch2-label" for="onOffRestaurant">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">Bar</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffBar" class="onoffswitch2-checkbox" id="onOffBar" >
+												<label class="onoffswitch2-label" for="onOffBar">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div style="float: left; width:50%">
+							<div class="table-responsive">
+								<table class="table table-hover">
+									<tr>
+									<td style="font-size:14px;padding:3px">Pet friendly</td>
+										<td style="padding:4px;width: 90px;">
+											<div class="onoffswitch2">
+												<input type="checkbox" name="onOffPet" class="onoffswitch2-checkbox" id="onOffPet" >
+												<label class="onoffswitch2-label" for="onOffPet">
+													<span class="onoffswitch2-inner"></span>
+													<span class="onoffswitch2-switch"></span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group">
 								<label for="name_on_card"><b>Favor si desea registrar un comentario adicional en forma general:</b></label>
@@ -487,10 +546,15 @@
 							</div>
 						</div>	
 					</div>
-					<div class="modal-footer">
-						<button onclick="realizarPago()" id="btn_pagar" class="btn btn-primary">Enviar</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-					</div>
-			</div>
+				</div>
+				<div class="modal-footer">
+					<button onclick="realizarPago()" id="btn_pagar" class="btn btn-primary">Enviar</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+				</div>
 		</div>
-	</div>	 
+	</div>
+</div>	 
+
+
+
+

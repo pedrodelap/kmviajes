@@ -18,7 +18,7 @@ class ControladorPaqueteFront{
                             <div class="overlay d-flex align-items-center justify-content-center">
                             <div class="content">
                                 <div class="name">
-                                <h3><a href="#" class="color-white" style="text-decoration: none;">'.$value["precio_sol"].' S/. o '.$value["precio_dolar"].' $</a></h3>
+                                <h3><a href="#" class="color-white" style="text-decoration: none;">$ '.number_format($value["precio_dolar"],2).' o S/ '.number_format($value["precio_sol"],2).'</a></h3>
                                 </div>
                                 <div class="text">
                                     <p class="buttons"><button idPaquete="'.$value["id_paquete"].'" class=" btn-buscar2 btn btn-template-outlined-white">Ver</button></p>
@@ -137,9 +137,6 @@ class ControladorPaqueteFront{
 
     static public function ctrEnviarPagoPasarella($data){
 
-        //$data = array("first_name" => "First name","last_name" => "last name","email"=>"email@gmail.com","addresses" => array ("address1" => "some address" ,"city" => "city","country" => "CA", "first_name" =>  "Mother","last_name" =>  "Lastnameson","phone" => "555-1212", "province" => "ON", "zip" => "123 ABC" ) );
-
-
         //"ApiKey~merchantId~referenceCode~tx_value~currency"
         $signature = md5("4Vj8eK4rloUd272L48hsrarnUA~508029~".$data["referenceCode"]."~".$data["amount"]."~".$data["currency"]);
         $datosPago = array(
@@ -247,5 +244,12 @@ class ControladorPaqueteFront{
 
     }
 
+    static public function ctrObtenerClienteByEmail($email){
+
+        $respuesta = ModeloPaqueteFront::mdlObtenerClienteByEmail($email);
+    
+		return $respuesta;
+
+    }
    
 }

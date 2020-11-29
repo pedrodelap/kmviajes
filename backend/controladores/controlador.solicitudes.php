@@ -65,6 +65,9 @@ class ControladorSolicitudes{
 		$tabla = 'tb_solicitudes_historial';
 
 		$respuesta = ModeloSolicitudes::mdlEstadoRegistradaACotizada($tabla, $datos);
+		// TO DO SEND MAIL
+
+		//
 
 		return $respuesta;
 	}

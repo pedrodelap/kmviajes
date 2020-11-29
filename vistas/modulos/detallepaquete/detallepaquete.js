@@ -1,3 +1,8 @@
+$(document).ready(function () {
+    $("#SolicitudPersonalizadaCorreo").focusout(function () {
+        buscarCliente();
+    });
+});
 function registroSolicitud2() {
 
     var SolicitudPersonalizadaNombres = $("#SolicitudPersonalizadaNombres").val();
@@ -37,7 +42,7 @@ function registroSolicitud2() {
         beforeSend: function () {
 
             $("#loading-airplane").show();
-        
+
         },
         success: function (respuesta) {
 
@@ -57,6 +62,8 @@ function registroSolicitud2() {
 
                         $('#modal-soluciud-paquete').modal('hide');
 
+
+
                     }
                 });
             }
@@ -72,9 +79,12 @@ function registroSolicitud2() {
                     closeOnConfirm: false
                 }).then((result) => {
                     if (result.value) {
-
+                        debugger;
                         $('#modal-soluciud-paquete').modal('hide');
                         limpiarSolicitudPersonalizada();
+
+
+                        window.location.href = '/index.php?ruta=seguimiento&codseg=' + respuesta.codigo_seguimiento;
 
                     }
                 });
@@ -83,5 +93,42 @@ function registroSolicitud2() {
 
         }
 
+    });
+};
+
+function buscarCliente() {
+
+    var txtBuscar = $("#SolicitudPersonalizadaCorreo").val();
+    console.log(txtBuscar)
+    var datos = new FormData();
+    datos.append("searchCliente", txtBuscar);
+    console.log('load');
+
+    $.ajax({
+        url: "ajax/ajax.paquete.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "text",
+        beforeSend: function () {
+
+            $("#loading-airplane").show();
+
+        },
+        success: function (respuesta) {
+            $("#loading-airplane").hide();
+            debugger;
+            var cliente = JSON.parse(respuesta);
+            console.log(cliente);
+            if (cliente.id_cliente != null) {
+
+                $("#SolicitudPersonalizadaNombres").val(cliente.nombres);
+                $("#SolicitudPersonalizadaApellidos").val(cliente.apellidos);
+                $("#SolicitudPersonalizadaTelefono").val(cliente.telefono);
+                $("#SolicitudPersonalizadaDocumento").val(cliente.numero_documento);
+            }
+        }
     });
 };

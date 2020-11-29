@@ -25,7 +25,17 @@ class ModeloPaqueteFront{
 														p.detalle,
 														p.informacion_hotel,
 														p.informacion_traslados,
-														p.consideraciones							
+														p.consideraciones,
+														h.aparcamiento,
+														h.internet_wifi,
+														h.piscina,
+														h.aire_acondicionado,		
+														h.lavanderia,
+														h.spa,
+														h.gimnasio,
+														h.restaurante,
+														h.bar,
+														h.mascotas				
 												   from tb_campanias_x_paquetes cp
                                              inner join tb_paquetes p on cp. id_paquete = p.id_paquete
                                              inner join tb_campenias c on cp.id_campania = c.id_campania
@@ -217,13 +227,17 @@ class ModeloPaqueteFront{
 												s.id_solicitud,
 												p.id_paquete,
 												h.id_hotel,
-												h.nombre as nombre_hotel
+												h.nombre as nombre_hotel,
+												a.compania,
+												h.calificacion,
+												ifnull(s.numero_adultos, 0) as pasajeros,
+												ifnull(s.numero_ninios, 0)  as ninos
 												from tb_solicitud s 
 												inner join tb_clientes cc on cc.id_cliente = s.id_cliente
-												
 												left join tb_paquetes p on s.id_paquete = p.id_paquete
 												left join tb_ciudades c on s.id_ciudad=c.id_ciudad
 												left join tb_ciudades c2 on p.id_ciudad=c2.id_ciudad
+												left join tb_aerolineas a on a.id_aerolinea = p.id_aerolinea
 												inner join tb_hoteles h on h.id_hotel = p.id_hotel
 												WHERE s.codigo_seguimiento =:codigoSeguimiento");
 												 
@@ -399,6 +413,31 @@ class ModeloPaqueteFront{
 
         $stmt = null;
 
-    }
+	}
+	
+	//OBTENER CLIENTE POR DNI
+
+	static public function mdlObtenerClienteByEmail($email){
+		$stmt = Conexion::conectar()->prepare(  "SELECT * from tb_clientes c
+												 WHERE  c.correo = :email");
+												 
+		$stmt -> bindParam(":email", $email, PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+        $stmt = null;
+	}
+	
+	//OBTENER SERVICIOS DE HOTEL
+	static public function mdlObtenerServiciosHotel($idHotel){
+		$stmt = Conexion::conectar()->prepare(  "SELECT * from tb_hoteles c
+												 WHERE  c.correo = :email");
+												 
+		$stmt -> bindParam(":email", $email, PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+        $stmt = null;
+	}
 
 }

@@ -35,7 +35,7 @@ class AjaxPaquetes{
 		$respuesta = null;
 		$respuesta = ControladorPaqueteFront::ctrEnviarPagoPasarella($datosPago);
 		
-
+		
 		$statePago = $respuesta["transactionResponse"]["state"];
 
 		if ($statePago == "APPROVED"){
@@ -160,6 +160,13 @@ class AjaxPaquetes{
 
 	}
 
+	public function ajaxValidarCliente($datos){
+
+		$respuesta = ControladorPaqueteFront::ctrObtenerClienteByEmail($datos);
+		echo json_encode($respuesta);
+
+	}
+
 }
 
 /*=============================================
@@ -267,4 +274,11 @@ if(isset($_POST['cambiarEstado'])){
 	$datosPago = array("estado"=>$_POST["estado"],
 						"id_solicitud"=>$_POST["id_solicitud"]);
 	$pagar -> ajaxCambiarEstadoHistorialSolicitud($datosPago);
+}
+
+if(isset($_POST['searchCliente'])){
+
+	$buscarCliente = new AjaxPaquetes();
+	$buscarCliente -> ajaxValidarCliente($_POST["searchCliente"]);
+
 }

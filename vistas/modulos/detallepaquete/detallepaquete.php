@@ -53,8 +53,9 @@
 
 		</section>
 		<section class="no-mb bar">
+		
 			<div class="row portfolio-project">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div class="heading">
 						<h3><?php
 
@@ -66,291 +67,319 @@
 
 					</div>
 					<p><?php echo $paquete["descripcion_larga"]?></p>
-				</div>
-				<div class="col-md-4 project-more">
+
+					<br/>
+					<!--servicios-->
 					<div class="heading">
-						<h3>Información</h3>
+						<h3>Servicios del Paquete</h3>
 					</div>
-					<?php
-						$nombreCampania = $paquete["nombreCampania"];
+					<div class="container text-center">
+						<div class="row">
 
-						echo '<h4>Campaña</h4>   <p>'.$nombreCampania.'</p>' ;
+									<?php 
 
-					?>
+							$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
 
-					<?php 
+							foreach ($servicios as $key => $value) {
 
-						$nombreHotel = $paquete["nombreHotel"];
+								if($value["nombre"] == 'Boleto Aéreo' ){
 
-						$nombreCiudad = $paquete["nombreCiudad"];
+									echo '<div class="col-lg-3 col-md-6">
+											<div class="box-simple">
+												<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
+												<h3 class="h4">'.$value["nombre"].'</h4>
+												<p>'.$value["descripcion"].' LIMA / '.$paquete["nombreCiudad"].' / LIMA.</p>
+											</div>
+										</div>';
 
-						echo '<h4>Hotel/Ciudad</h4>   <p>'.$nombreHotel.'/'.$nombreCiudad.'</p>';
+								}else {
+
+									echo '<div class="col-lg-3 col-md-6">
+											<div class="box-simple">
+												<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
+												<h3 class="h4">'.$value["nombre"].'</h3>
+												<p>'.$value["descripcion"].'.</p>
+											</div>
+										</div>';
+
+								}
+							}
+
+						?>
+
+						</div>
+					</div>
+					<!--fin servicios-->	
+					<!-- hotel -->
+					<div class="heading">
+						<h3>Servicios del Hotel</h3>
+					</div>
+					<div class="container text-center">
+						<div class="row">
+						<?php 
 					
-					?>
-					<?php
+									if($paquete["aparcamiento"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-parking"></i></div>
+													<h3 class="h4">Aparcamiento</h3>
+												</div>
+											</div>';
+									}
 
-						$compania = $paquete["compania"];
+									if($paquete["internet_wifi"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-wifi"></i></div>
+													<h3 class="h4">WIFI</h3>
+												</div>
+											</div>';
+									}
 
-						echo '<h4>Aeorolinea</h4>   <p>'.$compania.'</p>' 
+									if($paquete["piscina"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-swimming-pool"></i></div>
+													<h3 class="h4">Piscina</h3>
+												</div>
+											</div>';
+											
+									}
+									if($paquete["aire_acondicionado"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-wind"></i></div>
+													<h3 class="h4">Aire acondicionado</h3>
+												</div>
+											</div>';
+									}
+									if($paquete["lavanderia"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-tint"></i></div>
+													<h3 class="h4">Lavanderia</h3>
+												</div>
+											</div>';
+									}
+									if($paquete["spa"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-spa"></i></div>
+													<h3 class="h4">SPA</h3>
+												</div>
+											</div>';
+									}
+									if($paquete["gimnasio"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-dumbbell"></i></div>
+													<h3 class="h4">GYM</h3>
+												</div>
+											</div>';
+									}
+									if($paquete["restaurante"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-utensils"></i></div>
+													<h3 class="h4">Restaurant</h3>
+												</div>
+											</div>';
+									}
+									if($paquete["bar"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-glass-cheers"></i></div>
+													<h3 class="h4">Bar</h3>
+												</div>
+											</div>';
+									}
 
-					?>
-					<?php 
+									if($paquete["mascotas"] == "Si"){
+										echo '<div class="col-lg-3 col-md-6">
+												<div class="box-simple">
+													<div class="icon-outlined"><i class="fas fa-paw"></i></div>
+													<h3 class="h4">Pet Friendly</h3>
+												</div>
+											</div>';
+									}
+								
 
-						$cantidad_adultos = $paquete["cantidad_adultos"];
+								?>
+						
 
-						$cantidad_ninios = $paquete["cantidad_ninios"];
+						</div>
+					</div>
+					<!-- hotel fin -->	
+					
+					<!--condiciones -->
+					<div class="row">
+						<div class="col-lg-12">
+							<div id="accordion" role="tablist" class="mb-5">
 
-						//echo '<h4>Pasajeros</h4>   <p>'.$cantidad_adultos.' Adultos - '.$cantidad_ninios.' Niños</p>' ;
+							<?php
 
-					?>
-					<?php 
+							$arrayLiDetalle = explode("-",$paquete["detalle"]) ;
+							$detailText = "";
+							foreach($arrayLiDetalle as $key => $val) {
+								if(strlen($val)>0){
+									$detailText .= '- '.$val.'<br>';
+								}
+							}
 
-						$fecha_inicio = $paquete["fecha_inicio"];
+							
+							echo '<div class="card">
+									<div id="headingDetail" role="tab" class="card-header">
+										<h5 class="mb-0"><a data-toggle="collapse" href="#collapseDetail" aria-expanded="false"
+												aria-controls="collapseDetail" class="collapsed">Detalle del paquete</a></h5>
+									</div>
+									<div id="collapseDetail" role="tabpanel" aria-labelledby="headingDetail" data-parent="#accordion"
+										class="collapse">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md-12">
+														'.$detailText.'
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>';
 
-						$fecha_fin = $paquete["fecha_fin"];
+								$arrayLihotel = explode("-",$paquete["informacion_hotel"]) ;
+								$hotelDetailText = "";
+								foreach($arrayLihotel as $key => $val) {
+									if(strlen($val)>0){
+										$hotelDetailText .= '- '.$val.'<br>';
+									}
+								}
 
-						echo '<h4>Fechas</h4>   <p>'.$paquete["fecha_mostrar"].'</p>' ;
 
-					?>
+								echo '<div class="card">
+									<div id="headingHotel" role="tab" class="card-header">
+										<h5 class="mb-0"><a data-toggle="collapse" href="#collapseHotel" aria-expanded="false"
+												aria-controls="collapseHotel" class="collapsed">Información del Hotel</a></h5>
+									</div>
+									<div id="collapseHotel" role="tabpanel" aria-labelledby="headingHotel" data-parent="#accordion"
+										class="collapse">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md-12">
+													'.$hotelDetailText.'
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>';
 
+
+								$arrayLiDetalle = explode("-",$paquete["informacion_traslados"]) ;
+								$detailText = "";
+								foreach($arrayLiDetalle as $key => $val) {
+									if(strlen($val)>0){
+										$detailText .= '- '.$val.'<br>';
+									}
+								}
+
+
+								echo '<div class="card">
+									<div id="headingTraslados" role="tab" class="card-header">
+										<h5 class="mb-0"><a data-toggle="collapse" href="#collapseTraslados" aria-expanded="false"
+												aria-controls="collapseTraslados" class="collapsed">Información Traslados</a></h5>
+									</div>
+									<div id="collapseTraslados" role="tabpanel" aria-labelledby="headingTraslados" data-parent="#accordion"
+										class="collapse">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md-12">
+													'.$detailText.'
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>';
+
+
+								$arrayLiDetalle = explode("-",$paquete["consideraciones"]) ;
+								$detailText = "";
+								foreach($arrayLiDetalle as $key => $val) {
+									if(strlen($val)>0){
+										$detailText .= '- '.$val.'<br>';
+									}
+								}
+							
+								echo '<div class="card">
+									<div id="headingConsideraciones" role="tab" class="card-header">
+										<h5 class="mb-0"><a data-toggle="collapse" href="#collapseConsideraciones" aria-expanded="false"
+												aria-controls="collapseConsideraciones" class="collapsed">Consideraciones</a></h5>
+									</div>
+									<div id="collapseConsideraciones" role="tabpanel" aria-labelledby="headingConsideraciones" data-parent="#accordion"
+										class="collapse">
+										<div class="card-body">
+											<div class="row">
+												<div class="col-md-12">
+													'.$detailText.'
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>';
+
+							?>
+
+							</div>
+						</div>
+					</div>
+					<!-- fin condiciones -->
+				</div>
+
+
+				<div class="col-md-3 project-more">
+					<div class="scroll"> 
+						<div class="heading">
+							<h3>Información</h3>
+						</div>
+						<?php
+							$nombreCampania = $paquete["nombreCampania"];
+							echo '<h4>Campaña</h4>   <p>'.$nombreCampania.'</p>' ;
+						?>
+
+						<?php 
+
+							$nombreHotel = $paquete["nombreHotel"];
+							$nombreCiudad = $paquete["nombreCiudad"];
+							echo '<h4>Hotel/Ciudad</h4>   <p>'.$nombreHotel.'/'.$nombreCiudad.'</p>';
+						?>
+						<?php
+
+							$compania = $paquete["compania"];
+							echo '<h4>Aeorolinea</h4>   <p>'.$compania.'</p>' 
+
+						?>
+						<?php 
+
+							//$cantidad_adultos = $paquete["cantidad_adultos"];
+							//$cantidad_ninios = $paquete["cantidad_ninios"];
+							//echo '<h4>Pasajeros</h4>   <p>'.$cantidad_adultos.' Adultos - '.$cantidad_ninios.' Niños</p>' ;
+
+						?>
+						<?php 
+							$fecha_inicio = $paquete["fecha_inicio"];
+							$fecha_fin = $paquete["fecha_fin"];
+							echo '<h4>Fechas</h4>   <p>'.$paquete["fecha_mostrar"].'</p>' ;
+						?>
+						<?php
+							echo '<hr style="width:80%">';
+							echo '<h4>Reservalo por</h4>';
+							echo '<p class="loadMore text-center"><a href="#" data-toggle="modal" data-target="#modal-soluciud-paquete"
+							class="btn btn-template-main"><i class="fa fa-chevron-down"></i>
+							S/.'.number_format($precio_sol,2).' o $'.number_format($precio_dolar,2).'</a></p>';
+						?>
+					</div>
 				</div>
 			</div>
 		</section>
+
 
 		
-		<!--<div id="details" class="box mb-4 mt-4">
-			
-				<?php 
-					
-					$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
-					
-										
-					foreach ($servicios as $key => $value) {
-
-						echo '<li><i class="fa-li fa '.$value["icono"].'"></i>'.$value["nombre"].'</li>';
-
-					}
-					
-				?>
-
-			</ul>
-			
-		</div>
-				-->
-
-		
-		<section class="bar background-white">
-			<div class="heading">
-				<h3>Servicios del Paquete</h3>
-			</div>
-			<div class="container text-center">
-				<div class="row">
-
-					<?php 
-
-					$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
-
-					foreach ($servicios as $key => $value) {
-
-						if($value["nombre"] == 'Boleto Aéreo' ){
-
-							echo '<div class="col-lg-3 col-md-6">
-									<div class="box-simple">
-										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
-										<h3 class="h4">'.$value["nombre"].'</h3>
-										<p>'.$value["descripcion"].' LIMA / '.$paquete["nombreCiudad"].' / LIMA.</p>
-									</div>
-								</div>';
-
-						}else {
-
-							echo '<div class="col-lg-3 col-md-6">
-									<div class="box-simple">
-										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
-										<h3 class="h4">'.$value["nombre"].'</h3>
-										<p>'.$value["descripcion"].'.</p>
-									</div>
-								</div>';
-
-						}
-
-
-					}
-
-				?>
-
-				</div>
-			</div>
-		</section>
-
-		<section class="bar background-white">
-			<div class="heading">
-				<h3>Servicios del Hotel</h3>
-			</div>
-			<div class="container text-center">
-				<div class="row">
-
-					<?php 
-
-					$servicios = ControladorPaqueteFront::ctrListarServiciosPorPaquete($idPaquete);
-
-					foreach ($servicios as $key => $value) {
-
-						if($value["nombre"] == 'Boleto Aéreo' ){
-
-							echo '<div class="col-lg-3 col-md-6">
-									<div class="box-simple">
-										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
-										<h3 class="h4">'.$value["nombre"].'</h3>
-										<p>'.$value["descripcion"].' LIMA / '.$paquete["nombreCiudad"].' / LIMA.</p>
-									</div>
-								</div>';
-
-						}else {
-
-							echo '<div class="col-lg-3 col-md-6">
-									<div class="box-simple">
-										<div class="icon-outlined"><i class="'.$value["icono"].'"></i></div>
-										<h3 class="h4">'.$value["nombre"].'</h3>
-										<p>'.$value["descripcion"].'.</p>
-									</div>
-								</div>';
-
-						}
-
-
-					}
-
-				?>
-
-				</div>
-			</div>
-		</section>
-
-		<section class="bar background-white">
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div id="accordion" role="tablist" class="mb-5">
-
-					<?php
-
-					$arrayLiDetalle = explode("-",$paquete["detalle"]) ;
-					$detailText = "";
-					foreach($arrayLiDetalle as $key => $val) {
-						if(strlen($val)>0){
-							$detailText .= '- '.$val.'<br>';
-						}
-					}
-
-					
-					echo '<div class="card">
-							<div id="headingDetail" role="tab" class="card-header">
-								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseDetail" aria-expanded="false"
-										aria-controls="collapseDetail" class="collapsed">Detalle del paquete</a></h5>
-							</div>
-							<div id="collapseDetail" role="tabpanel" aria-labelledby="headingDetail" data-parent="#accordion"
-								class="collapse">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12">
-												'.$detailText.'
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>';
-
-						$arrayLihotel = explode("-",$paquete["informacion_hotel"]) ;
-						$hotelDetailText = "";
-						foreach($arrayLihotel as $key => $val) {
-							if(strlen($val)>0){
-								$hotelDetailText .= '- '.$val.'<br>';
-							}
-						}
-
-
-						echo '<div class="card">
-							<div id="headingHotel" role="tab" class="card-header">
-								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseHotel" aria-expanded="false"
-										aria-controls="collapseHotel" class="collapsed">Información del Hotel</a></h5>
-							</div>
-							<div id="collapseHotel" role="tabpanel" aria-labelledby="headingHotel" data-parent="#accordion"
-								class="collapse">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12">
-											'.$hotelDetailText.'
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>';
-
-
-						$arrayLiDetalle = explode("-",$paquete["informacion_traslados"]) ;
-						$detailText = "";
-						foreach($arrayLiDetalle as $key => $val) {
-							if(strlen($val)>0){
-								$detailText .= '- '.$val.'<br>';
-							}
-						}
-
-
-						echo '<div class="card">
-							<div id="headingTraslados" role="tab" class="card-header">
-								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseTraslados" aria-expanded="false"
-										aria-controls="collapseTraslados" class="collapsed">Información Traslados</a></h5>
-							</div>
-							<div id="collapseTraslados" role="tabpanel" aria-labelledby="headingTraslados" data-parent="#accordion"
-								class="collapse">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12">
-											'.$detailText.'
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>';
-
-
-						$arrayLiDetalle = explode("-",$paquete["consideraciones"]) ;
-						$detailText = "";
-						foreach($arrayLiDetalle as $key => $val) {
-							if(strlen($val)>0){
-								$detailText .= '- '.$val.'<br>';
-							}
-						}
-					
-						echo '<div class="card">
-							<div id="headingConsideraciones" role="tab" class="card-header">
-								<h5 class="mb-0"><a data-toggle="collapse" href="#collapseConsideraciones" aria-expanded="false"
-										aria-controls="collapseConsideraciones" class="collapsed">Consideraciones</a></h5>
-							</div>
-							<div id="collapseConsideraciones" role="tabpanel" aria-labelledby="headingConsideraciones" data-parent="#accordion"
-								class="collapse">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12">
-											'.$detailText.'
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>';
-
-					?>
-
-					</div>
-				</div>
-			</div>
-
-		</section>
-
-		<p class="loadMore text-center"><a href="#" data-toggle="modal" data-target="#modal-soluciud-paquete"
-					class="btn btn-template-outlined"><i class="fa fa-chevron-down"></i>
-					<?php echo 'Reservalo a S/.'.$precio_sol.' o $'.$precio_dolar ?></a></p>
 
 		<div class="bar pt-0">
 			<section>
@@ -377,7 +406,7 @@
 												<div class="overlay d-flex align-items-center justify-content-center">
 													<div class="content">
 														<div class="name">
-															<h3><a href="#" class="color-white" style="text-decoration: none;">S/.'.$value["precio_sol"].'  o  $'.$value["precio_dolar"].' </a></h3>
+															<h3><a href="#" class="color-white" style="text-decoration: none;">S/.'.number_format($value["precio_sol"],2).'  o  $'.number_format($value["precio_dolar"],2).' </a></h3>
 														</div>
 														<div class="text">
 															<p class="buttons"><a href="'.$ruta.'" class=" btn-buscar2 btn btn-template-outlined-white">Ver</a></p>
@@ -416,6 +445,17 @@
 
 			<div class="modal-body">
 				<input type="hidden" id="id_paquete2" value="<?php echo $idPaquete ?>" />
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="SolicitudPersonalizadaCorreo">Correo contacto</label>
+							<input id="SolicitudPersonalizadaCorreo" type="email" class="form-control"
+								placeholder="mail@mail.com" require />
+						</div>
+					</div>
+				</div>
+
 				<div class="row">
 
 					<div class="col-sm-6">
@@ -454,15 +494,7 @@
 
 
 				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label for="SolicitudPersonalizadaCorreo">Correo contacto</label>
-							<input id="SolicitudPersonalizadaCorreo" type="email" class="form-control"
-								placeholder="mail@mail.com" require />
-						</div>
-					</div>
-				</div>
+				
 
 				<div class="row">
 
