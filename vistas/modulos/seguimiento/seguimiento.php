@@ -102,12 +102,12 @@
 					<div class="">
 						<div class="row portfolio-project">
 
-							<div id="checkout" class="col-md-8">
+							<div id="checkout" class="col-md-8 card">
 								<div class="box">
-									<ul class="nav nav-pills nav-fill">
-										<li class="nav-item"><a href="#" class="nav-link active"><i
-													class="fa fa-eye"></i><br>Detalle de notificaciones</a></li>
-									</ul>
+								<div class="heading">
+									<h4>Historial de eventos</h4>
+								</div>
+									<p>Se muestra los cambios de estados de la solicitud, desde la solicutd hasta la etapa final de la misma.</p>
 
 									<div class="content">
 										<div class="table-responsive">
@@ -254,6 +254,8 @@
 							</table>
 							<input type="hidden" id="id_solicitud" value="<?php echo $paquete["id_solicitud"]; ?>"/>
                         </div><!--table-responsive-->
+						<button type="button" data-toggle="modal" data-target="#anular-modal" class="btn btn-lg btn-warning"><i
+													class="fa fa-warning"></i>Anular Solicitud</button>
 					</div>
 				</div>
 
@@ -284,7 +286,6 @@
 			</div>
 
 	</section>
-	<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-template-outlined btn-sm">Aceptar</button>
 
 			
 </div>
@@ -555,6 +556,23 @@
 	</div>
 </div>	 
 
+<div id="anular-modal" tabindex="-1" role="dialog" aria-labelledby="anular-modalLabel" aria-hidden="true" class="modal fade">
+	<div role="document" class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h4 id="anular-modalLabel" class="modal-title">Confirmación de anulación</h4>
+				<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="modal-body">
+					<p>Estimado <?php echo $paquete["nombres"];?> ¿Se encuentra seguro de realizar la anulación?</p>
+				</div>
+				<div class="modal-footer">
+					<button onclick="" id="btn_pagar" class="btn btn-primary">Anular solicitud</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				</div>
+		</div>
+	</div>
+</div>
 
 
 

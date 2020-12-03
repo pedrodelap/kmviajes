@@ -1,0 +1,89 @@
+--se modifico la tabla tb_venta
+ALTER TABLE `bd_kmviajes2`.`tb_venta` 
+ADD COLUMN `ruc` VARCHAR(20) NULL AFTER `fecha_creacion`,
+ADD COLUMN `razon_social` VARCHAR(200) NULL AFTER `ruc`;
+
+--Crear tabla pasajero
+CREATE TABLE `bd_kmviajes2`.`tb_pasajero` (
+  `id_pasajero` INT NOT NULL AUTO_INCREMENT,
+  `id_venta` INT NULL,
+  `nombres` VARCHAR(205) NULL,
+  `apellidos` VARCHAR(205) NULL,
+  `tipo_doc` VARCHAR(45) NULL,
+  `nro_doc` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_pasajero`));
+
+-- update insert id_venta
+USE `bd_kmviajes2`;
+DROP procedure IF EXISTS `usp_insert_venta`;
+
+DELIMITER $$
+USE `bd_kmviajes2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_insert_venta`(IN pId_solicitud int, IN `pNroOperacion` TEXT , IN `pRuc` TEXT , IN `pRazon` TEXT )
+BEGIN 
+		INSERT INTO `tb_venta`
+		(
+			`id_solicitud`,
+			`nro_operacion`,
+			`estado`,
+			`fecha_creacion`,
+            `ruc`,
+            `razon_social`
+		)VALUES
+		(
+			pId_solicitud,
+			pNroOperacion,
+			'Activo',
+			NOW(),
+            pRuc,
+            pRazon
+		);
+        
+		INSERT INTO `tb_solicitudes_historial`
+		(
+			`id_solicitud`,
+			`estado_solicitud`,
+			`fecha_solicitud`
+		)VALUES 
+		(	
+			pId_solicitud,
+			'Pagada',
+			NOW()
+		);
+        SELECT @@identity AS id_registro ;
+		
+END$$
+
+DELIMITER ;
+
+
+--crear 
+
+ `bd_kmviajes2`;
+DROP procedure IF EXISTS `usp_insert_pasajero`;
+
+DELIMITER $$
+USE `bd_kmviajes2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_insert_pasajero`(IN pId_venta int, IN pNombres TEXT , IN pApellidos TEXT, IN pTipoDoc TEXT, IN pNroDoc TEXT    )
+BEGIN 
+		INSERT INTO `tb_pasajero`
+		(
+			`id_venta`,
+			`nombres`,
+			`apellidos`,
+			`tipo_doc`,
+            `nro_doc`
+		)VALUES
+		(
+			pId_venta,
+			pNombres,
+			pApellidos,
+			pTipoDoc,
+            pNroDoc
+		);
+        
+        SELECT @@identity AS id_registro ;
+		
+END$$
+
+DELIMITER ;

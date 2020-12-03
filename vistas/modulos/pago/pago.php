@@ -54,10 +54,10 @@
 						<div class="row">
                             <!--pasajero-->
                             <?php 
-                            for ($i = 1; $i <=$pasajeros; $i++) {
+                            for ($i = 0; $i <$pasajeros; $i++) {
                               echo  '<div class="col-md-12 card">
                                     <hr/>
-                                    <h5>Pasajero #'.$i.'</h5>
+                                    <h5>Pasajero #'.($i + 1).'</h5>
                                     <form>
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -155,7 +155,7 @@
                                             <label for="cvv"><b>Cuotas</b></label>
                                             <select class="form-control" id="FormaPago_NroCuotas">
                                                 
-                                                <option selected="selected" value="0">Sin cuotas</option>
+                                                <option selected="selected" value="1">Sin cuotas</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
@@ -182,25 +182,28 @@
                                     <div class="col-sm-6">
                                         
                                         <div class="checkbox">
-                                            <label><input type="checkbox" ><b> Solicitar Factura</b></label>
+                                            <label><input id="needInvoice" type="checkbox"><b> Solicitar Factura</b></label>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="txtCorreo"><b>RUC</b></label>
-                                            <input id="txtRuc" type="text" class="form-control" require/>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="txtCorreo"><b>Razón Social</b></label>
-                                            <input id="txtRazon" type="text" class="form-control" require/>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
+                                <div class="row" id="divInvoice">
+                                        <div class="col-sm-6" id= "ruc">
+                                            <div class="form-group">
+                                                <label for="txtCorreo"><b>RUC</b></label>
+                                                <input id="txtRuc" type="text" class="form-control" require/>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-sm-6" id="razon_social">
+                                            <div class="form-group">
+                                                <label for="txtCorreo"><b>Razón Social</b></label>
+                                                <input id="txtRazon" type="text" class="form-control" require/>
+                                            </div>
+                                        </div>
+                                     </div>
                             
                             </div>
                         </div>
@@ -250,10 +253,10 @@
                                 <tbody>
                                 <tr>
                                     <td>Pasajeros</td>
-                                    <th style="text-align:right;"><?php 
+                                    <th style="text-align:right;"><span id="pasajeros"><?php 
                                     
                                     echo $pasajeros;
-                                    ?></th>
+                                    ?></span></th>
                                 </tr>
                                
                                 <tr>
@@ -267,7 +270,7 @@
                                 </tbody>
                             </table>
                             <input type="hidden" id="codigoSeguimiento" value="<?php echo $codigoSeguimiento ?>"/>
-                            <input type="hidden" id="amount" value="<?php echo $paquete["precio_dolar"]; ?>"/>
+                            <input type="hidden" id="amount" value="<?php echo $pasajeros * $paquete["precio_dolar"]; ?>"/>
 												<input type="hidden" id="description" value="<?php echo $paquete["titulo"]; ?>"/>
 												<input type="hidden" id="phone" value="<?php echo $paquete["telefono"]; ?>"/>
 												<input type="hidden" id="merchantPayerId" value="<?php echo $paquete["id_cliente"]; ?>"/>

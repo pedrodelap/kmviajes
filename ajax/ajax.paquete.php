@@ -40,16 +40,28 @@ class AjaxPaquetes{
 
 		if ($statePago == "APPROVED"){
 			$orderID = $respuesta["transactionResponse"]["orderId"];
-			$datosVenta = array("solicitud"=>$datosPago["id_solicitud"],
-			"operacion"=>$orderID
+			$datosVenta = array(
+				"solicitud"=>$datosPago["id_solicitud"],
+				"operacion"=>$orderID,
+				"ruc"=>$datosPago["ruc"],
+				"razon_social"=>$datosPago["razon_social"]
 		  );
-		  ControladorPaqueteFront::ctrCrearVenta($datosVenta);
+		  $idVenta = ControladorPaqueteFront::ctrCrearVenta($datosVenta);
+
+		  $pasajeronJson = json_decode($datosPago["pasajeros"]);
+			foreach($pasajeronJson as $item){
+				$datosPasajero = array("venta"=>$idVenta[0],				   
+									"nombres"=>$item->firstname,
+									"apellidos"=>$item->lastname,
+									"tipoDoc"=>$item->docnumberType,
+									"NroDoc"=>$item->docNumber
+									);	
+				ControladorPaqueteFront::ctrCrearPasajero($datosPasajero);
+
+			}
+
 		}
-
-		
-		
 		echo json_encode($respuesta);
-
 	}	
 
 	#CREAR SOLICITUD PERSONAZALIZADA
@@ -253,10 +265,16 @@ if(isset($_POST["pagar"])){
 						"expirationDate"=>$_POST["expirationDate"],
 						"paymentMethod"=>$_POST["paymentMethod"],
 						"dniNumber"=>$_POST["dniNumber"],
-						"id_solicitud"=>$_POST["id_solicitud"]);
+						"id_solicitud"=>$_POST["id_solicitud"],
+						"ruc" => $_POST["ruc"],
+						"razon_social" => $_POST["ruc"],
+						"cuotas" => $_POST["cuotas"],
+						"pasajeros" => $_POST["pasajeros"]
+					);
 	$pagar -> ajaxPagarOnLine($datosPago);
 
 }
+
 
 
 if(isset($_POST['search'])){

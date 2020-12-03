@@ -14,7 +14,15 @@ $(document).ready(function () {
         useGradient: true,
         readOnly: true
     });
-
+    $("#divInvoice").hide();
+    $('#needInvoice').change(function () {
+        if (this.checked) {
+            debugger;
+            $("#divInvoice").show();
+        } else {
+            $("#divInvoice").hide();
+        }
+    });
 });
 
 
@@ -146,6 +154,9 @@ function realizarPago() {
     var paymentMethod = tipoTarjeta.toUpperCase() == "VISA" ? "VISA" : "MASTERCARD";
     var dniNumber = $("#dniNumber").val();
     var id_solicitud = $("#id_solicitud").val();
+    var cuotas = $("#FormaPago_NroCuotas").val();
+    var ruc = $("#txtRuc").val();
+    var razon_social = $("#txtRazon").val();
     var pagar = true;
 
     var formPago = new FormData();
@@ -164,9 +175,26 @@ function realizarPago() {
     formPago.append("paymentMethod", paymentMethod);
     formPago.append("dniNumber", dniNumber);
     formPago.append("id_solicitud", id_solicitud);
+    formPago.append("cuotas", cuotas);
+    formPago.append("ruc", ruc);
+    formPago.append("razon_social", razon_social);
     formPago.append("pagar", pagar);
 
-    window.location.href = '/index.php?ruta=seguimiento&codseg=' + referenceCode;
+    numPasajeros = $("#pasajeros").text();
+    var arrayPasajeros = [];
+    for (i = 0; i < numPasajeros; i++) {
+        var objPasajero = {
+            "firstname": $("#firstname" + i).val(),
+            "lastname": $("#lastname" + i).val(),
+            "docnumberType": $("#docnumberType" + i).val(),
+            "docNumber": $("#docNumber" + i).val()
+        };
+        arrayPasajeros.push(objPasajero);
+    }
+
+    formPago.append("pasajeros", JSON.stringify(arrayPasajeros));
+
+
     $.ajax({
 
         url: "ajax/ajax.paquete.php",
@@ -233,3 +261,43 @@ function limpiarDatosTarjeta() {
     $("#expiry_month").val('');
 
 }
+
+function savePasajeros() {
+    numPasajeros = $("#pasajeros").text();
+
+    var arrayPasajeros = [];
+    for (i = 0; i < numPasajeros; i++) {
+        var objPasajero = {
+            "firstname": $("#firstname" + i).val(),
+            "lastname": $("#lastname" + i).val(),
+            "docnumberType": $("#docnumberType" + i).val(),
+            "docNumber": $("#docNumber" + i).val()
+        };
+        arrayPasajeros.push(objPasajero);
+    }
+
+
+    console.log(arrayPasajeros);
+    var formPago = new FormData();
+    formPago.append("invoice", true);
+    $.ajax({
+
+        url: "ajax/ajax.paquete.php",
+        method: "POST",
+        data: formPago,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        beforeSend: function () {
+            $("#loading-airplane").show();
+        },
+        success: function (respuesta) {
+            $("#loading-airplane").hide();
+            debugger;
+
+            console.log(respuesta);
+        }
+
+    });
+};

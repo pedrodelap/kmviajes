@@ -337,10 +337,34 @@ class ModeloPaqueteFront{
 	#------------------------------------------------------------
 	static public function mdlCrearVenta($datosVenta){
 
-		$stmt = Conexion::conectar()->prepare("CALL usp_insert_venta(:pId_solicitud, :pNroOperacion);");
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_venta(:pId_solicitud, :pNroOperacion, :pRuc, :pRazon);");
 
 		$stmt->bindParam(":pId_solicitud", $datosVenta["solicitud"], PDO::PARAM_INT);
 		$stmt->bindParam(":pNroOperacion", $datosVenta["operacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":pRuc", $datosVenta["ruc"], PDO::PARAM_STR);
+		$stmt->bindParam(":pRazon", $datosVenta["razon_social"], PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+	}
+
+	#CREAR PASAJERO
+	#------------------------------------------------------------
+	static public function mdlCrearPasajero($datosPasajero){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_pasajero(:pId_venta, :pNombres, :pApellidos, :pTipoDoc, :pNroDoc);");
+
+		$stmt->bindParam(":pId_venta", $datosPasajero["venta"], PDO::PARAM_INT);
+		$stmt->bindParam(":pNombres", $datosPasajero["nombres"], PDO::PARAM_STR);
+		$stmt->bindParam(":pApellidos", $datosPasajero["apellidos"], PDO::PARAM_STR);
+		$stmt->bindParam(":pTipoDoc", $datosPasajero["tipoDoc"], PDO::PARAM_STR);
+		$stmt->bindParam(":pNroDoc", $datosPasajero["NroDoc"], PDO::PARAM_STR);
 
 		$stmt -> execute();
 

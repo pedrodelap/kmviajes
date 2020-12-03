@@ -135,6 +135,14 @@ class ControladorPaqueteFront{
 
     }
 
+    static public function ctrCrearPasajero($datosPasajero){
+
+        $respuesta = ModeloPaqueteFront::mdlCrearPasajero($datosPasajero);
+    
+		return $respuesta;
+
+    }
+
     static public function ctrEnviarPagoPasarella($data){
 
         //"ApiKey~merchantId~referenceCode~tx_value~currency"
@@ -195,7 +203,7 @@ class ControladorPaqueteFront{
                     "processWithoutCvv2" => false
                 ),
                "extraParameters" => array(
-                  "INSTALLMENTS_NUMBER" => 0
+                  "INSTALLMENTS_NUMBER" => $data['cuotas']
                ),
                "type" => "AUTHORIZATION_AND_CAPTURE",
                "paymentMethod" => $data['paymentMethod'],
@@ -207,6 +215,67 @@ class ControladorPaqueteFront{
         $url = "https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi";
 
         $respuesta = CallApi::httpPost($url, $datosPago);
+        return $respuesta;
+    }
+
+    static public function ctrDownloadInvoice($data){
+
+        $datosPago = array(
+            
+                "tipoOperacion" => "0101",
+                "tipoDoc" => "03",
+                "serie" => "B001",
+                "correlativo" => "1",
+                "fechaEmision" => "2020-11-18T00:00:00-05:00",
+                "tipoMoneda" => "PEN",
+                "client" => array(
+                  "tipoDoc" =>"1",
+                  "numDoc" => 45890274,
+                  "rznSocial" => "RICARDO RODRIGUEZ GONZALES",
+                  "address" => array(
+                    "direccion"=> "AV LOS GERUNDIOS"
+                  )
+                ),
+                "company" => array(
+                  "ruc"=>  20602008283,
+                  "razonSocial"=>  "KM VIAJES Y AVENTURA",
+                  "address"=> array(
+                    "direccion"=> "AV SOL 125 SURCO, LIMA"
+                  )
+                ),
+                "mtoOperGravadas"=> 100,
+                "mtoIGV"=> 18,
+                "totalImpuestos"=> 18,
+                "valorVenta"=> 100,
+                "mtoImpVenta"=> 118,
+                "ublVersion"=> "2.1",
+                "details" => array(
+                    array(
+                    "codProducto"=> "P001",
+                    "unidad"=> "NIU",
+                    "descripcion"=> "PRODUCTO 1",
+                    "cantidad"=> 2,
+                    "mtoValorUnitario"=> 50,
+                    "mtoValorVenta"=> 100,
+                    "mtoBaseIgv"=> 100,
+                    "porcentajeIgv"=> 18,
+                    "igv"=> 18,
+                    "tipAfeIgv"=> 10,
+                    "totalImpuestos"=> 18,
+                    "mtoPrecioUnitario"=> 59
+                    )
+                ),
+                "legends" => array(
+                  array(
+                    "code" => "1000",
+                    "value" => "SON CIENTO DIECIOCHO CON 00/100 SOLES"
+                  )
+                )
+               
+        );
+        $url = "https://facturacion.apisperu.com/api/v1/invoice/pdf";
+
+        $respuesta = CallApi::DownloadInvoice($url, $datosPago,"nombrearchivo123");
         return $respuesta;
     }
 
