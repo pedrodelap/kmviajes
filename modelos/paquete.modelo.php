@@ -35,7 +35,8 @@ class ModeloPaqueteFront{
 														h.gimnasio,
 														h.restaurante,
 														h.bar,
-														h.mascotas				
+														h.mascotas,
+														p.necesita_reserva					
 												   from tb_campanias_x_paquetes cp
                                              inner join tb_paquetes p on cp. id_paquete = p.id_paquete
                                              inner join tb_campenias c on cp.id_campania = c.id_campania
@@ -67,7 +68,8 @@ class ModeloPaqueteFront{
 													  p.precio_sol,
 													  p.foto_corta,
 													  p.flag,
-													  ip.`ruta_imagen`
+													  ip.`ruta_imagen`,
+													  p.necesita_reserva
 												 FROM tb_campanias_x_paquetes cp 
 										   INNER JOIN tb_paquetes p 
 										           ON cp. id_paquete = p.id_paquete 
@@ -418,7 +420,8 @@ class ModeloPaqueteFront{
 														p.detalle,
 														p.informacion_hotel,
 														p.informacion_traslados,
-														p.consideraciones							
+														p.consideraciones,
+														p.necesita_reserva						
 												   from tb_campanias_x_paquetes cp
                                              inner join tb_paquetes p on cp. id_paquete = p.id_paquete
                                              inner join tb_campenias c on cp.id_campania = c.id_campania

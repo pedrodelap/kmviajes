@@ -1,89 +1,112 @@
---se modifico la tabla tb_venta
-ALTER TABLE `bd_kmviajes2`.`tb_venta` 
-ADD COLUMN `ruc` VARCHAR(20) NULL AFTER `fecha_creacion`,
-ADD COLUMN `razon_social` VARCHAR(200) NULL AFTER `ruc`;
+ALTER TABLE `bd_kmviajes2`.`tb_paquetes` 
+ADD COLUMN `precio_sol_ninio` TEXT NULL AFTER `fecha_mostrar`,
+ADD COLUMN `precio_dolar_ninio` TEXT NULL AFTER `precio_sol_ninio`;
+ADD COLUMN `hora_vuelo_ida` TEXT NULL AFTER `precio_dolar_ninio`,
+ADD COLUMN `hora_vuelo_regreso` TEXT NULL AFTER `hora_vuelo_ida`;
 
---Crear tabla pasajero
-CREATE TABLE `bd_kmviajes2`.`tb_pasajero` (
-  `id_pasajero` INT NOT NULL AUTO_INCREMENT,
-  `id_venta` INT NULL,
-  `nombres` VARCHAR(205) NULL,
-  `apellidos` VARCHAR(205) NULL,
-  `tipo_doc` VARCHAR(45) NULL,
-  `nro_doc` VARCHAR(45) NULL,
-  PRIMARY KEY (`id_pasajero`));
 
--- update insert id_venta
-USE `bd_kmviajes2`;
-DROP procedure IF EXISTS `usp_insert_venta`;
-
-DELIMITER $$
-USE `bd_kmviajes2`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_insert_venta`(IN pId_solicitud int, IN `pNroOperacion` TEXT , IN `pRuc` TEXT , IN `pRazon` TEXT )
+///////////
+CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_insert_paquete`(IN `pVTitulo` TEXT, IN `pIDAerolinea` INT, IN `pVDescripcionCorta` TEXT, IN `pDescripcionLarga` TEXT, IN `pDetalle` TEXT, IN `pIDCiudad` INT, IN `pIDHotel` INT, IN `pVPrecioSol` TEXT, IN `pVPrecioDolar` TEXT, IN `pVFechaInicio` TEXT, IN `pVFechaFin` TEXT, IN `pICantidadAdultos` INT, IN `pICantidadNinios` INT, IN `pVFechaMostrar` TEXT, IN `precio_soles_ninios` TEXT, IN `precio_dolares_ninios` TEXT, IN `hora` TEXT, IN `hora_llegada` TEXT,IN `cantidad_dias` TEXT,IN `cantidad_noches` TEXT)
 BEGIN 
-		INSERT INTO `tb_venta`
+		INSERT INTO `tb_paquetes`
 		(
-			`id_solicitud`,
-			`nro_operacion`,
-			`estado`,
-			`fecha_creacion`,
-            `ruc`,
-            `razon_social`
-		)VALUES
+			titulo,
+			id_aerolinea,
+			descripcion_corta,
+			descripcion_larga,
+			detalle,
+			id_ciudad,
+			id_hotel,
+			precio_sol,
+			precio_dolar,
+			fecha_inicio,
+			fecha_fin,
+			cantidad_adultos,
+			cantidad_ninios,
+			fecha_mostrar,
+            precio_sol_ninio,
+            precio_dolar_ninio,
+            hora_vuelo_ida,
+            hora_vuelo_regreso,
+            dias,
+            noches
+		) VALUES 
 		(
-			pId_solicitud,
-			pNroOperacion,
-			'Activo',
-			NOW(),
-            pRuc,
-            pRazon
+			pVTitulo,
+			pIDAerolinea,
+			pVDescripcionCorta,
+			pDescripcionLarga,
+			pDetalle,
+			pIDCiudad,
+			pIDHotel,
+			pVPrecioSol,
+			pVPrecioDolar,
+			pVFechaInicio,
+			pVFechaFin,
+			pICantidadAdultos,
+			pICantidadNinios,
+			pVFechaMostrar,
+            precio_soles_ninios,
+            precio_dolares_ninios,
+            hora,
+            hora_llegada,
+            cantidad_dias,
+            cantidad_noches
 		);
-        
-		INSERT INTO `tb_solicitudes_historial`
-		(
-			`id_solicitud`,
-			`estado_solicitud`,
-			`fecha_solicitud`
-		)VALUES 
-		(	
-			pId_solicitud,
-			'Pagada',
-			NOW()
-		);
-        SELECT @@identity AS id_registro ;
-		
-END$$
-
-DELIMITER ;
+		SELECT @@identity AS id_paquete ;
+END
 
 
---crear 
+///
 
- `bd_kmviajes2`;
-DROP procedure IF EXISTS `usp_insert_pasajero`;
 
-DELIMITER $$
-USE `bd_kmviajes2`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `usp_insert_pasajero`(IN pId_venta int, IN pNombres TEXT , IN pApellidos TEXT, IN pTipoDoc TEXT, IN pNroDoc TEXT    )
-BEGIN 
-		INSERT INTO `tb_pasajero`
-		(
-			`id_venta`,
-			`nombres`,
-			`apellidos`,
-			`tipo_doc`,
-            `nro_doc`
-		)VALUES
-		(
-			pId_venta,
-			pNombres,
-			pApellidos,
-			pTipoDoc,
-            pNroDoc
-		);
-        
-        SELECT @@identity AS id_registro ;
-		
-END$$
+CREATE TABLE `bd_kmviajes2`.`tb_seguimiento_checkin` (
+  `id_seguimiento_checkin` INT NOT NULL AUTO_INCREMENT,
+  `id_paquete` INT NOT NULL,
+  `checkin_vuelo_fecha` VARCHAR(10) NULL,
+  `checkin_vuelo_hora` VARCHAR(8) NULL,
+  `checkin_hotel_fecha_hora` VARCHAR(20) NULL,
+  `comentarios` TEXT(500) NULL,
+  PRIMARY KEY (`id_seguimiento_checkin`));
 
-DELIMITER ;
+
+///
+CREATE TABLE `bd_kmviajes2`.`tb_seguimiento_checkout` (
+  `id_seguimiento_checkout` INT NOT NULL AUTO_INCREMENT,
+  `id_paquete` INT NOT NULL,
+  `checkout_vuelo_fecha` VARCHAR(10) NULL,
+  `checkout_vuelo_hora` VARCHAR(8) NULL,
+  `checkout_hotel_fecha_hora` VARCHAR(20) NULL,
+  `comentarios` TEXT(500) NULL,
+  PRIMARY KEY (`id_seguimiento_checkout`));
+
+
+  ///
+  ALTER TABLE `bd_kmviajes2`.`tb_venta` 
+ADD COLUMN `monto` DECIMAL(18) NULL AFTER `razon_social`;
+
+
+//
+
+CREATE TABLE `bd_kmviajes2`.`tb_habitacion` (
+  `id_habitacion` INT NOT NULL AUTO_INCREMENT,
+  `id_hotel` INT NULL,
+  `tipo` VARCHAR(45) NULL,
+  `nombre` VARCHAR(105) NULL,
+  `descripcion` VARCHAR(500) NULL,
+  `servicios` VARCHAR(500) NULL,
+  `monto_adicional` DECIMAL(18,2) NULL,
+  `capacidad_adultos` INT NULL,
+  `capacidad_ninos` INT NULL,
+  `imagen` VARCHAR(500) NULL,
+  PRIMARY KEY (`id_habitacion`));
+
+ALTER TABLE `bd_kmviajes2`.`tb_habitacion` 
+ADD COLUMN `flag_default` TINYINT NULL AFTER `imagen`;
+ALTER TABLE `bd_kmviajes2`.`tb_habitacion` 
+ADD COLUMN `cantidad_camas` INT NULL AFTER `flag_default`;
+
+
+
+ALTER TABLE `bd_kmviajes2`.`tb_paquetes` 
+ADD COLUMN `necesita_reserva` TINYINT NULL DEFAULT 1 AFTER `hora_vuelo_regreso`;

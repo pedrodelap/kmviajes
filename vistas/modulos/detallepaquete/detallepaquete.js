@@ -14,6 +14,7 @@ function registroSolicitud2() {
     var SolicitudPersonalizadaNinos = $("#SolicitudPersonalizadaNinos").val();
     var SolicitudPersonalizadaObservacion = $("#SolicitudPersonalizadaObservacion").val();
     var SolicitudPersonalizadaIdPaquete = $("#id_paquete2").val();
+
     var SolicitudPersonalizadaNueva2 = true;
 
     var SolicitudPersonalizada = new FormData();

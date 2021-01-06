@@ -1,3 +1,9 @@
+<?php 
+    $paquetes = ControladorSolicitudes::ctrConsultarCotizacionSeguimiento();
+   
+
+?>
+
 <div class="app-main__inner">
     <div class="app-page-title">
         <div class="page-title-wrapper">
@@ -13,128 +19,295 @@
         </div>
     </div>
 
-    <div class="row animated fadeIn">
+    <!--=====================================      LISTADO PAQUETES  ======================================-->
+    <div class="row">
         <div class="col-md-12">
             <div class="main-card mb-3 card">
-                <div class="card-body">
-                   
-                    <h5 class="card-title">Listado de paquetes</h5>
+                <div class="card-header">Seguimiento de paquetes
+                    <div class="btn-actions-pane-right">
+                        <div role="group" class="btn-group-sm btn-group">
+                            <button class="active btn btn-focus">Última semana</button>
+                            <button class="btn btn-focus">Todo el mes</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive card-body">
+                    <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
 
-                        <!--=====================================
-                                        LISTADO COTIZACIONES
-                        ======================================-->
 
-                        <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>Paquete</th>
+                                <th class="text-center">Destino</th>
+                                <th class="text-center">Fechas</th>
+                                <th class="text-center">Vendió</th>
+                                <th class="text-center">Monto bruto</th>
+                                <th class="text-center">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                            <thead>
+                            <?php 
 
-                                <tr>
+                            foreach ($paquetes as $key => $value) {
+
+                                $estadoPaquete = "badge-info";
+                                if(getdate() > strtotime($value["fecha_inicio"])){
                                     
-                                    <th style="width:10px">#</th>
-                                    <th>Solicitante</th>
-                                    <th>Paquete</th>
-                                    <th>Fecha de registro</th>
-                                    <th>Estado Solicitud</th>
-                                    <th>Acciones</th>
-
-                                </tr> 
-
-                            </thead> 
-                            <tbody>
-
-                                <?php
-
-                                $item = null;
-
-                                $valor = null;
-
-                                $solicitudes = ControladorSolicitudes::ctrMostrarSolicitudes($item, $valor);
-
-                                foreach ($solicitudes as $key => $value) {
-
-                                    if ($value["estado_solicitud"]=="Pagada") {
-                                            if( "" == $value["id_paquete"] ){
-
-                                                $solicitante= $value["solicitante"];
-
-                                                $paquete = '<div class="badge badge-pill badge-light" onclick="btnDetalleSinPaqueteSolicitud('.$value["id_solicitud"].')">Sin Paquete</div>';
-
-                                            } else {
-
-                                                $paquete = '<div class="badge badge-pill badge-primary" onclick="btnDetallePaqueteSolicitud('.$value["id_paquete"].')">Paquete</div>';
-                                            }
-
-                                            switch ($value["estado_solicitud"]) 
-                                            {
-                                                case "Registrada":
-
-                                                    $estado_solictud = '<div class="estadoSolicitudRegistrada badge badge-pill badge-secondary" idSolicitud="'.$value["id_solicitud"].'">registrada</div>' ;
-                                                    break;
-
-                                                case "Cotizada":
-
-                                                    $estado_solictud = '<div class="badge badge-pill badge-info" idSolicitud="'.$value["id_solicitud"].'">cotizada</div>' ;
-                                                    break;
-
-                                                case "Aceptada":
-                                                
-                                                    $estado_solictud = '<div class="estadoSolicitudAceptada badge badge-pill badge-warning" idSolicitud="'.$value["id_solicitud"].'">aceptada</div>' ;
-                                                    break;
-
-                                                case "Reservada":
-                                                    
-                                                    $estado_solictud = '<div class="estadoSolicitud badge badge-pill badge-secondary" idSolicitud="'.$value["id_solicitud"].'">en reserva</div>' ;
-                                                    break;
-
-                                                case "Pagada":
-                                                
-                                                    $estado_solictud = '<div class="estadoSolicitud badge badge-pill badge-success" idSolicitud="'.$value["id_solicitud"].'">Pagada</div>' ;
-                                                    break;
-                                                
-                                                case "Cancelada":
-                                                    
-                                                    $estado_solictud = '<div class="badge badge-pill badge-danger" idSolicitud="'.$value["id_solicitud"].'">cancelada</div>' ;
-                                                    break;
-
-                                            }                                 
-
-                                            echo '<tr>
-
-                                                    <td>'.($key+1).'</td>
-
-                                                    <td><button class="mb-2 mr-2 btn btn-link text-left" onclick="btmMostrarSolicitante('.$value["id_cliente"].')" idCliente="'.$value["id_cliente"].'">'.$value["solicitante"].'<span class="badge badge-primary badge-dot badge-dot-lg"> </span></button></td>
-
-                                                    <td>'.$paquete.'</td>
-
-                                                    <td>'.$value["fecha_registro"].'</td>
-
-                                                    <td>'.$estado_solictud.'</td>
-
-                                                    <td>';
-                                        
-                                                        if($_SESSION["perfil"] == "Administrador"){
-
-                                                            echo '<span><button class="btn btn-danger fa btnModalCalificar" data-toggle="modal" data-target="#modalCalificar" idSolicitud="'.$value["id_solicitud"].'">Validar</button></span>';
-                                                        }
-
-                                            echo '</td>
-
-                                                </tr>';
-                                         }              
+                                }
+                                else{
+                                    if(getdate() < strtotime($value["fecha_inicio"])){
+                                        $estadoPaquete = "badge-warning";
                                     }
 
-                                ?>
-
-                            </tbody>
-
-                            </table>
-
-                        <!--====  Fin de LISTADO COTIZACIONES  ====-->
-
-                 </div>
+                                    if(getdate() > strtotime($value["fecha_fin"])){
+                                        $estadoPaquete = "badge-danger";
+                                    }
+                                }
+                                
+                                
+                               echo '<tr>
+                                    <td class="text-center text-muted">#'.$value["id_paquete"].'</td>
+                                    <td>
+                                        <div class="widget-content p-0">
+                                            <div class="widget-content-wrapper">
+                                                <div class="widget-content-left mr-3">
+                                                    <div class="widget-content-left">
+                                                        <img width="120" class="rounded-circle" src="'.$value["ruta_imagen"].'" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="widget-content-left flex2">
+                                                    <div class="widget-heading">'.$value["titulo"].'</div>
+                                                    <div class="widget-subheading opacity-7">'.$value["campania"].'</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">'.$value["ciudad"].'</td>
+                                    <td class="text-center">
+                                        <div class="badge '.$estadoPaquete.'">'.$value["fecha_mostrar"].'</div>
+                                    </td>
+                                    <td class="text-right" style="width: 140px;">
+                                        <div>'.$value["num_paquete"].' paquetes</div>
+                                    </td>
+                                    <td class="text-right" style="width: 150px;">
+                                        <div>$ '.number_format($value["monto"],2).'</div>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm" onclick="setupViewSeguimiento('.$value["id_paquete"].',\''.$value["fecha_inicio"].'\',\''.$value["hora_vuelo_ida"].'\',\''.$value["fecha_fin"].'\',\''.$value["hora_vuelo_regreso"].'\',\''.$value["id_seguimiento_checkin"].'\',\''.$value["id_seguimiento_checkout"].'\')">Detalle</button>
+                                    </td>
+                                </tr>';
+                            }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+
+    <!--====  Fin de LISTADO COTIZACIONES  ====-->
+
+    <!--=====================================      CHECK PAQUETE  ======================================-->
+
+    <div id="section-seguimiento" class="row" style="display:none">
+        <div class="col-md-12 col-lg-8">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <div id="smartwizard3" class="forms-wizard-vertical">
+                        <ul class="forms-wizard">
+                            <li>
+                                <a href="#step-122">
+                                    <em>1</em><span>CHECK IN</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-222">
+                                    <em>2</em><span>CHECK OUT</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-322">
+                                    <em>3</em><span>Cerrado </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="form-wizard-content">
+                            <div id="step-122">
+                                <div class="card-body">
+                                    <form>
+                                        <h5 class="card-title">Vuelo de ida</h5>
+                                        <div class="form-row">
+
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label
+                                                        for="fechaInicioIda">Fecha
+                                                        programda</label><input name="fechaInicioIda"
+                                                        id="fechaInicioIda" placeholder="date placeholder" type="text"
+                                                        readonly class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label
+                                                        for="horaInicioIda">Hora
+                                                        programada</label><input name="horaInicioIda" id="horaInicioIda"
+                                                        placeholder="time placeholder" type="text" readonly
+                                                        class="form-control"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label
+                                                        for="fechaInicioIdaReal">Fecha
+                                                        real</label><input name="fechaInicioIdaReal"
+                                                        id="fechaInicioIdaReal" placeholder="date placeholder"
+                                                        type="date" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label
+                                                        for="horaInicioIdaReal">Horal
+                                                        real</label><input name="horaInicioIdaReal"
+                                                        id="horaInicioIdaReal" placeholder="time placeholder"
+                                                        type="time" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                    <form>
+                                        <h5 class="card-title">Check-in Hotel</h5>
+                                        <div class="form-row">
+
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label
+                                                        for="checkinHotel">Fecha</label><input name="checkinHotel"
+                                                        id="checkinHotel" placeholder="date placeholder" type="text"
+                                                        class="form-control"></div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <div id="step-222">
+                                <div class="card-body">
+
+                                    <form>
+                                        <h5 class="card-title">Check-out Hotel</h5>
+                                        <div class="form-row">
+
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label for="exampleDate">Fecha
+                                                        real</label><input name="date" id="exampleDate"
+                                                        placeholder="date placeholder" type="text" class="form-control">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                    <form>
+                                        <h5 class="card-title">Vuelo de regreso</h5>
+                                        <div class="form-row">
+
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label for="exampleDate">Fecha
+                                                        programda</label><input name="date" id="exampleDate"
+                                                        placeholder="date placeholder" type="text" readonly
+                                                        class="form-control"></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label for="exampleTime">Hora
+                                                        programada</label><input name="time" id="exampleTime"
+                                                        placeholder="time placeholder" type="text" readonly
+                                                        class="form-control"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label for="exampleDate">Fecha
+                                                        real</label><input name="date" id="exampleDate"
+                                                        placeholder="date placeholder" type="date" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="position-relative form-group"><label for="exampleTime">Horal
+                                                        real</label><input name="time" id="exampleTime"
+                                                        placeholder="time placeholder" type="time" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="step-322">
+                                <div class="no-results">
+                                    <div class="swal2-icon swal2-success swal2-animate-success-icon">
+                                        <div class="swal2-success-circular-line-left"
+                                            style="background-color: rgb(255, 255, 255);"></div>
+                                        <span class="swal2-success-line-tip"></span>
+                                        <span class="swal2-success-line-long"></span>
+                                        <div class="swal2-success-ring"></div>
+                                        <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);">
+                                        </div>
+                                        <div class="swal2-success-circular-line-right"
+                                            style="background-color: rgb(255, 255, 255);"></div>
+                                    </div>
+                                    <div class="results-subtitle mt-4">Seguimiento Finalizado!</div>
+                                    <div class="results-title">You arrived at the last form wizard step!</div>
+                                    <div class="mt-3 mb-3"></div>
+                                    <div class="text-center">
+                                        <button class="btn-shadow btn-wide btn btn-success btn-lg">Finalizar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="clearfix">
+                        <button type="button" id="reset-btn22" class="btn-shadow float-left btn btn-link">Reset</button>
+                        <button type="button" id="next-btn22"
+                            class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Next</button>
+                        <button type="button" id="prev-btn22"
+                            class="btn-shadow float-right btn-wide btn-pill mr-3 btn btn-outline-secondary">Previous</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-lg-4">
+            <div class="main-card mb-3 card">
+
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+
+                    </div>
+                    <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text"><i
+                                    class="lnr-user icon-gradient bg-ripe-malin"> </i> Viajeros</span></div>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="scroll-area-md">
+                    <div class="scrollbar-container">
+                        <ul class="todo-list-wrapper list-group list-group-flush" id="ulContenidoClientes">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-block text-right card-footer">
+                    <button class="mr-2 btn btn-link btn-sm">Cancelar</button>
+                    <button class="btn btn-success btn-lg">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--====  Fin de LISTADO COTIZACIONES  ====-->
 
 </div>
 
@@ -142,7 +315,8 @@
 MODAL EDITAR CLIENTE
 ======================================-->
 
-<div class="modal fade" id="modalCalificar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCalificar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -165,57 +339,57 @@ MODAL EDITAR CLIENTE
 
                 <div class="modal-body">
 
-                <p>Es necesario corroborar los datos ofrecidos en el paquete vendido</p>
-                <div class="widget-content-left mr-3">
+                    <p>Es necesario corroborar los datos ofrecidos en el paquete vendido</p>
+                    <div class="widget-content-left mr-3">
 
-                    <table>
-                        <tr>
-                            <td>
-                                ¿El vuelo de ida cumplió con la fecha programada? 
-                            </td>
+                        <table>
+                            <tr>
+                                <td>
+                                    ¿El vuelo de ida cumplió con la fecha programada?
+                                </td>
                                 <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                ¿Se cumplió con el traslado? 
-                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ¿Se cumplió con el traslado?
+                                </td>
                                 <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                ¿Se cumplió la fecha de hospedaje? 
-                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ¿Se cumplió la fecha de hospedaje?
+                                </td>
                                 <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                ¿El hotel cumplió con los servicios ofrecidos? 
-                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ¿El hotel cumplió con los servicios ofrecidos?
+                                </td>
                                 <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                ¿El cliente ocasionó algún incidente? 
-                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ¿El cliente ocasionó algún incidente?
+                                </td>
                                 <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                         </tr>
-                         <tr>
-                            <td>
-                                ¿El vuelo de regreso cumplió con la fecha programada? 
-                            </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    ¿El vuelo de regreso cumplió con la fecha programada?
+                                </td>
                                 <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                         </tr>
+                            </tr>
 
-                         <tr>
-                            <td>
-                                Comentarios: 
-                            </td>
-                                <td> 
+                            <tr>
+                                <td>
+                                    Comentarios:
+                                </td>
+                                <td>
                                     <textarea></textarea>
                                 </td>
-                         </tr>
-                                </table>
-                            </div>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!--=====================================
@@ -226,7 +400,7 @@ MODAL EDITAR CLIENTE
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
-            
+
             </form>
 
             <?php
@@ -247,4 +421,3 @@ MODAL EDITAR CLIENTE
   $eliminarCliente -> ctrEliminarCliente();
 
 ?>
-

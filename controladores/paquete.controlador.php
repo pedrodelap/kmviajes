@@ -30,7 +30,7 @@ class ControladorPaqueteFront{
                         <h4><a href="'.$ruta.'">'.$value["titulo"].'</a></h4>
                         <p>'.$value["descripcion_corta"].'</p>
                         </div>';
-                        if($value["flag"]){
+                        if(!$value["necesita_reserva"]){
                             echo '<div class="ribbon-holder">
                                     <div class="ribbon sale">Oferta</div>
                                 </div>';

@@ -24,6 +24,13 @@ class AjaxPaquetes{
 	public $paqueteDescripcionLarga;
 	public $paqueteDetalle;
 
+	public $paquetePrecioSolesNinios;
+	public $paquetePrecioDolaresNinios;
+	public $paqueteHora;
+	public $paqueteHoraLlegada;
+	public $paqueteCantidadDias;
+	public $paqueteCantidadNoches;
+
 	public $id_paquete;
 
 	public function ajaxCrearPaquete(){
@@ -40,7 +47,14 @@ class AjaxPaquetes{
 					"fecha_inicio"=>$this->paqueteFechaInicio,
 					"fecha_fin"=>$this->paqueteFechaFin,
 					"descripcion_corta"=>$this->paqueteDescripcionCorta,
-					"detalle"=>$this->paqueteDetalle);
+					"detalle"=>$this->paqueteDetalle,
+					"precio_soles_ninios"=>$this->paquetePrecioSolesNinios,
+					"precio_dolares_ninios"=>$this->paquetePrecioDolaresNinios,
+					"hora"=>$this->paqueteHora,
+					"hora_llegada"=>$this->paqueteHoraLlegada,
+					"cantidad_dias"=>$this->paqueteCantidadDias,
+					"cantidad_noches"=>$this->paqueteCantidadNoches,
+				);
 		
 		$respuesta = ControladorPaquetes::ctrCrearPaquete($datos);
 
@@ -154,6 +168,19 @@ class AjaxPaquetes{
 
 	}
 
+
+	#OBTENER CLIENTES DE PAQUETES
+	public function ajaxObtenerClientesDelPaquete($idPaquete){
+		$respuesta = ControladorPaquetes::ctrObtenerClientesDelPaquete($idPaquete);
+		echo json_encode($respuesta);
+	}
+
+	#OBTENER CLIENTES DE PAQUETES
+	public function ajaxObtenerServiciosPorPaquete($idPaquete){
+		$respuesta = ControladorPaquetes::ctrListarServiciosPorPaquete($idPaquete);
+		echo json_encode($respuesta);
+	}
+
 }
 
 /*=============================================
@@ -177,6 +204,15 @@ if(isset($_POST["nuevoPaqueteTitulo"])){
 	$paquete -> paqueteFechaFin = $_POST["nuevoPaqueteFechaFin"];
 	$paquete -> paqueteDescripcionCorta = $_POST["nuevoPaqueteDescripcionCorta"];
 	$paquete -> paqueteDescripcionLarga = $_POST["nuevoPaqueteDescripcionLarga"];
+
+	$paquete -> paquetePrecioSolesNinios = $_POST["nuevoPaquetePrecioSolesNinios"];
+	$paquete -> paquetePrecioDolaresNinios = $_POST["nuevoPaquetePrecioDolaresNinios"];
+	$paquete -> paqueteHora = $_POST["nuevoPaqueteHora"];
+	$paquete -> paqueteHoraLlegada = $_POST["nuevoPaqueteHoraLlegada"];
+	$paquete -> paqueteCantidadDias = $_POST["nuevoPaqueteCantidadDias"];
+	$paquete -> paqueteCantidadNoches = $_POST["nuevoPaqueteCantidadNoches"];
+
+
 	$paquete -> paqueteDetalle = $_POST["nuevoPaqueteDetalle"];
 	$paquete -> ajaxCrearPaquete();
 
@@ -220,4 +256,13 @@ if(isset($_POST["Servicio"])){
 	$paquete -> servicioArray = $_POST["servicioArray"];
 	$paquete -> ajaxCrearServiciosDePaquete();
 
+}
+if(isset($_POST["clientesDelPaquete"])){
+	$paquete = new AjaxPaquetes();
+	$paquete -> ajaxObtenerClientesDelPaquete($_POST["idPaquete"]);
+}
+
+if(isset($_POST["serviciosDelPaquete"])){
+	$paquete = new AjaxPaquetes();
+	$paquete -> ajaxObtenerServiciosPorPaquete($_POST["idPaquete"]);
 }

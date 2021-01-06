@@ -175,5 +175,12 @@ class ControladorSolicitudes{
 
 	}
 
-}
+	#MOSTRAR SOLICITUDES PAQUETES
+	#-----------------------------------------------------
+	static public function ctrConsultarCotizacionSeguimiento(){
+		$respuesta = ModeloSolicitudes::mdlConsultarCotizacionSeguimiento();
 
+		return $respuesta;
+
+	}
+}

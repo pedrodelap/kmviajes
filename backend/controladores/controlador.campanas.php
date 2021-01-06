@@ -5,25 +5,16 @@ class ControladorCampanas{
 	#MOSTRAR CAMPAÑAS
 	#-----------------------------------------------------
 	static public function ctrMostrarCampanas($item, $valor){
-
 		$tabla = "tb_campenias";
-
 		$respuesta = ModeloCampanas::mdlMostrarCampanas($tabla, $item, $valor);
-
 		return $respuesta;
-
 	}
-
 	#SELECT CAMPAÑAS
 	#-----------------------------------------------------
 	static public function ctrSelectCampanas($valor){
-
 		$tabla = "tb_campenias";
-
 		$respuesta = ModeloCampanas::mdlSelectCampanas($tabla, $valor);
-
 		return $respuesta;
-
 	}	
 	
 	#CREAR CAMPAÑA
@@ -286,4 +277,3 @@ class ControladorCampanas{
 	}
 
 }
-

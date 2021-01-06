@@ -177,4 +177,46 @@ class ModeloSolicitudes{
 
 	}
 
+	#MOSTRAR Paquetes por monto
+	#------------------------------------------------------------
+
+	static public function mdlConsultarCotizacionSeguimiento(){
+		$stmt = Conexion::conectar()->prepare("SELECT 
+												p.id_paquete,
+												ip.ruta_imagen,
+												p.titulo, 
+												ifnull(c.nombre,'') as campania,
+												c.nombre as ciudad,
+												sum(s.numero_adultos + ifnull(s.numero_ninios,0)) as num_paquete,
+												sum(s.numero_adultos * p.precio_dolar) + sum(ifnull(s.numero_ninios,0) * ifnull(p.precio_dolar_ninio,0)) monto,
+												p.fecha_inicio,
+												p.fecha_fin,
+												p.fecha_mostrar,
+												p.cantidad_adultos,
+												p.cantidad_ninios,
+												p.hora_vuelo_ida,
+												p.hora_vuelo_regreso,
+												ifnull(sci.id_seguimiento_checkin,'-') as id_seguimiento_checkin,
+												ifnull(sco.id_seguimiento_checkout,'-') as id_seguimiento_checkout
+												FROM tb_solicitud s
+												INNER JOIN tb_venta v on s.id_solicitud = v.id_solicitud
+												LEFT JOIN tb_paquetes p on p.id_paquete = s.id_paquete
+												INNER JOIN (SELECT ip.`id_paquete` ,MAX(ip.`ruta_imagen`) AS ruta_imagen FROM tb_imagenes_paquete ip GROUP BY ip.`id_paquete`) ip
+																								ON p.id_paquete = ip.id_paquete
+												INNER JOIN tb_ciudades c on p.id_ciudad = c.id_ciudad
+												INNER JOIN tb_campanias_x_paquetes cp on cp.id_paquete = p.id_paquete
+												INNER JOIN tb_campenias  cc on cc.id_campania = cp.id_campania
+												LEFT JOIN tb_seguimiento_checkin sci on sci.id_paquete = p.id_paquete
+												LEFT JOIN tb_seguimiento_checkout sco on sco.id_paquete = p.id_paquete
+												group by p.id_paquete,ruta_imagen,p.titulo,campania,ciudad,sci.id_seguimiento_checkin,sco.id_seguimiento_checkout,p.hora_vuelo_ida,p.hora_vuelo_regreso");
+
+		
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+			$stmt -> close();
+
+			$stmt = null;
+	}
 }

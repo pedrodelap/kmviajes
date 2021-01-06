@@ -214,8 +214,26 @@ class ControladorPaquetes{
         $respuesta = ModeloPaquetes::mdlObtenetPaqueteByIdSolicitud($id);
         return $respuesta;
     
-    }
+	}
+	
+
+	#MOSTRAR CLIENTES DE PAQUETES
+	#-----------------------------------------------------
+	static public function ctrObtenerClientesDelPaquete($idPaquete){
+		$respuesta = ModeloPaquetes::mdlObtenerClientesDelPaquete($idPaquete);
+
+		return $respuesta;
+
+	}
+
+	#MOSTRAR SERVICIOS POR PAQUETE 
+	#-----------------------------------------------------
+	static public function ctrListarServiciosPorPaquete($idPaquete){
+		$respuesta = ModeloPaquetes::mdlListarServiciosPorPaquete($idPaquete);
+		
+		return $respuesta;
+
+	}
 
 
 }
-

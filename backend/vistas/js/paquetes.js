@@ -18,13 +18,13 @@ $(".paqueteAerolinea").select2({
         url: 'ajax/ajax.aerolineas.php',
         dataType: 'json',
         delay: 250,
-        data: function(params) {
+        data: function (params) {
             return {
                 q: params.term,
                 page: params.page
             };
         },
-        processResults: function(data, params) {
+        processResults: function (data, params) {
             params.page = params.page || 1;
             return {
                 results: data.items,
@@ -53,13 +53,13 @@ $(".paqueteCiudad").select2({
         url: 'ajax/ajax.paquetes.php',
         dataType: 'json',
         delay: 250,
-        data: function(params) {
+        data: function (params) {
             return {
                 q: params.term,
                 page: params.page
             };
         },
-        processResults: function(data, params) {
+        processResults: function (data, params) {
             params.page = params.page || 1;
             return {
                 results: data.items,
@@ -88,13 +88,13 @@ $(".campanaEnPaquete").select2({
         url: 'ajax/ajax.campana.php',
         dataType: 'json',
         delay: 250,
-        data: function(params) {
+        data: function (params) {
             return {
                 q: params.term,
                 page: params.page
             };
         },
-        processResults: function(data, params) {
+        processResults: function (data, params) {
             params.page = params.page || 1;
             return {
                 results: data.items,
@@ -123,13 +123,13 @@ $(".paqueteHotel").select2({
         url: 'ajax/ajax.hoteles.php',
         dataType: 'json',
         delay: 250,
-        data: function(params) {
+        data: function (params) {
             return {
                 q: params.term,
                 page: params.page
             };
         },
-        processResults: function(data, params) {
+        processResults: function (data, params) {
             params.page = params.page || 1;
             return {
                 results: data.items,
@@ -160,8 +160,8 @@ function formatoNumeros() {
 };
 
 
-$(document).keyup(function(e) {
-    if (e.keyCode == 27 && $('#modalPaqueteAgragarImagenes').is(':visible'))  {
+$(document).keyup(function (e) {
+    if (e.keyCode == 27 && $('#modalPaqueteAgragarImagenes').is(':visible')) {
         //alert('Esc key is press');
         $('#modalNuevoPaquete').modal('show');
     }
@@ -180,7 +180,7 @@ function mostrarModalPaquetes() {
 /*=============================================
 
 =============================================*/
-$(".btnAgregarImagenesPaquete").click(function() {
+$(".btnAgregarImagenesPaquete").click(function () {
 
     document.getElementById('previsualizarPaquete').removeAttribute('src');
 
@@ -189,20 +189,20 @@ $(".btnAgregarImagenesPaquete").click(function() {
     $("#btnPaquete").text("Agregar Imagen");
     $('#modalNuevoPaquete').modal('hide');
     $('#modalPaqueteAgragarImagenes').modal('show');
-    
+
 });
 
 
 /*=============================================
 PREVISUALIZAR FOTO DE LA CAMPAñA
 =============================================*/
-$(".paqueteNuevoImagenVisualizar").change(function() {
+$(".paqueteNuevoImagenVisualizar").change(function () {
 
     var imagen = this.files[0];
 
     /*=============================================
-  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
-  	=============================================*/
+        VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+        =============================================*/
 
     if (imagen["type"] != "image/jpeg" && imagen["type"] != "image/png") {
 
@@ -231,7 +231,7 @@ $(".paqueteNuevoImagenVisualizar").change(function() {
         var datosImagen = new FileReader;
         datosImagen.readAsDataURL(imagen);
 
-        $(datosImagen).on("load", function(event) {
+        $(datosImagen).on("load", function (event) {
 
             var rutaImagen = event.target.result;
 
@@ -246,14 +246,14 @@ $(".paqueteNuevoImagenVisualizar").change(function() {
 /*=============================================
 
 =============================================*/
-$(".nuevoPaqueteImagenTemporal").click(function() {
+$(".nuevoPaqueteImagenTemporal").click(function () {
 
     var files = $('#campanaNuevoImagen')[0].files[0];
 
     var formData = new FormData();
-        
-    formData.append('file',files);
-    formData.append('PaqueteImagenTemporal',files);
+
+    formData.append('file', files);
+    formData.append('PaqueteImagenTemporal', files);
 
     $.ajax({
         url: 'ajax/ajax.paquetes.upImage.php',
@@ -261,7 +261,7 @@ $(".nuevoPaqueteImagenTemporal").click(function() {
         data: formData,
         contentType: false,
         processData: false,
-        success:function(data,output){
+        success: function (data, output) {
             $('#divGaleriaPaqueteNuevo').hide();
             $('#divGaleriaPaqueteNuevo').html(data);
             $('#divGaleriaPaqueteNuevo').fadeIn("slow");
@@ -272,8 +272,8 @@ $(".nuevoPaqueteImagenTemporal").click(function() {
 
     $('#modalPaqueteAgragarImagenes').modal('hide');
     $('#modalNuevoPaquete').modal('show');
-    
-    
+
+
 });
 
 /*=============================================
@@ -281,7 +281,7 @@ LIMPIAR DATOS MODAL AGREGAR PAQUETE TURISTICO
 =============================================*/
 
 function limpiarModalAgregarPaqueteTuristico() {
- 
+
     $('#itinerarioNuevoOrigen').val(null).trigger('change');
     $('#itinerarioNuevoDestino').val(null).trigger('change');
     $('#itinerarioNuevoFechaVuelo').val(null).trigger('change');
@@ -295,7 +295,7 @@ AGREGAR PAQUETE TURISTICO
 
 var idPaquete = "";
 
-$(".adicionarPaqueteTuristico").click(function() {
+$(".adicionarPaqueteTuristico").click(function () {
 
     var nuevoPaquete = true;
     var nuevoPaqueteTitulo = $("#nuevoPaqueteTitulo").val();
@@ -313,6 +313,15 @@ $(".adicionarPaqueteTuristico").click(function() {
     var nuevoPaqueteDescripcionCorta = $('#nuevoPaqueteDescripcionCorta').val();
     var nuevoPaqueteDescripcionLarga = $('#nuevoPaqueteDescripcionLarga').val();
     var nuevoPaqueteDetalle = $('#nuevoPaqueteDetalle').val();
+
+    //nuevos campos 
+    var nuevoPaquetePrecioSolesNinios = $('#nuevoPaquetePrecioSolesNinios').val();
+    var nuevoPaquetePrecioDolaresNinios = $('#nuevoPaquetePrecioDolaresNinios').val();
+    var nuevoPaqueteHora = $('#nuevoPaqueteHora').val();
+    var nuevoPaqueteHoraLlegada = $('#nuevoPaqueteHoraLlegada').val();
+    var nuevoPaqueteCantidadDias = $('#nuevoPaqueteCantidadDias').val();
+    var nuevoPaqueteCantidadNoches = $('#nuevoPaqueteCantidadNoches').val();
+
 
     var datosPaquetes = new FormData();
 
@@ -333,6 +342,14 @@ $(".adicionarPaqueteTuristico").click(function() {
     datosPaquetes.append("nuevoPaqueteDescripcionLarga", nuevoPaqueteDescripcionLarga);
     datosPaquetes.append("nuevoPaqueteDetalle", nuevoPaqueteDetalle);
 
+    //nuevos campos 
+    datosPaquetes.append("nuevoPaquetePrecioSolesNinios", nuevoPaquetePrecioSolesNinios);
+    datosPaquetes.append("nuevoPaquetePrecioDolaresNinios", nuevoPaquetePrecioDolaresNinios);
+    datosPaquetes.append("nuevoPaqueteHora", nuevoPaqueteHora);
+    datosPaquetes.append("nuevoPaqueteHoraLlegada", nuevoPaqueteHoraLlegada);
+    datosPaquetes.append("nuevoPaqueteCantidadDias", nuevoPaqueteCantidadDias);
+    datosPaquetes.append("nuevoPaqueteCantidadNoches", nuevoPaqueteCantidadNoches);
+
     /*
     for (var value of datosPaquetes.values()) {
         console.log("datosPaquetes : ", value); 
@@ -340,7 +357,7 @@ $(".adicionarPaqueteTuristico").click(function() {
 
     console.log("nuevoPaqueteHotel : ", nuevoPaqueteHotel);
 
-     $.ajax({
+    $.ajax({
 
         url: "ajax/ajax.paquetes.php",
         method: "POST",
@@ -349,12 +366,12 @@ $(".adicionarPaqueteTuristico").click(function() {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
             idPaquete = respuesta["id_paquete"];
 
             adicionarPaqueteTuristicoImagenes(idPaquete);
- 
+
         }
 
     });
@@ -380,9 +397,9 @@ function adicionarPaqueteTuristicoImagenes(idPaquete) {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-            if(respuesta == 'ok' ){
+            if (respuesta == 'ok') {
 
                 adicionarPaqueteTuristicoServicios(idPaquete);
 
@@ -403,14 +420,14 @@ function adicionarPaqueteTuristicoServicios(idPaquete) {
 
     var datosServicios = new FormData();
 
-    $('.chkServicio').each(function() {
+    $('.chkServicio').each(function () {
 
         if ($(this).is(":checked")) {
 
             servicioArray.push($(this).val());
 
         }
-        
+
     });
 
     servicioArray = servicioArray.toString();
@@ -430,9 +447,9 @@ function adicionarPaqueteTuristicoServicios(idPaquete) {
         contentType: false,
         processData: false,
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
 
-            if(respuesta == 'ok' ){
+            if (respuesta == 'ok') {
 
                 Swal.fire({
                     type: "success",
@@ -440,13 +457,13 @@ function adicionarPaqueteTuristicoServicios(idPaquete) {
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar",
                     closeOnConfirm: false
-                    }).then((result) => {
-                            
-                        if (result.value) {
+                }).then((result) => {
 
-                            window.location = "paquetes";
+                    if (result.value) {
 
-                        }
+                        window.location = "paquetes";
+
+                    }
                 });
 
             }
@@ -463,10 +480,10 @@ FORMATO DATERANGEPICKER
 =============================================*/
 $(".paqueteNuevoFecha").daterangepicker({
     parentEl: "#modalNuevoPaquete",
-    
+
     locale: {
         format: 'DD MMMM, YYYY'
-    },        
+    },
     drops: ('down'),
-    opens: ('left') 
+    opens: ('left')
 });

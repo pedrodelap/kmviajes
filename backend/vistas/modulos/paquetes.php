@@ -179,12 +179,8 @@ MODAL AGREGAR PAQUETE
 
                                             <div class="form-row">
 
-                                                <div class="col-md-2">
-                                                    <div class="position-relative form-group"><label for="nuevoPaqueteTitulo">Titulo del Paquete</label><input name="nuevoPaqueteTitulo" id="nuevoPaqueteTitulo" placeholder="Ingresar Titulo" class="form-control">
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-md-2">
+                                                <div class="col-md-3">
                                                     <div class="position-relative form-group"><label for="nuevoCampanadePaquete">Campaña</label>
 
                                                         <select class="form-control campanaEnPaquete" name="nuevoCampanadePaquete" id="nuevoCampanadePaquete">
@@ -193,12 +189,8 @@ MODAL AGREGAR PAQUETE
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-2">
-                                                    <div class="position-relative form-group"><label for="nuevoPaqueteAerolinea">Aerolíneas </label>
-
-                                                        <select class="form-control paqueteAerolinea" name="nuevoPaqueteAerolinea" id="nuevoPaqueteAerolinea">
-                                                        </select>
-
+                                                <div class="col-md-3">
+                                                    <div class="position-relative form-group"><label for="nuevoPaqueteTitulo">Titulo del Paquete</label><input name="nuevoPaqueteTitulo" id="nuevoPaqueteTitulo" placeholder="Ingresar Titulo" class="form-control">
                                                     </div>
                                                 </div>
 
@@ -273,51 +265,118 @@ MODAL AGREGAR PAQUETE
                                     <div class="card">
 
                                         <div class="card-body">
-
-                                            <div class="form-row">
-
-                                                <div class="col-md-2">
-                                                    <div class="position-relative form-group"><label for="nuevoPaquetePrecioSoles">Precio Soles</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text">S/.</span>
-                                                            </div>
-                                                            <input name="nuevoPaquetePrecioSoles" id="nuevoPaquetePrecioSoles" placeholder="" type="text" class="form-control">
+                                            <h5>Detalle de precios adulto</h5>
+                                            <div class="row">
+                                                
+                                                <div class="form-row col-md-6">
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="nuevoPaqueteCantidadAdultos">Cantidad </label><input name="nuevoPaqueteCantidadAdultos"  maxlength="2" id="nuevoPaqueteCantidadAdultos" placeholder="" type="text" class="form-control">
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-md-2">
-                                                    <div class="position-relative form-group"><label for="nuevoPaquetePrecioDolares">Precio Dolares</label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text">$</span>
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="nuevoPaquetePrecioDolares">Precio Dolares</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">$</span>
+                                                                </div>
+                                                                <input name="nuevoPaquetePrecioDolares" id="nuevoPaquetePrecioDolares" placeholder="" type="text" class="form-control input-mask-trigger" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true">
                                                             </div>
-                                                            <input name="nuevoPaquetePrecioDolares" id="nuevoPaquetePrecioDolares" placeholder="" type="text" class="form-control">
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-md-2">
-                                                    <div class="position-relative form-group"><label for="nuevoPaqueteCantidadAdultos">Cantidad Adultos</label><input name="nuevoPaqueteCantidadAdultos"  maxlength="2" id="nuevoPaqueteCantidadAdultos" placeholder="" type="text" class="form-control">
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="nuevoPaquetePrecioSoles">Precio Soles</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">S/.</span>
+                                                                </div>
+                                                                <input name="nuevoPaquetePrecioSoles" id="nuevoPaquetePrecioSoles" placeholder="" type="text" class="form-control input-mask-trigger" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </div> 
+                                                
+                                                <div class="form-row col-md-6">              
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="nuevoPaqueteCantidadNinos">Cantidad Niños</label><input name="nuevoPaqueteCantidadNinos"  maxlength="2" id="nuevoPaqueteCantidadNinos" placeholder="" type="text" class="form-control">
+                                                        </div>
+                                                    </div>   
 
-                                                <div class="col-md-2">
-                                                    <div class="position-relative form-group"><label for="nuevoPaqueteCantidadNinos">Cantidad Niños</label><input name="nuevoPaqueteCantidadNinos"  maxlength="2" id="nuevoPaqueteCantidadNinos" placeholder="" type="text" class="form-control">
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="nuevoPaquetePrecioDolaresNinios">Precio Dolares</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">$</span>
+                                                                </div>
+                                                                <input name="nuevoPaquetePrecioDolaresNinios" id="nuevoPaquetePrecioDolaresNinios" placeholder="" type="text" class="form-control input-mask-trigger" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>   
 
-                                                <div class="col-md-4">
-                                                    <div class="position-relative form-group"><label for="nuevoPaqueteFecha">Fecha de Fin</label><input name="nuevoPaqueteFecha" id="nuevoPaqueteFecha" placeholder="" type="text" class="form-control paqueteNuevoFecha">
+                                                    <div class="col-md-4">
+                                                        <div class="position-relative form-group"><label for="nuevoPaquetePrecioSolesNinios">Precio Soles</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">S/.</span>
+                                                                </div>
+                                                                <input name="nuevoPaquetePrecioSolesNinios" id="nuevoPaquetePrecioSolesNinios" placeholder="" type="text" class="form-control input-mask-trigger" data-inputmask="'alias': 'decimal', 'groupSeparator': ',', 'autoGroup': true">
+                                                            </div>
+                                                        </div>
                                                     </div>
+
                                                 </div>
 
                                             </div>
 
-                                            <hr>
+                                            <hr/>
+                                            <h5>Detalle vuelos-fechas</h5>
+                                            <div class="row">
+                                                <div class="form-row col-md-12">  
+                                                
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group"><label for="nuevoPaqueteAerolinea">Aerolíneas </label>
 
+                                                            <select class="form-control paqueteAerolinea" name="nuevoPaqueteAerolinea" id="nuevoPaqueteAerolinea">
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                            <div class="position-relative form-group"><label for="nuevoPaqueteFecha">Fecha de Vuelos</label><input name="nuevoPaqueteFecha" id="nuevoPaqueteFecha" placeholder="" type="text" class="form-control paqueteNuevoFecha">
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <label for="nuevoPaqueteHora">Horas salida</label>
+                                                            <input name="nuevoPaqueteHora" id="nuevoPaqueteHora" placeholder="HHMM HHMM" type="text" maxlength="9" class="form-control nuevoPaqueteHora">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="position-relative form-group">
+                                                            <label for="nuevoPaqueteHora">Horas llegada</label>
+                                                            <input name="nuevoPaqueteHoraLlegada" id="nuevoPaqueteHoraLlegada" placeholder="HHMM HHMM" type="text" maxlength="9"  class="form-control nuevoPaqueteHoraLlegada">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <div class="position-relative form-group"><label for="nuevoPaqueteCantidadDias">Dias</label><input name="nuevoPaqueteCantidadDias" maxlength="2"  id="nuevoPaqueteCantidadDias" placeholder="" type="text" class="form-control">
+                                                        </div>
+                                                    </div> 
+
+                                                    <div class="col-md-1">
+                                                        <div class="position-relative form-group"><label for="nuevoPaqueteCantidadNoches">Noches</label><input name="nuevoPaqueteCantidadNoches"  maxlength="2" id="nuevoPaqueteCantidadNoches" placeholder="" type="text" class="form-control">
+                                                        </div>
+                                                    </div> 
+                                                 </div>
+                                            </div>
+                                            
+                                          
+
+                                            <hr/>
+                                            <h5>Detalles del paquete</h5>
                                             <div class="form-row">
+                                            
+                                                
 
                                                 <div class="col-12 col-md-12">
                                                     <div class="position-relative form-group">

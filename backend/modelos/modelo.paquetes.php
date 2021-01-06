@@ -8,7 +8,7 @@ class ModeloPaquetes{
 	#------------------------------------------------------------
 	static public function mdlCrearPaquetes($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("CALL usp_insert_paquete(:titulo, :id_aerolinea, :descripcion_corta, :descripcion_larga, :detalle, :id_ciudad, :id_hotel, :precio_sol, :precio_dolar, :fecha_inicio, :fecha_fin, :cantidad_adultos, :cantidad_ninios, :fecha_mostrar);");
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_paquete(:titulo, :id_aerolinea, :descripcion_corta, :descripcion_larga, :detalle, :id_ciudad, :id_hotel, :precio_sol, :precio_dolar, :fecha_inicio, :fecha_fin, :cantidad_adultos, :cantidad_ninios, :fecha_mostrar, :precio_soles_ninios, :precio_dolares_ninios, :hora, :hora_llegada, :cantidad_dias, :cantidad_noches);");
 		
 		$stmt->bindParam(":titulo", $datos["titulo"], PDO::PARAM_STR);
 		$stmt->bindParam(":id_aerolinea", $datos["id_aerolinea"], PDO::PARAM_INT);
@@ -24,6 +24,13 @@ class ModeloPaquetes{
 		$stmt->bindParam(":cantidad_adultos", $datos["cantidad_adultos"], PDO::PARAM_STR);
 		$stmt->bindParam(":cantidad_ninios", $datos["cantidad_ninios"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_mostrar", $datos["fecha_mostrar"], PDO::PARAM_STR);
+
+		$stmt->bindParam(":precio_soles_ninios", $datos["precio_soles_ninios"], PDO::PARAM_STR);
+		$stmt->bindParam(":precio_dolares_ninios", $datos["precio_dolares_ninios"], PDO::PARAM_STR);
+		$stmt->bindParam(":hora", $datos["hora"], PDO::PARAM_STR);
+		$stmt->bindParam(":hora_llegada", $datos["hora_llegada"], PDO::PARAM_STR);
+		$stmt->bindParam(":cantidad_dias", $datos["cantidad_dias"], PDO::PARAM_STR);
+		$stmt->bindParam(":cantidad_noches", $datos["cantidad_noches"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
@@ -336,4 +343,43 @@ class ModeloPaquetes{
 
     }
 
+	#MOSTRAR Clientes del Paquete
+	#------------------------------------------------------------
+
+	static public function mdlObtenerClientesDelPaquete($idPaquete){
+		$stmt = Conexion::conectar()->prepare("SELECT 
+												p.nombres,
+												p.apellidos,
+												p.id_pasajero,
+												p.tipo_doc,
+												p.nro_doc,
+												s.id_solicitud
+												FROM tb_pasajero p 
+												INNER JOIN tb_venta v on p.id_venta = p.id_venta
+												INNER JOIN tb_solicitud s on s.id_solicitud = v.id_solicitud
+												INNER JOIN tb_paquetes pa on pa.id_paquete = s.id_paquete
+												WHERE pa.id_paquete = :idPaquete");
+		
+		$stmt->bindParam(":idPaquete", $idPaquete, PDO::PARAM_INT);
+		
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+		$stmt = null;
+	}
+
+
+	#MOSTRAR Servicios por paquete
+	#------------------------------------------------------------
+	static public function mdlListarServiciosPorPaquete($idPaquete){
+       
+        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion,s.calificable from tb_servicios_x_paquetes sp
+                                              join  tb_servicios s on s.id_servicio = sp.id_servicio
+                                               WHERE sp.id_paquete =:idPaquete");
+        $stmt -> bindParam(":idPaquete", $idPaquete, PDO::PARAM_INT);
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+        $stmt -> close();
+        $stmt = null;
+    }
 }

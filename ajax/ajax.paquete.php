@@ -267,7 +267,7 @@ if(isset($_POST["pagar"])){
 						"dniNumber"=>$_POST["dniNumber"],
 						"id_solicitud"=>$_POST["id_solicitud"],
 						"ruc" => $_POST["ruc"],
-						"razon_social" => $_POST["ruc"],
+						"razon_social" => $_POST["razon_social"],
 						"cuotas" => $_POST["cuotas"],
 						"pasajeros" => $_POST["pasajeros"]
 					);
