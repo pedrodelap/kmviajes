@@ -339,12 +339,15 @@ class ModeloPaqueteFront{
 	#------------------------------------------------------------
 	static public function mdlCrearVenta($datosVenta){
 
-		$stmt = Conexion::conectar()->prepare("CALL usp_insert_venta(:pId_solicitud, :pNroOperacion, :pRuc, :pRazon);");
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_venta(:pId_solicitud, :pNroOperacion, :pRuc, :pRazon, :monto, :id_habitacion);");
 
 		$stmt->bindParam(":pId_solicitud", $datosVenta["solicitud"], PDO::PARAM_INT);
 		$stmt->bindParam(":pNroOperacion", $datosVenta["operacion"], PDO::PARAM_STR);
 		$stmt->bindParam(":pRuc", $datosVenta["ruc"], PDO::PARAM_STR);
 		$stmt->bindParam(":pRazon", $datosVenta["razon_social"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_habitacion", $datosVenta["id_habitacion"], PDO::PARAM_INT);
+		$stmt->bindParam(":monto", $datosVenta["monto"], PDO::PARAM_STR);
+		
 
 		$stmt -> execute();
 
@@ -467,4 +470,18 @@ class ModeloPaqueteFront{
         $stmt = null;
 	}
 
+	//OBTENER HABITACIONS POR PAQUETE
+	static public function mdlListaHabitacionesByHotel($idPaquete){
+		$stmt = Conexion::conectar()->prepare( "SELECT h.*
+												FROM tb_habitacion h
+												INNER JOIN tb_paquetes p ON h.id_hotel = p.id_hotel
+												WHERE p.id_paquete = :id_paquete
+												ORDER  BY flag_default desc");
+												 
+		$stmt -> bindParam(":id_paquete", $idPaquete, PDO::PARAM_STR);
+		$stmt -> execute();
+		return $stmt -> fetchAll();
+		$stmt -> close();
+        $stmt = null;
+	}
 }

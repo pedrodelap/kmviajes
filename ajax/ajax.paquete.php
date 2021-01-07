@@ -44,7 +44,9 @@ class AjaxPaquetes{
 				"solicitud"=>$datosPago["id_solicitud"],
 				"operacion"=>$orderID,
 				"ruc"=>$datosPago["ruc"],
-				"razon_social"=>$datosPago["razon_social"]
+				"razon_social"=>$datosPago["razon_social"],
+				"monto"=>$datosPago["amount"],
+				"id_habitacion"=>$datosPago["idHabitacion"]
 		  );
 		  $idVenta = ControladorPaqueteFront::ctrCrearVenta($datosVenta);
 
@@ -269,7 +271,8 @@ if(isset($_POST["pagar"])){
 						"ruc" => $_POST["ruc"],
 						"razon_social" => $_POST["razon_social"],
 						"cuotas" => $_POST["cuotas"],
-						"pasajeros" => $_POST["pasajeros"]
+						"pasajeros" => $_POST["pasajeros"],
+						"idHabitacion" => $_POST["idHabitacion"]
 					);
 	$pagar -> ajaxPagarOnLine($datosPago);
 

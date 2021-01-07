@@ -320,5 +320,10 @@ class ControladorPaqueteFront{
 		return $respuesta;
 
     }
+
+    static public function ctrListaHabitacionesByHotel($idPaquete){
+        $respuesta = ModeloPaqueteFront::mdlListaHabitacionesByHotel($idPaquete);
+        return $respuesta;
+    }
    
 }

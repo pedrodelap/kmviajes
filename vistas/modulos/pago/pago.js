@@ -1,3 +1,4 @@
+var amountHabitacion = 0;
 $(document).ready(function () {
 
     $('#pagar-form input[type=text]').on('keyup', function () {
@@ -15,6 +16,7 @@ $(document).ready(function () {
         readOnly: true
     });
     $("#divInvoice").hide();
+
     $('#needInvoice').change(function () {
         if (this.checked) {
             debugger;
@@ -22,6 +24,27 @@ $(document).ready(function () {
         } else {
             $("#divInvoice").hide();
         }
+    });
+
+    $(".div-habitacion-pago").click(function () {
+        if (!$(this).hasClass("div-habitacion-pago-selected")) {
+            $(".div-habitacion-pago").removeClass("div-habitacion-pago-selected");
+            $(this).find("input[type=radio]").prop("checked", true);
+            var roomPrice = $(this).find("input[type=hidden]").val();
+            var amount = $("#amount").val();
+            amountHabitacion = parseFloat(roomPrice);
+            newAmount = parseFloat(amount) + amountHabitacion;
+
+            $("#tr-cambio-habitacion").toggle();
+
+            $("#th-cambio-habitacion").text("$ " + amountHabitacion.toFixed(2));
+            $("#th-amount-total").text("$ " + newAmount.toFixed(2));
+            $("#span-total").text(newAmount.toFixed(2));
+
+            $(this).addClass("div-habitacion-pago-selected");
+        }
+
+
     });
 });
 
@@ -157,6 +180,7 @@ function realizarPago() {
     var cuotas = $("#FormaPago_NroCuotas").val();
     var ruc = $("#txtRuc").val();
     var razon_social = $("#txtRazon").val();
+    var idHabitacion = $('input[name="habitacionRadio"]:checked').val();
     var pagar = true;
 
     var formPago = new FormData();
@@ -179,6 +203,7 @@ function realizarPago() {
     formPago.append("ruc", ruc);
     formPago.append("razon_social", razon_social);
     formPago.append("pagar", pagar);
+    formPago.append("idHabitacion", idHabitacion);
 
     numPasajeros = $("#pasajeros").text();
     var arrayPasajeros = [];

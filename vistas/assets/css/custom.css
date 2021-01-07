@@ -373,3 +373,31 @@
     opacity: 1;
   }
 }
+
+.div-habitacion-pago {
+  margin: 5px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.div-habitacion-pago-selected {
+  border: solid 0.5px #5b72f1;
+}
+.tag-blue {
+  width: 70%;
+  height: 30px;
+  border-radius: 25px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding: 5px;
+  font-size: 12px;
+  color: white;
+}
+
+.div-habitacion-pago-selected div.tag-blue {
+  background: #5b72f1;
+}
+
+.div-habitacion-pago-selected div.tag-blue::after {
+  content: "Seleccionado";
+}

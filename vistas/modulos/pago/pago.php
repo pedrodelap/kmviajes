@@ -105,85 +105,59 @@
                     <br />
                     <!--habitaciones-->
                     <div class="heading">
-                        <h4>Habitación</h4>
+                        <h4>Selección de habitación</h4>
                         <p>Se muestran los tipos de habitaciones disponibles</p>
                     </div>
                     <div class="container">
                         <div class="row">
                             <!--habitacion-->
-                            <div class="col-sm-12 card" id="pagar-form">
-                                <hr />
-                                <div class="row"
-                                    style="margin: 5px; border: solid 0.5px #5b72f1; padding: 20px;border-radius: 10px">
-                                    <div class="col-sm-4">
-                                        <div class="d-flex flex-wrap justify-content-between text-xs">
-                                            <p class="date-comments">
-                                                <span> <i class="fa fa-user"></i> 2 persona en la habitación</span>
-                                            </p>
-                                            <p class="date-comments">
-                                                <span> <i class="fa fa-bed"></i> 2 Double grande</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div>
-                                            <p class="author-category">
-                                                <span style="font-size:14px">Precio con esta habitación</span>
-                                            </p>
-                                            <p style="font-weight:800">
-                                                + $<span style="font-size:18px;">0.0</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
+                            <div class="col-sm-12 card" id="habitacion-form">
 
-                                        <div class="box-footer text-center">
-                                            <div
-                                                style="background:#5b72f1;width:70%;height:30px;border-radius: 25px;margin:0 auto; margin-bottom:15px;padding: 5px;font-size: 12px; color: white;">
-                                                Seleccionado
-                                            </div>
-                                            <input type="radio" name="delivery" value="delivery1">
+                                <?php 
+                                        $habitaciones = ControladorPaqueteFront::ctrListaHabitacionesByHotel($paquete["id_paquete"]);
+                                        foreach ($habitaciones as $key => $value) {
+                                            $selected = $value["flag_default"] == 1?"div-habitacion-pago-selected":"";
+                                            $monto_adicional = $value["monto_adicional"] > 0?"+ $<span style='font-size:18px;'>".$value["monto_adicional"]."</span>":"<span style='font-size:16px;'>SIN COSTO</span>";
+                                            $checked =  $value["flag_default"] == 1?"checked":"";
+                                            echo ' <hr /><div class="row div-habitacion-pago '.$selected.'">
+                                                    <div class="col-sm-5">
+                                                        <div class="d-flex flex-wrap justify-content-between text-xs">
+                                                            <p class="date-comments">
+                                                                <span> <i class="fa fa-user"></i> '.$pasajeros.' persona(s) en la habitación</span>
+                                                            </p>
+                                                            <p class="date-comments">
+                                                                <span> <i class="fa fa-bed"></i> '.$value["nombre"].'</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div>
+                                                            <p class="author-category">
+                                                                <span style="font-size:14px">Precio con esta habitación</span>
+                                                            </p>
+                                                            <p style="font-weight:800">
+                                                                '.$monto_adicional.'
+                                                            </p>
+                                                            <input type="hidden" value="'.$value["monto_adicional"].'"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
 
-                                        </div>
-                                    </div>
+                                                        <div class="box-footer text-center">
+                                                            <div class="tag-blue">
 
-                                </div>
+                                                            </div>
+                                                            <input type="radio" id="habitacionRadio" name="habitacionRadio" value="'.$value["id_habitacion"].'" '.$checked.'/>
 
-                                <hr />
-                                <div class="row" style="margin: 5px;padding: 20px;">
-                                    <div class="col-sm-4">
-                                        <div class="d-flex flex-wrap justify-content-between text-xs">
-                                            <p class="date-comments">
-                                                <span> <i class="fa fa-user"></i> 2 persona en la habitación</span>
-                                            </p>
-                                            <p class="date-comments">
-                                                <span> <i class="fa fa-bed"></i> 2 Double grande</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div>
-                                            <p class="author-category">
-                                                <span style="font-size:14px">Precio con esta habitación</span>
-                                            </p>
-                                            <p style="font-weight:800">
-                                                + $<span style="font-size:18px;">70.00</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
+                                                        </div>
+                                                    </div>
+                                                 </div>';
+                                        }
+                                ?>
 
-                                        <div class="box-footer text-center">
-                                            <div
-                                                style=";width:60%;height:30px;border-radius: 25px;margin:0 auto; margin-bottom:15px;padding: 5px;font-size: 12px; color: white;">
 
-                                            </div>
-                                            <input type="radio" name="delivery" value="delivery1">
 
-                                        </div>
-                                    </div>
 
-                                </div>
                                 <!--habitacion-->
 
                             </div>
@@ -313,8 +287,8 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <button onclick="realizarPago()" id="btn_pagar" class="btn btn-lg btn-primary"
-                                    style="float: right;">Confirmar pago de $
-                                    <?php echo number_format($pasajeros * $paquete["precio_dolar"],2);?></button>
+                                    style="float: right;">Confirmar pago de $<span id="span-total">
+                                        <?php echo number_format($pasajeros * $paquete["precio_dolar"],2);?></span></button>
                             </div>
                         </div>
                         <!--btn Pagar-->
@@ -368,9 +342,14 @@
                                         <th style="text-align:right;">
                                             <?php echo '$ '.number_format($paquete["precio_dolar"],2);?></th>
                                     </tr>
+
+                                    <tr id="tr-cambio-habitacion" style="display:none">
+                                        <td>Cambio de Habitación</td>
+                                        <th style="text-align:right;" id="th-cambio-habitacion"></th>
+                                    </tr>
                                     <tr class="total">
                                         <td>Total</td>
-                                        <th style="text-align:right;">
+                                        <th style="text-align:right;" id="th-amount-total">
                                             <?php echo '$ '.number_format($pasajeros * $paquete["precio_dolar"],2);?>
                                         </th>
                                     </tr>
