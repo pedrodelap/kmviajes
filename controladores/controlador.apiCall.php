@@ -51,22 +51,50 @@
 
 
         function DownloadInvoice($url, $data, $filename) {
-            $CurlConnect = curl_init($url);
-           
-            curl_setopt($CurlConnect, CURLOPT_POST, true);
-            curl_setopt($CurlConnect, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($CurlConnect, CURLOPT_POSTFIELDS, json_encode($data));
-            curl_setopt($CurlConnect, CURLOPT_HTTPHEADER, array('Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDU4MDkzMDUsInVzZXJuYW1lIjoiS01WaWFqZXMiLCJjb21wYW55IjoiMjA2MDIwMDgyODMiLCJleHAiOjQ3NTk0MDkzMDV9.oSbpqdYrtlLHuscs9GnvqxQFwnBvdmkQkF9osX4tjUReWFSwNGMh4e5oM8OSe8Mxu-w5MkUyT-2rk9wwfMjXLxq7w7DK5_9G8QRaHWHp8WUepH-UtufSsGRs1IXImHU49k-YbydmNuT7To7NGIkJFTCZ4J9bPQsGNVaPtplPjvHwwMIZN_DoxgQQDZTGaZMM72wAxlRhJ3MGx82Re_xncJr8QeiLhE9EV4Phzrc103gVh-IWBMYQmFeR4c0eiLatdpbx8XFEUFhVBX5KbJD10SX9NDFcA1sgOGk0H9_tlMTmyGWJ4maTXrbKmxQbzmS0fr-SsepJBZPC5Y8XvbfzMRQC7EZ121Yy_gRWQCju7EX7a3q61TWspHDhmaQ6jTWFLKQwi_pXDti3xtAWh1XRAA7Hwz2RAoQgeK2gRkt92j5N5hvp-sIsnTQwQXwuiOgUl-VpsQVVtfQCh091eS55SevRIVFIYM_FldP30_g78p1qWoH-TxnSJrTTFZwjTgm6sFX6oTDfbZj3k1Ijlci6VdXiNiAPmABs0rxSqlb_164eMKV-UIKUkXoQF0GFs_NItghyzysPFAiMyS52W-njguQprlHnnK5ql0044hyASrp5PbogK2EwXRaMQwcXMYEKmB76pN5Z3nA6LudPd3eEi8Cu-Ug-qXXToyzwIX3gUUQ'));
-            curl_setopt($CurlConnect, CURLOPT_HTTP_VERSION , "CURL_HTTP_VERSION_1_1" );
-            curl_setopt($CurlConnect, CURLOPT_SSL_VERIFYHOST, FALSE);
-            curl_setopt($CurlConnect, CURLOPT_SSL_VERIFYPEER, FALSE);  
 
-            $Result = curl_exec($CurlConnect);
+            $pathFile = $_SERVER['DOCUMENT_ROOT'].'/PDF/invoice/'.$filename.'.pdf';
+            if(!file_exists($pathFile)){
+                $CurlConnect = curl_init($url);
             
-            file_put_contents($_SERVER['DOCUMENT_ROOT'].'/PDF/invoice/'.$filename.'.pdf', $Result);
+                curl_setopt($CurlConnect, CURLOPT_POST, true);
+                curl_setopt($CurlConnect, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($CurlConnect, CURLOPT_POSTFIELDS, json_encode($data));
+                curl_setopt($CurlConnect, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDU4MDkzMDUsInVzZXJuYW1lIjoiS01WaWFqZXMiLCJjb21wYW55IjoiMjA2MDIwMDgyODMiLCJleHAiOjQ3NTk0MDkzMDV9.oSbpqdYrtlLHuscs9GnvqxQFwnBvdmkQkF9osX4tjUReWFSwNGMh4e5oM8OSe8Mxu-w5MkUyT-2rk9wwfMjXLxq7w7DK5_9G8QRaHWHp8WUepH-UtufSsGRs1IXImHU49k-YbydmNuT7To7NGIkJFTCZ4J9bPQsGNVaPtplPjvHwwMIZN_DoxgQQDZTGaZMM72wAxlRhJ3MGx82Re_xncJr8QeiLhE9EV4Phzrc103gVh-IWBMYQmFeR4c0eiLatdpbx8XFEUFhVBX5KbJD10SX9NDFcA1sgOGk0H9_tlMTmyGWJ4maTXrbKmxQbzmS0fr-SsepJBZPC5Y8XvbfzMRQC7EZ121Yy_gRWQCju7EX7a3q61TWspHDhmaQ6jTWFLKQwi_pXDti3xtAWh1XRAA7Hwz2RAoQgeK2gRkt92j5N5hvp-sIsnTQwQXwuiOgUl-VpsQVVtfQCh091eS55SevRIVFIYM_FldP30_g78p1qWoH-TxnSJrTTFZwjTgm6sFX6oTDfbZj3k1Ijlci6VdXiNiAPmABs0rxSqlb_164eMKV-UIKUkXoQF0GFs_NItghyzysPFAiMyS52W-njguQprlHnnK5ql0044hyASrp5PbogK2EwXRaMQwcXMYEKmB76pN5Z3nA6LudPd3eEi8Cu-Ug-qXXToyzwIX3gUUQ'));
+                curl_setopt($CurlConnect, CURLOPT_HTTP_VERSION , "CURL_HTTP_VERSION_1_1" );
+                curl_setopt($CurlConnect, CURLOPT_SSL_VERIFYHOST, FALSE);
+                curl_setopt($CurlConnect, CURLOPT_SSL_VERIFYPEER, FALSE);  
 
+                $Result = curl_exec($CurlConnect);
+                
+                file_put_contents($pathFile, $Result);
+                echo $Result;
+            }
+            else{
+                echo 'exist';
+            }
+        }
+
+
+        public static function httpPostJson($url, $data){
+
+            $curl = curl_init($url);
            
-            echo $Result;
+            curl_setopt($curl, CURLOPT_POST, true);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization:Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2MDU4MDkzMDUsInVzZXJuYW1lIjoiS01WaWFqZXMiLCJjb21wYW55IjoiMjA2MDIwMDgyODMiLCJleHAiOjQ3NTk0MDkzMDV9.oSbpqdYrtlLHuscs9GnvqxQFwnBvdmkQkF9osX4tjUReWFSwNGMh4e5oM8OSe8Mxu-w5MkUyT-2rk9wwfMjXLxq7w7DK5_9G8QRaHWHp8WUepH-UtufSsGRs1IXImHU49k-YbydmNuT7To7NGIkJFTCZ4J9bPQsGNVaPtplPjvHwwMIZN_DoxgQQDZTGaZMM72wAxlRhJ3MGx82Re_xncJr8QeiLhE9EV4Phzrc103gVh-IWBMYQmFeR4c0eiLatdpbx8XFEUFhVBX5KbJD10SX9NDFcA1sgOGk0H9_tlMTmyGWJ4maTXrbKmxQbzmS0fr-SsepJBZPC5Y8XvbfzMRQC7EZ121Yy_gRWQCju7EX7a3q61TWspHDhmaQ6jTWFLKQwi_pXDti3xtAWh1XRAA7Hwz2RAoQgeK2gRkt92j5N5hvp-sIsnTQwQXwuiOgUl-VpsQVVtfQCh091eS55SevRIVFIYM_FldP30_g78p1qWoH-TxnSJrTTFZwjTgm6sFX6oTDfbZj3k1Ijlci6VdXiNiAPmABs0rxSqlb_164eMKV-UIKUkXoQF0GFs_NItghyzysPFAiMyS52W-njguQprlHnnK5ql0044hyASrp5PbogK2EwXRaMQwcXMYEKmB76pN5Z3nA6LudPd3eEi8Cu-Ug-qXXToyzwIX3gUUQ'));     
+            curl_setopt($curl, CURLOPT_HTTP_VERSION , "CURL_HTTP_VERSION_1_1" );
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);    
+        
+            
+            $data = curl_exec($curl);
+            curl_close($curl);
+
+            echo $data;
+            $json = file_get_contents("php://input");
+            $array = json_decode($json, true);
+            return $array;
         }
     }
 ?>

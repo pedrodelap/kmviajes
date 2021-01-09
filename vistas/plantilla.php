@@ -24,7 +24,8 @@
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="vistas/assets/css/custom.css">
 
-    <link rel="stylesheet" type="text/css" href="https://github.com/nashio/star-rating-svg/blob/master/src/css/star-rating-svg.css"/>
+    <link rel="stylesheet" type="text/css"
+        href="https://github.com/nashio/star-rating-svg/blob/master/src/css/star-rating-svg.css" />
     <link rel="stylesheet" href="backend/vistas/assets/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Favicon and apple touch icons-->
@@ -38,18 +39,18 @@
     <link rel="apple-touch-icon" sizes="144x144" href="vistas/assets/img/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="vistas/assets/img/apple-touch-icon-152x152.png">
 
-  <script src="https://kit.fontawesome.com/d43bc8ede4.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/d43bc8ede4.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
     <div id="all">
 
-    <!-- Top bar-->
-    <?php include "vistas/modulos/secciones/top-bar.php"; ?>
-    <!-- Top bar end-->
+        <!-- Top bar-->
+        <?php include "vistas/modulos/secciones/top-bar.php"; ?>
+        <!-- Top bar end-->
 
-    <?php
+        <?php
         if(isset($_GET["ruta"])){
 
             if($_GET["ruta"] == "detallepaquete" ||
@@ -73,14 +74,16 @@
 
     ?>
 
-      <!-- Navbar Start-->
-      <?php include "vistas/modulos/secciones/main-footer.php"; ?>
-      <!-- Navbar End-->
+        <!-- Navbar Start-->
+        <?php include "vistas/modulos/secciones/main-footer.php"; ?>
+        <!-- Navbar End-->
 
 
     </div>
     <div id="loading-airplane">
-        <lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_z6Hw67.json"  background="transparent"  speed="0.5"  style="width: 100px; height: 100px;"  loop  autoplay></lottie-player><div id="heading-breadcrumbs">
+        <lottie-player src="https://assets4.lottiefiles.com/private_files/lf30_z6Hw67.json" background="transparent"
+            speed="0.5" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
+
     </div>
     <!-- Javascript files-->
 
@@ -94,7 +97,7 @@
     <script src="vistas/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="vistas/assets/vendor/owl.carousel2.thumbs/owl.carousel2.thumbs.min.js"></script>
     <script src="vistas/assets/js/jquery.parallax-1.1.3.js"></script>
- 
+
     <script src="vistas/assets/vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
     <script src="backend/vistas/assets/js/vendors/select2.min.js"></script>
     <script src="vistas/assets/js/jquery.creditCardValidator.js"></script>
@@ -102,16 +105,16 @@
     <script src="backend/vistas/assets/js/vendors/moment-with-locales.min.js"></script>
     <script src="backend/vistas/assets/js/vendors/form-components/daterangepicker.js"></script>
     <script src="backend/vistas/assets/js/scripts-init/sweet-alerts.js"></script>
-    
-    <script src="https://code.jquery.com/ui/jquery-ui-git.js" ></script>
 
-     <!--SweetAlert2-->        
-     <script src="vistas/assets/js/jquery.star-rating-svg.min.js"></script>
+    <script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
+
+    <!--SweetAlert2-->
+    <script src="vistas/assets/js/jquery.star-rating-svg.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="vistas/assets/js/jquery.jscroll.js"></script>
     <script src="vistas/assets/js/front.js"></script>
     <script src="vistas/modulos/listapaquetes/listapaquetes.js"></script>
-    
+
     <script src="vistas/modulos/detallepaquete/detallepaquete.js"></script>
     <script src="vistas/modulos/seguimiento/seguimiento.js"></script>
     <script src="vistas/modulos/pago/pago.js"></script>

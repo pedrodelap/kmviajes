@@ -18,8 +18,8 @@ require_once "controladores/controlador.slide.php";
 require_once "controladores/controlador.solicitudes.php";
 require_once "controladores/controlador.suscriptores.php";
 require_once "controladores/controlador.usuarios.php";
+require_once "controladores/controlador.ventas.php";
 require_once "controladores/plantilla.php";
-
 
 require_once "modelos/modelo.aerolineas.php";
 require_once "modelos/modelo.aeropuertos.php";
@@ -39,6 +39,7 @@ require_once "modelos/modelo.slide.php";
 require_once "modelos/modelo.solicitudes.php";
 require_once "modelos/modelo.suscriptores.php";
 require_once "modelos/modelo.usuarios.php";
+require_once "modelos/modelo.ventas.php";
 
 
 $template = new ControladorPlantilla();

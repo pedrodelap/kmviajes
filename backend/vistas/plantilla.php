@@ -237,6 +237,14 @@
     </div>
 
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
+
+    <div id="loading-backend">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Cargando...</span>
+            </div>
+        </div>
+    </div>
     <!--DRAWER END-->
 
 
@@ -263,6 +271,9 @@
     <script src="vistas/js/mensajes.js"></script>
     <script src="vistas/js/usuarios.js"></script>
     <script src="vistas/js/slide.js"></script>
+
+
+    <script src="vistas/js/ventas.js"></script>
 
 </body>
 
