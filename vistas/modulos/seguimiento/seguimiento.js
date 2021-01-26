@@ -1,77 +1,71 @@
+
+
 $(document).ready(function () {
     //card validation on input fields
+
+
     $('#pagar-modal input[type=text]').on('keyup', function () {
         cardFormValidate();
     });
 
-    $(".my-rating-4").starRating({
-        totalStars: 5,
-        starShape: 'rounded',
-        starSize: 25,
-        emptyColor: 'lightgray',
-        hoverColor: '#da4d4d',
-        activeColor: '#da4d4d',
-        useGradient: true
-    });
-    $("#idHotelAll").starRating({
-        totalStars: 5,
-        starShape: 'rounded',
-        starSize: 25,
-        disableAfterRate: false,
-        emptyColor: 'lightgray',
-        hoverColor: '#da4d4d',
-        activeColor: '#da4d4d',
-        useGradient: false,
-        minRating: 1,
-        initialRating: 0,
-        callback: function (currentRating, $el) {
-            console.log(currentRating);
+    /* 1. Visualizing things on Hover - See next part for action on click */
+    $('.stars li').on('mouseover', function () {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
 
-            if (currentRating > 3) {
-                $("#divCalificarHotel").show();
+        // Now highlight all the stars that's not after the current hovered star
+        $(this).parent().children('li.star').each(function (e) {
+            if (e < onStar) {
+                $(this).addClass('hover');
             }
-        }
-    });
-
-    var navListItems = $('div.setup-panel div a'),
-        allWells = $('.setup-content'),
-        allNextBtn = $('.nextBtn');
-
-    allWells.hide();
-
-    navListItems.click(function (e) {
-        e.preventDefault();
-        var $target = $($(this).attr('href')),
-            $item = $(this);
-
-        if (!$item.hasClass('disabled')) {
-            navListItems.removeClass('btn-success').addClass('btn-default');
-            $item.addClass('btn-success');
-            allWells.hide();
-            $target.show();
-            $target.find('input:eq(0)').focus();
-        }
-    });
-
-    allNextBtn.click(function () {
-        var curStep = $(this).closest(".setup-content"),
-            curStepBtn = curStep.attr("id"),
-            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-            curInputs = curStep.find("input[type='text'],input[type='url']"),
-            isValid = true;
-
-        $(".form-group").removeClass("has-error");
-        for (var i = 0; i < curInputs.length; i++) {
-            if (!curInputs[i].validity.valid) {
-                isValid = false;
-                $(curInputs[i]).closest(".form-group").addClass("has-error");
+            else {
+                $(this).removeClass('hover');
             }
-        }
+        });
 
-        if (isValid) nextStepWizard.removeAttr('disabled').trigger('click');
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
+            $(this).removeClass('hover');
+        });
     });
 
-    $('div.setup-panel div a.btn-success').trigger('click');
+
+    /* 2. Action to perform on click */
+    $('.stars li').on('click', function () {
+        console.log();
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+
+        for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+        }
+
+        for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+        }
+
+        // JUST RESPONSE (Not needed)
+        var q = $(this).parent().find("li.selected");
+        var ratingValue = parseInt(q.length, 10);
+
+        console.log(ratingValue);
+        console.log($(this).parent('ul').data('relation'));
+        if (ratingValue <= 3) {
+            $("#" + $(this).parent('ul').data('relation')).fadeIn(500);
+        }
+        else {
+            $("#" + $(this).parent('ul').data('relation')).fadeOut(300);
+        }
+
+
+    });
+    $('.div-calificacion-tipo').on('click', function () {
+        if (!$(this).hasClass("div-calificacion-tipo-selected")) {
+            $(this).addClass("div-calificacion-tipo-selected");
+        } else {
+            $(this).removeClass("div-calificacion-tipo-selected");
+        }
+
+    });
 
 });
 
@@ -232,4 +226,93 @@ function registrarEstado() {
         }
 
     });
+}
+
+function guardarCalificacion() {
+    var calificacionAerolinea = $("#starsAerolinea > li.selected").length;
+    var calificacionHotel = $("#starsHotel > li.selected").length;
+    var id_hotel = $("#id_hotel").val();
+    var id_aerolinea = $("#id_aerolinea").val();
+    var id_solicitud = $("#id_solicitud").val();
+
+    var mejoraAerolinea = [];
+    $(".content-div-Aerolinea > div.div-calificacion-tipo-selected").each(function () {
+        mejoraAerolinea.push($(this).text().trim());
+    });
+
+    var mejoraHotel = [];
+    $(".content-div-hotel > div.div-calificacion-tipo-selected").each(function () {
+        mejoraHotel.push($(this).text().trim());
+    });
+
+    var arrayServicios = [];
+
+    $("#tableServices-calificable > tbody > tr").each(function () {
+        var y = $(this).find("ul");
+        var x = $(this).find("ul > li.selected");
+
+        var objServicio = {
+            "idServicio": $(y).data('service'),
+            "valor": x.length
+        };
+        arrayServicios.push(objServicio);
+    });
+
+    /*var diccionario = {
+        "id_solicitud": id_solicitud,
+        "id_hotel": id_hotel,
+        "id_aerolinea": id_aerolinea,
+        "calificacionAerolinea": calificacionAerolinea,
+        "calificacionHotel": calificacionHotel,
+        "mejoraAerolinea": mejoraAerolinea.toString(),
+        "mejoraHotel": mejoraHotel.toString(),
+        "servicios": arrayServicios,
+        "comentarios": $("#comentarioCalificacion").val()
+    }*/
+
+    var formPago = new FormData();
+    formPago.append("id_solicitud", id_solicitud);
+    formPago.append("id_hotel", id_hotel);
+    formPago.append("id_aerolinea", id_aerolinea);
+    formPago.append("calificacionAerolinea", calificacionAerolinea);
+    formPago.append("calificacionHotel", calificacionHotel);
+    formPago.append("mejoraAerolinea", mejoraAerolinea.toString());
+    formPago.append("mejoraHotel", mejoraHotel.toString());
+    formPago.append("servicios", JSON.stringify(arrayServicios));
+    formPago.append("comentarios", $("#comentarioCalificacion").val());
+    formPago.append("calificar", true);
+    $.ajax({
+
+        url: "ajax/ajax.paquete.php",
+        method: "POST",
+        data: formPago,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        beforeSend: function () {
+            $("#loading-airplane").show();
+        },
+        success: function (respuesta) {
+            $("#loading-airplane").hide();
+            console.log(respuesta);
+
+            Swal.fire({
+                type: "success",
+                title: "Datos enviados correctamente",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar",
+                closeOnConfirm: false
+            }).then((result) => {
+                if (result.value) {
+
+                    location.reload();
+                }
+            });
+
+        }
+
+    });
+
+
 }

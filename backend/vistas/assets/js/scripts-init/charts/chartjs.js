@@ -303,87 +303,6 @@ var configPolar = {
     }
 };
 
-var configLine = {
-    type: 'line',
-    data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: window.chartColors.red,
-            borderColor: window.chartColors.red,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ],
-            fill: false,
-        }, {
-            label: 'My Second dataset',
-            fill: false,
-            backgroundColor: window.chartColors.blue,
-            borderColor: window.chartColors.blue,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ],
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        title: {
-            display: false,
-            text: 'Chart.js Line Chart'
-        },
-        legend: {
-            display: false
-        },
-        layout: {
-            padding: {
-                left: 10,
-                right: 10,
-                top: 10,
-                bottom: 0
-            }
-        },
-        tooltips: {
-            mode: 'index',
-            intersect: false,
-        },
-        hover: {
-            mode: 'nearest',
-            intersect: true
-        },
-        pointBackgroundColor: '#fff',
-        pointBorderColor: window.chartColors.blue,
-        pointBorderWidth: '2',
-        scales: {
-            xAxes: [{
-                display: false,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Month'
-                }
-            }],
-            yAxes: [{
-                display: false,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Value'
-                }
-            }]
-        }
-    }
-};
 
 var horizontalBarChartData = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -418,7 +337,7 @@ var horizontalBarChartData = {
 
 };
 
-$( document ).ready(function() {
+$(document).ready(function () {
 
     //Bar
 
@@ -479,10 +398,7 @@ $( document ).ready(function() {
 
     // Line
 
-    if (document.getElementById('line-chart')) {
-        var ctx5 = document.getElementById('line-chart').getContext('2d');
-        window.myLine = new Chart(ctx5, configLine);
-    }
+
 
     if (document.getElementById('chart-horiz-bar')) {
         var ctx6 = document.getElementById('chart-horiz-bar').getContext('2d');

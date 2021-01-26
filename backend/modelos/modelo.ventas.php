@@ -103,5 +103,103 @@ class ModeloVentas{
 
         $stmt = null;
 
-	}
+    }
+    
+
+    #CREAR DOCUMENTO ELECTRONICO
+	#------------------------------------------------------------
+	static public function mdlRegistrarCheckin($datos){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_check_in(:idpaquete, :vuelo_fecha, :vuelo_hora, :fecha_hotel, :comentarios);");
+    
+		$stmt->bindParam(":idpaquete", $datos["idPaquete"], PDO::PARAM_INT);
+        $stmt->bindParam(":vuelo_fecha", $datos["fecha_vuelo_real"], PDO::PARAM_STR);
+        $stmt->bindParam(":vuelo_hora", $datos["hora_vuelo_real"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_hotel", $datos["fecha_hotel_real"], PDO::PARAM_STR);
+        $stmt->bindParam(":comentarios", $datos["comentarios"], PDO::PARAM_STR);
+		
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
+    
+    static public function mdlRegistrarCheckout($datos){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_check_out(:idpaquete, :vuelo_fecha, :vuelo_hora, :fecha_hotel, :comentarios);");
+
+		$stmt->bindParam(":idpaquete", $datos["idPaquete"], PDO::PARAM_INT);
+        $stmt->bindParam(":vuelo_fecha", $datos["fecha_vuelo_real"], PDO::PARAM_STR);
+        $stmt->bindParam(":vuelo_hora", $datos["hora_vuelo_real"], PDO::PARAM_STR);
+        $stmt->bindParam(":fecha_hotel", $datos["fecha_hotel_real"], PDO::PARAM_STR);
+        $stmt->bindParam(":comentarios", $datos["comentarios"], PDO::PARAM_STR);
+		
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
+    
+    static public function mdlRegistrarIncidente($datos){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_incidente(:idpaquete, :comentario,:tipo);");
+
+		$stmt->bindParam(":idpaquete", $datos["idPaquete"], PDO::PARAM_INT);
+        $stmt->bindParam(":comentario", $datos["comentarioIncidente"], PDO::PARAM_STR);
+        $stmt->bindParam(":tipo", $datos["tipos"], PDO::PARAM_STR);
+		
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
+    
+    static public function mdlRegistrarIncidenteServicio($datos){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_incidente_servicio(:id_incidente, :id_servicio);");
+
+        $stmt->bindParam(":id_incidente", $datos["id_incidente"], PDO::PARAM_INT);
+        $stmt->bindParam(":id_servicio", $datos["id_servicio"], PDO::PARAM_INT);
+        
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
+    
+    static public function mdlRegistrarIncidentePasajero($datos){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_incidente_pasajero(:id_incidente, :id_pasajero);");
+
+        $stmt->bindParam(":id_incidente", $datos["id_incidente"], PDO::PARAM_INT);
+        $stmt->bindParam(":id_pasajero", $datos["id_pasajero"], PDO::PARAM_INT);
+        
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+    }
+
+
 }

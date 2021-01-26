@@ -94,7 +94,7 @@ class ModeloPaqueteFront{
 
     static public function mdlListarServiciosPorPaquete($id){
        
-        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion,s.calificable from tb_servicios_x_paquetes sp
+        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion,s.calificable, s.id_servicio from tb_servicios_x_paquetes sp
                                               join  tb_servicios s on s.id_servicio = sp.id_servicio
                                                WHERE sp.id_paquete =:id");
         $stmt -> bindParam(":id", $id, PDO::PARAM_INT);
@@ -233,8 +233,10 @@ class ModeloPaqueteFront{
 												a.compania,
 												h.calificacion,
 												ifnull(s.numero_adultos, 0) as pasajeros,
-												ifnull(s.numero_ninios, 0)  as ninos
+												ifnull(s.numero_ninios, 0)  as ninos,
+												a.id_aerolinea
 												from tb_solicitud s 
+												
 												inner join tb_clientes cc on cc.id_cliente = s.id_cliente
 												left join tb_paquetes p on s.id_paquete = p.id_paquete
 												left join tb_ciudades c on s.id_ciudad=c.id_ciudad
@@ -289,7 +291,8 @@ class ModeloPaqueteFront{
                                                 sh.fecha_solicitud as fecha_solicitud
 												from tb_solicitud s 
 												inner join tb_solicitudes_historial sh on sh.id_solicitud = s.id_solicitud
-												WHERE s.codigo_seguimiento =:codigoSeguimiento and sh.estado_solicitud <>'Aceptada'");
+												WHERE s.codigo_seguimiento =:codigoSeguimiento and sh.estado_solicitud <>'Aceptada'
+												order by sh.id_solicitud_historial desc; ");
 												 
 		$stmt -> bindParam(":codigoSeguimiento", $codigoSeguimiento, PDO::PARAM_STR);
 		$stmt -> execute();
@@ -483,5 +486,86 @@ class ModeloPaqueteFront{
 		return $stmt -> fetchAll();
 		$stmt -> close();
         $stmt = null;
+	}
+
+
+
+	#CREAR HISTORIAL SOLICITUD
+	#------------------------------------------------------------
+	static public function mdlInsertarCalificacionAerolinea($datosCalificar){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_calificacion_aerolinea(:id_solicitud, :id_aerolinea, :valor, :mejorar);");
+
+		$stmt->bindParam(":id_solicitud", $datosCalificar["id_solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_aerolinea", $datosCalificar["id_aerolinea"], PDO::PARAM_INT);
+		$stmt->bindParam(":valor", $datosCalificar["calificacionAerolinea"], PDO::PARAM_INT);
+		$stmt->bindParam(":mejorar", $datosCalificar["mejoraAerolinea"], PDO::PARAM_STR);
+	
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+	}
+
+	static public function mdlInsertarCalificacionHotel($datosCalificar){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_calificacion_hotel(:id_solicitud, :id_hotel, :valor, :mejorar);");
+
+		$stmt->bindParam(":id_solicitud", $datosCalificar["id_solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_hotel", $datosCalificar["id_hotel"], PDO::PARAM_INT);
+		$stmt->bindParam(":valor", $datosCalificar["calificacionHotel"], PDO::PARAM_INT);
+		$stmt->bindParam(":mejorar", $datosCalificar["mejoraHotel"], PDO::PARAM_STR);
+		
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+	}
+
+	static public function mdlInsertarCalificacionComentario($datosCalificar){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_calificacion_comentario(:id_solicitud, :mejorar);");
+
+		$stmt->bindParam(":id_solicitud", $datosCalificar["id_solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":mejorar", $datosCalificar["comentarios"], PDO::PARAM_STR);
+		
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
+	}
+
+	static public function mdlInsertarCalificacionServicio($datosCalificar){
+
+		$stmt = Conexion::conectar()->prepare("CALL usp_insert_calificacion_servicio(:id_solicitud, :id_servicio, :valor);");
+
+		$stmt->bindParam(":id_solicitud", $datosCalificar["id_solicitud"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_servicio", $datosCalificar["id_servicio"], PDO::PARAM_INT);
+		$stmt->bindParam(":valor", $datosCalificar["valor"], PDO::PARAM_INT);
+		
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+        $stmt = null;
+
 	}
 }

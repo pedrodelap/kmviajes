@@ -30,6 +30,31 @@ class ControladorVentas{
 
 	}
 
+	public static function ctrRegistrarCheckIn($datos){
+		$respuesta = ModeloVentas::mdlRegistrarCheckin($datos);
+		return $respuesta;
+	}
+
+	public static function ctrRegistrarCheckOut($datos){
+		$respuesta = ModeloVentas::mdlRegistrarCheckout($datos);
+		return $respuesta;
+	}
+
+	public static function ctrRegistrarIncidente($datos){
+		$respuesta = ModeloVentas::mdlRegistrarIncidente($datos);
+		return $respuesta;
+	}
+
+	public static function ctrRegistrarIncidenteServicio($datos){
+		$respuesta = ModeloVentas::mdlRegistrarIncidenteServicio($datos);
+		return $respuesta;
+	}
+
+	public static function ctrRegistrarIncidentePasajero($datos){
+		$respuesta = ModeloVentas::mdlRegistrarIncidentePasajero($datos);
+		return $respuesta;
+	}
+
 	public static function generateDocument($datosVenta, $operation){
 
       

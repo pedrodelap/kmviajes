@@ -32,6 +32,7 @@
                     </div>
                 </div>
                 <div class="table-responsive card-body">
+
                     <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
 
 
@@ -95,7 +96,8 @@
                                         <div>$ '.number_format($value["monto"],2).'</div>
                                     </td>
                                     <td class="text-center">
-                                        <button type="button" id="PopoverCustomT-1" class="btn btn-primary btn-sm" onclick="setupViewSeguimiento('.$value["id_paquete"].',\''.$value["fecha_inicio"].'\',\''.$value["hora_vuelo_ida"].'\',\''.$value["fecha_fin"].'\',\''.$value["hora_vuelo_regreso"].'\',\''.$value["id_seguimiento_checkin"].'\',\''.$value["id_seguimiento_checkout"].'\')">Detalle</button>
+                                        <button type="button"  class="btn btn-primary btn-sm" onclick="mostrarModalCheck('.$value["id_paquete"].',\''.$value["fecha_inicio"].'\',\''.$value["hora_vuelo_ida"].'\',\''.$value["fecha_fin"].'\',\''.$value["hora_vuelo_regreso"].'\',\''.$value["id_seguimiento_checkin"].'\',\''.$value["id_seguimiento_checkout"].'\')">Detalle</button>
+                                        <button type="button" class="btn btn-warning btn-sm" onclick="mostrarModalRegistroIncidencia('.$value["id_paquete"].');">Incidencia</button>
                                     </td>
                                 </tr>';
                             }
@@ -108,307 +110,178 @@
     </div>
 
     <!--====  Fin de LISTADO COTIZACIONES  ====-->
-
-    <!--=====================================      CHECK PAQUETE  ======================================-->
-
-    <div id="section-seguimiento" class="row" style="display:none">
-        <div class="col-md-12 col-lg-8">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <div id="smartwizard3" class="forms-wizard-vertical">
-                        <ul class="forms-wizard">
-                            <li>
-                                <a href="#step-122">
-                                    <em>1</em><span>CHECK IN</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-222">
-                                    <em>2</em><span>CHECK OUT</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#step-322">
-                                    <em>3</em><span>Cerrado </span>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="form-wizard-content">
-                            <div id="step-122">
-                                <div class="card-body">
-                                    <form>
-                                        <h5 class="card-title">Vuelo de ida</h5>
-                                        <div class="form-row">
-
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label
-                                                        for="fechaInicioIda">Fecha
-                                                        programda</label><input name="fechaInicioIda"
-                                                        id="fechaInicioIda" placeholder="date placeholder" type="text"
-                                                        readonly class="form-control"></div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label
-                                                        for="horaInicioIda">Hora
-                                                        programada</label><input name="horaInicioIda" id="horaInicioIda"
-                                                        placeholder="time placeholder" type="text" readonly
-                                                        class="form-control"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label
-                                                        for="fechaInicioIdaReal">Fecha
-                                                        real</label><input name="fechaInicioIdaReal"
-                                                        id="fechaInicioIdaReal" placeholder="date placeholder"
-                                                        type="date" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label
-                                                        for="horaInicioIdaReal">Horal
-                                                        real</label><input name="horaInicioIdaReal"
-                                                        id="horaInicioIdaReal" placeholder="time placeholder"
-                                                        type="time" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </form>
-
-                                    <form>
-                                        <h5 class="card-title">Check-in Hotel</h5>
-                                        <div class="form-row">
-
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label
-                                                        for="checkinHotel">Fecha</label><input name="checkinHotel"
-                                                        id="checkinHotel" placeholder="date placeholder" type="text"
-                                                        class="form-control"></div>
-                                            </div>
-
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div id="step-222">
-                                <div class="card-body">
-
-                                    <form>
-                                        <h5 class="card-title">Check-out Hotel</h5>
-                                        <div class="form-row">
-
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="exampleDate">Fecha
-                                                        real</label><input name="date" id="exampleDate"
-                                                        placeholder="date placeholder" type="text" class="form-control">
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                    <form>
-                                        <h5 class="card-title">Vuelo de regreso</h5>
-                                        <div class="form-row">
-
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="exampleDate">Fecha
-                                                        programda</label><input name="date" id="exampleDate"
-                                                        placeholder="date placeholder" type="text" readonly
-                                                        class="form-control"></div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="exampleTime">Hora
-                                                        programada</label><input name="time" id="exampleTime"
-                                                        placeholder="time placeholder" type="text" readonly
-                                                        class="form-control"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="exampleDate">Fecha
-                                                        real</label><input name="date" id="exampleDate"
-                                                        placeholder="date placeholder" type="date" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="position-relative form-group"><label for="exampleTime">Horal
-                                                        real</label><input name="time" id="exampleTime"
-                                                        placeholder="time placeholder" type="time" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                            <div id="step-322">
-                                <div class="no-results">
-                                    <div class="swal2-icon swal2-success swal2-animate-success-icon">
-                                        <div class="swal2-success-circular-line-left"
-                                            style="background-color: rgb(255, 255, 255);"></div>
-                                        <span class="swal2-success-line-tip"></span>
-                                        <span class="swal2-success-line-long"></span>
-                                        <div class="swal2-success-ring"></div>
-                                        <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);">
-                                        </div>
-                                        <div class="swal2-success-circular-line-right"
-                                            style="background-color: rgb(255, 255, 255);"></div>
-                                    </div>
-                                    <div class="results-subtitle mt-4">Seguimiento Finalizado!</div>
-                                    <div class="results-title">You arrived at the last form wizard step!</div>
-                                    <div class="mt-3 mb-3"></div>
-                                    <div class="text-center">
-                                        <button class="btn-shadow btn-wide btn btn-success btn-lg">Finalizar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="clearfix">
-                        <button type="button" id="reset-btn22" class="btn-shadow float-left btn btn-link">Reset</button>
-                        <button type="button" id="next-btn22"
-                            class="btn-shadow btn-wide float-right btn-pill btn-hover-shine btn btn-primary">Next</button>
-                        <button type="button" id="prev-btn22"
-                            class="btn-shadow float-right btn-wide btn-pill mr-3 btn btn-outline-secondary">Previous</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-12 col-lg-4">
-            <div class="main-card mb-3 card">
-
-                <div class="card-header-tab card-header">
-                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
-
-                    </div>
-                    <div class="input-group">
-                        <div class="input-group-prepend"><span class="input-group-text"><i
-                                    class="lnr-user icon-gradient bg-ripe-malin"> </i> Viajeros</span></div>
-                        <input type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="scroll-area-md">
-                    <div class="scrollbar-container">
-                        <ul class="todo-list-wrapper list-group list-group-flush" id="ulContenidoClientes">
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="d-block text-right card-footer">
-                    <button class="mr-2 btn btn-link btn-sm">Cancelar</button>
-                    <button class="btn btn-success btn-lg">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--====  Fin de LISTADO COTIZACIONES  ====-->
-
 </div>
 
 <!--=====================================
-MODAL EDITAR CLIENTE
+MODAL REGISTRO CHECKIN
 ======================================-->
 
-<div class="modal fade" id="modalCalificar" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade" id="modalCheck" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <form role="form" method="post">
-
-                <!--=====================================
+            <!--=====================================
                 CABEZA DEL MODAL
                 ======================================-->
 
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmar Viaje</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Datos de registro <span
+                        id="tipo-check">Check-In</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-                <!--=====================================
+            <!--=====================================
                 CUERPO DEL MODAL
                 ======================================-->
 
-                <div class="modal-body">
+            <div class="modal-body">
 
-                    <p>Es necesario corroborar los datos ofrecidos en el paquete vendido</p>
-                    <div class="widget-content-left mr-3">
+                <!-- ENTRADA PARA LOS NOMBRES -->
 
-                        <table>
-                            <tr>
-                                <td>
-                                    ¿El vuelo de ida cumplió con la fecha programada?
-                                </td>
-                                <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    ¿Se cumplió con el traslado?
-                                </td>
-                                <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    ¿Se cumplió la fecha de hospedaje?
-                                </td>
-                                <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    ¿El hotel cumplió con los servicios ofrecidos?
-                                </td>
-                                <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    ¿El cliente ocasionó algún incidente?
-                                </td>
-                                <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    ¿El vuelo de regreso cumplió con la fecha programada?
-                                </td>
-                                <td> <input id="chkToggle1" type="checkbox" data-toggle="toggle" checked></td>
-                            </tr>
 
-                            <tr>
-                                <td>
-                                    Comentarios:
-                                </td>
-                                <td>
-                                    <textarea></textarea>
-                                </td>
-                            </tr>
-                        </table>
+
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group"><label for="fecha_vuelo" class="">Fecha vuelo
+                                programado</label><input readonly name="fecha_vuelo" id="fecha_vuelo"
+                                class="form-control"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="position-relative form-group"><label for="hora_vuelo" class="">Hora vuelo
+                                programado</label><input readonly name="hora_vuelo" id="hora_vuelo"
+                                class="form-control"></div>
                     </div>
                 </div>
 
-                <!--=====================================
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="position-relative form-group"><label for="fecha_vuelo_real" class="">Fecha
+                                vuelo real</label><input name="fecha_vuelo_real" id="fecha_vuelo_real"
+                                placeholder="Fecha real del vuelo" class="form-control dateFormat"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="position-relative form-group"><label for="hora_vuelo_real" class="">Hora
+                                vuelo real</label><input name="hora_vuelo_real" id="hora_vuelo_real"
+                                placeholder="Hora real del vuelo" type="time" class="form-control"></div>
+                    </div>
+                </div>
+
+                <div class="position-relative form-group">
+                    <label for="fecha_hotel_real" class="">Fecha llegada a hotel</label>
+                    <input name="fecha_hotel_real" id="fecha_hotel_real" class="form-control dateFormat">
+                </div>
+                <div class="position-relative form-group"><label for="check_comentarios"
+                        class="">Comentarios</label><textarea name="check_comentarios" id="check_comentarios"
+                        class="form-control"></textarea></div>
+
+
+            </div>
+
+            <!--=====================================
                 PIE DEL MODAL
                 ======================================-->
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                <button type="submit" class="btn btn-primary" id="btn-check" onclick="guardarcheck()">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--=====================================
+MODAL REGISTRO INCIDENTE
+======================================-->
+
+<div class="modal fade" id="modalIncidente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!--=====================================
+                CABEZA DEL MODAL
+                ======================================-->
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Registro de incidente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!--=====================================
+                CUERPO DEL MODAL
+                ======================================-->
+
+            <div class="modal-body">
+
+                <!-- ENTRADA PARA LOS NOMBRES -->
+
+                <div class="position-relative form-group">
+                    <label for="fecha_vuelo_real" class="">Pasajeros</label>
+                    <select style="width: 100%" multiple="multiple" class="form-control" name="incidentePasajero"
+                        id="incidentePasajero">
+
+
+                    </select>
                 </div>
 
-            </form>
+                <div class="position-relative form-group">
+                    <label for="hora_vuelo_real" class=""><b>Servicios</b>
+                    </label>
+                    <form class="">
+                        <fieldset class="position-relative form-group">
+                            <div class="position-relative form-check"><label class="form-check-label"><input
+                                        type="checkbox" value="Aerolinea" class="form-check-input tipo_incidente">
+                                    Relación con la
+                                    aerolinea</label>
+                            </div>
+                            <div class="position-relative form-check"><label class="form-check-label"><input
+                                        type="checkbox" value="Hotel" class="form-check-input tipo_incidente"> Relación
+                                    con el
+                                    hotel</label>
+                            </div>
+                            <div class="position-relative form-check"><label class="form-check-label"><input
+                                        type="checkbox" value="Otros" class="form-check-input tipo_incidente">
+                                    Otro</label></div>
+                        </fieldset>
+                    </form>
+                </div>
 
-            <?php
+                <div class="position-relative form-group">
+                    <label for="hora_vuelo_real" class=""><b>Servicios ofrecidos</b>
+                    </label>
+                    <p>Seleccionar si el cliente reporta un problema con los servicios que contrató en la compra del
+                        paquete</p>
+                    <form class="">
+                        <fieldset class="position-relative form-group" id="form-servicios-ofrecidos">
 
-                $editarCliente = new ControladorClientes();
-                $editarCliente -> ctrEditarCliente();
+                        </fieldset>
 
-            ?>
+                    </form>
+
+
+                </div>
+
+                <div class="position-relative form-group"><label for="exampleText" class="">Comentarios</label><textarea
+                        name="comentarioIncidente" id="comentarioIncidente" class="form-control"></textarea></div>
+
+            </div>
+
+            <!--=====================================
+                PIE DEL MODAL
+                ======================================-->
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+                <button type="submit" class="btn btn-primary" id="btn-incidente"
+                    onclick="guardarincidente()">Guardar</button>
+            </div>
 
         </div>
     </div>

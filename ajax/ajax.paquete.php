@@ -63,7 +63,7 @@ class AjaxPaquetes{
 			}
 
 		}
-		echo json_encode($respuesta);
+		echo json_encode($idVenta);
 	}	
 
 	#CREAR SOLICITUD PERSONAZALIZADA
@@ -178,6 +178,31 @@ class AjaxPaquetes{
 
 		$respuesta = ControladorPaqueteFront::ctrObtenerClienteByEmail($datos);
 		echo json_encode($respuesta);
+
+	}
+
+	public function ajaxRegistrarCalificacion($datos){
+
+		$respuesta1 = ControladorPaqueteFront::ctrInsertarCalificacionHotel($datos);
+
+		$respuesta2 = ControladorPaqueteFront::ctrInsertarCalificacionAerolinea($datos);
+
+		$respuesta3 = ControladorPaqueteFront::ctrInsertarCalificacionComentario($datos);
+
+		
+
+
+		$servicioJSON = json_decode($datos["servicios"]);
+			foreach($servicioJSON as $item){
+				$datoServicio= array("id_solicitud"=>$datos["id_solicitud"],				   
+									"id_servicio"=>$item->idServicio,
+									"valor"=>$item->valor
+									);	
+				ControladorPaqueteFront::ctrInsertarCalificacionServicio($datoServicio);
+
+		}
+
+		echo json_encode($respuesta3);
 
 	}
 
@@ -302,4 +327,23 @@ if(isset($_POST['searchCliente'])){
 	$buscarCliente = new AjaxPaquetes();
 	$buscarCliente -> ajaxValidarCliente($_POST["searchCliente"]);
 
+}
+
+
+
+if(isset($_POST['calificar'])){
+    $calificacion = new AjaxPaquetes();
+   
+    $datos = array("calificacionAerolinea" => $_POST["calificacionAerolinea"],
+                            "calificacionHotel" => $_POST["calificacionHotel"],
+                            "comentarios"=> $_POST["comentarios"],
+							"id_aerolinea" => $_POST["id_aerolinea"],
+							"id_hotel" => $_POST["id_hotel"],
+                            "id_solicitud" => $_POST["id_solicitud"],
+                            "mejoraAerolinea"=> $_POST["mejoraAerolinea"],
+							"mejoraHotel" => $_POST["mejoraHotel"],
+							"servicios" => $_POST["servicios"]
+                            );
+
+    $calificacion -> ajaxRegistrarCalificacion($datos);
 }

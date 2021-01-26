@@ -264,5 +264,31 @@ class ControladorPaqueteFront{
         $respuesta = ModeloPaqueteFront::mdlListaHabitacionesByHotel($idPaquete);
         return $respuesta;
     }
+
+
+    
+    static public function ctrInsertarCalificacionAerolinea($datosCalificar){
+
+        $respuesta = ModeloPaqueteFront::mdlInsertarCalificacionAerolinea($datosCalificar);
+		return $respuesta;
+    }
+
+    static public function ctrInsertarCalificacionHotel($datosCalificar){
+
+        $respuesta = ModeloPaqueteFront::mdlInsertarCalificacionHotel($datosCalificar);
+		return $respuesta;
+    }
+
+    static public function ctrInsertarCalificacionComentario($datosCalificar){
+
+        $respuesta = ModeloPaqueteFront::mdlInsertarCalificacionComentario($datosCalificar);
+		return $respuesta;
+    }
+
+    static public function ctrInsertarCalificacionServicio($datosCalificar){
+
+        $respuesta = ModeloPaqueteFront::mdlInsertarCalificacionServicio($datosCalificar);
+		return $respuesta;
+    }
    
 }

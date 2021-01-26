@@ -69,12 +69,13 @@
                     <i class="metismenu-icon fas fa-envelope-open-text"></i> Bandeja de Solicitudes
                 </a>
             </li>
-            
+
             <li>
                 <a href="solicitud-calificar">
                     <i class="metismenu-icon lnr-apartment"></i> Validar Paquetes
                 </a>
             </li>
+
             <li>
                 <a href="aerolineas">
                     <i class="metismenu-icon pe-7s-plane"></i> Aerolíneas
@@ -84,6 +85,54 @@
                 <a href="hoteles">
                     <i class="metismenu-icon lnr-apartment"></i> Hoteles
                 </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon far fa-folder-open"></i> Reportes
+                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                    <li>
+                        <a href="reporte-ventas">
+                            <i class="metismenu-icon"></i>Reporte Ventas
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="reporte-incidente">
+                            <i class="metismenu-icon"></i>Reporte Incidente
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="reporte-calificacion-hotel">
+                            <i class="metismenu-icon"></i>Reporte Calificación Hotel
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="reporte-calificacion-aero">
+                            <i class="metismenu-icon"></i>Reporte Calificación Aerolinea
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="reporte-calificacion-comentario">
+                            <i class="metismenu-icon"></i>Reporte Calificación Comentario
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="reporte-registro">
+                            <i class="metismenu-icon"></i>Reporte Registro de seguimiento
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="#">

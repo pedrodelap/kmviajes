@@ -373,7 +373,7 @@ class ModeloPaquetes{
 	#------------------------------------------------------------
 	static public function mdlListarServiciosPorPaquete($idPaquete){
        
-        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion,s.calificable from tb_servicios_x_paquetes sp
+        $stmt = Conexion::conectar()->prepare("SELECT s.nombre, s.icono, s.descripcion,s.calificable,s.id_servicio from tb_servicios_x_paquetes sp
                                               join  tb_servicios s on s.id_servicio = sp.id_servicio
                                                WHERE sp.id_paquete =:idPaquete");
         $stmt -> bindParam(":idPaquete", $idPaquete, PDO::PARAM_INT);

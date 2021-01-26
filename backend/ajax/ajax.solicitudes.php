@@ -47,6 +47,17 @@ class AjaxSolicitudes{
 
 		echo json_encode($respuesta);
 
+	}
+	
+	public function ajaxEstadoAFinalizada(){
+
+		$datos = array("id_solicitud"=>$this->idSolicitud,					
+					"estado_solicitud"=>"Completa");
+
+		$respuesta = ControladorSolicitudes::ctrEstadoRegistradaACotizada($datos);
+
+		echo json_encode($respuesta);
+
     }
 
 
@@ -86,5 +97,17 @@ if(isset($_POST["Reservada"])){
 	$cliente = new AjaxSolicitudes();
 	$cliente -> idSolicitud = $_POST["idSolicitud"];
     $cliente -> ajaxEstadoAceptadaAReservada();
+
+}
+
+/*=============================================
+SOLICITUD ESTADO  A FINALIZADA
+=============================================*/	
+
+if(isset($_POST["Completa"])){
+
+	$cliente = new AjaxSolicitudes();
+	$cliente -> idSolicitud = $_POST["idSolicitud"];
+    $cliente -> ajaxEstadoAFinalizada();
 
 }

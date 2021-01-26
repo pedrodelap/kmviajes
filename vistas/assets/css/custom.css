@@ -164,40 +164,33 @@
   bottom: 0;
   right: 0;
 }
-.jq-stars {
+
+/* Rating Star Widgets Style */
+.rating-stars ul {
+  list-style-type: none;
+  padding: 0;
+
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+.rating-stars ul > li.star {
   display: inline-block;
 }
 
-.jq-rating-label {
-  font-size: 22px;
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
-  font-family: helvetica, arial, verdana;
+/* Idle State of the stars */
+.rating-stars ul > li.star > i.fa {
+  font-size: 1.5em; /* Change the size of the stars */
+  color: #ccc; /* Color on idle state */
 }
 
-.jq-star {
-  width: 100px;
-  height: 100px;
-  display: inline-block;
-  cursor: pointer;
+/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color: #ffcc36;
 }
 
-.jq-star-svg {
-  padding-left: 3px;
-  width: 100%;
-  height: 100%;
-}
-
-.jq-star-svg path {
-  /* stroke: #000; */
-  stroke-linejoin: round;
-}
-
-/* un-used */
-.jq-shadow {
-  -webkit-filter: drop-shadow(-2px -2px 2px #888);
-  filter: drop-shadow(-2px -2px 2px #888);
+/* Selected state of the stars */
+.rating-stars ul > li.star.selected > i.fa {
+  color: #ff912c;
 }
 
 .scroll {
@@ -400,4 +393,17 @@
 
 .div-habitacion-pago-selected div.tag-blue::after {
   content: "Seleccionado";
+}
+
+.div-calificacion-tipo {
+  padding: 10px;
+  margin: 8px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.div-calificacion-tipo-selected {
+  border: solid 0.5px #5b72f1;
+  background: #5b72f1;
+  color: white;
 }

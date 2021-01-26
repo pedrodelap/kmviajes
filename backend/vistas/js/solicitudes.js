@@ -8,6 +8,8 @@ $('#modalDatosPaquete').appendTo("body");
 
 $('#modalCalificar').appendTo("body");
 
+$('#modalEnviarDocumentos').appendTo("body");
+
 /*=============================================
 MOSTRAR DATOS DEL CLIENTE
 =============================================*/
@@ -241,4 +243,63 @@ function btnDetalleSinPaqueteSolicitud(idSolicitudSinPaquete) {
 
     window.location = "index.php?ruta=cotizacion-crear&idSolicitud=" + idSolicitud;
 
+}
+
+
+
+/*=============================================
+CAMBIAR ESTADO DE LA SOLICITUD A FINALIZADA - ENVIAR DOCUMENTOS
+=============================================*/
+
+$(".table").on("click", ".estadoSolicitudPagada", function () {
+
+    var idSolicitud = $(this).attr("idSolicitud");
+    var idVenta = $(this).attr("idVenta");
+    var idDoc = $(this).attr("idDoc");
+
+    $("#btnCompleto").attr("onclick", "guardarEnvioDocumentos(" + idSolicitud + ")");
+
+    $("#enlace-doc-electronico").attr("href", "/PDF/invoice/document_" + idVenta + ".pdf");
+    $("#modalEnviarDocumentos").modal('show')
+
+});
+
+function guardarEnvioDocumentos(idSolicitud) {
+    var datos = new FormData();
+
+    datos.append("idSolicitud", idSolicitud);
+    datos.append("Completa", true);
+
+    $.ajax({
+
+        url: "ajax/ajax.solicitudes.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function (respuesta) {
+
+            if (respuesta == "ok") {
+
+                console.log("respuesta: ", respuesta);
+
+                Swal.fire({
+                    type: "success",
+                    title: "La solicitud ha sido cambiada correctamente",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar",
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result.value) {
+                        window.location = "solicitudes";
+                    }
+                });
+
+            }
+
+        }
+
+    });
 }

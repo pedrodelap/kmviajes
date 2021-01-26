@@ -164,7 +164,7 @@ var tipoTarjeta = "VISA";
 function realizarPago() {
 
     var referenceCode = $("#codigoSeguimiento").val();
-    var amount = $("#amount").val();
+    var amount = newAmount;
     var currency = "USD";
     var description = $("#description").val();
     var emailAddress = $("#txtCorreo").val();

@@ -65,6 +65,11 @@
     <script src="vistas/assets/js/vendors/form-components/input-mask.js"></script>
     <script src="vistas/assets/js/scripts-init/form-components/input-mask.js"></script>
 
+    <!--Chart.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="vistas/assets/js/scripts-init/charts/chartsjs-utils.js"></script>
+    <script src="vistas/assets/js/scripts-init/charts/chartjs.js"></script>
+
     <!--RangeSlider-->
     <script src="vistas/assets/js/vendors/form-components/wnumb.js"></script>
     <script src="vistas/assets/js/vendors/form-components/range-slider.js"></script>
@@ -211,7 +216,13 @@
                                $_GET["ruta"] == "salir" || 
                                $_GET["ruta"] == "ventas" ||
                                $_GET["ruta"] == "venta-docelectronico" ||
-                               $_GET["ruta"] == "solicitud-calificar" ){
+                               $_GET["ruta"] == "solicitud-calificar" ||
+                               $_GET["ruta"] == "reporte-ventas" ||
+                               $_GET["ruta"] == "reporte-calificacion-hotel" ||
+                               $_GET["ruta"] == "reporte-calificacion-aero" ||
+                               $_GET["ruta"] == "reporte-calificacion-comentario" ||
+                               $_GET["ruta"] == "reporte-registro" ||
+                               $_GET["ruta"] == "reporte-incidente" ){
 
                                 include "modulos/".$_GET["ruta"].".php";
 
@@ -255,7 +266,7 @@
             } ?>
 
     <!--Tables Init-->
-
+    <script src="vistas/js/inicio.js"></script>
     <script src="vistas/js/plantilla.js"></script>
     <script src="vistas/js/clientes.js"></script>
     <script src="vistas/js/monedas.js"></script>
