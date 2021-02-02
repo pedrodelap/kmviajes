@@ -314,7 +314,21 @@
                             $nombreCiudad = $paquete["ciudad"];
                             echo '<h4>Viaje</h4> <span>'.$paquete["fecha_mostrar"].'</span>' ;
                             echo '<hr/><h4>Hotel</h4><span style="font-style: italic;font-size:13px;">'.$nombreHotel.' de '.$nombreCiudad.'</span>';
-                            echo '<div id="idHotelServ3" class="my-rating-hotel" data-rating="'.$paquete["calificacion"].'"></div>';
+
+                            $stars = "";
+                            for ($i = 1; $i <= $paquete["calificacion"]; $i++) {
+                                $stars .= "<li class='star selected' title='Poor' data-value='1'>
+                                <i class='fa fa-star fa-fw'></i>
+                            </li>";
+                            }
+                            echo "<div class='rating-stars'>
+                                    <ul id='starsHotelView'>
+                                        ".$stars."
+                                    </ul>
+                            </div>";
+                            
+
+                            //echo '<div id="idHotelServ3" class="my-rating-hotel" data-rating="'.$paquete["calificacion"].'"></div>';
                            
                         ?>
                         <div style="padding:5px;">

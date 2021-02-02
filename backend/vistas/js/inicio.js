@@ -85,6 +85,76 @@ var configLine = {
 $(document).ready(function () {
     loadDataGraficoDashboard();
 
+    var barChartData = {
+        labels: ['Octubre', 'Noviembre', 'Diciembre', 'Enero'],
+        datasets: [{
+            label: 'Registrado',
+            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.red,
+            borderWidth: 1,
+            data: [
+                2,
+                5,
+                4,
+                16
+
+            ]
+        }, {
+            label: 'Cotizada',
+            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.blue,
+            borderWidth: 1,
+            data: [
+                2,
+                3,
+                4,
+                14
+            ]
+        },
+        {
+            label: 'Reservada',
+            backgroundColor: color(window.chartColors.orange).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.blue,
+            borderWidth: 1,
+            data: [
+                2,
+                3,
+                2,
+                14
+            ]
+        }, {
+            label: 'Pagada',
+            backgroundColor: color(window.chartColors.green).alpha(0.5).rgbString(),
+            borderColor: window.chartColors.blue,
+            borderWidth: 1,
+            data: [
+                2,
+                3,
+                2,
+                12
+            ]
+        }
+        ]
+
+    };
+
+    if (document.getElementById('canvas')) {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        window.myBar = new Chart(ctx, {
+            type: 'bar',
+            data: barChartData,
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: false,
+                    text: 'Grafico'
+                }
+            }
+        });
+    }
 
 });
 

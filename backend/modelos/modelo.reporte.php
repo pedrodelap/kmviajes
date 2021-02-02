@@ -11,7 +11,8 @@ static public function mdlObtenerDatosDashboardGrafico(){
                                                 count(1) AS 'qSolicitud',
                                                 ufnt_obtener_ventas_por_mes_anio(YEAR(fecha_registro) , MONTH(fecha_registro) ) AS 'qVentas' 
                                                 FROM tb_solicitud s
-                                            GROUP BY  month,qVentas");
+                                            GROUP BY  month,qVentas 
+                                            order by month");
     $stmt -> execute();
     return $stmt -> fetchAll();
     $stmt -> close();

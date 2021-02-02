@@ -61,9 +61,8 @@ class AjaxPaquetes{
 				ControladorPaqueteFront::ctrCrearPasajero($datosPasajero);
 
 			}
-
 		}
-		echo json_encode($idVenta);
+		echo json_encode($respuesta);
 	}	
 
 	#CREAR SOLICITUD PERSONAZALIZADA

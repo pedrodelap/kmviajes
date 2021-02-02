@@ -91,3 +91,15 @@
 .datepicker-container {
   z-index: 9999 !important;
 }
+
+.dt-button {
+  margin: 5px;
+  background: #3f6bd8;
+  display: block;
+  width: 60px;
+  text-align: center;
+  float: left;
+  padding: 3px;
+  color: white;
+  border-radius: 5px;
+}

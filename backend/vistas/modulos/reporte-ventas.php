@@ -61,7 +61,7 @@
 
                                             <td>'.$value["nombres"].' '.$value["apellidos"].'</td>
 
-                                            <td>'.$value["monto"].'</td>
+                                            <td>$ '.number_format($value["monto"],2).'</td>
 
                                             <td>'.$value["nro_operacion"].'</td>
 

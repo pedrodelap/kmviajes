@@ -1,6 +1,6 @@
 // Sliders & Carousels
 
-$( document ).ready(function() {
+$(document).ready(function () {
 
     $('#calendar-list').fullCalendar({
         header: {
@@ -158,19 +158,21 @@ $( document ).ready(function() {
         },
         themeSystem: 'bootstrap4',
         bootstrapFontAwesome: true,
-        defaultDate: '2018-03-12',
+        defaultDate: '2021-02-01',
         navLinks: true, // can click day/week names to navigate views
         businessHours: true, // display business hours
         editable: true,
         events: [
             {
-                title: 'Business Lunch',
-                start: '2018-03-03T13:00:00',
+                title: 'BARRANQUILLA - PUERTA DE ORO DE COLOMBIA',
+                start: '2021-02-15T13:00:00',
+                end: '2021-02-17T13:00:00',
                 constraint: 'businessHours'
             },
             {
-                title: 'Meeting',
-                start: '2018-03-13T11:00:00',
+                title: 'Machu Picchu Místico',
+                start: '2021-02-21T13:00:00',
+                end: '2021-02-23T13:00:00',
                 constraint: 'availableForMeeting', // defined below
                 color: '#257e4a'
             },
@@ -193,8 +195,8 @@ $( document ).ready(function() {
             },
             {
                 id: 'availableForMeeting',
-                start: '2018-03-13T10:00:00',
-                end: '2018-03-13T16:00:00',
+                start: '2021-02-13T10:00:00',
+                end: '2021-02-13T16:00:00',
                 rendering: 'background'
             },
 

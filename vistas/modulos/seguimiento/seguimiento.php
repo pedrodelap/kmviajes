@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h2>Modulo de seguimiento</h2>
+                    <h2>Módulo de seguimiento</h2>
                 </div>
                 <p>
                     Hola <b><?php echo $paquete["nombres"]." ".$paquete["apellidos"]; ?></b>, te mostramos los datos de
@@ -148,7 +148,7 @@
 																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#cotizacion-modal" class="btn btn-template-outlined btn-sm">Aceptar</button>';
 																}
 																else{
-																	$htmlAction = '<a class="btn btn-sm btn-default" href="backend/tcpdf/pdf/'.$codigoSeguimiento.'.pdf" target="_blank">Ver Cotización</a>';
+																	$htmlAction = '<a class="btn btn-sm btn-default" href="backend/tcpdf/pdf/Cotizacion-paquete-BARRANQUILLA-27-01-2021.pdf" target="_blank">Ver Cotización</a>';
 																}
 																
 															break;
@@ -165,12 +165,8 @@
 																}
 															break;
 															case "Pagada":
-																if($count == 4 ){
-																	$htmlAction = '<button type="button" data-toggle="modal" data-target="#calificar-modal" class="btn btn-sm btn-warning" >Notificar a Asesor</button>';
-																}
-																else{
-																	$htmlAction = '-';
-																}
+																$htmlAction = '-';
+																
 															break;
 															case "Completa":
 																$htmlAction = '-';

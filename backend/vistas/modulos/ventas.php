@@ -65,15 +65,15 @@
 
                                             <td>'.$value["fecha_creacion"].'</td>
 
-                                            <td>'.$value["monto"].'</td>
+                                            <td> $'.number_format($value["monto"],2).'</td>
 
                                             <td>'.$value["nombres"].' '.$value["apellidos"].'</td>
 
                                             <td>'.$value["ruc"].'</td>
 
-                                            <td><button onclick="generateXML('.$value["id_venta"].')" class="mb-2 mr-2 badge badge-focus">Generar XML</button></td>
+                                            <td><button onclick="generateXML('.$value["id_venta"].')" class="mb-2 mr-2 badge badge-focus">Envío a SUNAT</button></td>
 
-                                            <td><button onclick="generatePDF('.$value["id_venta"].')" class="mb-2 mr-2 badge badge-alternate">View PDF</button></td>
+                                            <td><button onclick="generatePDF('.$value["id_venta"].')" class="mb-2 mr-2 badge badge-alternate">Mostrar PDF</button></td>
 
                                            
 

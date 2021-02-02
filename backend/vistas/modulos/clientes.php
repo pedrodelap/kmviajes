@@ -7,18 +7,20 @@
                     <i class="pe-7s-car icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>Clientes
-                    <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
+                    <div class="page-title-subheading">This is an example dashboard created using build-in elements and
+                        components.
                     </div>
                 </div>
             </div>
             <div class="page-title-actions">
 
-                    <button type="button" class="btn-shadow btn btn-primary" data-toggle="modal" data-target="#modalNuevoCliente">
-                        <span class="btn-icon-wrapper pr-2 opacity-7">
-                            <i class="pe-7s-add-user pe-7s-w-20"></i>
-                        </span>
-                        Agregar Cliente
-                    </button>
+                <button type="button" class="btn-shadow btn btn-primary" data-toggle="modal"
+                    data-target="#modalNuevoCliente">
+                    <span class="btn-icon-wrapper pr-2 opacity-7">
+                        <i class="pe-7s-add-user pe-7s-w-20"></i>
+                    </span>
+                    Agregar Cliente
+                </button>
 
             </div>
         </div>
@@ -30,31 +32,31 @@
                 <div class="card-body">
                     <h5 class="card-title">Listado de Clientes </h5>
 
-                        <!--=====================================
+                    <!--=====================================
                                         CLIENTES
                         table table-striped table-bordered dt-responsive tablas align-middle text-truncate mb-0 table-borderless table-hover
                         ======================================-->
 
-                        <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
+                    <table class="table table-striped table-bordered tablas mb-0 table table-borderless table-hover">
 
-                            <thead>
-                            
-                                <tr>
-                                    
-                                    <th style="width:10px">#</th>
-                                    <th>Nombre</th>
-                                    <th>Tipo documento</th>
-                                    <th>Número documento</th>
-                                    <th>Teléfono</th>
-                                    <th>Correo Electronico</th>
-                                    <th>Acciones</th>
+                        <thead>
 
-                                </tr> 
+                            <tr>
 
-                            </thead> 
-                            <tbody>
+                                <th style="width:10px">#</th>
+                                <th>Nombre</th>
+                                <th>Tipo documento</th>
+                                <th>Número documento</th>
+                                <th>Teléfono</th>
+                                <th>Correo Electronico</th>
+                                <th>Acciones</th>
 
-                                <?php
+                            </tr>
+
+                        </thead>
+                        <tbody>
+
+                            <?php
 
                                 $item = null;
                                 $valor = null;
@@ -94,11 +96,11 @@
 
                                 ?>
 
-                            </tbody>
+                        </tbody>
 
-                        </table>
-                        
-                        <!--====  Fin de CLIENTES  ====-->
+                    </table>
+
+                    <!--====  Fin de CLIENTES  ====-->
                 </div>
             </div>
         </div>
@@ -110,7 +112,8 @@
 MODAL AGREGAR CLIENTE
 ======================================-->
 
-<div class="modal fade" id="modalNuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalNuevoCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -138,7 +141,8 @@ MODAL AGREGAR CLIENTE
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-user"></i></span>
                         </div>
-                        <input placeholder="Nombres" name="clienteNuevoNombres" type="text" class="form-control" required>
+                        <input placeholder="Nombres" name="clienteNuevoNombres" type="text" class="form-control"
+                            required>
                     </div>
                     <br>
 
@@ -147,20 +151,21 @@ MODAL AGREGAR CLIENTE
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-user"></i></span>
                         </div>
-                        <input placeholder="Apellidos" name="clienteNuevoApellidos" type="text" class="form-control" required>
+                        <input placeholder="Apellidos" name="clienteNuevoApellidos" type="text" class="form-control"
+                            required>
                     </div>
                     <br>
 
                     <!-- ENTRADA PARA EL TIPO DOCUMENTO -->
-                    <div class="input-group">               
+                    <div class="input-group">
                         <span class="input-group-text"><i class="lnr-menu"></i></span>
-                        <select class="form-control" name="clienteNuevoTipoDocumento">                    
+                        <select class="form-control" name="clienteNuevoTipoDocumento">
                             <option value="">Tipo documento</option>
                             <option value="DNI">DNI</option>
                             <option value="RUC">RUC</option>
                             <option value="PASAPORTE">PASAPORTE</option>
                             <option value="CARNET EXT.">CARNET EXT.</option>
-                            <option value="OTROS">OTROS</option>                      
+                            <option value="OTROS">OTROS</option>
                         </select>
                     </div>
                     <br>
@@ -170,25 +175,28 @@ MODAL AGREGAR CLIENTE
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-file-empty"></i></span>
                         </div>
-                        <input placeholder="Numero documento" name="clienteNuevoNumeroDocumento" type="text" class="form-control" required>
+                        <input placeholder="Numero documento" name="clienteNuevoNumeroDocumento" type="text"
+                            class="form-control" required>
                     </div>
-                    <br>               
+                    <br>
 
                     <!-- ENTRADA PARA EL CORREO ELECTRONICO -->
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="">@</i></span>
                         </div>
-                        <input placeholder="Correo electronico" name="clienteNuevoCorreo" type="email" class="form-control" required>
+                        <input placeholder="Correo electronico" name="clienteNuevoCorreo" type="email"
+                            class="form-control" required>
                     </div>
-                    <br>       
+                    <br>
 
                     <!-- ENTRADA PARA EL TELEFONO -->
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-phone-handset"></i></span>
                         </div>
-                        <input placeholder="Telefono" name="clienteNuevoTelefono" type="text" class="form-control" required>
+                        <input placeholder="Telefono" name="clienteNuevoTelefono" type="text" class="form-control"
+                            required>
                     </div>
                     <br>
 
@@ -196,8 +204,10 @@ MODAL AGREGAR CLIENTE
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-calendar-full"></i></span>
-                        </div>                        
-                        <input class="form-control input-mask-trigger" name="clienteNuevoFechaNacimiento" placeholder="Fecha de Nacimiento"data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" im-insert="false">
+                        </div>
+                        <input class="form-control input-mask-trigger" name="clienteNuevoFechaNacimiento"
+                            placeholder="Fecha de Nacimiento" data-inputmask-alias="datetime"
+                            data-inputmask-inputformat="mm/dd/yyyy" im-insert="false">
                     </div>
                     <br>
 
@@ -212,7 +222,7 @@ MODAL AGREGAR CLIENTE
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar cliente</button>
                 </div>
-            
+
             </form>
 
             <?php
@@ -230,7 +240,8 @@ MODAL AGREGAR CLIENTE
 MODAL EDITAR CLIENTE
 ======================================-->
 
-<div class="modal fade" id="modalEditarCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEditarCliente" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -261,7 +272,8 @@ MODAL EDITAR CLIENTE
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-user"></i></span>
                         </div>
-                        <input placeholder="Nombres" name="clienteEditarNombres" id="clienteEditarNombres" type="text" class="form-control" required>
+                        <input placeholder="Nombres" name="clienteEditarNombres" id="clienteEditarNombres" type="text"
+                            class="form-control" required>
                     </div>
                     <br>
 
@@ -270,12 +282,13 @@ MODAL EDITAR CLIENTE
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-user"></i></span>
                         </div>
-                        <input placeholder="Apellidos" name="clienteEditarApellidos" id="clienteEditarApellidos" type="text" class="form-control" required>
+                        <input placeholder="Apellidos" name="clienteEditarApellidos" id="clienteEditarApellidos"
+                            type="text" class="form-control" required>
                     </div>
                     <br>
 
                     <!-- ENTRADA PARA EL TIPO DOCUMENTO -->
-                    <div class="input-group">               
+                    <div class="input-group">
                         <span class="input-group-text"><i class="lnr-menu"></i></span>
                         <select class="form-control" name="clienteEditarTipoDocumento">
                             <option value="" id="clienteEditarTipoDocumento"></option>
@@ -283,7 +296,7 @@ MODAL EDITAR CLIENTE
                             <option value="RUC">RUC</option>
                             <option value="PASAPORTE">PASAPORTE</option>
                             <option value="CARNET EXT.">CARNET EXT.</option>
-                            <option value="OTROS">OTROS</option>                      
+                            <option value="OTROS">OTROS</option>
                         </select>
                     </div>
                     <br>
@@ -293,25 +306,28 @@ MODAL EDITAR CLIENTE
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="">@</i></span>
                         </div>
-                        <input placeholder="Numero documento" name="clienteEditarNumeroDocumento" id="clienteEditarNumeroDocumento" type="text" class="form-control" required>
+                        <input placeholder="Numero documento" name="clienteEditarNumeroDocumento"
+                            id="clienteEditarNumeroDocumento" type="text" class="form-control" required>
                     </div>
-                    <br>               
+                    <br>
 
                     <!-- ENTRADA PARA EL CORREO ELECTRONICO -->
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="">@</i></span>
                         </div>
-                        <input placeholder="Correo electronico" name="clienteEditarCorreo" id="clienteEditarCorreo" type="email" class="form-control" required>
+                        <input placeholder="Correo electronico" name="clienteEditarCorreo" id="clienteEditarCorreo"
+                            type="email" class="form-control" required>
                     </div>
-                    <br>       
+                    <br>
 
                     <!-- ENTRADA PARA EL TELEFONO -->
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-phone-handset"></i></span>
                         </div>
-                        <input placeholder="Telefono" name="clienteEditarTelefono" id="clienteEditarTelefono" type="text" class="form-control" required>
+                        <input placeholder="Telefono" name="clienteEditarTelefono" id="clienteEditarTelefono"
+                            type="text" class="form-control" required>
                     </div>
                     <br>
 
@@ -319,8 +335,10 @@ MODAL EDITAR CLIENTE
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="lnr-calendar-full"></i></span>
-                        </div>                        
-                        <input class="form-control input-mask-trigger" name="clienteEditarFechaNacimiento" id="clienteEditarFechaNacimiento" placeholder="Fecha de Nacimiento"data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" im-insert="false">
+                        </div>
+                        <input class="form-control input-mask-trigger" name="clienteEditarFechaNacimiento"
+                            id="clienteEditarFechaNacimiento" placeholder="Fecha de Nacimiento"
+                            data-inputmask-alias="datetime" data-inputmask-inputformat="mm/dd/yyyy" im-insert="false">
                     </div>
                     <br>
 
@@ -335,7 +353,7 @@ MODAL EDITAR CLIENTE
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-primary">Editar cliente</button>
                 </div>
-            
+
             </form>
 
             <?php
@@ -356,4 +374,3 @@ MODAL EDITAR CLIENTE
   $eliminarCliente -> ctrEliminarCliente();
 
 ?>
-

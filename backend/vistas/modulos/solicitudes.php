@@ -7,8 +7,8 @@
                     <i class="pe-7s-car icon-gradient bg-mean-fruit"></i>
                 </div>
                 <div>Solicitudes
-                    <div class="page-title-subheading">This is an example dashboard created using build-in elements and
-                        components.
+                    <div class="page-title-subheading">Se muestran las solicitudes generadas desde la web para la
+                        validación y seguimiento de las mismas.
                     </div>
                 </div>
             </div>

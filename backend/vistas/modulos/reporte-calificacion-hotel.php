@@ -47,10 +47,26 @@
 
                             <?php
 
-                                $ventas = ControladorReporte::mdlReporteCalificacionHotel();
+                                $ventas = ControladorReporte::ctrReporteCalificacionHotel();
 
                                 foreach ($ventas as $key => $value) {
 
+                                    $estrellasPositivasMostrar = '';
+                                    for ($i = 1; $i <= $value["valor"]; $i++) {
+                                        $estrellasPositivasMostrar .= '<i class="fas fa-star"></i>';
+                                    }
+
+                                    $mejoras = explode(",", $value["mejorar"]);
+                                    $mejoras_texto = "";
+
+                                    foreach($mejoras as $k => $v){
+                                        $class = $k % 2 == 0 ?'badge-info':'badge-warning';
+                                        $mejoras_texto .= '<div class="badge badge-pill '.$class.'">'.$v.'</div>';
+                                    }
+
+                                    
+                                    $stars = '<div class="mb-2 mr-2 badge badge-pill badge-primary" data-toggle="tooltip" title="'.$value["valor"].' Estrellas" data-placement="top" >'.$estrellasPositivasMostrar.'</div>';
+                                   
                                     echo '<tr>
 
                                             <td>'.$value["titulo"].'</td>
@@ -65,9 +81,9 @@
 
                                             <td>'.$value["correo"].'</td>
 
-                                            <td>'.$value["valor"].'</td>
+                                            <td>'.$stars.'</td>
 
-                                            <td>'.$value["mejorar"].'</td>
+                                            <td>'.$mejoras_texto.'</td>
 
                                             <td>'.$value["fecha_registro"].'</td>
                                             

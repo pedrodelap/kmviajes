@@ -341,23 +341,7 @@ $(document).ready(function () {
 
     //Bar
 
-    if (document.getElementById('canvas')) {
-        var ctx = document.getElementById('canvas').getContext('2d');
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: false,
-                    text: 'Chart.js Bar Chart'
-                }
-            }
-        });
-    }
+
 
     // Pie
 

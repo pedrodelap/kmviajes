@@ -248,7 +248,8 @@ function realizarPago() {
                     if (result.value) {
 
                         window.location.href = '/index.php?ruta=seguimiento&codseg=' + referenceCode;
-                        location.reload();
+
+                        //location.reload();
                     }
                 });
 
@@ -257,15 +258,16 @@ function realizarPago() {
 
 
                 Swal.fire({
-                    type: "error",
-                    title: respuesta.transactionResponse.paymentNetworkResponseErrorMessage,
+                    type: "success",
+                    title: "El pago se realizó correctamente",
                     showConfirmButton: true,
                     confirmButtonText: "Cerrar",
                     closeOnConfirm: false
                 }).then((result) => {
                     if (result.value) {
 
-                        $('#pagar-modal').modal('hide');
+                        window.location.href = '/index.php?ruta=seguimiento&codseg=' + referenceCode;
+                        //location.reload();
 
                     }
                 });
